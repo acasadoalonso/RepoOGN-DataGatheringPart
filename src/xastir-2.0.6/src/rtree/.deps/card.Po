@@ -1,0 +1,5 @@
+card.o: card.c index.h card.h
+
+index.h:
+
+card.h:

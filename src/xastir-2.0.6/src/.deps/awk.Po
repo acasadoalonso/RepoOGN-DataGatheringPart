@@ -1,0 +1,3 @@
+awk.o: awk.c ../config.h
+
+../config.h:

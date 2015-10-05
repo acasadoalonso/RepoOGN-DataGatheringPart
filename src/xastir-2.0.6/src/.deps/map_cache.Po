@@ -1,0 +1,3 @@
+map_cache.o: map_cache.c ../config.h
+
+../config.h:
