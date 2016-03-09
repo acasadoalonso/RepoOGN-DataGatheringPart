@@ -21,11 +21,6 @@ from   geopy.distance import vincenty       # use the Vincenty algorithm
 from   geopy.geocoders import GeoNames      # use the Nominatim as the geolocator
 from   geopy.geocoders import Nominatim	    # we need it for resolving the geppositions
 
-def spanishsta(station):                    # return true if is an spanish station
-    if station[0:2] == 'LE' or station [0:5] == 'CREAL' or station [0:4] == 'MORA':
-        return True
-    else:
-        return False
 #
 # ---------- main code ---------------
 #
@@ -57,7 +52,7 @@ if 'SERVER_SIGNATURE' in os.environ:        # check if www
 	tmp='tmp/'
 
 if prt:
-    print "Start process OGN records V1.7"
+    print "Start process OGN records V1.8"
     print "=============================="
 dtereq =  sys.argv[1:]
 if dtereq and dtereq[0] == 'date':
@@ -174,6 +169,8 @@ while True:                                 # until end of file
     station=data[19:23]                     # get the station identifier
     if station == 'LECI' or station == 'CREA':
             station=data[19:24]             # just a hack !!!
+    if station == 'Madr' :
+            station=data[19:25]             # just a hack !!!
     if spanishsta(station):                 # only Spanish stations
         if not id in fid :                  # if we did not see the FLARM ID
             fid  [id]=0                     # init the counter

@@ -76,3 +76,23 @@ def get_otime(packet):
     except ValueError:
         otime = 0
     return otime
+#######---------------------------------------------------------------------------------------------------------
+
+def spanishsta(station):                # return true if is an Spanish station
+    if (station) == None:
+        return False
+    if station[0:2] == 'LE' or station [0:5] == 'CREAL' or station [0:4] == 'MORA' or station[0:6] == 'Madrid' :
+        return True
+    else:
+        return False
+
+
+
+def frenchsta(station):                # return true if is an French station
+    if (station) == None:
+        return False
+    if station[0:2] == 'LF' :
+        return True
+    else:
+        return False
+######################################################################### 

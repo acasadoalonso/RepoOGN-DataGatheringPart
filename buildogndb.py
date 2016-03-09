@@ -41,8 +41,8 @@ tmsta = ''
 prt=False
 
 
-print "Start build OGN database"
-print "========================"
+print "Start build OGN database V1.9"
+print "============================="
 dtereq =  sys.argv[1:]
 if dtereq and dtereq[0] == 'date':
     dter = True                             # request the date
@@ -186,7 +186,12 @@ while True:                                 # until end of file
         lati=data[p1+16:p1+21]+data[p1+22:p1+24]+'0'+data[p1+24]        # get the latitude
         p2=data.find('/A=')+3               # scan for the altitude on the body of the message
         altif=data[p2+1:p2+6]               # get the altitude in feet
-        uniqueid     = data[p2+7:p2+17]     # get the unique id
+	if  data[p2+7] == '!':              # get the unique id
+                uniqueid     = data[p2+13:p2+23] # get the unique id
+                extpos       = data[p2+7:p2+12] # get extended position indicator
+        else:
+                uniqueid     = data[p2+7:p2+17] # get the unique id
+                extpos=' '
         p3=data.find('fpm')                 # scan for the rate of climb
         roclimb      = data[p3-3:p3]        # get the rate of climb
         p4=data.find('rot')                 # scan for the rate of climb
@@ -221,8 +226,8 @@ while True:                                 # until end of file
                 tmid  = id                  # who did it
                 tmsta = station             # station capturing the max altitude
         # write the DB record
-        addcmd="insert into OGNDATA values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-        curs.execute(addcmd, (id, dte, hora, station, latitude, longitude, altim, speed, course, roclimb, rot,sensitivity, gps, uniqueid, dist))
+        addcmd="insert into OGNDATA values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+        curs.execute(addcmd, (id, dte, hora, station, latitude, longitude, altim, speed, course, roclimb, rot,sensitivity, gps, uniqueid, dist, extpos))
         cin +=1                             # one more record read
         
 datafilei.close()                           # close the input file

@@ -1,0 +1,18 @@
+@reboot     sh /home/pi/src/boot_flight_logger.sh
+05 *  * * * sh /home/pi/src/meteo.sh
+35 *  * * * sh /home/pi/src/meteo.sh
+50 23 * * * sh /home/pi/src/dailymetlog.sh
+00 00 1 * * sh /home/pi/src/monthlylog.sh
+00 02 * * 1 sh /home/pi/src/bkup.sh
+45 23 * * 1 sh /home/pi/src/buildddb.sh
+00 05 * * * sh /home/pi/src/rpihealth.sh
+00 00 * * * sudo ntpdate -u  -s pool.ntp.org
+00  * * * * sh /home/pi/src/checkconn.sh 192.168.1.117 wlan0
+-----root-----
+00 02 * * *   cp /nfs/hosts /etc/hosts
+@reboot service rpcbind start
+@reboot mount -t nfs casadoix2:/Documents /oldnfs
+@reboot mount -t nfs casadonfs:/nfs/NFS/Documents   /nfs
+@reboot mount -t nfs casadonfs:/nfs/NFS/Documents/OGN/DIRdata /var/www/ogn
+@reboot /usr/local/bin/noip2
+@reboot sh /home/pi/src/wlanup.sh

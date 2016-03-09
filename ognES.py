@@ -54,25 +54,6 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
     print "Time now:", local_time
     return
 
-#######
-
-def spanishsta(station):                # return true if is an Spanish station
-    if (station) == None:
-        return False
-    if station[0:2] == 'LE' or station [0:5] == 'CREAL' or station [0:4] == 'MORA':
-        return True
-    else:
-        return False
-
-
-
-def frenchsta(station):                # return true if is an French station
-    if (station) == None:
-        return False
-    if station[0:2] == 'LF' :
-        return True
-    else:
-        return False    
 #########################################################################
 
 fid=  {'NONE  ' : 0}                    # FLARM ID list
@@ -91,7 +72,7 @@ tmsta = '         '                     # station capturing max altitude
 
 #----------------------ogn_main.py start-----------------------
  
-print "Start ognES SPAIN V1.7"
+print "Start ognES SPAIN V1.9"
 print "======================"
 
 prtreq =  sys.argv[1:]
@@ -107,7 +88,7 @@ print "Socket sock connected"
  
 # logon to OGN APRS network    
 
-login = 'user %s pass %s vers Py-SPAIN 1.7 %s'  % (settings.APRS_USER, settings.APRS_PASSCODE , settings.APRS_FILTER_DETAILS)
+login = 'user %s pass %s vers Py-SPAIN 1.9 %s'  % (settings.APRS_USER, settings.APRS_PASSCODE , settings.APRS_FILTER_DETAILS)
 sock.send(login)    
  
 # Make the connection to the server
@@ -171,7 +152,7 @@ try:
             print "At Sunset now ... Time is:", date, " Next sunset is: ", next_sunset,  " UTC"
             shutdown(sock, datafile, tmaxa, tmaxt,tmid)
             print "At Sunset ... Exit"
-            exit()
+            exit(0)
    
         if prt:
             print "In main loop. Count= ", i
@@ -216,6 +197,9 @@ try:
                 station = packet_str[19:23]     # get the station identifier
                 if station == 'LECI' or station == 'CREA':
                     station=packet_str[19:24]   # just a hack !!!
+		if station == 'Madr':
+                    station=packet_str[19:25]   # just a hack !!!
+		    
             else:
                 station=id                      # just the station itself 
             if prt:
@@ -233,7 +217,7 @@ try:
             fid[id] +=1                         # increase the number of records read
             if altitude >= fmaxa[id]:
                 fmaxa[id] = altitude
-                if altitude > tmaxa and (! spanishsta(id) and ! frenchsta(id)):
+                if altitude > tmaxa and (not spanishsta(id) and not frenchsta(id)):
                         tmaxa = altitude        # maximum altitude for the day
                         tmaxt = date            # and time
                         tmid  = id              # who did it
@@ -254,7 +238,7 @@ libfap.fap_cleanup()
 print 'Counters:', cin, cout                # report number of records read and files generated
 shutdown(sock, datafile, tmaxa, tmaxt,tmid)
 print "Exit now ..."
-exit()
+exit(1)
 
 
 

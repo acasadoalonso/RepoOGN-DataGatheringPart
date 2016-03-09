@@ -77,7 +77,7 @@ idr=False
 lnames=False
 pdte=' '
 reg=' '
-db=(r'/nfs/OGN/DIRdata/OGN.db')
+db=(r'OGN.db')
 inittime=datetime.datetime.now()
 #
 # Dump the OGN database
@@ -226,6 +226,10 @@ if lnames:
 	addr=loc.address
 	addr=fixcoding(addr).encode('utf8')
 	addr=str(addr) 
+	if reg and reg != None:
+		regi=reg
+	else:
+		regi=''
 	msg= ("Date: %6s Max Alt: %05d m. MSL at %s UTC by: %6s %14s Under: %6s At: %s" % (pdte, tmaxa, tmaxt, tmid, regi, tmsta, addr))
 else:
 	msg= ("Date: %6s Max Alt: %05d m. MSL at %2s:%2s:%2sZ by: %6s %14s Under: %s " % (pdte, tmaxa, tmaxt[0:2], tmaxt[2:4], tmaxt[4:6], tmid, regi, tmsta))
