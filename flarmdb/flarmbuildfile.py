@@ -65,16 +65,16 @@ def flarmdb (prt, curs):
             if prt:
                     print "Line: ", i-1, " ID: ", ID,  " Airport: ", Airport, " Type: ", Type, " Registration: ", Registration,  " Radio: ", Radio
             row = '\t\t"%s":"%s",\n' % (ID,  Registration)              # write just what we need: ID and registration
-            flm_txt.write(row)
             ID=ID.strip("'")
             Registration=Registration.strip("'")
             Type=Type.strip("'")
 	    try:
-            	curs.execute("insert into GLIDERS values(?,?,?,?,?)", (ID, Registration, " ", Type, "F"))
+            	curs.execute("insert into GLIDERS values(?,?,?,?,?,?)", (ID, Registration, " ", Type, "F", "F"))
+                flm_txt.write(row)
 		cout += 1
             except:
 		dups+=1
-                print "Duplicate ID on DB:", ID, Registration, Type, "Dup #", dups, i-1
+                #print "Duplicate ID on DB:", ID, Registration, Type, "Dup #", dups, i-1
         except:
             print "Error at row : ", i - 1
             return True

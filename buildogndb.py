@@ -17,11 +17,6 @@ from   geopy.distance import vincenty       # use the Vincenty algorithm
 from   geopy.geocoders import GeoNames      # use the Nominatim as the geolocator
 import sqlite3                              # the SQL data base routines
 
-def spanishsta(station):                    # return true if is an spanish station
-    if station[0:2] == 'LE' or station [0:5] == 'CREAL' or station [0:4] == 'MORA':
-        return True
-    else:
-        return False
 #
 # ---------- main code ---------------
 #
@@ -31,6 +26,9 @@ fsta= {'NONE  ' : 'NONE  '}                 # STATION ID list
 ftkot={'NONE  ' : 0}                        # take off time
 flndt={'NONE  ' : 0}                        # take off time
 fsloc={'NONE  ' : (0.0, 0.0)}               # station location
+fslla={'NONE  ' : 0.0}			    # station latitude
+fsllo={'NONE  ' : 0.0}			    # station longitude
+fslal={'NONE  ' : 0.0}			    # station altitude
 fsmax={'NONE  ' : 0.0}                      # maximun coverage
 fsalt={'NONE  ' : 0}                        # maximun altitude
 ftkok={datetime.datetime.utcnow(): 'NONE  '}  # Take off time 
@@ -39,6 +37,8 @@ tmaxt = 0                                   # time at max altitude
 tmid  = 0                                   # glider ID obtaining max altitude
 tmsta = ''
 prt=False
+blacklist = ['FLR5B8041']                   # blacklist
+
 
 
 print "Start build OGN database V1.9"
@@ -140,11 +140,38 @@ while True:                                 # until end of file
                     print key, '==>', fsmax[key], ' Kms. '      # distance
                 addcmd="insert into STATIONS values (?,?,?,?)"
                 curs.execute(addcmd, (key, dte, fsmax[key], fsalt[key]))
+	#
+            selcmd="select idrec from RECEIVERS where idrec=?"  # SQL command to execute: SELECT
+            curs.execute(selcmd, (key,))
+            if curs.fetchone() == None:
+		gid='Noreg '                # for unknown receiver
+        	if spanishsta(key) or frenchsta(key):
+            		if key in kglid.kglid:
+                		gid=kglid.kglid[key]        # report the station name
+            		else:
+                		gid="NOSTA"                 # marked as no sta
+		lati=fslla[key]             # latitude
+        	long=fsllo[key]             # longitude
+        	alti=fslal[key]             # altitude
+
+		if key != "None" and key != None:
+                	if prt:
+                    		print key, 'Adding ==>', gid, lati, long, alti
+                	inscmd="insert into RECEIVERS values (?, ?, ?, ?, ?)"
+                	curs.execute(inscmd, (key, gid, lati, long, alti))
+	#
         conn.commit()
         break                               # work done
 
     if len(data) < 40:                      # that is the case of end of file when the ognES.py process is still
         continue                            # nothing else to do
+#   ready to handle a record
+
+    ix=data.find('>')
+    cc= data[0:ix]
+    cc=cc.upper()
+    data=cc+data[ix:]
+
     packet       = libfap.fap_parseaprs(data, len(data), 0) # parser the information
     longitude    = get_longitude(packet)
     latitude     = get_latitude(packet)
@@ -161,16 +188,21 @@ while True:                                 # until end of file
  
     callsign=packet[0].src_callsign         # get the call sign FLARM ID
     if (data.find('TCPIP*') != -1):         # ignore the APRS lines
-        id=callsign                         # stasion ID
+        id=callsign                         # station ID
         if not id in fsloc :
             fsloc[id]=(latitude, longitude) # save the loction of the station
+	    fslla[id]=latitude
+	    fsllo[id]=longitude
+	    fslal[id]=altitude
             fsmax[id]=0.0                   # initial coverage zero
             fsalt[id]=0                     # initial coverage zero
         continue                            # go for the next record
+    if cc in blacklist:
+        continue
     id=data[3:9]                            # exclude the FLR part
-    station=data[19:23]                     # get the station identifier
-    if station == 'LECI' or station == 'CREA':
-            station=data[19:24]             # just a hack !!!
+    scolon=data.find(':')                   # find the colon
+    station=data[19:scolon]                 # get the station identifier
+    station=station.upper()                 # translate to uppercase
     if spanishsta(station):                 # only Spanish stations
         if not id in fid :                  # if we did not see the FLARM ID
             fid  [id]=0                     # init the counter
@@ -230,11 +262,15 @@ while True:                                 # until end of file
         curs.execute(addcmd, (id, dte, hora, station, latitude, longitude, altim, speed, course, roclimb, rot,sensitivity, gps, uniqueid, dist, extpos))
         cin +=1                             # one more record read
         
+# -----------------  final process ----------------------
+
 datafilei.close()                           # close the input file
 datef=datetime.datetime.now()               # get the time & date
 conn.commit()
-conn.close()                                            # Close libfap.py to avoid memory leak
+conn.close()                                # Close libfap.py to avoid memory leak
 libfap.fap_cleanup()
+
+
 if tmid in kglid.kglid:                     # if it is a known glider ???
     gid=kglid.kglid[tmid]                   # report the registration
 else:

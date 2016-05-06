@@ -1,7 +1,41 @@
 #!/usr/bin/python
 #
-from DBopen_db import opendb
 import sqlite3
+def opendb (schema_file, cursor):
+    # Open a connection to the database
+    # Build the database from the supplied schema
+    print "opendb"
+    try:
+        db = sqlite3.connect("OGN.db")
+    except Exception as e:
+        # Failed to open flogger.db, error
+        print "Failed to open OGN.db, error"
+        return False
+
+    # Create a cursor to work with
+    cur = db.cursor()
+    cursor[0] = cur
+
+    # Drop tables if they exist in the database
+    floggerSchema = open(schema_file)
+    print "opendb:", schema_file, " open ok"
+    schemaStr = ""
+    for line in floggerSchema.readlines():
+#        print "Line is: ", line
+        schemaStr += " %s" % line
+#    print "schemaStr is: ", schemaStr
+    try:
+        cur.executescript(schemaStr)
+    except Exception as e:
+        # Failed to create flogger.db from schema, error
+        print "Failed to create flogger.db from schema, error"
+        return False
+    floggerSchema.close()
+    db.commit()
+    db.close()
+    print "opendb: OGN Databases built"
+    return True
+
 #-----------------------------------------------------------------
 # Build flogger db using schema
 #-----------------------------------------------------------------
@@ -27,17 +61,6 @@ curs.execute(addcmd, ('LEIG',  '990101', 1.0, 0))
 curs.execute(addcmd, ('MORA',  '990101', 1.0, 0))
 curs.execute(addcmd, ('CREAL', '990101', 1.0, 0))
 
-addcmd="insert into RECEIVERS values (?, ?, ?, ?, ?)"
-curs.execute(addcmd, ('LELT',  'Lillo',                 39.71498, -3.31366, 2244.0))
-curs.execute(addcmd, ('LEOC',  'Ocana',                 39.93543, -3.49672, 2427.0))
-curs.execute(addcmd, ('LEFM',  'Fuentemilanos',         40.88903, -4.24122, 3372.0))
-curs.execute(addcmd, ('LECI1', 'Santa Cilia',           42.56753, -0.72573, 2244.0))
-curs.execute(addcmd, ('LECI2', 'San Juan de la Pena',   42.51146, -0.66187, 4215.0))
-curs.execute(addcmd, ('LETP',  'Santo Tome del Puerto', 41.19410, -3.57732, 3736.0))
-curs.execute(addcmd, ('LECD',  'La Cerdanya',           42.38695, +1.86843, 3628.0))
-curs.execute(addcmd, ('LEIG',  'Igualada',              41.58666, +1.65250, 1122.0))
-curs.execute(addcmd, ('MORA',  'Mora de Toledo',        39.68739, -3.77004, 2388.0))
-curs.execute(addcmd, ('CREAL', 'Ciudad Real',           38.98252, -3.91249, 2112.0))
 conn.commit()
 						# print the preset values as a way to check it
 curs.execute ('select * from STATIONS')
@@ -48,10 +71,6 @@ curs.execute ('select * from RECEIVERS')
 for row in curs.fetchall():
     print row
 
-curs.execute ('select (select desc from RECEIVERS where idsta = idrec), mdist, malt from STATIONS')
-for row in curs.fetchall():
-    print row
-           
 print "Print dictionaries:"             
 curs.execute('select * from STATIONS')
 colnames = [desc[0] for desc in curs.description]
@@ -68,6 +87,7 @@ print "GLIDERS", colnames
 curs.execute('select * from METEO')
 colnames = [desc[0] for desc in curs.description]
 print "METEO", colnames
+print "Database created .... "
 conn.commit()
 conn.close()
 

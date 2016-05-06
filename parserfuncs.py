@@ -81,7 +81,18 @@ def get_otime(packet):
 def spanishsta(station):                # return true if is an Spanish station
     if (station) == None:
         return False
-    if station[0:2] == 'LE' or station [0:5] == 'CREAL' or station [0:4] == 'MORA' or station[0:6] == 'Madrid' :
+    if station[0:2] == 'LE' or 			\
+		station[0:5] == 'CREAL'     or 	\
+		station[0:4] == 'MORA'      or 	\
+		station[0:6] == 'MADRID'    or 	\
+		station[0:5] == 'AVILA'     or	\
+		station[0:9] == 'ALCAZAREN' or	\
+		station[0:7] == 'ANDORRA'   or	\
+		station[0:8] == 'STOROSIA'  or	\
+		station[0:8] == 'CAMPO'     or	\
+		station[0:6] == 'FIGOLS'    or  \
+		station[0:8] == 'LAMOLINA'  or	\
+		station[0:8] == 'PORTAINE'  :
         return True
     else:
         return False
@@ -91,7 +102,11 @@ def spanishsta(station):                # return true if is an Spanish station
 def frenchsta(station):                # return true if is an French station
     if (station) == None:
         return False
-    if station[0:2] == 'LF' :
+    if station[0:2] == 'LF'        or \
+       station[0:4] == 'BRAM'      or \
+       station[0:7] == 'POUBEAU'   or \
+       station[0:7] == 'CANOHES'   or \
+       station[0:7] == 'ROCAUDE' :
         return True
     else:
         return False

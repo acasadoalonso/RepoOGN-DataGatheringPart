@@ -40,6 +40,7 @@ tmsta = ''
 tmp=''
 mlong=0.0                                   # longitude on the max altiutde point
 mlati=0.0                                   # latitude of idem
+blacklist = ['FLR5B8041']		    # blacklist
 www=False
 prt=True
 
@@ -52,7 +53,7 @@ if 'SERVER_SIGNATURE' in os.environ:        # check if www
 	tmp='tmp/'
 
 if prt:
-    print "Start process OGN records V1.8"
+    print "Start process OGN records V1.9"
     print "=============================="
 dtereq =  sys.argv[1:]
 if dtereq and dtereq[0] == 'date':
@@ -143,6 +144,11 @@ while True:                                 # until end of file
     if len(data) < 40:                      # that is the case of end of file when the ognES.py process is still running
         continue                            # nothing else to do
     
+
+    ix=data.find('>')
+    cc= data[0:ix]
+    cc=cc.upper()
+    data=cc+data[ix:]
     packet       = libfap.fap_parseaprs(data, len(data), 0) # parser the information
                                             # get the information once parsed 
     longitude    = get_longitude(packet)
@@ -164,14 +170,20 @@ while True:                                 # until end of file
         if not id in fsloc :
             fsloc[id]=(latitude, longitude) # save the loction of the station
             fsmax[id]=0.0                   # initial coverage zero
+	    #print "ID:", id, data[0:10], latitude, longitude
+	if id == None:
+	    id= data[0:data.find('>')]
+	    print "ID:", id, data[0:10]
+            fsloc[id]=(latitude, longitude) # save the loction of the station
+            fsmax[id]=0.0                   # initial coverage zero
         continue                            # go for the next record
+    if cc in blacklist:
+	continue
     id=data[3:9]                            # exclude the FLR part
-    station=data[19:23]                     # get the station identifier
-    if station == 'LECI' or station == 'CREA':
-            station=data[19:24]             # just a hack !!!
-    if station == 'Madr' :
-            station=data[19:25]             # just a hack !!!
-    if spanishsta(station):                 # only Spanish stations
+    scolon=data.find(':')		    # find the colon 
+    station=data[19:scolon]                 # get the station identifier
+    station=station.upper()		    # translate to uppercase
+    if spanishsta(station) or frenchsta(station):       # only Spanish or frenchstations
         if not id in fid :                  # if we did not see the FLARM ID
             fid  [id]=0                     # init the counter
             fsta [id]=station               # init the station receiver
@@ -223,7 +235,11 @@ while True:                                 # until end of file
                 mlong = longitude           # longitude of the max alt point
                 mlati = latitude            # latitude
         cin +=1                             # one more record read
-        
+     
+    #else:
+	#print "Unkown station: ", station   
+
+# -----------------  final process ----------------------
 datafilei.close()                           # close the input file
 datef=datetime.datetime.now()               # get the time & date
                                             # Close libfap.py to avoid memory leak
@@ -232,12 +248,13 @@ if tmid in kglid.kglid:                     # if it is a known glider ???
     gid=kglid.kglid[tmid]                   # report the registration
 else:
     gid=tmid                                # just report the flarmid 
-geolocator = Nominatim(timeout=5)	    # define the geolocator, we need 5 second timeout 
-loc = geolocator.reverse([mlati,mlong])     # locate the point of maximun altitue for the day.
+#geolocator = Nominatim(timeout=5)	    # define the geolocator, we need 5 second timeout 
+#loc = geolocator.reverse([mlati,mlong])     # locate the point of maximun altitue for the day.
    
-addr=loc.address                            # the location name                           
-addr=addr.encode('utf8')                    # convert it to UTF-8
-addr=str(addr)                              # convert to str just in case, in order to avoid problems when is redirected to a file. 
+#addr=loc.address                            # the location name                           
+#addr=addr.encode('utf8')                    # convert it to UTF-8
+#addr=str(addr)                              # convert to str just in case, in order to avoid problems when is redirected to a file. 
+addr=' '
 
 if prt: print "Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta, "At: ", mlati, mlong, addr
 if prt: print 'Bye ... Time now and Time used:', datef, datef-date      # report the processing time

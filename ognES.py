@@ -199,6 +199,8 @@ try:
                     station=packet_str[19:24]   # just a hack !!!
 		if station == 'Madr':
                     station=packet_str[19:25]   # just a hack !!!
+		if station == 'RocA':
+                    station=packet_str[19:26]   # just a hack !!!
 		    
             else:
                 station=id                      # just the station itself 

@@ -23,6 +23,7 @@ def fixcoding(addr):
 		addr=addr.replace(u'ò', u'o')
 		addr=addr.replace(u'ô', u'o')
 		addr=addr.replace(u'Ó', u'O')
+		addr=addr.replace(u'Ò', u'O')
 		addr=addr.replace(u'ú', u'u')
 		addr=addr.replace(u'ù', u'u')
 		addr=addr.replace(u'û', u'u')
@@ -119,7 +120,7 @@ print "STATIONS==>", colnames
 logging.info('%30s Dump station with names: ', datetime.datetime.now())
 curs.execute ('select date, idsta, (select desc from RECEIVERS where idsta = idrec), mdist, malt from STATIONS')
 for row in curs.fetchall():
-    print ("%s %-6s %-30s %6.2f %4d" % row)
+    print ("%s %-9s %-30s %6.2f %4d" % row)
     
 logging.info('%30s Dump receivers: ', datetime.datetime.now())
 curs.execute('select * from RECEIVERS')
@@ -162,9 +163,9 @@ while True:
 		# print addr
 		addr=fixcoding(addr).encode('utf8')
 		addr=str(addr) 
-		msg= ("Date: %6s Max Alt: %05d m. MSL at %s UTC by: %6s %14s Under: %6s At: %s" % (pdte, tmaxa, tmaxt, tmid, regi, tmsta, addr))
+		msg= ("Date: %6s Max Alt: %05d m. MSL at %s UTC by: %6s %14s Under: %9s At: %s" % (pdte, tmaxa, tmaxt, tmid, regi, tmsta, addr))
 	    else:
-		msg= ("Date: %6s Max Alt: %05d m. MSL at %2s:%2s:%2sZ by: %6s %14s Under: %6s " % (pdte, tmaxa, tmaxt[0:2], tmaxt[2:4], tmaxt[4:6], tmid, regi, tmsta))
+		msg= ("Date: %6s Max Alt: %05d m. MSL at %2s:%2s:%2sZ by: %6s %14s Under: %9s " % (pdte, tmaxa, tmaxt[0:2], tmaxt[2:4], tmaxt[4:6], tmid, regi, tmsta))
 	    print msg
 	    tmaxa=0
 	    tmaxt=tme
@@ -230,9 +231,9 @@ if lnames:
 		regi=reg
 	else:
 		regi=''
-	msg= ("Date: %6s Max Alt: %05d m. MSL at %s UTC by: %6s %14s Under: %6s At: %s" % (pdte, tmaxa, tmaxt, tmid, regi, tmsta, addr))
+	msg= ("Date: %6s Max Alt: %05d m. MSL at %s UTC by: %9s %14s Under: %6s At: %s" % (pdte, tmaxa, tmaxt, tmid, regi, tmsta, addr))
 else:
-	msg= ("Date: %6s Max Alt: %05d m. MSL at %2s:%2s:%2sZ by: %6s %14s Under: %s " % (pdte, tmaxa, tmaxt[0:2], tmaxt[2:4], tmaxt[4:6], tmid, regi, tmsta))
+	msg= ("Date: %6s Max Alt: %05d m. MSL at %2s:%2s:%2sZ by: %9s %14s Under: %s " % (pdte, tmaxa, tmaxt[0:2], tmaxt[2:4], tmaxt[4:6], tmid, regi, tmsta))
 print msg
 
 logging.info('%30s Dump Gliders: ', datetime.datetime.now())
@@ -274,7 +275,7 @@ for key in k:                               # report data
     else:
 	addr= ''
     try:
-	msg=("ID: %6s Reg: %-13s ==> Station base: %6s Number of hits: %6d Max. distance: %6.2f Max. altitude %4d at: %s" % (key, reg, fsta[key], fid[key], fmaxd[key], fmaxalti[key], addr))
+	msg=("ID: %6s Reg: %-13s ==> Station base: %9s Number of hits: %6d Max. distance: %6.2f Max. altitude %4d at: %s" % (key, reg, fsta[key], fid[key], fmaxd[key], fmaxalti[key], addr))
 	print  msg
     except:
 	logging.error('%30s error at geolocate coordenates: %9.6f %9.6f', datetime.datetime.now(), mlati, mlong)
@@ -296,9 +297,10 @@ for key in k:                               # report data distances
 		if addr != None:
 			addr=fixcoding(addr).encode('utf8')
 			addr=str(addr)
-			msg = "%6s ==> %7.2f Kms. achieved and %8d packets received. Max. Alt.: %5.2f  on: %6s at: %50s " % (key,  fsmax[key],  fsloc[key], fsabsmax[key]['alti'], fsabsmax[key]['date'], addr)
+			#print addr
+			msg = "%9s ==> %7.2f Kms. achieved and %8d packets received. Max. Alt.: %5.2f  on: %6s at: %50s " % (key,  fsmax[key],  fsloc[key], fsabsmax[key]['alti'], fsabsmax[key]['date'], addr)
 	    else:
-		    msg = "%6s ==> %7.2f Kms. achieved and %8d packets received. %5.2f %5.2f %5.2f " % (key,  fsmax[key],  fsloc[key], fsabsmax[key]['lati'], fsabsmax[key]['long'], fsabsmax[key]['alti'])
+		    msg = "%9s ==> %7.2f Kms. achieved and %8d packets received. %5.2f %5.2f %5.2f " % (key,  fsmax[key],  fsloc[key], fsabsmax[key]['lati'], fsabsmax[key]['long'], fsabsmax[key]['alti'])
 	    print msg
 
 print "Nrecs:", cin, "Number IDs:", len(fid), "Number Sta.:", len(fsmax), "Number days:", ndays

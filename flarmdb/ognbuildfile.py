@@ -45,12 +45,14 @@ def ogndb (prt, curs):
                 print "Line: ", i-1, " ID: ", ID,  " Dev: ", device, " Model: ", model, " Registration: ", Registration,  " CN: ", cn
             row = '\t\t%s : %s,\n' % (ID,  Registration)              # write just what we need: ID and registration
             flm_txt.write(row)
+            device=device.strip("'")
             ID=ID.strip("'")
             Registration=Registration.strip("'")
             cn=cn.strip("'")
             model=model.strip("'")
-            curs.execute("insert into GLIDERS values(?,?,?,?,?)", (ID, Registration, cn, model, "O"))
-	    print ID, Registration, cn, model
+            curs.execute("insert into GLIDERS values(?,?,?,?,?, ?)", (ID, Registration, cn, model, "O", device))
+            if prt:
+	    	print ID, Registration, cn, model
             
         except:
             print "\nNumber of rows is: ", i - 1
