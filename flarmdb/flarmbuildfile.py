@@ -56,7 +56,9 @@ def flarmdb (prt, curs):
                 Type='None'
             Registration = str(string[69:75]).decode("iso-8859-15").encode("utf-8")
             Registration=Registration.strip("'")
-            Registration=Registration.strip()
+            Registration=Registration.strip(" ")
+            Registration=Registration.replace(" ", "_")
+
             try:
             	Radio = str(string[79:86]).decode("iso-8859-15").encode("utf-8")
             except:

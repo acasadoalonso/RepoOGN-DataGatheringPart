@@ -8,7 +8,7 @@ taken=$day"_"$DMY"_"$now
 python ../src/processogn.py >>proc$(date +%y%m%d).log
 echo $(date +%H:%M:%S)      >>proc$(date +%y%m%d).log
 echo "============="        >>proc$(date +%y%m%d).log
-python ../src/buildogndb.py >>proc$(date +%y%m%d).log
+python ../src/buildogndb.py prt >>proc$(date +%y%m%d).log
 echo $(date +%H:%M:%S)      >>proc$(date +%y%m%d).log
 echo "============="        >>proc$(date +%y%m%d).log
 sleep 180

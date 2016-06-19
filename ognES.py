@@ -15,6 +15,7 @@ import datetime
 import ephem
 import pytz
 import sys
+import signal
 import os
 import kglid                                # import the list on known gliders
 from   parserfuncs import *                 # the ogn/ham parser functions 
@@ -55,6 +56,25 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
     return
 
 #########################################################################
+def alive(first='no'):
+	
+	if (first == 'yes'):
+		alivefile = open ("OGN.alive", 'w') # create a file just to mark that we are alive
+	else:
+		alivefile = open ("OGN.alive", 'a') # append a file just to mark that we are alive
+	local_time = datetime.datetime.now()
+	alivetime = local_time.strftime("%y-%m-%d %H:%M:%S")
+	alivefile.write(alivetime+"\n")	# write the time as control
+    	alivefile.close()               # close the alive file 
+#########################################################################
+ 
+def signal_term_handler(signal, frame):
+    print 'got SIGTERM ... shutdown orderly'
+    libfap.fap_cleanup()			# close libfap
+    shutdown(sock, datafile, tmaxa, tmaxt,tmid) # shutdown orderly 
+    sys.exit(0)
+ 
+signal.signal(signal.SIGTERM, signal_term_handler)
 
 fid=  {'NONE  ' : 0}                    # FLARM ID list
 fsta= {'NONE  ' : 'NONE  '}             # STATION ID list
@@ -72,8 +92,8 @@ tmsta = '         '                     # station capturing max altitude
 
 #----------------------ogn_main.py start-----------------------
  
-print "Start ognES SPAIN V1.9"
-print "======================"
+print "Start ognES SPAIN V1.10"
+print "======================="
 
 prtreq =  sys.argv[1:]
 if prtreq and prtreq[0] == 'prt':
@@ -103,6 +123,7 @@ fl_date_time = local_time.strftime("%y%m%d")
 OGN_DATA = "DATA" + fl_date_time+'.log'
 print "OGN data file is: ", OGN_DATA
 datafile = open (OGN_DATA, 'a')
+alive("yes")					# mar that we are alive
 keepalive_count = 1
 keepalive_time = time.time()
 
@@ -129,12 +150,12 @@ try:
         #Loop for a long time with a count, illustrative only
         current_time = time.time()
         elapsed_time = current_time - keepalive_time
-        if (current_time - keepalive_time) > 300:        # keepalives every 5 mins
+        if (current_time - keepalive_time) > 180:        # keepalives every 3 mins
             try:
-                rtn = sock_file.write("#Python ognES App\n\n")
-                # Make sure keepalive gets sent. If not flushed then buffered
-                sock_file.flush()
-                datafile.flush()
+                rtn = sock_file.write("#Python ognES App\n\n") # write something to the APRS server to stay alive !!!
+                sock_file.flush() 		# Make sure keepalive gets sent. If not flushed then buffered
+                datafile.flush()		# use this opportunity to flush the data file
+		alive()				# and mark that we are still alive
                 run_time = time.time() - start_time
                 if prt:
                     print "Send keepalive no: ", keepalive_count, " After elapsed_time: ", int((current_time - keepalive_time)), " After runtime: ", int(run_time), " secs"
@@ -177,31 +198,51 @@ try:
                 break
             else:
                 continue
-     
+#   ready to handle a record
+
+    	ix=packet_str.find('>')
+    	cc= packet_str[0:ix]
+    	cc=cc.upper()
+    	packet_str=cc+packet_str[ix:]    
         # Parse packet using libfap.py into fields to process, eg:
         packet = libfap.fap_parseaprs(packet_str, len(packet_str), 0)
         if  len(packet_str) > 0 and packet_str[0] <> "#":
             callsign=packet[0].src_callsign     # get the call sign FLARM ID
             id=callsign                         # id
-            longitude = get_longitude(packet)
-            latitude  = get_latitude(packet)
-            altitude  = get_altitude(packet)
-            speed     = get_speed(packet)
-            course    = get_course(packet)
-            path      = get_path(packet)
-            type      = get_type(packet)
+            longitude    = get_longitude(packet)
+            latitude     = get_latitude(packet)
+            altitude     = get_altitude(packet)
+            speed        = get_speed(packet)
+            course       = get_course(packet)
+            path         = get_path(packet)
+            type         = get_type(packet)
             dst_callsign = get_dst_callsign(packet)
             destination  = get_destination(packet)
             header       = get_header(packet)
+
             if path == 'qAS':                   # if std records
                 station = packet_str[19:23]     # get the station identifier
                 if station == 'LECI' or station == 'CREA':
                     station=packet_str[19:24]   # just a hack !!!
-		if station == 'Madr':
+		if station == 'MADR':
                     station=packet_str[19:25]   # just a hack !!!
-		if station == 'RocA':
+		if station == 'ROCA':
                     station=packet_str[19:26]   # just a hack !!!
-		    
+		if station == 'STOR' or station == 'LAMO' or station == 'PORT':
+                    station=packet_str[19:27]   # just a hack !!!
+            elif path == 'qAC' or path == 'TCPIP*' or path == -1:
+                station = packet_str[0:4]     	# get the station identifier
+                if station == 'LECI' or station == 'CREA':
+                    station=packet_str[0:5]   	# just a hack !!!
+		if station == 'MADR':
+                    station=packet_str[0:6]   	# just a hack !!!
+		if station == 'ROCA':
+                    station=packet_str[0:7]   	# just a hack !!!
+		if station == 'STOR' or station == 'LAMO' or station == 'PORT':
+                    station=packet_str[0:8]   	# just a hack !!!
+		if station == 'ALCA':
+                    station=packet_str[0:9]   	# just a hack !!!
+		id=station
             else:
                 station=id                      # just the station itself 
             if prt:
@@ -210,8 +251,8 @@ try:
                 print 'Parsed data: POS: ', longitude, latitude, altitude,' Speed:',speed,' Course: ',course,' Path: ',path,' Type:', type
                 print 
             if not id in fid :                  # if we did not see the FLARM ID
-                fid[id]=0                       # init the counter
-                fsta[id]=station                # init the station receiver
+                fid  [id]=0                     # init the counter
+                fsta [id]=station               # init the station receiver
                 fmaxa[id]=altitude              # maximun altitude
                 fmaxs[id]=speed                 # maximun speed
                 cout += 1                       # one more file to create
@@ -229,14 +270,13 @@ try:
         
 
 except KeyboardInterrupt:
-    print "Keyboard input received, ignore"
-    pass
+    print "Keyboard input received, shutdown ..."
+    libfap.fap_cleanup()			# close libfap
+    shutdown(sock, datafile, tmaxa, tmaxt,tmid) # shutdown orderly 
+    exit(1)
 
-# Close libfap.py to avoid memory leak
-libfap.fap_cleanup()
+libfap.fap_cleanup() 				# Close libfap.py to avoid memory leak
  
-# close socket -- must be closed to avoid buffer overflow
-
 print 'Counters:', cin, cout                # report number of records read and files generated
 shutdown(sock, datafile, tmaxa, tmaxt,tmid)
 print "Exit now ..."

@@ -43,6 +43,8 @@ def ogndb (prt, curs):
             i = i + 1
             if prt:
                 print "Line: ", i-1, " ID: ", ID,  " Dev: ", device, " Model: ", model, " Registration: ", Registration,  " CN: ", cn
+            Registration=Registration.strip(" ")
+            Registration=Registration.replace(" ", "_")
             row = '\t\t%s : %s,\n' % (ID,  Registration)              # write just what we need: ID and registration
             flm_txt.write(row)
             device=device.strip("'")

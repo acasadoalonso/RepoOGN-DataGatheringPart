@@ -1,4 +1,4 @@
-ifdown wlan0
-ifup   wlan0
+/sbin/ifdown wlan0
+/sbin/ifup   wlan0
 sleep  10
 ip a

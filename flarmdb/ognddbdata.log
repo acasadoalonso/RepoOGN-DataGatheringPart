@@ -1,29 +1,20 @@
---2016-05-02 23:30:13--  http://ddb.glidernet.org/download
+--2016-06-13 23:30:02--  http://ddb.glidernet.org/download
 Resolving ddb.glidernet.org (ddb.glidernet.org)... 37.187.244.41, 2001:41d0:52:500::6f7
 Connecting to ddb.glidernet.org (ddb.glidernet.org)|37.187.244.41|:80... connected.
 HTTP request sent, awaiting response... 301 Moved Permanently
 Location: http://ddb.glidernet.org/download/ [following]
---2016-05-02 23:30:19--  http://ddb.glidernet.org/download/
+--2016-06-13 23:30:03--  http://ddb.glidernet.org/download/
 Reusing existing connection to ddb.glidernet.org:80.
 HTTP request sent, awaiting response... 200 OK
 Length: unspecified [text/plain]
 Saving to: `download'
 
-     0K .......... .                                           3.33K=3.3s
+     0K .......... .......... .......... .......... ..........  817K
+    50K .......... .......... .......... .......... .......... 1.52M
+   100K .......... .......... .......... .......... .......... 1.56M
+   150K .......... .......... .......... .......... .......... 1.69M
+   200K .......... .......... .......... .......... .......... 11.1M
+   250K .......... ......                                      12.4M=0.2s
 
-2016-05-02 23:45:23 (3.33 KB/s) - Read error at byte 11288 (Connection timed out).Retrying.
-
---2016-05-02 23:45:24--  (try: 2)  http://ddb.glidernet.org/download/
-Connecting to ddb.glidernet.org (ddb.glidernet.org)|37.187.244.41|:80... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: unspecified [text/plain]
-Saving to: `download'
-
-     0K .......... .......... .......... .......... ..........  341K
-    50K .......... .......... .......... .......... ..........  396K
-   100K .......... .......... .......... .......... ..........  544K
-   150K .......... .......... .......... .......... ..........  640K
-   200K .......... .......... .......... .......                688K=0.5s
-
-2016-05-02 23:45:25 (477 KB/s) - `download' saved [242708]
+2016-06-13 23:30:03 (1.63 MB/s) - `download' saved [272709]
 
