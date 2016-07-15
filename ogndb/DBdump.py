@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-
+MySQL=False
 #
 # DBdump V2.1
 #
@@ -38,6 +38,7 @@ def fixcoding(addr):
 #
 
 import sqlite3
+import MySQLdb
 import datetime 
 import time
 import sys
@@ -50,6 +51,7 @@ import logging
 import logging.config
 
 fid=  {'NONE  ' : 0}                        # FLARM ID list
+numID=0					    # number of flrams found
 fsta= {'NONE  ' : 'NONE  '}                 # STATION ID list
 
 fsloc={'NONE  ' : 0}                        # station location
@@ -62,10 +64,13 @@ fmaxalti={'NONE  ' : 0.0}                   # max altitude of that glider
 
 fsabsmax = {}
 
+fmaxdist = 0				    # absolute max distance
+fmaxalt  = 0				    # absolute maximun altitude
+
 ndays=0
 tmaxa = 0                                   # maximun altitude for the day
 tmaxt = 0                                   # time at max altitude
-tmid  = 0                                   # glider ID obtaining max altitude
+tmid  = ' '                                 # glider ID obtaining max altitude
 
 mlong=0.0
 mlati=0.0
@@ -79,20 +84,15 @@ lnames=False
 pdte=' '
 reg=' '
 db=(r'OGN.db')
+mydb="OGNDB"
+host="ubuntu"
 inittime=datetime.datetime.now()
 #
 # Dump the OGN database
 #
 
-logging.basicConfig(filename='.DBdump.log',level=logging.INFO)
-logging.info('%30s Dumping the OGN database User=%s at %s', datetime.datetime.now(), os.environ['USER'], socket.gethostname())
-logging.info('%30s Opening the database %s ', datetime.datetime.now(), db)
-
-conn=sqlite3.connect(db)
-curs=conn.cursor()
-curs2=conn.cursor()
-print "Dump OGN database"
-print "================="
+print "Dump OGN database V1.1"
+print "======================"
 dtareq =  sys.argv[1:]
 
 if dtareq and dtareq[0] == 'DATA':
@@ -107,18 +107,37 @@ elif dtareq and dtareq[0] == 'LNAMES':
 elif dtareq and dtareq[0] == 'DATAID':
     dtar = True                             # request the both
     idr = True
+elif dtareq and dtareq[0] == 'MYSQL':
+    MySQL = True 
 else:
     dtar = False                            # do not request the data/ID
     idr = False 
 
+# ---------------------------------------------------------- #
+logging.basicConfig(filename='.DBdump.log',level=logging.INFO)
+logging.info('%30s Dumping the OGN database User=%s at %s', datetime.datetime.now(), os.environ['USER'], socket.gethostname())
+if (MySQL):
+	logging.info('%30s Opening the MySQL database %s on %s', datetime.datetime.now(), mydb, host)
+else:
+	logging.info('%30s Opening the database %s ', datetime.datetime.now(), db)
 
+if (MySQL):
+	conn=MySQLdb.connect(host=host, user="ogn", passwd="ogn", db=mydb)
+else:
+	conn=sqlite3.connect(db)
+curs=conn.cursor()
+curs2=conn.cursor()
+# ---------------------------------------------------------- #
 logging.info('%30s Dump stations: ', datetime.datetime.now())
 curs.execute('select * from STATIONS')
 colnames = [desc[0] for desc in curs.description]
 print "STATIONS==>", colnames 
 
 logging.info('%30s Dump station with names: ', datetime.datetime.now())
-curs.execute ('select date, idsta, (select desc from RECEIVERS where idsta = idrec), mdist, malt from STATIONS')
+if (MySQL):
+	curs.execute ('select date, idsta, (select descri from RECEIVERS where idsta = idrec), mdist, malt from STATIONS')
+else:
+	curs.execute ('select date, idsta, (select desc from RECEIVERS where idsta = idrec), mdist, malt from STATIONS')
 for row in curs.fetchall():
     print ("%s %-9s %-30s %6.2f %4d" % row)
     
@@ -131,19 +150,39 @@ for row in curs.fetchall():
     print row
 conn.commit()
 
-logging.info('%30s Dump OGNdata: ', datetime.datetime.now())
-curs.execute('select * from OGNDATA')
-colnames = [desc[0] for desc in curs.description]
-print "OGNDATA==>", colnames 
-conn.commit()
-curs.execute ('select * from OGNDATA')
 
-if dtar:
-    while True:
-	row=curs.fetchone()
-	if not row: break
-	print row
+logging.info('%30s Dump Gliders: ', datetime.datetime.now())
+#
+curs.execute('select * from GLIDERS')
+colnames = [desc[0] for desc in curs.description]
+print "GLIDERS==>", colnames 
+curs.execute ('select * from GLIDERS')
+
+row=curs.fetchone()
+print row
+if idr or MySQL:
+	while True:
+		row=curs.fetchone()
+		if not row: break
+		print row
+
+logging.info('%30s Dump OGNdata0: ', datetime.datetime.now())
+if (not MySQL):
+	curs.execute('select * from OGNDATA')
+	colnames = [desc[0] for desc in curs.description]
+	print "OGNDATA==>", colnames 
+	conn.commit()
+
+	logging.info('%30s Dump OGNdata1: ', datetime.datetime.now())
+	curs.execute ('select * from OGNDATA')
+
+	if dtar:
+    		while True:
+			row=curs.fetchone()
+			if not row: break
+			print row
 	
+logging.info('%30s Dump OGNdata2: ', datetime.datetime.now())
 geolocator = Nominatim(timeout=15)
 curs.execute ('select idflarm,date,time, station, altitude, distance , latitude, longitude from OGNDATA')
 while True:
@@ -151,7 +190,11 @@ while True:
     if not rows: break
     for (ID, dte, tme, sta, alt, dist, lati, long) in rows:
 	if pdte != ' ' and pdte != dte:
-	    curs2.execute("select registration from GLIDERS where idglider = ?", [tmid])
+	    if (MySQL):
+	    	cmd="select registration from GLIDERS where idglider = '" + tmid + "'"
+	    	curs2.execute(cmd)
+	    else:
+	    	curs2.execute("select registration from GLIDERS where idglider = ?", [tmid])
 	    reg=curs2.fetchone()
 	    if reg and reg != None:
 		regi=reg
@@ -184,14 +227,19 @@ while True:
 	    fsta[ID]=sta
 	    fmaxd[ID]=0.0 
 	    fmaxalti[ID]=0.0 
+	    numID +=1
 	fid[ID] +=1
 	fsdis[ID] +=dist
 	if dist > fmaxd[ID]:
 		fmaxd[ID]=dist
+	if dist > fmaxdist and dist < 200.0:
+		  fmaxdist=dist
 	if alt > fmaxalti[ID]:
 		fmaxalti[ID]=alt
 		fmaxlong[ID]=long
 		fmaxlati[ID]=lati
+	if alt > fmaxalt:
+                 fmaxalt=alt
 	if not sta in fsloc:
 	    fsloc[sta]=0
 	fsloc[sta] +=1
@@ -221,7 +269,13 @@ while True:
 	cin +=1                                 # one more record read
 	cpar +=1
 	
-conn.commit()
+if cin == 0:
+	print "No receords read ..."
+	conn.close()
+	exit(1)
+
+logging.info('%30s Dump OGNdata3: ', datetime.datetime.now())
+
 if lnames:
 	loc = geolocator.reverse([mlati,mlong])
 	addr=loc.address
@@ -236,20 +290,6 @@ else:
 	msg= ("Date: %6s Max Alt: %05d m. MSL at %2s:%2s:%2sZ by: %9s %14s Under: %s " % (pdte, tmaxa, tmaxt[0:2], tmaxt[2:4], tmaxt[4:6], tmid, regi, tmsta))
 print msg
 
-logging.info('%30s Dump Gliders: ', datetime.datetime.now())
-#
-curs.execute('select * from GLIDERS')
-colnames = [desc[0] for desc in curs.description]
-print "GLIDERS==>", colnames 
-curs.execute ('select * from GLIDERS')
-
-row=curs.fetchone()
-print row
-if idr:
-	while True:
-		row=curs.fetchone()
-		if not row: break
-		print row
 logging.info('%30s Reports: ', datetime.datetime.now())
 #
 # reports
@@ -261,8 +301,12 @@ print "=========================================================================
 k=list(fid.keys())                          # list the IDs for debugging purposes
 k.sort()                                    # sort the list
 	
-for key in k:                               # report data           
-    curs.execute("select registration from GLIDERS where idglider = ?", [key])
+for key in k:                               # report data
+    if (MySQL):
+    	cmd="select registration from GLIDERS where idglider = '"+ key+"'"
+    	curs.execute(cmd)
+    else:           
+    	curs.execute("select registration from GLIDERS where idglider = ?", [key])
     reg=curs.fetchone()
     mlati=fmaxlati[key]
     mlong=fmaxlong[key]
@@ -282,6 +326,7 @@ for key in k:                               # report data
 	msg=("ID: %6s Reg: %-13s <== Station base: %6s Number of hits: %6d Max. distance: %6.2f Max. altitude %4d at: ??? %9.6f %9.6f " % (key, reg, fsta[key], fid[key], fmaxd[key], fmaxalti[key], mlati, mlong))
 	print  msg
 
+print "Number oof Flarms found: ", numID
 print "STATION ==> Maximun distance and records received "
 print "=================================================="
 k=list(fsloc.keys())                        # list the receiving stations
@@ -303,7 +348,7 @@ for key in k:                               # report data distances
 		    msg = "%9s ==> %7.2f Kms. achieved and %8d packets received. %5.2f %5.2f %5.2f " % (key,  fsmax[key],  fsloc[key], fsabsmax[key]['lati'], fsabsmax[key]['long'], fsabsmax[key]['alti'])
 	    print msg
 
-print "Nrecs:", cin, "Number IDs:", len(fid), "Number Sta.:", len(fsmax), "Number days:", ndays
+print "Nrecs:", cin, "Number IDs:", len(fid), "Number Sta.:", len(fsmax), "Number days:", ndays, "abs. max altitude:", fmaxalt, "Abs. max distance:", fmaxdist
 
 
 conn.close()

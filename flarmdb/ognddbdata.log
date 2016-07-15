@@ -1,20 +1,20 @@
---2016-06-13 23:30:02--  http://ddb.glidernet.org/download
+--2016-07-11 23:30:04--  http://ddb.glidernet.org/download
 Resolving ddb.glidernet.org (ddb.glidernet.org)... 37.187.244.41, 2001:41d0:52:500::6f7
 Connecting to ddb.glidernet.org (ddb.glidernet.org)|37.187.244.41|:80... connected.
 HTTP request sent, awaiting response... 301 Moved Permanently
 Location: http://ddb.glidernet.org/download/ [following]
---2016-06-13 23:30:03--  http://ddb.glidernet.org/download/
+--2016-07-11 23:30:04--  http://ddb.glidernet.org/download/
 Reusing existing connection to ddb.glidernet.org:80.
 HTTP request sent, awaiting response... 200 OK
 Length: unspecified [text/plain]
 Saving to: `download'
 
-     0K .......... .......... .......... .......... ..........  817K
-    50K .......... .......... .......... .......... .......... 1.52M
-   100K .......... .......... .......... .......... .......... 1.56M
-   150K .......... .......... .......... .......... .......... 1.69M
-   200K .......... .......... .......... .......... .......... 11.1M
-   250K .......... ......                                      12.4M=0.2s
+     0K .......... .......... .......... .......... .......... 41.9M
+    50K .......... .......... .......... .......... .......... 66.5M
+   100K .......... .......... .......... .......... .......... 63.8M
+   150K .......... .......... .......... .......... .......... 1.95M
+   200K .......... .......... .......... .......... .......... 1.86M
+   250K .......... .......... .......... ....                  11.6M=0.06s
 
-2016-06-13 23:30:03 (1.63 MB/s) - `download' saved [272709]
+2016-07-11 23:30:06 (4.90 MB/s) - `download' saved [291774]
 

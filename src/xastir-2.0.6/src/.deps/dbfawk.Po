@@ -1,3 +1,0 @@
-dbfawk.o: dbfawk.c ../config.h
-
-../config.h:

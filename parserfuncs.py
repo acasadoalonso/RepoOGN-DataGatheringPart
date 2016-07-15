@@ -89,7 +89,7 @@ def spanishsta(station):                # return true if is an Spanish station
 		station[0:9] == 'ALCAZAREN' or	\
 		station[0:7] == 'ANDORRA'   or	\
 		station[0:8] == 'STOROSIA'  or	\
-		station[0:8] == 'CAMPO'     or	\
+		station[0:4] == 'PALO'      or	\
 		station[0:6] == 'FIGOLS'    or  \
 		station[0:8] == 'LAMOLINA'  or	\
 		station[0:8] == 'PORTAINE'  :

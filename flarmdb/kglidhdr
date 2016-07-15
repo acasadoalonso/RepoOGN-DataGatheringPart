@@ -16,7 +16,6 @@ kglid  = {
            "LECD"   : "La Cerdanya, Girona ",
  	   "LESU"   : "La Seu de Urgel, Lerida ",
            "ANDORRA": "Andorra ",
-           "Andorra": "Andorra ",
            "TOSA"   : "La TOSA de Alp, Girona ",
            "LAMOLINA" : "La TOSA de Alp, Girona ",
            "ALCAZAREN" : "Alcazaren, Valladolid ",
@@ -48,7 +47,7 @@ kglid  = {
 	   "LFCS"   : "Bordeaux", 
 	   "LFMG"   : "La Montagne Noir", 
 	   "LFMP"   : "Perpignan", 
-           "Pau"    : "Pau",
+           "PAU"    : "Pau",
            "ROCAUDE": "Les Angles Ski Station",
            "FONTROM": "Font Romeu Ski Station",
 #           # list on known gliders

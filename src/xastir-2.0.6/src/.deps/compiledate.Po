@@ -1,1 +1,0 @@
-compiledate.o: compiledate.c
