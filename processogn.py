@@ -53,8 +53,8 @@ if 'SERVER_SIGNATURE' in os.environ:        # check if www
 	tmp='tmp/'
 
 if prt:
-    print "Start process OGN records V1.9"
-    print "=============================="
+    print "Start process OGN records V1.10"
+    print "==============================="
 dtereq =  sys.argv[1:]
 if dtereq and dtereq[0] == 'date':
     dter = True                             # request the date
@@ -223,8 +223,8 @@ while True:                                 # until end of file
                 flndt[id] = otime           # store the landing time
         if station in fsloc:                # if we have the station yet
                 distance=vincenty((latitude, longitude), fsloc[station]).km    # distance to the station
-                if distance > 150.0:
-                    print "distcheck: ", distance, data
+                if distance > 250.0:
+                    print ">>>Distcheck: ", distance, data, cin
                 elif distance > fsmax[station]: # if higher distance
                     fsmax[station]=distance     # save the new distance
         if altim > tmaxa:

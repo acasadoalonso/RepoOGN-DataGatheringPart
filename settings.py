@@ -24,3 +24,7 @@ FLOGGER_DB_SCHEMA = "flogger_schema-0.0.1.sql"
 FLOGGER_LATITUDE, FLOGGER_LONGITUDE = '+39.71498', '-3.31366'
 FLOGGER_MIN_FLIGHT_TIME = "0:5:0" 					#hh:mm:ss
 FLOGGER_KEEPALIVE_TIME = 900 						# Interval in seconds for sending tcp/ip keep alive on socket connection
+DBname="OGNDB"								# MySQL database name
+DBhost="ubuntu"								# MySQL host name
+DBuser="ogn"								# MySQL user name
+DBpasswd="ogn"								# MySQL password

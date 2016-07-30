@@ -11,11 +11,13 @@ import time
 import sys
 import os
 import kglid                                # import the list on known gliders
+import settings                             # import the main settings
 from   libfap import *                      # the packet parsing function 
 from   parserfuncs import *                 # the ogn/ham parser functions 
 from   geopy.distance import vincenty       # use the Vincenty algorithm
 from   geopy.geocoders import GeoNames      # use the Nominatim as the geolocator
 import sqlite3                              # the SQL data base routines
+import MySQLdb                              # the SQL data base routines
 
 #
 # ---------- main code ---------------
@@ -37,12 +39,17 @@ tmaxt = 0                                   # time at max altitude
 tmid  = 0                                   # glider ID obtaining max altitude
 tmsta = ''
 prt=False
-blacklist = ['FLR5B8041']                   # blacklist
+MySQL=False
+DBname=settings.DBname
+DBhost=settings.DBhost
+DBuser=settings.DBuser
+DBpasswd=settings.DBpasswd
+blacklist = ['FLR5B0041']                   # blacklist
 
 
 
-print "Start build OGN database V1.9"
-print "============================="
+print "Start build OGN database V1.10"
+print "=============================="
 dtereq =  sys.argv[1:]
 if dtereq and dtereq[0] == 'date':
     dter = True                             # request the date
@@ -50,13 +57,19 @@ else:
     dter = False                            # do not request the date
 if dtereq and dtereq[0] == 'name':
     nmer = True                             # request the name
-    prt=True
+    #prt=True
+    prt=False
+elif dtereq and dtereq[0] == 'MYSQL':
+    nmer = True                             # request the name
+    prt=False
+    MySQL=True
+    print "MySQL DB :", DBname, "User:", DBuser,"@", DBhost 
 else:
     nmer = False                            # do not request the name
     
 cin  = 0                                    # input record counter
 cout = 0                                    # output file counter
-date=datetime.datetime.now()                         # get the date
+date=datetime.datetime.now()                # get the date
 dte=date.strftime("%y%m%d")                 # today's date
 fname='DATA'+dte+'.log'                     # file name from logging
 
@@ -75,21 +88,25 @@ else:
         dte=date.strftime("%y%m%d")         # use the default
     fname='DATA'+dte+'.log'                 # build the file name with the date entered
     
-print 'File name: ', fname, 'Process date/time:', date.strftime(" %y-%m-%d %H:%M:%S")     # display file name and time
+print 'File name:', fname, 'Process date/time:', date.strftime(" %y-%m-%d %H:%M:%S")     # display file name and time
 
 geolocator=GeoNames(country_bias='Spain', username='acasado' )
 datafilei = open(fname, 'r')                # open the file with the logged data
-conn=sqlite3.connect(r'OGN.db')             # connect with the database
+if (MySQL):
+	conn=MySQLdb.connect(host=DBhost, user=DBuser, passwd=DBpasswd, db=DBname)     # connect with the database
+else:
+	conn=sqlite3.connect(r'OGN.db')     # connect with the database
 curs=conn.cursor()                          # set the cursor
  
 print "libfap_init"
 libfap.fap_init()
+nrec=0
 
 while True:                                 # until end of file 
     data=datafilei.readline()               # read one line
     if not data:                            # end of file ???
                                             # report the findings and close the files
-        print 'Input records: ',cin, 'Ouput files:',cout # report number of records read and files generated
+        print '===> Input records: ',dte, cin, 'Ouput files:',cout # report number of records read and files generated
         k=list(fid.keys())                  # list the IDs for debugging purposes
         k.sort()                            # sort the list
         
@@ -138,11 +155,19 @@ while True:                                 # until end of file
             if fsmax[key] > 0:              # only if we have measured distances
                 if prt:
                     print key, '==>', fsmax[key], ' Kms. '      # distance
-                addcmd="insert into STATIONS values (?,?,?,?)"
-                curs.execute(addcmd, (key, dte, fsmax[key], fsalt[key]))
+		if (MySQL):
+                	addcmd="insert into STATIONS values ('" + key + "','" + dte + "'," + str(fsmax[key]) +  "," + str(fsalt[key]) + ")"
+                	curs.execute(addcmd)
+		else:
+                	addcmd="insert into STATIONS values (?,?,?,?)"
+                	curs.execute(addcmd, (key, dte, fsmax[key], fsalt[key]))
 	#
-            selcmd="select idrec from RECEIVERS where idrec=?"  # SQL command to execute: SELECT
-            curs.execute(selcmd, (key,))
+	    if (MySQL):
+            	selcmd="select idrec from RECEIVERS where idrec='" + key +"'"  # SQL command to execute: SELECT
+            	curs.execute(selcmd)
+	    else:
+            	selcmd="select idrec from RECEIVERS where idrec=?"  # SQL command to execute: SELECT
+            	curs.execute(selcmd, (key,))
             if curs.fetchone() == None:
 		gid='Noreg '                # for unknown receiver
         	if spanishsta(key) or frenchsta(key):
@@ -157,8 +182,12 @@ while True:                                 # until end of file
 		if key != "None" and key != None:
                 	if prt:
                     		print key, 'Adding ==>', gid, lati, long, alti
-                	inscmd="insert into RECEIVERS values (?, ?, ?, ?, ?)"
-                	curs.execute(inscmd, (key, gid, lati, long, alti))
+			if (MySQL):
+                		addcmd="insert into RECEIVERS values ('" + key + "','" + gid + "'," + str(lati)+  "," + str(long)+ "," + str(alti)+ ")"
+                		curs.execute(addcmd)
+			else:
+                		inscmd="insert into RECEIVERS values (?, ?, ?, ?, ?)"
+                		curs.execute(inscmd, (key, gid, lati, long, alti))
 	#
         conn.commit()
         break                               # work done
@@ -166,7 +195,7 @@ while True:                                 # until end of file
     if len(data) < 40:                      # that is the case of end of file when the ognES.py process is still
         continue                            # nothing else to do
 #   ready to handle a record
-
+    nrec += 1
     ix=data.find('>')
     cc= data[0:ix]
     cc=cc.upper()
@@ -246,8 +275,8 @@ while True:                                 # until end of file
         if station in fsloc:                # if we have the station yet
                 distance=vincenty((latitude, longitude), fsloc[station]).km    # distance to the station
                 dist=distance
-                if distance > 150.0:
-                    print "distcheck: ", distance, data
+                if distance > 250.0:
+                    print ">>Distcheck: ", distance,"Nrec:", nrec,  data
                 elif distance > fsmax[station]: # if higher distance
                     fsmax[station]=distance     # save the new distance
                 if altim > fsalt[station]:  # if higher altitude
@@ -257,9 +286,19 @@ while True:                                 # until end of file
                 tmaxt = hora                # and time
                 tmid  = id                  # who did it
                 tmsta = station             # station capturing the max altitude
-        # write the DB record
-        addcmd="insert into OGNDATA values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-        curs.execute(addcmd, (id, dte, hora, station, latitude, longitude, altim, speed, course, roclimb, rot,sensitivity, gps, uniqueid, dist, extpos))
+        if uniqueid[0:2] != "id":	    # check for a valid uniqueid
+		continue
+	# write the DB record
+	if (MySQL):
+        	addcmd="insert into OGNDATA values ('" +id+ "','" + dte+ "','" + hora+ "','" + station+ "'," + str(latitude)+ "," + str(longitude)+ "," + str(altim)+ "," + str(speed)+ "," + str(course)+ "," + str(roclimb)+ "," +str( rot) + "," +str(sensitivity)
+        	addcmd=addcmd+",'" + gps+ "','" + uniqueid+ "'," + str(dist)+ ",'" + extpos+ "')"
+		try:
+			curs.execute(addcmd) 
+		except:
+			print ">>>MySQL error:", nrec, cin, addcmd
+	else:
+        	addcmd="insert into OGNDATA values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+        	curs.execute(addcmd, (id, dte, hora, station, latitude, longitude, altim, speed, course, roclimb, rot,sensitivity, gps, uniqueid, dist, extpos))
         cin +=1                             # one more record read
         
 # -----------------  final process ----------------------
@@ -276,6 +315,6 @@ if tmid in kglid.kglid:                     # if it is a known glider ???
 else:
     gid=tmid    
 print "Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta
-print 'Bye ... Time and Time used:', datef, datef-date      # report the processing time
+print 'Bye ...:', cin, nrec,' Time and Time used:', datef, datef-date      # report the processing time
 
     

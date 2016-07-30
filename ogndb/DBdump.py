@@ -50,6 +50,7 @@ from   geopy.geocoders import Nominatim
 import logging
 import logging.config
 
+maxdist=300.0
 fid=  {'NONE  ' : 0}                        # FLARM ID list
 numID=0					    # number of flrams found
 fsta= {'NONE  ' : 'NONE  '}                 # STATION ID list
@@ -109,6 +110,9 @@ elif dtareq and dtareq[0] == 'DATAID':
     idr = True
 elif dtareq and dtareq[0] == 'MYSQL':
     MySQL = True 
+    idr = False 
+    dtar = False                            # do not request the data/ID
+    print "MySQL db:", mydb, host
 else:
     dtar = False                            # do not request the data/ID
     idr = False 
@@ -118,14 +122,12 @@ logging.basicConfig(filename='.DBdump.log',level=logging.INFO)
 logging.info('%30s Dumping the OGN database User=%s at %s', datetime.datetime.now(), os.environ['USER'], socket.gethostname())
 if (MySQL):
 	logging.info('%30s Opening the MySQL database %s on %s', datetime.datetime.now(), mydb, host)
-else:
-	logging.info('%30s Opening the database %s ', datetime.datetime.now(), db)
-
-if (MySQL):
 	conn=MySQLdb.connect(host=host, user="ogn", passwd="ogn", db=mydb)
 else:
+	logging.info('%30s Opening the SQLite3 database %s ', datetime.datetime.now(), db)
 	conn=sqlite3.connect(db)
-curs=conn.cursor()
+
+curs =conn.cursor()
 curs2=conn.cursor()
 # ---------------------------------------------------------- #
 logging.info('%30s Dump stations: ', datetime.datetime.now())
@@ -137,7 +139,7 @@ logging.info('%30s Dump station with names: ', datetime.datetime.now())
 if (MySQL):
 	curs.execute ('select date, idsta, (select descri from RECEIVERS where idsta = idrec), mdist, malt from STATIONS')
 else:
-	curs.execute ('select date, idsta, (select desc from RECEIVERS where idsta = idrec), mdist, malt from STATIONS')
+	curs.execute ('select date, idsta, (select descri from RECEIVERS where idsta = idrec), mdist, malt from STATIONS')
 for row in curs.fetchall():
     print ("%s %-9s %-30s %6.2f %4d" % row)
     
@@ -160,7 +162,7 @@ curs.execute ('select * from GLIDERS')
 
 row=curs.fetchone()
 print row
-if idr or MySQL:
+if idr :
 	while True:
 		row=curs.fetchone()
 		if not row: break
@@ -229,10 +231,11 @@ while True:
 	    fmaxalti[ID]=0.0 
 	    numID +=1
 	fid[ID] +=1
-	fsdis[ID] +=dist
-	if dist > fmaxd[ID]:
+	if dist < maxdist:
+		fsdis[ID] +=dist
+	if dist > fmaxd[ID] and dist < maxdist:
 		fmaxd[ID]=dist
-	if dist > fmaxdist and dist < 200.0:
+	if dist > fmaxdist and dist < maxdist:
 		  fmaxdist=dist
 	if alt > fmaxalti[ID]:
 		fmaxalti[ID]=alt
@@ -244,7 +247,7 @@ while True:
 	    fsloc[sta]=0
 	fsloc[sta] +=1
 	if sta in fsmax:
-	    if dist < 200.0 and dist > fsmax[sta]:
+	    if dist < maxdist and dist > fsmax[sta]:
 		fsmax[sta]=dist
 	else:
 	    fsmax[sta]=dist
@@ -319,14 +322,14 @@ for key in k:                               # report data
     else:
 	addr= ''
     try:
-	msg=("ID: %6s Reg: %-13s ==> Station base: %9s Number of hits: %6d Max. distance: %6.2f Max. altitude %4d at: %s" % (key, reg, fsta[key], fid[key], fmaxd[key], fmaxalti[key], addr))
+	msg=("ID: %6s Reg: %-13s ==> Station base: %9s Number of hits: %6d %6.2f Max. distance: %6.2f Max. altitude %4d at: %s" % (key, reg, fsta[key], fid[key], fsdis[key]/fid[key], fmaxd[key], fmaxalti[key], addr))
 	print  msg
     except:
 	logging.error('%30s error at geolocate coordenates: %9.6f %9.6f', datetime.datetime.now(), mlati, mlong)
 	msg=("ID: %6s Reg: %-13s <== Station base: %6s Number of hits: %6d Max. distance: %6.2f Max. altitude %4d at: ??? %9.6f %9.6f " % (key, reg, fsta[key], fid[key], fmaxd[key], fmaxalti[key], mlati, mlong))
 	print  msg
 
-print "Number oof Flarms found: ", numID
+print "Number of Flarms found: ", numID
 print "STATION ==> Maximun distance and records received "
 print "=================================================="
 k=list(fsloc.keys())                        # list the receiving stations

@@ -232,15 +232,15 @@ try:
                     station=packet_str[19:27]   # just a hack !!!
             elif path == 'qAC' or path == 'TCPIP*' or path == -1:
                 station = packet_str[0:4]     	# get the station identifier
-                if station == 'LECI' or station == 'CREA':
+                if station == 'LECI' or station == 'CREA' or station == 'PALO':
                     station=packet_str[0:5]   	# just a hack !!!
 		if station == 'MADR':
                     station=packet_str[0:6]   	# just a hack !!!
 		if station == 'ROCA':
                     station=packet_str[0:7]   	# just a hack !!!
-		if station == 'STOR' or station == 'LAMO' or station == 'PORT':
+		if station == 'BOIT' or station == 'LAMO' or station == 'PORT':
                     station=packet_str[0:8]   	# just a hack !!!
-		if station == 'ALCA':
+		if station == 'ALCA' or station == 'STOR':
                     station=packet_str[0:9]   	# just a hack !!!
 		id=station
             else:

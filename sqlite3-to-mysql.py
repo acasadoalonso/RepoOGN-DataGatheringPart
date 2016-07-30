@@ -18,9 +18,9 @@ def _replace(line):
     line = line.replace("AUTOINCREMENT", "AUTO_INCREMENT")
     line = line.replace("DEFAULT 't'", "DEFAULT '1'")
     line = line.replace("DEFAULT 'f'", "DEFAULT '0'")
-    line = line.replace(" desc ", " descri ")
     line = line.replace(",'t'", ",'1'")
     line = line.replace(",'f'", ",'0'")
+    line = line.replace(" desc", " descri")
     return line
 
 
