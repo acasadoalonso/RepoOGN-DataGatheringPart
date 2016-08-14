@@ -315,6 +315,6 @@ if tmid in kglid.kglid:                     # if it is a known glider ???
 else:
     gid=tmid    
 print "Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta
-print 'Bye ...:', cin, nrec,' Time and Time used:', datef, datef-date      # report the processing time
+print 'Bye ...: Stored', cin," records of ", nrec,' read. Time and Time used:', datef, datef-date      # report the processing time
 
     

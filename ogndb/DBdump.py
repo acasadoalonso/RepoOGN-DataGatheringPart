@@ -305,6 +305,8 @@ k=list(fid.keys())                          # list the IDs for debugging purpose
 k.sort()                                    # sort the list
 	
 for key in k:                               # report data
+    if key == None:
+	continue
     if (MySQL):
     	cmd="select registration from GLIDERS where idglider = '"+ key+"'"
     	curs.execute(cmd)
@@ -325,7 +327,7 @@ for key in k:                               # report data
 	msg=("ID: %6s Reg: %-13s ==> Station base: %9s Number of hits: %6d %6.2f Max. distance: %6.2f Max. altitude %4d at: %s" % (key, reg, fsta[key], fid[key], fsdis[key]/fid[key], fmaxd[key], fmaxalti[key], addr))
 	print  msg
     except:
-	logging.error('%30s error at geolocate coordenates: %9.6f %9.6f', datetime.datetime.now(), mlati, mlong)
+	logging.error('%30s error at geolocate coordenates: %9.6f %9.6f %s %s', datetime.datetime.now(), mlati, mlong, key, reg)
 	msg=("ID: %6s Reg: %-13s <== Station base: %6s Number of hits: %6d Max. distance: %6.2f Max. altitude %4d at: ??? %9.6f %9.6f " % (key, reg, fsta[key], fid[key], fmaxd[key], fmaxalti[key], mlati, mlong))
 	print  msg
 
