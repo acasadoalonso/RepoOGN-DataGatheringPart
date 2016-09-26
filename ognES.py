@@ -165,12 +165,12 @@ try:
                 print ('something\'s wrong with socket write. Exception type is %s' % (`e`))
      
         location.date = ephem.Date(datetime.datetime.utcnow())
-        date = datetime.datetime.now()
+        date = datetime.datetime.utcnow()
         s = ephem.Sun()
         s.compute(location)
         twilight = -6 * ephem.degree	# Defn of Twilight is: Sun is 6, 12, 18 degrees below horizon (civil, nautical, astronomical)
         if s.alt < twilight:
-            print "At Sunset now ... Time is:", date, " Next sunset is: ", next_sunset,  " UTC"
+            print "At Sunset now ... Time is:", date, "UTC ...  Next sunset is: ", next_sunset,  " UTC"
             shutdown(sock, datafile, tmaxa, tmaxt,tmid)
             print "At Sunset ... Exit"
             exit(0)
@@ -221,27 +221,12 @@ try:
             header       = get_header(packet)
 
             if path == 'qAS':                   # if std records
-                station = packet_str[19:23]     # get the station identifier
-                if station == 'LECI' or station == 'CREA':
-                    station=packet_str[19:24]   # just a hack !!!
-		if station == 'MADR':
-                    station=packet_str[19:25]   # just a hack !!!
-		if station == 'ROCA':
-                    station=packet_str[19:26]   # just a hack !!!
-		if station == 'STOR' or station == 'LAMO' or station == 'PORT':
-                    station=packet_str[19:27]   # just a hack !!!
+                station=get_station(packet_str)
             elif path == 'qAC' or path == 'TCPIP*' or path == -1:
-                station = packet_str[0:4]     	# get the station identifier
-                if station == 'LECI' or station == 'CREA' or station == 'PALO':
-                    station=packet_str[0:5]   	# just a hack !!!
-		if station == 'MADR':
-                    station=packet_str[0:6]   	# just a hack !!!
-		if station == 'ROCA':
-                    station=packet_str[0:7]   	# just a hack !!!
-		if station == 'BOIT' or station == 'LAMO' or station == 'PORT':
-                    station=packet_str[0:8]   	# just a hack !!!
-		if station == 'ALCA' or station == 'STOR':
-                    station=packet_str[0:9]   	# just a hack !!!
+		data=packet_str
+		ssep=data.find('>')             # find theseparator
+        	station=data[0:ssep]            # get the station identifier
+        	station=station.upper()         # translate to uppercase
 		id=station
             else:
                 station=id                      # just the station itself 

@@ -202,7 +202,7 @@ while True:
 		regi=reg
 	    else:
 		regi=''
-	    if lnames:
+	    if lnames and mlati != 0.0 and mlong != 0.0:
 		loc = geolocator.reverse([mlati,mlong])
 		addr=loc.address
 		# print addr
@@ -279,7 +279,7 @@ if cin == 0:
 
 logging.info('%30s Dump OGNdata3: ', datetime.datetime.now())
 
-if lnames:
+if lnames and mlati != 0.0 and mlong != 0.0:
 	loc = geolocator.reverse([mlati,mlong])
 	addr=loc.address
 	addr=fixcoding(addr).encode('utf8')
@@ -290,7 +290,7 @@ if lnames:
 		regi=''
 	msg= ("Date: %6s Max Alt: %05d m. MSL at %s UTC by: %9s %14s Under: %6s At: %s" % (pdte, tmaxa, tmaxt, tmid, regi, tmsta, addr))
 else:
-	msg= ("Date: %6s Max Alt: %05d m. MSL at %2s:%2s:%2sZ by: %9s %14s Under: %s " % (pdte, tmaxa, tmaxt[0:2], tmaxt[2:4], tmaxt[4:6], tmid, regi, tmsta))
+	msg= ("Date: %6s Max Alt: %05d m. MSL at %2s:%2s:%2sZ by: %9s %14s Under: %s " % (pdte, tmaxa, tmaxt[0:2], tmaxt[2:4], tmaxt[4:6], tmid, reg, tmsta))
 print msg
 
 logging.info('%30s Reports: ', datetime.datetime.now())
@@ -315,7 +315,9 @@ for key in k:                               # report data
     reg=curs.fetchone()
     mlati=fmaxlati[key]
     mlong=fmaxlong[key]
-    if lnames:
+    if mlati == 0.0 and mlong == 0.0:
+	continue
+    if lnames and mlati != 0.0 and mlong != 0.0:
 	loc = geolocator.reverse([mlati,mlong])
 	addr=loc.address
 	if addr != None:

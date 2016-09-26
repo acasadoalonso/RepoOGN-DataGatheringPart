@@ -76,6 +76,11 @@ def get_otime(packet):
     except ValueError:
         otime = 0
     return otime
+def get_station(data):
+        scolon=data.find(':')                   # find the colon
+        station=data[19:scolon]                 # get the station identifier
+        station=station.upper()                 # translate to uppercase
+        return (station)
 #######---------------------------------------------------------------------------------------------------------
 
 def spanishsta(station):                # return true if is an Spanish station
@@ -133,7 +138,7 @@ def gdatar (data, typer):               # get data on the  right
         pb=p
         max=len(data)-1
         while (pb < max):
-                if data[pb] == ' ' or data[pb] == '\n':
+                if data[pb] == ' ' or data[pb] == '\n' or data[pb] == '\r':
                         break
                 pb += 1
         ret=data[p:pb]                  # return the data requested
