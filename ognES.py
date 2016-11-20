@@ -9,7 +9,6 @@ from ctypes import *
 from datetime import datetime
 import socket
 import time
-import settings
 import string
 import datetime
 import ephem
@@ -20,6 +19,7 @@ import os
 import kglid                                # import the list on known gliders
 from   parserfuncs import *                 # the ogn/ham parser functions 
 
+import config
 def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
                                         # shutdown before exit
     libfap.fap_cleanup()                # close lifap in order to avoid memory leaks
@@ -52,7 +52,7 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
         gid=tmid                        # use the ID instead       
     print "Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'by:', gid, 'Station:', tmsta
     local_time = datetime.datetime.now()
-    print "Time now:", local_time
+    print "Time now:", local_time, "Local time."
     return
 
 #########################################################################
@@ -76,6 +76,7 @@ def signal_term_handler(signal, frame):
  
 signal.signal(signal.SIGTERM, signal_term_handler)
 
+#----------------------ogn_main.py start-----------------------
 fid=  {'NONE  ' : 0}                    # FLARM ID list
 fsta= {'NONE  ' : 'NONE  '}             # STATION ID list
 fmaxa={'NONE  ' : 0}                    # maximun altitude
@@ -89,9 +90,6 @@ tmaxt = 0                               # time at max altitude
 tmid  = 'None     '                     # glider ID obtaining max altitude
 tmsta = '         '                     # station capturing max altitude
 
-
-#----------------------ogn_main.py start-----------------------
- 
 print "Start ognES SPAIN V1.10"
 print "======================="
 
@@ -103,12 +101,12 @@ else:
     
 # create socket & connect to server
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.connect((settings.APRS_SERVER_HOST, settings.APRS_SERVER_PORT))
+sock.connect((config.APRS_SERVER_HOST, config.APRS_SERVER_PORT))
 print "Socket sock connected"
  
 # logon to OGN APRS network    
 
-login = 'user %s pass %s vers Py-SPAIN 1.9 %s'  % (settings.APRS_USER, settings.APRS_PASSCODE , settings.APRS_FILTER_DETAILS)
+login = 'user %s pass %s vers Py-SPAIN 1.9 %s'  % (config.APRS_USER, config.APRS_PASSCODE , config.APRS_FILTER_DETAILS)
 sock.send(login)    
  
 # Make the connection to the server
@@ -136,13 +134,13 @@ location = ephem.Observer()
 location.pressure = 0
 location.horizon = '-0:34'	# Adjustments for angle to horizon
 
-location.lat, location.lon = settings.FLOGGER_LATITUDE, settings.FLOGGER_LONGITUDE
+location.lat, location.lon = config.FLOGGER_LATITUDE, config.FLOGGER_LONGITUDE
 date = datetime.datetime.now()
 next_sunrise = location.next_rising(ephem.Sun(), date)
 next_sunset = location.next_setting(ephem.Sun(), date)
 print "Sunrise today is at: ", next_sunrise, " UTC "
 print "Sunset  today is at: ", next_sunset,  " UTC "
-print "Time now is: ", date
+print "Time now is: ", date, "Local time."
 
 try:
 
@@ -220,7 +218,7 @@ try:
             destination  = get_destination(packet)
             header       = get_header(packet)
 
-            if path == 'qAS':                   # if std records
+            if path == 'qAS' or path == "RELAY*":  # if std records
                 station=get_station(packet_str)
             elif path == 'qAC' or path == 'TCPIP*' or path == -1:
 		data=packet_str

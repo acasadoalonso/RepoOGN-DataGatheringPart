@@ -228,10 +228,13 @@ while True:                                 # until end of file
         continue                            # go for the next record
     if cc in blacklist:
         continue
-    id=data[3:9]                            # exclude the FLR part
+    id=data[0:9]                            # the flarm ID/ICA/OGN 
+    idname=data[3:9]                        # exclude the FLR part
     scolon=data.find(':')                   # find the colon
-    station=data[19:scolon]                 # get the station identifier
+    station=data[data.find('qAS')+4:scolon] # the station name is after the qAS, 
     station=station.upper()                 # translate to uppercase
+    if path=='RELAY*':
+        print "RELAY:", id, ":::", station , longitude, latitude, altitude, speed, course, ptype, otime, "DATA:", data
     if spanishsta(station):                 # only Spanish stations
         if not id in fid :                  # if we did not see the FLARM ID
             fid  [id]=0                     # init the counter
@@ -290,7 +293,7 @@ while True:                                 # until end of file
 		continue
 	# write the DB record
 	if (MySQL):
-        	addcmd="insert into OGNDATA values ('" +id+ "','" + dte+ "','" + hora+ "','" + station+ "'," + str(latitude)+ "," + str(longitude)+ "," + str(altim)+ "," + str(speed)+ "," + str(course)+ "," + str(roclimb)+ "," +str( rot) + "," +str(sensitivity)
+        	addcmd="insert into OGNDATA values ('" +idname+ "','" + dte+ "','" + hora+ "','" + station+ "'," + str(latitude)+ "," + str(longitude)+ "," + str(altim)+ "," + str(speed)+ "," + str(course)+ "," + str(roclimb)+ "," +str( rot) + "," +str(sensitivity)
         	addcmd=addcmd+",'" + gps+ "','" + uniqueid+ "'," + str(dist)+ ",'" + extpos+ "')"
 		try:
 			curs.execute(addcmd) 
@@ -298,7 +301,7 @@ while True:                                 # until end of file
 			print ">>>MySQL error:", nrec, cin, addcmd
 	else:
         	addcmd="insert into OGNDATA values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-        	curs.execute(addcmd, (id, dte, hora, station, latitude, longitude, altim, speed, course, roclimb, rot,sensitivity, gps, uniqueid, dist, extpos))
+        	curs.execute(addcmd, (idname, dte, hora, station, latitude, longitude, altim, speed, course, roclimb, rot,sensitivity, gps, uniqueid, dist, extpos))
         cin +=1                             # one more record read
         
 # -----------------  final process ----------------------

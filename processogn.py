@@ -60,6 +60,10 @@ if dtereq and dtereq[0] == 'date':
     dter = True                             # request the date
 else:
     dter = False                            # do not request the date
+if dtereq and dtereq[0] == 'name':
+    name = True                             # request the date
+else:
+    name = False                            # do not request the date
 cin  = 0                                    # input record counter
 cout = 0                                    # output file counter
 date=datetime.datetime.now()                         # get the date
@@ -76,6 +80,9 @@ else:
     if dte == '':                           # if no input 
         dte=date.strftime("%y%m%d")         # use the default
     fname='DATA'+dte+'.log'                 # build the file name with the date entered
+if name:
+    fn=sys.argv[2:]                         # take the name of the second arg
+    fname=str(fn)[2:20]
 if prt:    
     print 'File name: ', fname, 'Process date/time:', date.strftime(" %y-%m-%d %H:%M:%S")     # display file name and time
 
@@ -179,10 +186,13 @@ while True:                                 # until end of file
         continue                            # go for the next record
     if cc in blacklist:
 	continue
-    id=data[3:9]                            # exclude the FLR part
-    scolon=data.find(':')		    # find the colon 
-    station=data[19:scolon]                 # get the station identifier
+    id=data[0:9]                            # exclude the FLR part
+    idname=data[3:9]                        # exclude the FLR part
+    scolon=data.find(':')		    # find the colon
+    station=data[data.find('qAS')+4:scolon]
     station=station.upper()		    # translate to uppercase
+    if path=='RELAY*':
+	print "RELAY:", id, ":::", station , longitude, latitude, altitude, speed, course, ptype, otime, "DATA:", data
     if spanishsta(station) or frenchsta(station):       # only Spanish or frenchstations
         if not id in fid :                  # if we did not see the FLARM ID
             fid  [id]=0                     # init the counter
@@ -192,9 +202,9 @@ while True:                                 # until end of file
             cout += 1                       # one more file to create
                                             # prepare the IGC header
             if id in kglid.kglid:           # if it is a known glider ???
-                fd = open(datapath+tmp+'FD'+dte+'.'+station+'.'+kglid.kglid[id].strip()+'.'+id+'.IGC', 'w')
+                fd = open(datapath+tmp+'FD'+dte+'.'+station+'.'+kglid.kglid[id].strip()+'.'+idname+'.IGC', 'w')
             else:
-                fd = open(datapath+tmp+'FD'+dte+'.'+station+'.'+id+'.IGC', 'w')
+                fd = open(datapath+tmp+'FD'+dte+'.'+station+'.'+idname+'.IGC', 'w')
             fd.write('AGNE001GLIDER\n')     # write the IGC header
             fd.write('HFDTE'+dte+'\n')      # write the date on the header
             if id in kglid.kglid:

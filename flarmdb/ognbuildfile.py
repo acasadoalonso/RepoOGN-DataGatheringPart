@@ -7,6 +7,10 @@ import requests
 import time
 import sys
 import sqlite3
+def isprintable(s, codec='latin1'):
+    try: s.decode(codec)
+    except UnicodeDecodeError: return False
+    else: return True
 
 def ogndb (prt, curs):
     
@@ -15,16 +19,20 @@ def ogndb (prt, curs):
     flm_txt = open("ognddbdata.txt",'w')
     
     print "Process OGN databse"
-    line = db.readline()
+    line = db.readline().encode("latin1")
     if prt:
         print "Format: ", line
     i = 1
     line = ""
      
     while True:
-        try:
-            line = db.readline()
+	    try:
+            	line = db.readline().encode("latin1")
+    	    except UnicodeDecodeError: continue
             line_lng = len(line)
+	    if line_lng == 0:
+            	print "\nNumber of rows is: ", i - 1
+            	return True
             string = ""
             if prt:
                 print "read: ", i, " returns: ", line
@@ -52,14 +60,11 @@ def ogndb (prt, curs):
             Registration=Registration.strip("'")
             cn=cn.strip("'")
             model=model.strip("'")
+
             curs.execute("insert into GLIDERS values(?,?,?,?,?, ?)", (ID, Registration, cn, model, "O", device))
             if prt:
 	    	print ID, Registration, cn, model
             
-        except:
-            print "\nNumber of rows is: ", i - 1
-            return True
-    return True
 #
 # Main logic
 #
