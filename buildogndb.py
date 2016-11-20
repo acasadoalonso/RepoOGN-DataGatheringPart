@@ -11,7 +11,7 @@ import time
 import sys
 import os
 import kglid                                # import the list on known gliders
-import settings                             # import the main settings
+import config                               # import the main settings
 from   libfap import *                      # the packet parsing function 
 from   parserfuncs import *                 # the ogn/ham parser functions 
 from   geopy.distance import vincenty       # use the Vincenty algorithm
@@ -40,10 +40,10 @@ tmid  = 0                                   # glider ID obtaining max altitude
 tmsta = ''
 prt=False
 MySQL=False
-DBname=settings.DBname
-DBhost=settings.DBhost
-DBuser=settings.DBuser
-DBpasswd=settings.DBpasswd
+DBname=config.DBname
+DBhost=config.DBhost
+DBuser=config.DBuser
+DBpasswd=config.DBpasswd
 blacklist = ['FLR5B0041']                   # blacklist
 
 
