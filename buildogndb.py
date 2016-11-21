@@ -111,8 +111,8 @@ while True:                                 # until end of file
         k.sort()                            # sort the list
         
         for key in k:                       # report data
-            if key in kglid.kglid:          # if it is a known glider ???
-                r=kglid.kglid[key]          # get the registration
+            if key[3:9] in kglid.kglid:     # if it is a known glider ???
+                r=kglid.kglid[key[3:9]]     # get the registration
             else:
                 r='NOREG '                  # no registration
             ttime=0                         # flying time 
@@ -133,8 +133,8 @@ while True:                                 # until end of file
         k.sort()                            # sort the list
         for to in k:                        # report by take off time
                 key= ftkok[to]
-                if key in kglid.kglid:      # if it is a known glider ???
-                    r=kglid.kglid[key]      # get the registration
+                if key[3:9] in kglid.kglid: # if it is a known glider ???
+                    r=kglid.kglid[key[3:9]] # get the registration
                 else:
                     r='Noreg '              # no registration
                 ttime=0                     # flying time 
@@ -313,8 +313,8 @@ conn.close()                                # Close libfap.py to avoid memory le
 libfap.fap_cleanup()
 
 
-if tmid in kglid.kglid:                     # if it is a known glider ???
-    gid=kglid.kglid[tmid]                   # report the registration
+if tmid[3:9] in kglid.kglid:                # if it is a known glider ???
+    gid=kglid.kglid[tmid[3:9]]              # report the registration
 else:
     gid=tmid    
 print "Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta

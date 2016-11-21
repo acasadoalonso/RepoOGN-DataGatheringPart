@@ -102,8 +102,8 @@ while True:                                 # until end of file
         k.sort()                            # sort the list
         
         for key in k:                       # report data by flarm id
-            if key in kglid.kglid:          # if it is a known glider ???
-                r=kglid.kglid[key]          # get the registration
+            if key[3:9] in kglid.kglid:          # if it is a known glider ???
+                r=kglid.kglid[key[3:9]]          # get the registration
             else:
                 r='NOREG '                  # no registration
             ttime=0                         # flying time 
@@ -125,8 +125,8 @@ while True:                                 # until end of file
         k.sort()                            # sort the list
         for to in k:                        # report by take off time
                 key= ftkok[to]
-                if key in kglid.kglid:      # if it is a known glider ???
-                    r=kglid.kglid[key]      # get the registration
+                if key[3:9] in kglid.kglid:      # if it is a known glider ???
+                    r=kglid.kglid[key[3:9]]      # get the registration
                 else:
                     r='Noreg '              # no registration
                 ttime=0                     # flying time 
@@ -201,14 +201,14 @@ while True:                                 # until end of file
             flndt[id]=0                     # landing  time - null for the time being
             cout += 1                       # one more file to create
                                             # prepare the IGC header
-            if id in kglid.kglid:           # if it is a known glider ???
-                fd = open(datapath+tmp+'FD'+dte+'.'+station+'.'+kglid.kglid[id].strip()+'.'+idname+'.IGC', 'w')
+            if id[3:9] in kglid.kglid:      # if it is a known glider ???
+                fd = open(datapath+tmp+'FD'+dte+'.'+station+'.'+kglid.kglid[id[3:9]].strip()+'.'+idname+'.IGC', 'w')
             else:
                 fd = open(datapath+tmp+'FD'+dte+'.'+station+'.'+idname+'.IGC', 'w')
             fd.write('AGNE001GLIDER\n')     # write the IGC header
             fd.write('HFDTE'+dte+'\n')      # write the date on the header
-            if id in kglid.kglid:
-                fd.write('HFGIDGLIDERID: '+kglid.kglid[id]+'\n')    # write the registration ID
+            if id[3:9] in kglid.kglid:
+                fd.write('HFGIDGLIDERID: '+kglid.kglid[id[3:9]]+'\n')    # write the registration ID
             else:
                 fd.write('HFGIDGLIDERID: '+id+'\n')                 # if we do not know it write the FLARM ID
             ffd[id] = fd                    # save the file descriptor
@@ -254,8 +254,8 @@ datafilei.close()                           # close the input file
 datef=datetime.datetime.now()               # get the time & date
                                             # Close libfap.py to avoid memory leak
 libfap.fap_cleanup()
-if tmid in kglid.kglid:                     # if it is a known glider ???
-    gid=kglid.kglid[tmid]                   # report the registration
+if tmid[3:9] in kglid.kglid:                     # if it is a known glider ???
+    gid=kglid.kglid[tmid[3:9]]                   # report the registration
 else:
     gid=tmid                                # just report the flarmid 
 #geolocator = Nominatim(timeout=5)	    # define the geolocator, we need 5 second timeout 
