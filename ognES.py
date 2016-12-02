@@ -90,7 +90,10 @@ tmaxt = 0                               # time at max altitude
 tmid  = 'None     '                     # glider ID obtaining max altitude
 tmsta = '         '                     # station capturing max altitude
 
-print "Start ognES SPAIN V1.10"
+if config.hostname == 'CHILEOGN':
+	print "Start ognCL CHILE V1.10"
+else: 
+	print "Start ognES SPAIN V1.10"
 print "======================="
 
 prtreq =  sys.argv[1:]
