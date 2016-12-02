@@ -2,7 +2,7 @@
 #
 # Python code to show access to OGN Beacons
 #
-# Version for gathering all the records for Spain 
+# Version for gathering all the records from OGN APRS 
 
 from libfap import *
 from ctypes import *
@@ -16,10 +16,10 @@ import pytz
 import sys
 import signal
 import os
+import socket
 import kglid                                # import the list on known gliders
 from   parserfuncs import *                 # the ogn/ham parser functions 
 
-import config
 def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
                                         # shutdown before exit
     libfap.fap_cleanup()                # close lifap in order to avoid memory leaks
@@ -89,13 +89,14 @@ tmaxa = 0                               # maximun altitude for the day
 tmaxt = 0                               # time at max altitude
 tmid  = 'None     '                     # glider ID obtaining max altitude
 tmsta = '         '                     # station capturing max altitude
-
-if config.hostname == 'CHILEOGN':
+hostname=socket.gethostname()
+if hostname == 'CHILEOGN':
 	print "Start ognCL CHILE V1.10"
 else: 
 	print "Start ognES SPAIN V1.10"
 print "======================="
 
+import config
 prtreq =  sys.argv[1:]
 if prtreq and prtreq[0] == 'prt':
     prt = True
@@ -109,7 +110,7 @@ print "Socket sock connected"
  
 # logon to OGN APRS network    
 
-login = 'user %s pass %s vers Py-SPAIN 1.9 %s'  % (config.APRS_USER, config.APRS_PASSCODE , config.APRS_FILTER_DETAILS)
+login = 'user %s pass %s vers Py-REPO 1.10 %s'  % (config.APRS_USER, config.APRS_PASSCODE , config.APRS_FILTER_DETAILS)
 sock.send(login)    
  
 # Make the connection to the server
