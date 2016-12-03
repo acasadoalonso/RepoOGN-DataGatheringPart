@@ -9,6 +9,7 @@
 import datetime 
 import time
 import sys
+import socket
 
 sys.path.insert(0,'/nfs/OGN/src')
 datapath    ='/nfs/OGN/DIRdata/'
@@ -69,6 +70,8 @@ cout = 0                                    # output file counter
 date=datetime.datetime.now()                         # get the date
 dte=date.strftime("%y%m%d")                 # today's date
 fname='DATA'+dte+'.log'                     # file name from logging
+
+hostname=socket.gethostname()
 
 #fname='DATA170515.log'                     # example of file name 
 
@@ -193,7 +196,7 @@ while True:                                 # until end of file
     station=station.upper()		    # translate to uppercase
     if path=='RELAY*':
 	print "RELAY:", id, ":::", station , longitude, latitude, altitude, speed, course, ptype, otime, "DATA:", data
-    if config.hostname == "CHILEOGN" or spanishsta(station) or frenchsta(station):  # only Chilean or Spanish or frenchstations
+    if hostname == "CHILEOGN" or spanishsta(station) or frenchsta(station):  # only Chilean or Spanish or frenchstations
         if not id in fid :                  # if we did not see the FLARM ID
             fid  [id]=0                     # init the counter
             fsta [id]=station               # init the station receiver
