@@ -170,7 +170,7 @@ while True:                                 # until end of file
             	curs.execute(selcmd, (key,))
             if curs.fetchone() == None:
 		gid='Noreg '                # for unknown receiver
-        	if spanishsta(key) or frenchsta(key):
+        	if config.hostname == "CHILEOGN" or spanishsta(key) or frenchsta(key):
             		if key in kglid.kglid:
                 		gid=kglid.kglid[key]        # report the station name
             		else:
@@ -235,7 +235,7 @@ while True:                                 # until end of file
     station=station.upper()                 # translate to uppercase
     if path=='RELAY*':
         print "RELAY:", id, ":::", station , longitude, latitude, altitude, speed, course, ptype, otime, "DATA:", data
-    if spanishsta(station):                 # only Spanish stations
+    if config.hostname == "CHILEOGN" or spanishsta(station):   # only Spanish/Chilean stations
         if not id in fid :                  # if we did not see the FLARM ID
             fid  [id]=0                     # init the counter
             fsta [id]=station               # init the station receiver
