@@ -11,7 +11,6 @@ import time
 import sys
 import os
 import kglid                                # import the list on known gliders
-import config                               # import the main settings
 from   libfap import *                      # the packet parsing function 
 from   parserfuncs import *                 # the ogn/ham parser functions 
 from   geopy.distance import vincenty       # use the Vincenty algorithm
@@ -38,8 +37,11 @@ tmaxa = 0                                   # maximun altitude for the day
 tmaxt = 0                                   # time at max altitude
 tmid  = 0                                   # glider ID obtaining max altitude
 tmsta = ''
+print "Start build OGN database V1.10"
+print "=============================="
 prt=False
-MySQL=False
+import config                               # import the main settings
+MySQL=config.MySQL
 DBname=config.DBname
 DBhost=config.DBhost
 DBuser=config.DBuser
@@ -48,8 +50,6 @@ blacklist = ['FLR5B0041']                   # blacklist
 
 
 
-print "Start build OGN database V1.10"
-print "=============================="
 dtereq =  sys.argv[1:]
 if dtereq and dtereq[0] == 'date':
     dter = True                             # request the date
