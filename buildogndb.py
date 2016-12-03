@@ -41,7 +41,6 @@ print "Start build OGN database V1.10"
 print "=============================="
 prt=False
 import config                               # import the main settings
-MySQL=config.MySQL
 DBname=config.DBname
 DBhost=config.DBhost
 DBuser=config.DBuser
@@ -50,6 +49,7 @@ blacklist = ['FLR5B0041']                   # blacklist
 
 
 
+MySQL=False				    # False unless the MySQL option is requested
 dtereq =  sys.argv[1:]
 if dtereq and dtereq[0] == 'date':
     dter = True                             # request the date
