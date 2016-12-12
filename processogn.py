@@ -194,8 +194,6 @@ while True:                                 # until end of file
     scolon=data.find(':')		    # find the colon
     station=data[data.find('qAS')+4:scolon]
     station=station.upper()		    # translate to uppercase
-    if path=='RELAY*':
-	print "RELAY:", id, ":::", station , longitude, latitude, altitude, speed, course, ptype, otime, "DATA:", data
     if hostname == "CHILEOGN" or spanishsta(station) or frenchsta(station):  # only Chilean or Spanish or frenchstations
         if not id in fid :                  # if we did not see the FLARM ID
             fid  [id]=0                     # init the counter

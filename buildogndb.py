@@ -233,8 +233,6 @@ while True:                                 # until end of file
     scolon=data.find(':')                   # find the colon
     station=data[data.find('qAS')+4:scolon] # the station name is after the qAS, 
     station=station.upper()                 # translate to uppercase
-    if path=='RELAY*':
-        print "RELAY:", id, ":::", station , longitude, latitude, altitude, speed, course, ptype, otime, "DATA:", data
     if config.hostname == "CHILEOGN" or spanishsta(station):   # only Spanish/Chilean stations
         if not id in fid :                  # if we did not see the FLARM ID
             fid  [id]=0                     # init the counter
@@ -261,9 +259,15 @@ while True:                                 # until end of file
         p4=data.find('rot')                 # scan for the rate of climb
         rot      = data[p4-3:p4]            # get the rate of turn
         p5=data.find('dB')                  # scan for the sensitivity
-        sensitivity = data[p5-4:p5]         # get the sensitivity
+	if p5 == -1:
+		sensitivity='0'
+	else:
+        	sensitivity = data[p5-4:p5] # get the sensitivity
         p6=data.find('gps')                 # scan for gps info
-        gps      = data[p6:p6+6]            # get the gps
+	if p6 == -1:
+		gps='NO'
+	else:
+        	gps      = data[p6:p6+6]    # get the gps
         altim=altitude                      # the altitude in meters
         if altim > 15000 or altim < 0:
             altim=0
