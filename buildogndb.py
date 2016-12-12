@@ -300,9 +300,13 @@ while True:                                 # until end of file
         	addcmd="insert into OGNDATA values ('" +idname+ "','" + dte+ "','" + hora+ "','" + station+ "'," + str(latitude)+ "," + str(longitude)+ "," + str(altim)+ "," + str(speed)+ "," + str(course)+ "," + str(roclimb)+ "," +str( rot) + "," +str(sensitivity)
         	addcmd=addcmd+",'" + gps+ "','" + uniqueid+ "'," + str(dist)+ ",'" + extpos+ "')"
 		try:
-			curs.execute(addcmd) 
-		except:
-			print ">>>MySQL error:", nrec, cin, addcmd
+			curs.execute(addcmd)
+		except MySQLdb.Error, e:
+                        try:
+                                print ">>>MySQL Error [%d]: %s" % (e.args[0], e.args[1])
+                        except IndexError:
+                                print ">>>MySQL Error: %s" % str(e)
+                        print         ">>>MySQL error:", nrec, cin, addcmd 
 	else:
         	addcmd="insert into OGNDATA values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
         	curs.execute(addcmd, (idname, dte, hora, station, latitude, longitude, altim, speed, course, roclimb, rot,sensitivity, gps, uniqueid, dist, extpos))
