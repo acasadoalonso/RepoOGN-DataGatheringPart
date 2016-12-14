@@ -6,11 +6,11 @@
 #
 # Author: Angel Casado - August 2015
 #
-import datetime 
 import time
 import sys
 import os
 import kglid                                # import the list on known gliders
+from   datetime import datetime 
 from   libfap import *                      # the packet parsing function 
 from   parserfuncs import *                 # the ogn/ham parser functions 
 from   geopy.distance import vincenty       # use the Vincenty algorithm
@@ -32,12 +32,12 @@ fsllo={'NONE  ' : 0.0}			    # station longitude
 fslal={'NONE  ' : 0.0}			    # station altitude
 fsmax={'NONE  ' : 0.0}                      # maximun coverage
 fsalt={'NONE  ' : 0}                        # maximun altitude
-ftkok={datetime.datetime.utcnow(): 'NONE  '}  # Take off time 
+ftkok={datetime.utcnow(): 'NONE  '}  	    # Take off time 
 tmaxa = 0                                   # maximun altitude for the day
 tmaxt = 0                                   # time at max altitude
 tmid  = 0                                   # glider ID obtaining max altitude
 tmsta = ''
-print "Start build OGN database V1.10"
+print "Start build OGN database V1.11"
 print "=============================="
 prt=False
 import config                               # import the main settings
@@ -69,7 +69,7 @@ else:
     
 cin  = 0                                    # input record counter
 cout = 0                                    # output file counter
-date=datetime.datetime.now()                # get the date
+date=datetime.now()                	    # get the date
 dte=date.strftime("%y%m%d")                 # today's date
 fname='DATA'+dte+'.log'                     # file name from logging
 
@@ -230,9 +230,7 @@ while True:                                 # until end of file
         continue
     id=data[0:9]                            # the flarm ID/ICA/OGN 
     idname=data[3:9]                        # exclude the FLR part
-    scolon=data.find(':')                   # find the colon
-    station=data[data.find('qAS')+4:scolon] # the station name is after the qAS, 
-    station=station.upper()                 # translate to uppercase
+    station=get_station(data)		    # get the station
     if config.hostname == "CHILEOGN" or spanishsta(station):   # only Spanish/Chilean stations
         if not id in fid :                  # if we did not see the FLARM ID
             fid  [id]=0                     # init the counter
@@ -315,13 +313,12 @@ while True:                                 # until end of file
 # -----------------  final process ----------------------
 
 datafilei.close()                           # close the input file
-datef=datetime.datetime.now()               # get the time & date
+datef=datetime.now()                        # get the time & date
 conn.commit()
 conn.close()                                # Close libfap.py to avoid memory leak
 libfap.fap_cleanup()
 
-
-if tmid[3:9] in kglid.kglid:                # if it is a known glider ???
+if tmid != 0 and tmid[3:9] in kglid.kglid:  # if it is a known glider ???
     gid=kglid.kglid[tmid[3:9]]              # report the registration
 else:
     gid=tmid    

@@ -6,11 +6,9 @@
 
 from libfap import *
 from ctypes import *
-from datetime import datetime
 import socket
 import time
 import string
-import datetime
 import ephem
 import pytz
 import sys
@@ -18,6 +16,7 @@ import signal
 import os
 import socket
 import kglid                                # import the list on known gliders
+from   datetime    import datetime
 from   parserfuncs import *                 # the ogn/ham parser functions 
 
 def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
@@ -51,7 +50,7 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
     else:
         gid=tmid                        # use the ID instead       
     print "Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'by:', gid, 'Station:', tmsta
-    local_time = datetime.datetime.now()
+    local_time = datetime.now()
     print "Time now:", local_time, "Local time."
     return
 
@@ -62,7 +61,7 @@ def alive(first='no'):
 		alivefile = open ("OGN.alive", 'w') # create a file just to mark that we are alive
 	else:
 		alivefile = open ("OGN.alive", 'a') # append a file just to mark that we are alive
-	local_time = datetime.datetime.now()
+	local_time = datetime.now()
 	alivetime = local_time.strftime("%y-%m-%d %H:%M:%S")
 	alivefile.write(alivetime+"\n")	# write the time as control
     	alivefile.close()               # close the alive file 
@@ -91,7 +90,7 @@ tmid  = 'None     '                     # glider ID obtaining max altitude
 tmsta = '         '                     # station capturing max altitude
 hostname=socket.gethostname()
 if hostname == 'CHILEOGN':
-	print "Start ognCL CHILE V1.10"
+	print "Start ognCL CHILE V1.11"
 else: 
 	print "Start ognES SPAIN V1.10"
 print "======================="
@@ -120,7 +119,7 @@ sock_file = sock.makefile()
 print "libfap_init"
 libfap.fap_init()
 start_time = time.time()
-local_time = datetime.datetime.now()
+local_time = datetime.now()
 fl_date_time = local_time.strftime("%y%m%d")
 OGN_DATA = "DATA" + fl_date_time+'.log'
 print "OGN data file is: ", OGN_DATA
@@ -139,7 +138,7 @@ location.pressure = 0
 location.horizon = '-0:34'	# Adjustments for angle to horizon
 
 location.lat, location.lon = config.FLOGGER_LATITUDE, config.FLOGGER_LONGITUDE
-date = datetime.datetime.now()
+date = datetime.now()
 next_sunrise = location.next_rising(ephem.Sun(), date)
 next_sunset = location.next_setting(ephem.Sun(), date)
 print "Sunrise today is at: ", next_sunrise, " UTC "
@@ -166,8 +165,8 @@ try:
             except Exception, e:
                 print ('something\'s wrong with socket write. Exception type is %s' % (`e`))
      
-        location.date = ephem.Date(datetime.datetime.utcnow())
-        date = datetime.datetime.utcnow()
+        location.date = ephem.Date(datetime.utcnow())
+        date = datetime.utcnow()
         s = ephem.Sun()
         s.compute(location)
         twilight = -6 * ephem.degree	# Defn of Twilight is: Sun is 6, 12, 18 degrees below horizon (civil, nautical, astronomical)
@@ -195,7 +194,7 @@ try:
             err +=1
             if err > 9:
                 print "Read returns zero length string. Failure.  Orderly closeout"
-                date = datetime.datetime.now()
+                date = datetime.now()
                 print "UTC now is: ", date
                 break
             else:

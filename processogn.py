@@ -6,7 +6,6 @@
 #
 # Author: Angel Casado - May 2015
 #
-import datetime 
 import time
 import sys
 import socket
@@ -17,6 +16,7 @@ datapath    ='/nfs/OGN/DIRdata/'
 import os
 import kglid                                # import the list on known gliders
 from   libfap import *                      # the packet parsing function 
+from   datetime import *                    # the ogn/ham parser functions 
 from   parserfuncs import *                 # the ogn/ham parser functions 
 from   geopy.distance import vincenty       # use the Vincenty algorithm
 from   geopy.geocoders import GeoNames      # use the Nominatim as the geolocator
@@ -33,7 +33,7 @@ ftkot={'NONE  ' : 0}                        # take off time
 flndt={'NONE  ' : 0}                        # take off time
 fsloc={'NONE  ' : (0.0, 0.0)}               # station location
 fsmax={'NONE  ' : 0.0}                      # maximun coverage
-ftkok={datetime.datetime.utcnow(): 'NONE  '}  # Take off time 
+ftkok={datetime.utcnow(): 'NONE  '}  	    # Take off time 
 tmaxa = 0                                   # maximun altitude for the day
 tmaxt = 0                                   # time at max altitude
 tmid  = 0                                   # glider ID obtaining max altitude
@@ -67,7 +67,7 @@ else:
     name = False                            # do not request the date
 cin  = 0                                    # input record counter
 cout = 0                                    # output file counter
-date=datetime.datetime.now()                         # get the date
+date=datetime.now()                         # get the date
 dte=date.strftime("%y%m%d")                 # today's date
 fname='DATA'+dte+'.log'                     # file name from logging
 
@@ -252,19 +252,19 @@ while True:                                 # until end of file
 
 # -----------------  final process ----------------------
 datafilei.close()                           # close the input file
-datef=datetime.datetime.now()               # get the time & date
+datef=datetime.now()               	    # get the time & date
                                             # Close libfap.py to avoid memory leak
 libfap.fap_cleanup()
-if tmid[3:9] in kglid.kglid:                     # if it is a known glider ???
-    gid=kglid.kglid[tmid[3:9]]                   # report the registration
+if tmid[3:9] in kglid.kglid:                # if it is a known glider ???
+    gid=kglid.kglid[tmid[3:9]]              # report the registration
 else:
     gid=tmid                                # just report the flarmid 
 #geolocator = Nominatim(timeout=5)	    # define the geolocator, we need 5 second timeout 
-#loc = geolocator.reverse([mlati,mlong])     # locate the point of maximun altitue for the day.
+#loc = geolocator.reverse([mlati,mlong])    # locate the point of maximun altitue for the day.
    
-#addr=loc.address                            # the location name                           
-#addr=addr.encode('utf8')                    # convert it to UTF-8
-#addr=str(addr)                              # convert to str just in case, in order to avoid problems when is redirected to a file. 
+#addr=loc.address                           # the location name                           
+#addr=addr.encode('utf8')                   # convert it to UTF-8
+#addr=str(addr)                             # convert to str just in case, in order to avoid problems when is redirected to a file. 
 addr=' '
 
 if prt: print "Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta, "At: ", mlati, mlong, addr
