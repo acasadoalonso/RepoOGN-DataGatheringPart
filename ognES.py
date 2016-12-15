@@ -92,7 +92,7 @@ hostname=socket.gethostname()
 if hostname == 'CHILEOGN':
 	print "Start ognCL CHILE V1.11"
 else: 
-	print "Start ognES SPAIN V1.10"
+	print "Start ognES SPAIN V1.11"
 print "======================="
 
 import config

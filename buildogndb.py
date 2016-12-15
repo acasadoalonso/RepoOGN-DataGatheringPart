@@ -184,131 +184,115 @@ while True:                                 # until end of file
                     		print key, 'Adding ==>', gid, lati, long, alti
 			if (MySQL):
                 		addcmd="insert into RECEIVERS values ('" + key + "','" + gid + "'," + str(lati)+  "," + str(long)+ "," + str(alti)+ ")"
-                		curs.execute(addcmd)
+                        	try:
+					curs.execute(addcmd)
+                        	except MySQLdb.Error, e:
+                                	try:
+                                        	print ">>>MySQL Error [%d]: %s" % (e.args[0], e.args[1])
+                                	except IndexError:
+                                        	print ">>>MySQL Error: %s" % str(e)
+                                	print         ">>>MySQL error:", inscmd               		
 			else:
                 		inscmd="insert into RECEIVERS values (?, ?, ?, ?, ?)"
                 		curs.execute(inscmd, (key, gid, lati, long, alti))
 	#
-        conn.commit()
-        break                               # work done
+        conn.commit()			    	# commit the changes
+        break                               	# work done
 
-    if len(data) < 40:                      # that is the case of end of file when the ognES.py process is still
-        continue                            # nothing else to do
+    if len(data) < 40:                      	# that is the case of end of file when the ognES.py process is still
+        continue                            	# nothing else to do
 #   ready to handle a record
     nrec += 1
-    ix=data.find('>')
+    ix=data.find('>')				# translate to uppercase the ID
     cc= data[0:ix]
     cc=cc.upper()
     data=cc+data[ix:]
-
-    packet       = libfap.fap_parseaprs(data, len(data), 0) # parser the information
-    longitude    = get_longitude(packet)
-    latitude     = get_latitude(packet)
-    altitude     = get_altitude(packet)
-    speed        = get_speed(packet)
-    course       = get_course(packet)
-    path         = get_path(packet)
-    ptype        = get_type(packet)
-    dst_callsign = get_dst_callsign(packet)
-    destination  = get_destination(packet)
-    header       = get_header(packet)
-    otime        = get_otime(packet)
-    dist=0
- 
-    callsign=packet[0].src_callsign         # get the call sign FLARM ID
-    if (data.find('TCPIP*') != -1):         # ignore the APRS lines
-        id=callsign                         # station ID
-        if not id in fsloc :
-            fsloc[id]=(latitude, longitude) # save the loction of the station
-	    fslla[id]=latitude
-	    fsllo[id]=longitude
-	    fslal[id]=altitude
-            fsmax[id]=0.0                   # initial coverage zero
-            fsalt[id]=0                     # initial coverage zero
-        continue                            # go for the next record
-    if cc in blacklist:
-        continue
-    id=data[0:9]                            # the flarm ID/ICA/OGN 
-    idname=data[3:9]                        # exclude the FLR part
-    station=get_station(data)		    # get the station
-    if config.hostname == "CHILEOGN" or spanishsta(station):   # only Spanish/Chilean stations
-        if not id in fid :                  # if we did not see the FLARM ID
-            fid  [id]=0                     # init the counter
-            fsta [id]=station               # init the station receiver
-            ftkot[id]=0                     # take off time/ initial seeing  - null for the time being
-            flndt[id]=0                     # landing  time - null for the time being
-            cout += 1                       # one more file to create
+    msg={}
+    if  len(data) > 0 and data[0] <> "#":
+                msg=parseraprs(data, msg)			# parser the data
+                id        = msg['id']                         	# id
+                longitude = msg['longitude']
+                latitude  = msg['latitude']
+                altitude  = msg['altitude']
+                path      = msg['path']
+                otime     = msg['otime']
+                type      = msg['type']
+                if path == 'qAS' or path == 'RELAY*':           # if std records
+                        station=msg['station']
+                else:
+                        station=id
+ 		if path == 'TCPIP*':
+        		if not id in fsloc :
+            			fsloc[id]=(latitude, longitude) # save the loction of the station
+	    			fslla[id]=latitude
+	    			fsllo[id]=longitude
+	    			fslal[id]=altitude
+            			fsmax[id]=0.0                   # initial coverage zero
+            			fsalt[id]=0                     # initial coverage zero
+        		continue                            	# go for the next record
+    		if cc in blacklist:
+        		continue
+    		id=data[0:9]                            	# the flarm ID/ICA/OGN 
+    		idname=data[3:9]                        	# exclude the FLR part
+    		station=get_station(data)		    	# get the station
+    		if config.hostname == "CHILEOGN" or spanishsta(station):   # only Spanish/Chilean stations
+        		if not id in fid :                  	# if we did not see the FLARM ID
+            			fid  [id]=0                    	# init the counter
+            			fsta [id]=station               # init the station receiver
+            			ftkot[id]=0                     # take off time/ initial seeing  - null for the time being
+            			flndt[id]=0                     # landing  time - null for the time being
+            			cout += 1                       # one more file to create
             
-        fid[id] +=1                         # increase the number of records read
-        p1=data.find(':/')+2                # scan for the body of the APRS message
-        hora=data[p1:p1+6]                  # get the GPS time in UTC
-        long=data[p1+7:p1+11]+data[p1+12:p1+14]+'0'+data[p1+14]         # get the longitude
-        lati=data[p1+16:p1+21]+data[p1+22:p1+24]+'0'+data[p1+24]        # get the latitude
-        p2=data.find('/A=')+3               # scan for the altitude on the body of the message
-        altif=data[p2+1:p2+6]               # get the altitude in feet
-	if  data[p2+7] == '!':              # get the unique id
-                uniqueid     = data[p2+13:p2+23] # get the unique id
-                extpos       = data[p2+7:p2+12] # get extended position indicator
-        else:
-                uniqueid     = data[p2+7:p2+17] # get the unique id
-                extpos=' '
-        p3=data.find('fpm')                 # scan for the rate of climb
-        roclimb      = data[p3-3:p3]        # get the rate of climb
-        p4=data.find('rot')                 # scan for the rate of climb
-        rot      = data[p4-3:p4]            # get the rate of turn
-        p5=data.find('dB')                  # scan for the sensitivity
-	if p5 == -1:
-		sensitivity='0'
-	else:
-        	sensitivity = data[p5-4:p5] # get the sensitivity
-        p6=data.find('gps')                 # scan for gps info
-	if p6 == -1:
-		gps='NO'
-	else:
-        	gps      = data[p6:p6+6]    # get the gps
-        altim=altitude                      # the altitude in meters
-        if altim > 15000 or altim < 0:
-            altim=0
-        alti='%05d' % altim                 # convert it to an string
-         
+        		fid[id] +=1                         	# increase the number of records read
+                	course    = msg['course']
+                	speed     = msg['speed']
+                	uniqueid  = msg['uniqueid']
+                	extpos    = msg['extpos']
+                	roclimb   = msg['roclimb']
+                	rot       = msg['rot']
+                	sensitivity= msg['sensitivity']
+                	gps       = msg['gps']
+                	hora      = msg['time']
+                	altim=altitude                          # the altitude in meters
  
-        if speed > 50 and ftkot[id] == 0:   # if we do not have the take off time ??
-                ftkot[id] = otime           # store the take off time
-                ftkok[otime]=id             # list by take off time 
-        if speed < 20 and speed > 5 and ftkot[id] != 0:   # if we do not have the take off time ??
-                flndt[id] = otime           # store the landing time
-        if station in fsloc:                # if we have the station yet
-                distance=vincenty((latitude, longitude), fsloc[station]).km    # distance to the station
-                dist=distance
-                if distance > 250.0:
-                    print ">>Distcheck: ", distance,"Nrec:", nrec,  data
-                elif distance > fsmax[station]: # if higher distance
-                    fsmax[station]=distance     # save the new distance
-                if altim > fsalt[station]:  # if higher altitude
-                    fsalt[station]=altim    # save the new altitude
-        if altim > tmaxa:
-                tmaxa = altim               # maximum altitude for the day
-                tmaxt = hora                # and time
-                tmid  = id                  # who did it
-                tmsta = station             # station capturing the max altitude
-        if uniqueid[0:2] != "id":	    # check for a valid uniqueid
-		continue
-	# write the DB record
-	if (MySQL):
-        	addcmd="insert into OGNDATA values ('" +idname+ "','" + dte+ "','" + hora+ "','" + station+ "'," + str(latitude)+ "," + str(longitude)+ "," + str(altim)+ "," + str(speed)+ "," + str(course)+ "," + str(roclimb)+ "," +str( rot) + "," +str(sensitivity)
-        	addcmd=addcmd+",'" + gps+ "','" + uniqueid+ "'," + str(dist)+ ",'" + extpos+ "')"
-		try:
-			curs.execute(addcmd)
-		except MySQLdb.Error, e:
-                        try:
-                                print ">>>MySQL Error [%d]: %s" % (e.args[0], e.args[1])
-                        except IndexError:
-                                print ">>>MySQL Error: %s" % str(e)
-                        print         ">>>MySQL error:", nrec, cin, addcmd 
-	else:
-        	addcmd="insert into OGNDATA values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-        	curs.execute(addcmd, (idname, dte, hora, station, latitude, longitude, altim, speed, course, roclimb, rot,sensitivity, gps, uniqueid, dist, extpos))
-        cin +=1                             # one more record read
+        		if speed > 50 and ftkot[id] == 0:   	# if we do not have the take off time ??
+                		ftkot[id] = otime           	# store the take off time
+                		ftkok[otime]=id             	# list by take off time 
+        		if speed < 20 and speed > 5 and ftkot[id] != 0:   # if we do not have the take off time ??
+                		flndt[id] = otime           	# store the landing time
+        		if station in fsloc:                	# if we have the station yet
+                		distance=vincenty((latitude, longitude), fsloc[station]).km    # distance to the station
+                		dist=distance
+                		if distance > 250.0:
+                    			print ">>Distcheck: ", distance,"Nrec:", nrec,  data
+                		elif distance > fsmax[station]: # if higher distance
+                    			fsmax[station]=distance # save the new distance
+                		if altim > fsalt[station]:  	# if higher altitude
+                    			fsalt[station]=altim	# save the new altitude
+        		if altim > tmaxa:
+                		tmaxa = altim               	# maximum altitude for the day
+                		tmaxt = hora                	# and time
+                		tmid  = id                  	# who did it
+                		tmsta = station             	# station capturing the max altitude
+        		if uniqueid[0:2] != "id":	    	# check for a valid uniqueid
+				continue
+			# write the DB record eithher on MySQL or SQLITE3 
+			if (MySQL):
+        			addcmd="insert into OGNDATA values ('" +idname+ "','" + dte+ "','" + hora+ "','" + station+ "'," + str(latitude)+ "," + \
+					str(longitude)+ "," + str(altim)+ "," + str(speed)+ "," + str(course)+ "," + str(roclimb)+ "," +str( rot) + "," +str(sensitivity)
+        			addcmd=addcmd+",'" + gps+ "','" + uniqueid+ "'," + str(dist)+ ",'" + extpos+ "')"
+				try:
+					curs.execute(addcmd)
+				except MySQLdb.Error, e:
+                        		try:
+                                		print ">>>MySQL Error [%d]: %s" % (e.args[0], e.args[1])
+                        		except IndexError:
+                                		print ">>>MySQL Error: %s" % str(e)
+                        		print         ">>>MySQL error:", nrec, cin, addcmd 
+			else:
+        			addcmd="insert into OGNDATA values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+        			curs.execute(addcmd, (idname, dte, hora, station, latitude, longitude, altim, speed, course, roclimb, rot,sensitivity, gps, uniqueid, dist, extpos))
+        		cin +=1                             # one more record read
         
 # -----------------  final process ----------------------
 

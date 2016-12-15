@@ -54,7 +54,7 @@ if 'SERVER_SIGNATURE' in os.environ:        # check if www
 	tmp='tmp/'
 
 if prt:
-    print "Start process OGN records V1.10"
+    print "Start process OGN records V1.11"
     print "==============================="
 dtereq =  sys.argv[1:]
 if dtereq and dtereq[0] == 'date':
@@ -86,6 +86,7 @@ else:
 if name:
     fn=sys.argv[2:]                         # take the name of the second arg
     fname=str(fn)[2:20]
+    dte=str(fn)[6:12]                       # take the date from the file name
 if prt:    
     print 'File name: ', fname, 'Process date/time:', date.strftime(" %y-%m-%d %H:%M:%S")     # display file name and time
 
@@ -191,9 +192,7 @@ while True:                                 # until end of file
 	continue
     id=data[0:9]                            # exclude the FLR part
     idname=data[3:9]                        # exclude the FLR part
-    scolon=data.find(':')		    # find the colon
-    station=data[data.find('qAS')+4:scolon]
-    station=station.upper()		    # translate to uppercase
+    station=get_station(data)		    # get the station ID
     if hostname == "CHILEOGN" or spanishsta(station) or frenchsta(station):  # only Chilean or Spanish or frenchstations
         if not id in fid :                  # if we did not see the FLARM ID
             fid  [id]=0                     # init the counter
@@ -255,7 +254,7 @@ datafilei.close()                           # close the input file
 datef=datetime.now()               	    # get the time & date
                                             # Close libfap.py to avoid memory leak
 libfap.fap_cleanup()
-if tmid[3:9] in kglid.kglid:                # if it is a known glider ???
+if tmid != 0 and tmid[3:9] in kglid.kglid:  # if it is a known glider ???
     gid=kglid.kglid[tmid[3:9]]              # report the registration
 else:
     gid=tmid                                # just report the flarmid 
