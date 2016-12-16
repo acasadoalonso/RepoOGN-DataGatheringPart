@@ -1,4 +1,4 @@
-CREATE TABLE GLIDERS (idglider char(9) UNIQUE, registration char(6), cn char(3), type TEXT,  source char(1), flarmtype char(1));
+CREATE TABLE GLIDERS (idglider char(9) UNIQUE, registration char(9), cn char(3), type TEXT,  source char(1), flarmtype char(1));
 CREATE TABLE METEO (date char(6), time char (6), metstation char(4), rowdata TEXT NULL DEFAULT NULL, temp REAL, dewp REAL, winddir int, windspeed int, windgust int, visibility int, qnh REAL, cloud TEXT, fcat TEXT, wxstring TEXT);
 CREATE TABLE OGNDATA (idflarm char(9) , date char(6), time char(6), station char(9), latitude float, longitude float, altitude int, speed float, course int, roclimb int, rot float, sensitivity float, gps char(6), uniqueid char(10), distance float, extpos char (5));
 CREATE TABLE RECEIVERS (idrec char(9) UNIQUE, descri char(20), lati REAL, longi REAL, alti REAL);
@@ -9,4 +9,3 @@ CREATE UNIQUE INDEX GLIDERIDX on GLIDERS (idglider);
 CREATE UNIQUE INDEX METEOIDX on METEO ( date , time, metstation);
 CREATE INDEX OGNDIDX on OGNDATA (idflarm, date);
 CREATE UNIQUE INDEX RECEIVERSIDX on RECEIVERS (idrec);
-

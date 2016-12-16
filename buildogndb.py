@@ -253,6 +253,7 @@ while True:                                 # until end of file
                 	sensitivity= msg['sensitivity']
                 	gps       = msg['gps']
                 	hora      = msg['time']
+			dist      = -1				# if we can not get the distance
                 	altim=altitude                          # the altitude in meters
  
         		if speed > 50 and ftkot[id] == 0:   	# if we do not have the take off time ??
