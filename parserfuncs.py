@@ -97,7 +97,7 @@ def gdatal (data, typer):               	# get data on the left
         if p == -1:
                 return (" ")
         pb=p
-        while (data[pb] != ' ' and data[pb] != '/'):
+        while (data[pb] != ' ' and data[pb] != '/' and pc >0 0):
                    pb -= 1
         ret=data[pb+1:p]                  	# return the data requested
         return(ret)
