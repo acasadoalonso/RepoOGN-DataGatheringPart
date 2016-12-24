@@ -242,7 +242,7 @@ def parseraprs(packet_str, msg):
                         sensitivity = 0
                 p6=data.find('gps')                     # scan for gps info
                 if p6 != -1:
-                        gps      = data[p6+3:p6+6]      # get the gps
+                        gps      = gdatar(data, "gps")  # get the gpsdata 
                 else:
                         gps      = "NO"			# no GPS data
                 date=datetime.utcnow()         		# get the date
