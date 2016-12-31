@@ -52,7 +52,10 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
     print "Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'by:', gid, 'Station:', tmsta
     local_time = datetime.now()
     print "Time now:", local_time, "Local time."
-    os.remove("OGN.alive")
+    try:
+    	os.remove("OGN.alive")
+    except:
+	print "No OGN.live"
     return
 
 #########################################################################

@@ -233,7 +233,7 @@ while True:                                 # until end of file
     		if cc in blacklist:
         		continue
     		id=data[0:9]                            	# the flarm ID/ICA/OGN 
-    		idname=data[3:9]                        	# exclude the FLR part
+    		idname=data[0:9]                        	# exclude the FLR part
     		station=get_station(data)		    	# get the station
     		if config.hostname == "CHILEOGN" or spanishsta(station):   # only Spanish/Chilean stations
         		if not id in fid :                  	# if we did not see the FLARM ID
@@ -279,7 +279,7 @@ while True:                                 # until end of file
 				continue
 			# write the DB record eithher on MySQL or SQLITE3 
 			if (MySQL):
-        			addcmd="insert into OGNDATA values ('" +idname+ "','" + dte+ "','" + hora+ "','" + station+ "'," + str(latitude)+ "," + \
+        			addcmd="insert into OGNDATA values ('" +id+ "','" + dte+ "','" + hora+ "','" + station+ "'," + str(latitude)+ "," + \
 					str(longitude)+ "," + str(altim)+ "," + str(speed)+ "," + str(course)+ "," + str(roclimb)+ "," +str( rot) + "," +str(sensitivity)
         			addcmd=addcmd+",'" + gps+ "','" + uniqueid+ "'," + str(dist)+ ",'" + extpos+ "')"
 				try:

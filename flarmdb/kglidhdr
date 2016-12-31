@@ -63,8 +63,11 @@ kglid  = {
            "ROBLE1" : "El Roble hill - 1",
            "ROBLE2" : "El Roble hill - 2",
            "ROBLE3" : "El Roble hill - 3",
+           "ROBLE4" : "El Roble hill - 4",
            "LOSANDES1" : "Los andes area - 1 ",
            "LOSANDES2" : "Los andes area - 2 ",
+           "TROCALAN1" : "Trocalan hill - 1", 
+           "TROCALAN2" : "Trocalan hill - 2", 
            "PoloCL" : "Polo field",
 #           # list on known gliders
            "DDDB8B" : "EC-JAA",
