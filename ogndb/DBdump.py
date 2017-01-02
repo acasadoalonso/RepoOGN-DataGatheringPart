@@ -86,13 +86,13 @@ pdte=' '
 reg=' '
 db=(r'OGN.db')
 mydb="OGNDB"
-host="ubuntu"
+host="localhost"
 inittime=datetime.datetime.now()
 #
 # Dump the OGN database
 #
 
-print "Dump OGN database V1.1"
+print "Dump OGN database V1.2"
 print "======================"
 dtareq =  sys.argv[1:]
 
@@ -214,7 +214,10 @@ while True:
 	    print msg
 	    tmaxa=0
 	    tmaxt=tme
-	    tmid=ID
+	    if len(ID) == 9:
+	    	tmid=ID[3:9]
+	    else:
+		tmid=ID
 	    tmsta=sta
 	    cpar=0
 	    mlati=0.0
@@ -307,11 +310,16 @@ k.sort()                                    # sort the list
 for key in k:                               # report data
     if key == None:
 	continue
+    if len(key) == 9:
+        gkey=key[3:9]
+    else:
+        gkey=key
     if (MySQL):
-    	cmd="select registration from GLIDERS where idglider = '"+ key+"'"
-    	curs.execute(cmd)
-    else:           
-    	curs.execute("select registration from GLIDERS where idglider = ?", [key])
+        cmd="select registration from GLIDERS where idglider = '"+ gkey+"'"
+        curs.execute(cmd)
+    else:
+        curs.execute("select registration from GLIDERS where idglider = ?", [gkey])
+
     reg=curs.fetchone()
     mlati=fmaxlati[key]
     mlong=fmaxlong[key]
