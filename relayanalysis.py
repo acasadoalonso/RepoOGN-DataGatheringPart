@@ -131,6 +131,5 @@ for key in k:                       # report data
         print key, '=>', gid, fid[key]
 
 datafilei.close()                           # close the input file
-conn.close()  
-
+conn.close()                                # Close libfap.py to avoid memory leak
 

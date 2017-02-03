@@ -5,6 +5,7 @@
 *.pyo
 *.bak
 SWsrc
+APRSsrc
 src
 aprslog
 archive
