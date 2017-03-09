@@ -24,6 +24,14 @@ APRS_FILTER_DETAILS     = APRS_FILTER_DETAILS + '\n '
 
 FLOGGER_LATITUDE        = cfg.get('location', 'location_latitude').strip("'")
 FLOGGER_LONGITUDE       = cfg.get('location', 'location_longitud').strip("'")
+location_latitude       = cfg.get('location', 'location_latitude').strip("'")
+location_longitude      = cfg.get('location', 'location_longitud').strip("'")
+
+try:
+	location_name   = cfg.get('location', 'location_name').strip("'").strip('"')
+except:
+	location_name   = ' '
+
 
 DBpath                  = cfg.get('server', 'DBpath').strip("'")
 MySQLtext               = cfg.get('server', 'MySQL').strip("'")
@@ -38,8 +46,8 @@ else:
 # --------------------------------------#
 assert len(APRS_USER) > 3 and len(str(APRS_PASSCODE)) > 0, 'Please set APRS_USER and APRS_PASSCODE in settings.py.'
                                                                                 # report the configuration paramenters
-print "Config server values:",                  MySQL, DBhost, DBuser, DBpasswd, DBname, DBpath
+print "Config server values:",                  "MySQL=", MySQL, DBhost, DBuser, DBpasswd, DBname, DBpath
 print "Config APRS values:",                    APRS_SERVER_HOST, APRS_SERVER_PORT, APRS_USER, APRS_PASSCODE, APRS_FILTER_DETAILS
-print "Config location :",     			FLOGGER_LATITUDE, FLOGGER_LONGITUDE
+print "Config location :",     			location_name, FLOGGER_LATITUDE, FLOGGER_LONGITUDE
 # --------------------------------------#
-
+APP="SAR"

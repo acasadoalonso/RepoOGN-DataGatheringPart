@@ -15,9 +15,10 @@ import sys
 import signal
 import os
 import socket
-import kglid                                # import the list on known gliders
+import kglid                            # import the list on known gliders
 from   datetime    import datetime
-from   parserfuncs import *                 # the ogn/ham parser functions 
+from   parserfuncs import *             # the ogn/ham parser functions 
+from   time        import sleep         # the sleep 
 
 def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
                                         # shutdown before exit
@@ -87,7 +88,8 @@ fmaxs={'NONE  ' : 0}                    # maximun speed
 cin   = 0                               # input record counter
 cout  = 0                               # output file counter
 i     = 0                               # loop counter
-err   = 0
+err   = 0				# init the error counter
+maxerr= 50				# max number of input error before gaive up
 tmaxa = 0                               # maximun altitude for the day
 tmaxt = 0                               # time at max altitude
 tmid  = 'None     '                     # glider ID obtaining max altitude
@@ -196,12 +198,13 @@ try:
         # A zero length line will only be returned after ~30m if keepalives are not sent
         if len(packet_str) == 0:
             err +=1
-            if err > 9:
+            if err > maxerr:
                 print "Read returns zero length string. Failure.  Orderly closeout"
                 date = datetime.now()
                 print "UTC now is: ", date
                 break
             else:
+		sleep(5)		# sleep 5 seconds
                 continue
 #   ready to handle a record
 
@@ -269,7 +272,7 @@ libfap.fap_cleanup() 				# Close libfap.py to avoid memory leak
  
 print 'Counters:', cin, cout                # report number of records read and files generated
 shutdown(sock, datafile, tmaxa, tmaxt,tmid)
-print "Exit now ..."
+print "Exit now ...", err
 exit(1)
 
 
