@@ -54,22 +54,11 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
     local_time = datetime.now()
     print "Time now:", local_time, "Local time."
     try:
-    	os.remove("OGN.alive")
+    	os.remove(config.APP+".alive")
     except:
 	print "No OGN.live"
     return
 
-#########################################################################
-def alive(first='no'):
-	
-	if (first == 'yes'):
-		alivefile = open ("OGN.alive", 'w') # create a file just to mark that we are alive
-	else:
-		alivefile = open ("OGN.alive", 'a') # append a file just to mark that we are alive
-	local_time = datetime.now()
-	alivetime = local_time.strftime("%y-%m-%d %H:%M:%S")
-	alivefile.write(alivetime+"\n")	# write the time as control
-    	alivefile.close()               # close the alive file 
 #########################################################################
  
 def signal_term_handler(signal, frame):
@@ -130,7 +119,7 @@ fl_date_time = local_time.strftime("%y%m%d")
 OGN_DATA = "DATA" + fl_date_time+'.log'
 print "OGN data file is: ", OGN_DATA
 datafile = open (OGN_DATA, 'a')
-alive("yes")					# mar that we are alive
+alive(config.APP, first="yes")					# mar that we are alive
 keepalive_count = 1
 keepalive_time = time.time()
 
@@ -162,7 +151,7 @@ try:
                 rtn = sock_file.write("#Python ognES App\n\n") # write something to the APRS server to stay alive !!!
                 sock_file.flush() 		# Make sure keepalive gets sent. If not flushed then buffered
                 datafile.flush()		# use this opportunity to flush the data file
-		alive()				# and mark that we are still alive
+		alive(config.APP)		# and mark that we are still alive
                 run_time = time.time() - start_time
                 if prt:
                     print "Send keepalive no: ", keepalive_count, " After elapsed_time: ", int((current_time - keepalive_time)), " After runtime: ", int(run_time), " secs"
