@@ -158,7 +158,8 @@ try:
                 keepalive_time = current_time
                 keepalive_count = keepalive_count + 1
             except Exception, e:
-                print ('something\'s wrong with socket write. Exception type is %s' % (`e`))
+                print ('Something\'s wrong with socket write. Exception type is %s' % (`e`))
+		print "Time now:", current_time
      
         location.date = ephem.Date(datetime.utcnow())
         date = datetime.utcnow()
@@ -216,7 +217,6 @@ try:
             dst_callsign = get_dst_callsign(packet)
             destination  = get_destination(packet)
             header       = get_header(packet)
-
             if path == 'qAS' or path == "RELAY*":  # if std records
                 station=get_station(packet_str)
             elif path == 'qAC' or path == 'TCPIP*' or path == -1:
