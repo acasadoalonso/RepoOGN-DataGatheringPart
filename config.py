@@ -43,6 +43,11 @@ if (MySQLtext == 'True'):
         MySQL = True
 else:
         MySQL = False
+try:
+	PIDfile         = cfg.get('server', 'pid').strip("'").strip('"')
+except:
+	PIDfile='/tmp/SAR.pid'
+
 # --------------------------------------#
 assert len(APRS_USER) > 3 and len(str(APRS_PASSCODE)) > 0, 'Please set APRS_USER and APRS_PASSCODE in settings.py.'
                                                                                 # report the configuration paramenters

@@ -13,6 +13,7 @@ import ephem
 import pytz
 import sys
 import signal
+import atexit
 import os
 import socket
 import kglid                            # import the list on known gliders
@@ -97,7 +98,18 @@ if prtreq and prtreq[0] == 'prt':
     prt = True
 else:
     prt = False
-    
+ 
+if os.path.exists(config.PIDfile):
+        raise RuntimeError("APRSlog already running !!!")
+        exit(-1)
+#
+APP="SAR"                           # the application name
+ 
+with open(config.PIDfile,"w") as f:
+        f.write (str(os.getpid()))
+        f.close()
+atexit.register(lambda: os.remove(config.PIDfile))
+  
 # create socket & connect to server
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.connect((config.APRS_SERVER_HOST, config.APRS_SERVER_PORT))
@@ -219,10 +231,11 @@ try:
             dst_callsign = get_dst_callsign(packet)
             destination  = get_destination(packet)
             header       = get_header(packet)
+            otime        = get_otime(packet)
             if path == 'qAS' or path == 'RELAY*' or path[0:3] == "OGN": # if std records
                 station=get_station(packet_str)
 		if path[0:3] == "OGN":
-				print "RELAY:", path, station
+				print "RELAY:", path, station, id, destination, header, otime
 
             elif path == 'qAC' or path == 'TCPIP*' or path == -1:
 		data=packet_str
@@ -250,7 +263,7 @@ try:
                 fmaxa[id] = altitude
                 if altitude > tmaxa and (not spanishsta(id) and not frenchsta(id)):
                         tmaxa = altitude        # maximum altitude for the day
-                        tmaxt = date            # and time
+                        tmaxt = date            # date and time
                         tmid  = id              # who did it
                         tmsta = station         # station capturing the max altitude
             if speed >= fmaxs[id]:
