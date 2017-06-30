@@ -100,7 +100,7 @@ else:
     prt = False
  
 if os.path.exists(config.PIDfile):
-        raise RuntimeError("APRSlog already running !!!")
+        raise RuntimeError("SAR already running !!!")
         exit(-1)
 #
 APP="SAR"                           # the application name
