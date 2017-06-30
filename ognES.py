@@ -84,10 +84,11 @@ tmaxt = 0                               # time at max altitude
 tmid  = 'None     '                     # glider ID obtaining max altitude
 tmsta = '         '                     # station capturing max altitude
 hostname=socket.gethostname()
+pgmver="V.12"
 if hostname == 'CHILEOGN':
-	print "Start ognCL CHILE V1.11"
+	print "Start ognCL CHILE ", pgmver
 else: 
-	print "Start ognES SPAIN V1.11"
+	print "Start ognES SPAIN ", pgmver
 print "======================="
 
 import config
@@ -104,7 +105,8 @@ print "Socket sock connected"
  
 # logon to OGN APRS network    
 
-login = 'user %s pass %s vers Py-REPO 1.10 %s'  % (config.APRS_USER, config.APRS_PASSCODE , config.APRS_FILTER_DETAILS)
+login = 'user %s pass %s vers Py-REPO %s %s'  % (config.APRS_USER, config.APRS_PASSCODE , pgmver, config.APRS_FILTER_DETAILS)
+print "APRS login:", login
 sock.send(login)    
  
 # Make the connection to the server
@@ -138,7 +140,7 @@ next_sunrise = location.next_rising(ephem.Sun(), date)
 next_sunset = location.next_setting(ephem.Sun(), date)
 print "Sunrise today is at: ", next_sunrise, " UTC "
 print "Sunset  today is at: ", next_sunset,  " UTC "
-print "Time now is: ", date, "Local time."
+print "Time now is: ", date, "Local time and Process ID:", os.getpid()
 
 try:
 
@@ -217,14 +219,18 @@ try:
             dst_callsign = get_dst_callsign(packet)
             destination  = get_destination(packet)
             header       = get_header(packet)
-            if path == 'qAS' or path == "RELAY*":  # if std records
+            if path == 'qAS' or path == 'RELAY*' or path[0:3] == "OGN": # if std records
                 station=get_station(packet_str)
+		if path[0:3] == "OGN":
+				print "RELAY:", path, station
+
             elif path == 'qAC' or path == 'TCPIP*' or path == -1:
 		data=packet_str
 		ssep=data.find('>')             # find theseparator
         	station=data[0:ssep]            # get the station identifier
         	station=station.upper()         # translate to uppercase
 		id=station
+
             else:
                 station=id                      # just the station itself 
             if prt:
