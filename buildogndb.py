@@ -36,6 +36,7 @@ ftkok={datetime.utcnow(): 'NONE  '}  	    # Take off time
 tmaxa = 0                                   # maximun altitude for the day
 tmaxt = 0                                   # time at max altitude
 tmid  = 0                                   # glider ID obtaining max altitude
+relaycnt = 0				    # counter of relay packages
 tmsta = ''
 print "Start build OGN database V1.11"
 print "=============================="
@@ -217,8 +218,10 @@ while True:                                 # until end of file
                 path      = msg['path']
                 otime     = msg['otime']
                 type      = msg['type']
-                if path == 'qAS' or path == 'RELAY*':           # if std records
+                if path == 'qAS' or path == 'RELAY*' or path[0:3] == "OGN":  # if std records
                         station=msg['station']
+			if path[0:3] == "OGN":
+				relaycnt += 1
                 else:
                         station=id
  		if path == 'TCPIP*':
@@ -308,6 +311,7 @@ if tmid != 0 and tmid[3:9] in kglid.kglid:  # if it is a known glider ???
 else:
     gid=tmid    
 print "Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta
+print "Number of relay packages:", relaycnt
 print 'Bye ...: Stored', cin," records of ", nrec,' read. Time and Time used:', datef, datef-date      # report the processing time
 
     
