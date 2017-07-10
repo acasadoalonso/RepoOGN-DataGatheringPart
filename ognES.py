@@ -52,6 +52,7 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
     else:
         gid=tmid                        # use the ID instead       
     print "Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'by:', gid, 'Station:', tmsta
+    print "Number of RELAY packets:",relaycnt
     local_time = datetime.now()
     print "Time now:", local_time, "Local time."
     try:
@@ -79,6 +80,7 @@ cin   = 0                               # input record counter
 cout  = 0                               # output file counter
 i     = 0                               # loop counter
 err   = 0				# init the error counter
+relaycnt = 0				# counter of relay packets
 maxerr= 50				# max number of input error before gaive up
 tmaxa = 0                               # maximun altitude for the day
 tmaxt = 0                               # time at max altitude
@@ -234,6 +236,7 @@ try:
             otime        = get_otime(packet)
             if path == 'qAS' or path == 'RELAY*' or path[0:3] == "OGN": # if std records
                 station=get_station(packet_str)
+		relaycnt += 1
 		if path[0:3] == "OGN":
 				print "RELAY:", path, station, id, destination, header, otime
 
