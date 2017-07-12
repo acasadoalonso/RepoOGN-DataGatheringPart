@@ -26,6 +26,7 @@ from   geopy.geocoders import Nominatim     # we need it for resolving the geppo
 # ---------- main code ---------------
 #
 
+pgmver='V1.12'
 fid=  {'NONE  ' : 0}                        # FLARM ID list
 fsta= {'NONE  ' : 'NONE  '}                 # STATION ID list
 ffd=  {'NONE  ' : None}                     # file descriptor list
@@ -56,7 +57,7 @@ if 'SERVER_SIGNATURE' in os.environ:        # check if www
         tmp='tmp/'
 
 if prt:
-    print "Start process OGN records V1.11"
+    print "Start process OGN records "+pgmver
     print "==============================="
 dtereq =  sys.argv[1:]
 if dtereq and dtereq[0] == 'date':

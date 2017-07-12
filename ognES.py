@@ -53,6 +53,8 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
         gid=tmid                        # use the ID instead       
     print "Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'by:', gid, 'Station:', tmsta
     print "Number of RELAY packets:",relaycnt
+    if relaycnt > 0:
+	print "Relays:", relayglider
     local_time = datetime.now()
     print "Time now:", local_time, "Local time."
     try:
@@ -72,6 +74,7 @@ def signal_term_handler(signal, frame):
 signal.signal(signal.SIGTERM, signal_term_handler)
 
 #----------------------ogn_main.py start-----------------------
+pgmver="V.12"
 fid=  {'NONE  ' : 0}                    # FLARM ID list
 fsta= {'NONE  ' : 'NONE  '}             # STATION ID list
 fmaxa={'NONE  ' : 0}                    # maximun altitude
@@ -81,13 +84,13 @@ cout  = 0                               # output file counter
 i     = 0                               # loop counter
 err   = 0				# init the error counter
 relaycnt = 0				# counter of relay packets
+relayglider={}				# list of relaying gliders
 maxerr= 50				# max number of input error before gaive up
 tmaxa = 0                               # maximun altitude for the day
 tmaxt = 0                               # time at max altitude
 tmid  = 'None     '                     # glider ID obtaining max altitude
 tmsta = '         '                     # station capturing max altitude
 hostname=socket.gethostname()
-pgmver="V.12"
 if hostname == 'CHILEOGN':
 	print "Start ognCL CHILE ", pgmver
 else: 
@@ -236,9 +239,11 @@ try:
             otime        = get_otime(packet)
             if path == 'qAS' or path == 'RELAY*' or path[0:3] == "OGN": # if std records
                 station=get_station(packet_str)
-		relaycnt += 1
 		if path[0:3] == "OGN":
+				relaycnt += 1
 				print "RELAY:", path, station, id, destination, header, otime
+				if not id in relayglider:
+					relayglider[id]=path[0:9]
 
             elif path == 'qAC' or path == 'TCPIP*' or path == -1:
 		data=packet_str
