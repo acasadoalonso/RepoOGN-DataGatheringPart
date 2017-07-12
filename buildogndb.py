@@ -38,6 +38,7 @@ tmaxa = 0                                   # maximun altitude for the day
 tmaxt = 0                                   # time at max altitude
 tmid  = 0                                   # glider ID obtaining max altitude
 relaycnt = 0				    # counter of relay packages
+relaycntr= 0				    # counter of std relay packages
 relayglider={}				    # list of relay glider and tracker 
 tmsta = ''
 print "Start build OGN database "+pgmver
@@ -222,9 +223,13 @@ while True:                                 # until end of file
                 type      = msg['type']
                 if path == 'qAS' or path == 'RELAY*' or path[0:3] == "OGN":  # if std records
                         station=msg['station']			# get the station name
+			if path == "RELAY*":
+				relaycntr += 1
 			if path[0:3] == "OGN":			# if it is a OGN tracker relay msg
 				if not id in relayglider:
-					relayglider[id]=path[0:9] # add the id to the table of relays.
+					rr = {} 		# temp 
+					rr[path[0:9]] = otime	# store the relay station and the time
+					relayglider[id]=rr 	# add the id to the table of relays.
 				relaycnt += 1			# increase the counter
                 else:
                         station=id				# for qAC just the station is the ID
@@ -315,7 +320,7 @@ if tmid != 0 and tmid[3:9] in kglid.kglid:  # if it is a known glider ???
 else:
     gid=tmid    
 print "Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta
-print "Number of relay packages:", relaycnt
+print "Number of relay packages:", relaycntr, relaycnt
 if relaycnt > 0:
 	print "List of relays:", relayglider
 print 'Bye ...: Stored', cin," records of ", nrec,' read. Time and Time used:', datef, datef-date      # report the processing time
