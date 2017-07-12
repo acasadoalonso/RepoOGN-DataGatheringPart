@@ -22,6 +22,7 @@ import MySQLdb                              # the SQL data base routines
 # ---------- main code ---------------
 #
 
+pgmver='V1.12'
 fid=  {'NONE  ' : 0}                        # FLARM ID list
 fsta= {'NONE  ' : 'NONE  '}                 # STATION ID list
 ftkot={'NONE  ' : 0}                        # take off time
@@ -37,8 +38,9 @@ tmaxa = 0                                   # maximun altitude for the day
 tmaxt = 0                                   # time at max altitude
 tmid  = 0                                   # glider ID obtaining max altitude
 relaycnt = 0				    # counter of relay packages
+relayglider={}				    # list of relay glider and tracker 
 tmsta = ''
-print "Start build OGN database V1.11"
+print "Start build OGN database "+pgmver
 print "=============================="
 prt=False
 import config                               # import the main settings
@@ -219,13 +221,15 @@ while True:                                 # until end of file
                 otime     = msg['otime']
                 type      = msg['type']
                 if path == 'qAS' or path == 'RELAY*' or path[0:3] == "OGN":  # if std records
-                        station=msg['station']
-			if path[0:3] == "OGN":
-				relaycnt += 1
+                        station=msg['station']			# get the station name
+			if path[0:3] == "OGN":			# if it is a OGN tracker relay msg
+				if not id in relayglider:
+					relayglider[id]=path[0:9] # add the id to the table of relays.
+				relaycnt += 1			# increase the counter
                 else:
-                        station=id
+                        station=id				# for qAC just the station is the ID
  		if path == 'TCPIP*':
-        		if not id in fsloc :
+        		if not id in fsloc :			# if not detected yet
             			fsloc[id]=(latitude, longitude) # save the loction of the station
 	    			fslla[id]=latitude
 	    			fsllo[id]=longitude
@@ -302,7 +306,7 @@ while True:                                 # until end of file
 
 datafilei.close()                           # close the input file
 datef=datetime.now()                        # get the time & date
-conn.commit()
+conn.commit()				    # commit the DB
 conn.close()                                # Close libfap.py to avoid memory leak
 libfap.fap_cleanup()
 
@@ -312,6 +316,8 @@ else:
     gid=tmid    
 print "Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta
 print "Number of relay packages:", relaycnt
+if relaycnt > 0:
+	print "List of relays:", relayglider
 print 'Bye ...: Stored', cin," records of ", nrec,' read. Time and Time used:', datef, datef-date      # report the processing time
 
     
