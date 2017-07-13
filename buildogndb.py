@@ -11,6 +11,7 @@ import sys
 import os
 import kglid                                # import the list on known gliders
 from   datetime import datetime 
+import datetime
 from   libfap import *                      # the packet parsing function 
 from   parserfuncs import *                 # the ogn/ham parser functions 
 from   geopy.distance import vincenty       # use the Vincenty algorithm
@@ -228,7 +229,8 @@ while True:                                 # until end of file
 			if path[0:3] == "OGN":			# if it is a OGN tracker relay msg
 				if not id in relayglider:
 					rr = {} 		# temp 
-					rr[path[0:9]] = otime	# store the relay station and the time
+					#print "otime", otime.strftime("%y%m%d%H%M%S")
+					rr[path[0:9]] = otime.strftime("%H%M%S")
 					relayglider[id]=rr 	# add the id to the table of relays.
 				relaycnt += 1			# increase the counter
                 else:
@@ -273,11 +275,11 @@ while True:                                 # until end of file
                 		ftkok[otime]=id             	# list by take off time 
         		if speed < 20 and speed > 5 and ftkot[id] != 0:   # if we do not have the take off time ??
                 		flndt[id] = otime           	# store the landing time
-        		if station in fsloc:                	# if we have the station yet
+        		if station in fsloc and longitude != -1: # if we have the station yet
                 		distance=vincenty((latitude, longitude), fsloc[station]).km    # distance to the station
                 		dist=distance
                 		if distance > 250.0:
-                    			print ">>Distcheck: ", distance,"Nrec:", nrec,  data
+                    			print ">>Distcheck: ", distance,"Nrec:", nrec,  longitude, latitude, data
                 		elif distance > fsmax[station]: # if higher distance
                     			fsmax[station]=distance # save the new distance
                 		if altim > fsalt[station]:  	# if higher altitude
