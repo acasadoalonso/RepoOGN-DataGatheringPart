@@ -178,6 +178,8 @@ while True:                                 # until end of file
     header       = get_header(packet)
     otime        = get_otime(packet)
 
+    if longitude == -1 or latitude == -1:
+	continue
     callsign=packet[0].src_callsign         # get the call sign FLARM ID
 
     if (data.find('TCPIP*') != -1):         # ignore the APRS lines
