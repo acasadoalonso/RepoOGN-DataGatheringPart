@@ -4,6 +4,8 @@
 *.pyc
 *.pyo
 *.bak
+*.DB
+*.db
 SWsrc
 APRSsrc
 src
