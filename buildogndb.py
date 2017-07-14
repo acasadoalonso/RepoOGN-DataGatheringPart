@@ -218,6 +218,8 @@ while True:                                 # until end of file
                 id        = msg['id']                         	# id
                 longitude = msg['longitude']
                 latitude  = msg['latitude']
+		if latitude == -1 or longitude == -1:		# check for the ogn tracker status report
+			continue
                 altitude  = msg['altitude']
                 path      = msg['path']
                 otime     = msg['otime']
