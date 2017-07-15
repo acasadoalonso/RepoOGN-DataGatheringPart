@@ -216,6 +216,7 @@ while True:                                 # until end of file
     if  len(data) > 0 and data[0] <> "#":
                 msg=parseraprs(data, msg)			# parser the data
                 id        = msg['id']                         	# id
+                type      = msg['type']				# message type
                 longitude = msg['longitude']
                 latitude  = msg['latitude']
 		if latitude == -1 or longitude == -1:		# check for the ogn tracker status report
@@ -223,7 +224,6 @@ while True:                                 # until end of file
                 altitude  = msg['altitude']
                 path      = msg['path']
                 otime     = msg['otime']
-                type      = msg['type']
                 if path == 'qAS' or path == 'RELAY*' or path[0:3] == "OGN":  # if std records
                         station=msg['station']			# get the station name
 			if path == "RELAY*":
