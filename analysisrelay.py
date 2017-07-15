@@ -23,9 +23,9 @@ DBhost=config.DBhost
 DBuser=config.DBuser
 DBpasswd=config.DBpasswd
 MySQL=config.MySQL
-fn=sys.argv[1:]                                 # take the name of the second arg
+fn=sys.argv[1:]                             # take the name of the second arg
 fname=str(fn)[2:16]
-dte=str(fn)[6:12]                               # take the date from the file name
+dte=str(fn)[6:12]                           # take the date from the file name
 date=datetime.now()                         # get the date
 
 parser=argparse.ArgumentParser(description="OGN Tracker relay analysis")
@@ -41,7 +41,7 @@ print "Filename:", args.filename, "Interval:", args.intval
 if (MySQL):
         conn=MySQLdb.connect(host=DBhost, user=DBuser, passwd=DBpasswd, db=DBname)     # connect with the database
 else:
-        conn=sqlite3.connect(r'../OGN.db')     # connect with the database
+        conn=sqlite3.connect(r'../OGN.db')  # connect with the database
 curs1=conn.cursor()                         # set the cursor
 curs2=conn.cursor()                         # set the cursora
 
@@ -65,6 +65,7 @@ while True:                                 # until end of file
 	ogntracker=data[relpos-9:relpos]
         flrmid=data[0:9]
         dtepos=data.find(":/")+2
+	station=data[relpos+6:dtepos-2]
         timefix=data[dtepos:dtepos+6]
         sta=data[relpos+16:dtepos-2]
         if timefix == lasttime:
@@ -130,7 +131,7 @@ while True:                                 # until end of file
                 totdist += maxrr
                 if maxrr > 0:
                         ncount += 1
-                        print "N:", ncount, nr, "\t\t TRK:", trk, ogntracker, "\t FlrmID:", reg, flrmid, "Max. dist.:", maxrr, "Kms. at:",timefix, sta
+                        print "N:", ncount, nr, "\t\t OGNTRK:", trk, ogntracker, "\t FlrmID:", reg, flrmid, "Max. dist.:", maxrr, "Kms. at:",timefix, sta, station
 
 if ncount > 0:
 	print "Max. distance", maxdist, "Avg. distance", totdist/ncount, "Total number of records", nrecs
