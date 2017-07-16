@@ -166,13 +166,13 @@ while True:                                 # until end of file
     data=cc+data[ix:]
     packet       = libfap.fap_parseaprs(data, len(data), 0) # parser the information
                                             # get the information once parsed
+    ptype        = get_type(packet)
     longitude    = get_longitude(packet)
     latitude     = get_latitude(packet)
     altitude     = get_altitude(packet)
     speed        = get_speed(packet)
     course       = get_course(packet)
     path         = get_path(packet)
-    ptype        = get_type(packet)
     dst_callsign = get_dst_callsign(packet)
     destination  = get_destination(packet)
     header       = get_header(packet)
@@ -201,6 +201,8 @@ while True:                                 # until end of file
     id=data[0:9]                            # exclude the FLR part
     idname=data[0:9]                        # exclude the FLR part
     station=get_station(data)               # get the station ID
+    if ptype == 8:			    # if OGN status report
+	continue
     if hostname == "CHILEOGN" or spanishsta(station) or frenchsta(station):  # only Chilean or Spanish or frenchstations
         if not id in fid :                  # if we did not see the FLARM ID
             fid  [id]=0                     # init the counter
@@ -222,7 +224,11 @@ while True:                                 # until end of file
             ffd[id] = fd                    # save the file descriptor
         fid[id] +=1                         # increase the number of records read
         p1=data.find(':/')+2                # scan for the body of the APRS message
-        hora=data[p1:p1+6]                  # get the GPS time in UTC
+	if data[p1+6] == 'r':		    # if date is Z with date
+		hora=data[p1+2:p1+6]	    # get HHMM
+		hora[4:6] = "00"	    # zero seconds
+	else:
+        	hora=data[p1:p1+6]          # get the GPS time in UTC
         long=data[p1+7:p1+11]+data[p1+12:p1+14]+'0'+data[p1+14]         # get the longitude
         lati=data[p1+16:p1+21]+data[p1+22:p1+24]+'0'+data[p1+24]        # get the latitude
         p2=data.find('/A=')+3               # scan for the altitude on the body of the message
