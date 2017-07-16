@@ -219,7 +219,7 @@ while True:                                 # until end of file
                 type      = msg['type']				# message type
                 longitude = msg['longitude']
                 latitude  = msg['latitude']
-		if latitude == -1 or longitude == -1:		# check for the ogn tracker status report
+		if latitude == -1 or longitude == -1 or type == 8:	# check for the ogn tracker status report
 			continue
                 altitude  = msg['altitude']
                 path      = msg['path']
