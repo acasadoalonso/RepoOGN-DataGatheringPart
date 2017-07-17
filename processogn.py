@@ -224,9 +224,8 @@ while True:                                 # until end of file
             ffd[id] = fd                    # save the file descriptor
         fid[id] +=1                         # increase the number of records read
         p1=data.find(':/')+2                # scan for the body of the APRS message
-	if data[p1+6] == 'r':		    # if date is Z with date
-		hora=data[p1+2:p1+6]	    # get HHMM
-		hora[4:6] = "00"	    # zero seconds
+	if data[p1+6] == 'z':		    # if date is Z with date
+		hora=data[p1+2:p1+6]+'00'   # get HHMM
 	else:
         	hora=data[p1:p1+6]          # get the GPS time in UTC
         long=data[p1+7:p1+11]+data[p1+12:p1+14]+'0'+data[p1+14]         # get the longitude
