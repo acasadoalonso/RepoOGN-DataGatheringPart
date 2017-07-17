@@ -52,7 +52,7 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
     else:
         gid=tmid                        # use the ID instead       
     print "Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'by:', gid, 'Station:', tmsta
-    print "Number of RELAY packets:",relaycnt
+    print "Number of RELAY packets:",relaycnt, relaycntr
     if relaycnt > 0:
 	print "Relays:", relayglider
     local_time = datetime.now()
@@ -81,9 +81,10 @@ fmaxa={'NONE  ' : 0}                    # maximun altitude
 fmaxs={'NONE  ' : 0}                    # maximun speed
 cin   = 0                               # input record counter
 cout  = 0                               # output file counter
-i     = 0                               # loop counter
+loopcnt = 0                             # loop counter
 err   = 0				# init the error counter
 relaycnt = 0				# counter of relay packets
+relaycntr= 0				# counter of relay packets
 relayglider={}				# list of relaying gliders
 maxerr= 50				# max number of input error before gaive up
 tmaxa = 0                               # maximun altitude for the day
@@ -192,8 +193,8 @@ try:
             exit(0)
    
         if prt:
-            print "In main loop. Count= ", i
-            i += 1
+            print "In main loop. Count= ", loopcnt
+            loopcnt += 1
         try:
             # Read packet string from socket
             packet_str = sock_file.readline()
@@ -239,6 +240,8 @@ try:
             otime        = get_otime(packet)
             if path == 'qAS' or path == 'RELAY*' or path[0:3] == "OGN": # if std records
                 station=get_station(packet_str)
+		if path == "RELAY*":
+				relaycntr += 1
 		if path[0:3] == "OGN":
 				relaycnt += 1
 				print "RELAY:", path, station, id, destination, header, otime
@@ -258,7 +261,7 @@ try:
                 print 'Packet returned is: ', packet_str
                 print 'Callsign is: ', callsign, 'DST CallSign:', dst_callsign, 'Dest: ', destination, 'header: ', header
                 print 'Parsed data: POS: ', longitude, latitude, altitude,' Speed:',speed,' Course: ',course,' Path: ',path,' Type:', type
-                print 
+                print 'OTime:", otime
             if not id in fid :                  # if we did not see the FLARM ID
                 fid  [id]=0                     # init the counter
                 fsta [id]=station               # init the station receiver
