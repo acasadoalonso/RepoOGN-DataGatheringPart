@@ -214,9 +214,12 @@ while True:                                 # until end of file
     data=cc+data[ix:]
     msg={}
     if  len(data) > 0 and data[0] <> "#":
-                msg=parseraprs(data, msg)			# parser the data
-                id        = msg['id']                         	# id
-                type      = msg['type']				# message type
+                msg=parseraprs(data, msg)	# parser the data
+		if msg == -1:			# parser error
+			print "Parser error:", data
+			continue
+                id        = msg['id']          	# id
+                type      = msg['type']		# message type
                 longitude = msg['longitude']
                 latitude  = msg['latitude']
 		if latitude == -1 or longitude == -1 or type == 8:	# check for the ogn tracker status report
