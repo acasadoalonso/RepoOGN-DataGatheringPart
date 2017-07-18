@@ -261,7 +261,7 @@ try:
                 print 'Packet returned is: ', packet_str
                 print 'Callsign is: ', callsign, 'DST CallSign:', dst_callsign, 'Dest: ', destination, 'header: ', header
                 print 'Parsed data: POS: ', longitude, latitude, altitude,' Speed:',speed,' Course: ',course,' Path: ',path,' Type:', type
-                print 'OTime:", otime
+                print 'OTime:', otime
             if not id in fid :                  # if we did not see the FLARM ID
                 fid  [id]=0                     # init the counter
                 fsta [id]=station               # init the station receiver
