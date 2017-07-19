@@ -9,6 +9,14 @@ import sqlite3                              # the SQL data base routines
 import kglid
 import argparse
 
+def printfid (fid):
+        for k in fid[key]:
+		for kk in k:
+        		if kk[3:9] in kglid.kglid:
+                		gid=kglid.kglid[kk[3:9]]    # report the station name
+        		else:
+                		gid="NOSTA"             # marked as no sta
+			print gid, k[kk], 
 print "Start RELAY analysis V0.2.7"
 print "==========================="
 maxdist=0.0
@@ -16,7 +24,7 @@ totdist=0.0
 ncount=0
 nrecs=0
 relaycnt=0
-fid=  {'NONE  ' : 0}                        # FLARM ID list
+fid=  {}   		                    # FLARM ID list
 import config                               # import the main settings
 DBname=config.DBname
 DBhost=config.DBhost
@@ -121,20 +129,29 @@ while True:                                 # until end of file
                                 maxrr=distance
                         else:
                                 continue
-		maxrange={}			# build the dict
-		maxrange[ogntracker]=maxrr	# just the ogn tracker and max dist
-                if not flrmid in fid :          # if we did not see the FLARM ID
+                if maxrr > 0:			# if we found something
+			maxrange={}			# build the dict
+			maxrange[ogntracker]=maxrr	# just the ogn tracker and max dist
+                	if not flrmid in fid :          # if we did not see the FLARM ID
 				maxlist=[]	# init the list
 				maxlist.append(maxrange)
                                 fid[flrmid]=maxlist
-		else:
+			else:
 				mm= fid[flrmid]	# the maxlist
-				if not ogntracker in mm:		# if that tracker is not on the list, just add it
+				#print "TTT", flrmid, mm
+				idx=0
+				found=False
+				for entry in mm:
+					if ogntracker in entry: 
+						found=True
+						if entry[ogntracker] < maxrr:
+							mm[idx]=maxrange
+                                			fid[flrmid]=mm
+							break
+					idx += 1
+						
+				if not found :		# if that tracker is not on the list, just add it
 					fid[flrmid].append(maxrange)
-				else:
-                        		if mm[ogntracker]<maxrr:	# if it is on the list check if the distance is higher
-                                		fid[flrmid][ogntracker]=maxrange
-                if maxrr > 0:
                         ncount += 1
                         print "N:", ncount, nr, "\t\t OGNTRK:", trk, ogntracker, "\t FlrmID:", reg, flrmid, "Max. dist.:", maxrr, "Kms. at:",timefix, "at:", station
                 totdist += maxrr		# add the total distance
@@ -142,7 +159,7 @@ while True:                                 # until end of file
 if ncount > 0:
 	print "Max. distance", maxdist, "Avg. distance", totdist/ncount, "Total number of records", nrecs
 print "Old relays", relaycnt
-print fid
+print "\n\n", fid, "\n\n"
 k=list(fid.keys())                  # list the IDs for debugging purposes
 k.sort()                            # sort the list
 for key in k:                       # report data
@@ -150,8 +167,7 @@ for key in k:                       # report data
                 gid=kglid.kglid[key[3:9]]    # report the station name
         else:
                 gid="NOSTA"             # marked as no sta
-        print key, '=>', gid, fid[key]
+        print key, '=>', gid ,":" , printfid(fid)
 
 datafilei.close()                           # close the input file
 conn.close()                                # Close the database
-
