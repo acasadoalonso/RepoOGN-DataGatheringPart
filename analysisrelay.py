@@ -53,85 +53,91 @@ while True:                                 # until end of file
         data=datafilei.readline()           # read one line
         if not data:                        # end of file ???
                 break
-	relpos= data.find("APRS,RELAY*")
+	relpos= data.find("APRS,RELAY*")    # look for old RELAY messages
         if relpos != -1:
-		relaycnt += 1
+		relaycnt += 1		    # just increas the counter and leva
                 continue
 
-        relpos= data.find("*,qAS")
+        relpos= data.find("*,qAS")	    # look for the new RELAY message that tell us who the the station making the RELAY
         if relpos == -1:
-                continue
-        nrecs += 1
-	ogntracker=data[relpos-9:relpos]
-        flrmid=data[0:9]
-        dtepos=data.find(":/")+2
-	station=data[relpos+6:dtepos-2]
-        timefix=data[dtepos:dtepos+6]
-        sta=data[relpos+16:dtepos-2]
+                continue		    # nothing to do
+        nrecs += 1			    # increase the counter of RELAY messages
+	ogntracker=data[relpos-9:relpos]    # OGN tracker doing the RELAY
+        flrmid=data[0:9]		    # device (either flarm or tracker) that has been done the RELAY
+        dtepos=data.find(":/")+2	    # position report
+	station=data[relpos+6:dtepos-2]	    # OGN station receiving the RELAY message
+	if data[dtepos+6] == 'h':
+        	timefix=data[dtepos:dtepos+6]
+	elif data[dtepos+6] == 'z':
+        	timefix=data[dtepos+2:dtepos+6]+'00'
+	else:
+		continue
         if timefix == lasttime:
                 continue
         lasttime=timefix
-        if flrmid[3:9] in kglid.kglid:     # if it is a known glider ???
+        if flrmid[3:9] in kglid.kglid:     	# if it is a known glider ???
                         reg=kglid.kglid[flrmid[3:9]]     # get the registration
         else:
-                        reg='NOREG '                  # no registration
-        if ogntracker[3:9] in kglid.kglid:     # if it is a known glider ???
+                        reg='NOREG '            # no registration
+        if ogntracker[3:9] in kglid.kglid:     	# if it is a known glider ???
                         trk=kglid.kglid[ogntracker[3:9]]
         else:
-                        trk=ogntracker
+                        trk=ogntracker		# no tracker registration
         inter=timedelta(seconds=intsec)
-        Y=int(dte[0:2]) + 2000
+        Y=int(dte[0:2]) + 2000			# build the datetime
         M=int(dte[2:4])
         D=int(dte[4:6])
         h=int(timefix[0:2])
         m=int(timefix[2:4])
         s=int(timefix[4:6])
-	if data[dtepos+6:dtepos+7] != "h":
-		continue
 	#print flrmid, ogntracker, data
-        T=datetime(Y,M,D,h,m,s)
-        T1=T-inter
+        T=datetime(Y,M,D,h,m,s)			# in formate datetime in order to handle the intervals
+        T1=T-inter				# +/- interval to look into database
         T2=T+inter
-        timefix1=T1.strftime("%H%M%S")
+        timefix1=T1.strftime("%H%M%S")		# now in string format
         timefix2=T2.strftime("%H%M%S")
-        sql1="select latitude, longitude from OGNDATA where idflarm ='"+ogntracker+"' and date = '"+dte+"' and time>='"+timefix1+"' and time <='"+timefix2+"';"
-        sql2="select latitude, longitude from OGNDATA where idflarm ='"+flrmid+"'     and date = '"+dte+"' and time= '"+timefix+"';"
-        #print "SSS", nrecs, dte, timefix, flrmid, ogntracker, sql2, sql1
-        curs2.execute(sql2)
-        row2=curs2.fetchone()
-	#print "R2", row2
-        if (row2) != None:
-                latlon2=(row2[0], row2[1])
-                curs1.execute(sql1)
-                rows1=curs1.fetchall()
+						# build the SQL commands
+        sql1="select latitude, longitude from OGNDATA where idflarm ='"+flrmid+"'     and date = '"+dte+"' and time= '"+timefix+"';"
+        sql2="select latitude, longitude from OGNDATA where idflarm ='"+ogntracker+"' and date = '"+dte+"' and time>='"+timefix1+"' and time <='"+timefix2+"';"
+        #print "SSS", nrecs, dte, timefix, flrmid, ogntracker, sql1, sql2
+        curs1.execute(sql1)
+        row1=curs1.fetchone()			# should be one one record
+	#print "R1", row1
+        if (row1) != None:			# should be always one record
+                latlon1=(row1[0], row1[1])	# position of the glider
+                curs2.execute(sql2)		# look for all the OGN trackers positions in that interval
+                rows2=curs2.fetchall()		# get all position
                 nr=0
                 maxrr=0
-                for row1 in rows1:
-                        nr +=1
-                        maxrr=0
-                        latlon1=(row1[0], row1[1])
-                        distance=vincenty(latlon1, latlon2).km
-                        distance=round(distance,3)
-                        if distance > maxdist:
+                for row2 in rows2:		# scan all the posible records
+                        nr +=1			# number of OGN tracker reconds found
+                        maxrr=0			# maximun range
+                        latlon2=(row2[0], row2[1])		# position of the OGN tracker
+                        distance=vincenty(latlon1, latlon2).km	# get the distance from the flarm to the tracker
+                        distance=round(distance,3)		# round it to 3 decimals
+                        if distance > maxdist:			# maximun absolute distance
                                 maxdist=distance
-                        if distance > maxrr and distance > 0.050:
+                        if distance > maxrr and distance > 0.050:	# max distance for this scan
                                 maxrr=distance
                         else:
                                 continue
-			maxrange={}
-			maxrange[ogntracker]=maxrr
-                        if not flrmid in fid :                      # if we did not see the FLARM ID
-                                fid[flrmid]=maxrange
-			mm= fid[flrmid]
-			if not ogntracker in mm:
-                                fid[flrmid]=maxrange
-			else:
-                        	if mm[ogntracker]<maxrr:
-                                	fid[flrmid]=maxrange
-                totdist += maxrr
+		maxrange={}			# build the dict
+		maxrange[ogntracker]=maxrr	# just the ogn tracker and max dist
+                if not flrmid in fid :          # if we did not see the FLARM ID
+				maxlist=[]	# init the list
+				maxlist.append(maxrange)
+                                fid[flrmid]=maxlist
+		else:
+				mm= fid[flrmid]	# the maxlist
+				if not ogntracker in mm:		# if that tracker is not on the list, just add it
+					fid[flrmid].append(maxrange)
+				else:
+                        		if mm[ogntracker]<maxrr:	# if it is on the list check if the distance is higher
+                                		fid[flrmid][ogntracker]=maxrange
                 if maxrr > 0:
                         ncount += 1
-                        print "N:", ncount, nr, "\t\t OGNTRK:", trk, ogntracker, "\t FlrmID:", reg, flrmid, "Max. dist.:", maxrr, "Kms. at:",timefix, sta, station
+                        print "N:", ncount, nr, "\t\t OGNTRK:", trk, ogntracker, "\t FlrmID:", reg, flrmid, "Max. dist.:", maxrr, "Kms. at:",timefix, "at:", station
+                totdist += maxrr		# add the total distance
 
 if ncount > 0:
 	print "Max. distance", maxdist, "Avg. distance", totdist/ncount, "Total number of records", nrecs
@@ -147,5 +153,5 @@ for key in k:                       # report data
         print key, '=>', gid, fid[key]
 
 datafilei.close()                           # close the input file
-conn.close()                                # Close libfap.py to avoid memory leak
+conn.close()                                # Close the database
 
