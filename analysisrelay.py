@@ -9,7 +9,7 @@ import sqlite3                              # the SQL data base routines
 import kglid
 import argparse
 
-def printfid (fid):
+def printfid (fid):			   # prin the list of relays
         for k in fid[key]:
 		for kk in k:
         		if kk[3:9] in kglid.kglid:
@@ -17,6 +17,10 @@ def printfid (fid):
         		else:
                 		gid="NOSTA"             # marked as no sta
 			print gid, k[kk], 
+# 
+# ----------------------------------------------------------------------------
+#
+
 print "Start RELAY analysis V0.2.7"
 print "==========================="
 maxdist=0.0
