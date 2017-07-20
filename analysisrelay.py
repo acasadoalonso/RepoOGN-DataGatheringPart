@@ -172,7 +172,7 @@ for key in k:                       # report data
                 gid=kglid.kglid[key[3:9]]    # report the glider reg
         else:
                 gid="NOSTA"             # marked as no sta
-        print key, '=>', gid ,":" , printfid(fid)
+        print key, ':', gid ,"==>" , printfid(fid)
 
 datafilei.close()                           # close the input file
 conn.close()                                # Close the database
