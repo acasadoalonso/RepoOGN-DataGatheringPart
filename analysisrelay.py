@@ -158,9 +158,7 @@ while True:                                 # until end of file
 				if not found :		# if that tracker is not on the list, just add it
 					fid[flrmid].append(maxrange)
                         ncount += 1
-                        line= "N:%3d:%3d  OGNTRK: %9s %9s  FlrmID: %9s %9s Max. dist.: %6.3f Kms. at: %s from: %s" % (ncount, nr, trk, ogntracker, reg, flrmid, maxrr, timefix, station)
-                        #print "N:", ncount, nr, "\t\t OGNTRK:", trk, ogntracker, "\t FlrmID:", reg, flrmid, "Max. dist.:", maxrr, "Kms. at:",timefix, "at:", station
-                        print line
+                        print  "N:%3d:%3d  OGNTRK: %9s %9s  FlrmID: %9s %9s Max. dist.: %6.3f Kms. at: %sZ from: %s" % (ncount, nr, trk, ogntracker, reg, flrmid, maxrr, timefix, station)
                 totdist += maxrr		# add the total distance
 
 if ncount > 0:
