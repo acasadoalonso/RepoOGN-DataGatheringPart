@@ -17,6 +17,7 @@ def printfid (fid):			   # prin the list of relays
         		else:
                 		gid="NOSTA"             # marked as no sta
 			print gid, k[kk], 
+	return (';')
 # 
 # ----------------------------------------------------------------------------
 #
@@ -57,7 +58,7 @@ else:
 curs1=conn.cursor()                         # set the cursor
 curs2=conn.cursor()                         # set the cursora
 
-print 'File name:', fname, "at", dte, 'Process date/time:', date.strftime(" %y-%m-%d %H:%M:%S")     # display file name and time
+print 'Filename:', fname, "at", dte, 'Process date/time:', date.strftime(" %y-%m-%d %H:%M:%S")     # display file name and time
 datafilei = open(fname, 'r')                # open the file with the logged data
 
 lasttime=''
@@ -78,25 +79,25 @@ while True:                                 # until end of file
         flrmid=data[0:9]		    # device (either flarm or tracker) that has been done the RELAY
         dtepos=data.find(":/")+2	    # position report
 	station=data[relpos+6:dtepos-2]	    # OGN station receiving the RELAY message
-	if data[dtepos+6] == 'h':
+	if data[dtepos+6] == 'h':	    # check the time format
         	timefix=data[dtepos:dtepos+6]
 	elif data[dtepos+6] == 'z':
         	timefix=data[dtepos+2:dtepos+6]+'00'
 	else:
-		continue
+		continue		    # unkown format ... nothing to do
         if timefix == lasttime:
                 continue
         lasttime=timefix
-        if flrmid[3:9] in kglid.kglid:     	# if it is a known glider ???
+        if flrmid[3:9] in kglid.kglid:      # if it is a known glider ???
                         reg=kglid.kglid[flrmid[3:9]]     # get the registration
         else:
-                        reg='NOREG '            # no registration
-        if ogntracker[3:9] in kglid.kglid:     	# if it is a known glider ???
+                        reg='NOREG '        # no registration
+        if ogntracker[3:9] in kglid.kglid:  # if it is a known glider ???
                         trk=kglid.kglid[ogntracker[3:9]]
         else:
-                        trk=ogntracker		# no tracker registration
+                        trk=ogntracker	    # no tracker registration
         inter=timedelta(seconds=intsec)
-        Y=int(dte[0:2]) + 2000			# build the datetime
+        Y=int(dte[0:2]) + 2000		    # build the datetime
         M=int(dte[2:4])
         D=int(dte[4:6])
         h=int(timefix[0:2])
@@ -168,7 +169,7 @@ k=list(fid.keys())                  # list the IDs for debugging purposes
 k.sort()                            # sort the list
 for key in k:                       # report data
         if key[3:9] in kglid.kglid:
-                gid=kglid.kglid[key[3:9]]    # report the station name
+                gid=kglid.kglid[key[3:9]]    # report the glider reg
         else:
                 gid="NOSTA"             # marked as no sta
         print key, '=>', gid ,":" , printfid(fid)
