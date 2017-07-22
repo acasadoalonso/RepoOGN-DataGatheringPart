@@ -88,6 +88,13 @@ while True:                                 # until end of file
         if timefix == lasttime:
                 continue
         lasttime=timefix
+	p2=data.find('/A=')+3               # scan for the altitude on the body of the message
+        altif=data[p2+1:p2+6]               # get the altitude in feet
+        altim=altif*0.3048                  # convert the altitude in meters
+        if altim > 15000 or altim < 0:
+            altim=0
+        alti='%05d' % altim                 # convert it to an string
+
         if flrmid[3:9] in kglid.kglid:      # if it is a known glider ???
                         reg=kglid.kglid[flrmid[3:9]]     # get the registration
         else:
@@ -158,7 +165,7 @@ while True:                                 # until end of file
 				if not found :		# if that tracker is not on the list, just add it
 					fid[flrmid].append(maxrange)
                         ncount += 1
-                        print  "N:%3d:%3d  OGNTRK: %9s %9s  FlrmID: %9s %9s Max. dist.: %6.3f Kms. at: %sZ from: %s" % (ncount, nr, trk, ogntracker, reg, flrmid, maxrr, timefix, station)
+                        print  "N:%3d:%3d  OGNTRK: %9s %9s  FlrmID: %9s %9s Max. dist.: %6.3f Kms. at: %sZ Altitud: %s from: %s" % (ncount, nr, trk, ogntracker, reg, flrmid, maxrr, timefix, alti, station)
                 totdist += maxrr		# add the total distance
 
 if ncount > 0:
