@@ -52,11 +52,13 @@ print "Filename:", args.filename, "Interval:", args.intval
 
 
 if (MySQL):
-        conn=MySQLdb.connect(host=DBhost, user=DBuser, passwd=DBpasswd, db=DBname)     # connect with the database
+        conn1=MySQLdb.connect(host=DBhost, user=DBuser, passwd=DBpasswd, db=DBname)     # connect with the database
+        conn2=MySQLdb.connect(host=DBhost, user=DBuser, passwd=DBpasswd, db='APRSLOG')  # connect with the database
 else:
         conn=sqlite3.connect(r'../OGN.db')  # connect with the database
-curs1=conn.cursor()                         # set the cursor
-curs2=conn.cursor()                         # set the cursora
+curs1=conn1.cursor()                        # set the cursor
+curs2=conn1.cursor()                        # set the cursora
+curs3=conn2.cursor()                        # set the cursora
 
 print 'Filename:', fname, "at", dte, 'Process date/time:', date.strftime(" %y-%m-%d %H:%M:%S")     # display file name and time
 datafilei = open(fname, 'r')                # open the file with the logged data
@@ -103,7 +105,8 @@ while True:                                 # until end of file
                         trk=kglid.kglid[ogntracker[3:9]]
         else:
                         trk=ogntracker	    # no tracker registration
-        inter=timedelta(seconds=intsec)
+        inter1=timedelta(seconds=intsec)
+        inter2=timedelta(seconds=60*5)
         Y=int(dte[0:2]) + 2000		    # build the datetime
         M=int(dte[2:4])
         D=int(dte[4:6])
@@ -112,14 +115,19 @@ while True:                                 # until end of file
         s=int(timefix[4:6])
 	#print flrmid, ogntracker, data
         T=datetime(Y,M,D,h,m,s)			# in formate datetime in order to handle the intervals
-        T1=T-inter				# +/- interval to look into database
-        T2=T+inter
+        T1=T-inter1				# +/- interval to look into database
+        T2=T+inter1
+        T3=T-inter2				# +/- interval to look into database
+        T4=T+inter2
         timefix1=T1.strftime("%H%M%S")		# now in string format
         timefix2=T2.strftime("%H%M%S")
+	otime1  =T1.strftime("%Y-%m-%d %H:%M%:%S")
+	otime2  =T2.strftime("%Y-%m-%d %H:%M%:%S")
 						# build the SQL commands
         sql1="select latitude, longitude from OGNDATA where idflarm ='"+flrmid+"'     and date = '"+dte+"' and time= '"+timefix+"';"
         sql2="select latitude, longitude from OGNDATA where idflarm ='"+ogntracker+"' and date = '"+dte+"' and time>='"+timefix1+"' and time <='"+timefix2+"';"
-        #print "SSS", nrecs, dte, timefix, flrmid, ogntracker, sql1, sql2
+        sql3="select id, station, status from OGNTRKSTATUS where id = '"+ogntracker+"' and otime > '"+otime1+"' and otime < '"+otime2+"';"
+        #print "SSS", nrecs, dte, timefix, flrmid, ogntracker, sql1, sql2, sql3
         curs1.execute(sql1)
         row1=curs1.fetchone()			# should be one one record
 	#print "R1", row1
@@ -165,7 +173,27 @@ while True:                                 # until end of file
 				if not found :		# if that tracker is not on the list, just add it
 					fid[flrmid].append(maxrange)
                         ncount += 1
-                        print  "N:%3d:%3d  OGNTRK: %9s %9s  FlrmID: %9s %9s Max. dist.: %6.3f Kms. at: %sZ Altitud: %sm. MSL from: %s" % (ncount, nr, trk, ogntracker, reg, flrmid, maxrr, timefix, alti, station)
+			
+        		curs3.execute(sql3)
+        		row3=curs3.fetchall()		# should be at least one record
+			status=' '
+			for row in row3:
+				key=row[0]
+				if key[3:9] in kglid.kglid:
+                			gid=kglid.kglid[key[3:9]]    # report the glider reg
+        			else:
+                			gid="NOSTA"
+				status += gid
+				status += ' :: '
+				status += row[1]
+				status += ' :: '
+				status += row[2]
+				status += ' ::: '
+			if status != ' ':
+				sta = "OGNTRK Status: "+status
+			else:
+				sta = ''
+                        print  "N:%3d:%3d  OGNTRK: %9s %9s  FlrmID: %9s %9s Max. dist.: %6.3f Kms. at: %sZ Altitud: %sm. MSL from: %s %s" % (ncount, nr, trk, ogntracker, reg, flrmid, maxrr, timefix, alti, station, sta)
                 totdist += maxrr		# add the total distance
 
 if ncount > 0:
@@ -182,4 +210,5 @@ for key in k:                       # report data
         print key, ':', gid ,"==>" , printfid(fid)
 
 datafilei.close()                           # close the input file
-conn.close()                                # Close the database
+conn1.close()                               # Close the database
+conn2.close()                               # Close the database
