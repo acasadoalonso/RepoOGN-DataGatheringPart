@@ -92,7 +92,10 @@ while True:                                 # until end of file
         lasttime=timefix
 	p2=data.find('/A=')+3               # scan for the altitude on the body of the message
         altif=data[p2+1:p2+6]               # get the altitude in feet
-        altim=int(int(altif)*0.3048)        # convert the altitude in meters
+	if altif.isdigit():
+        	altim=int(int(altif)*0.3048)# convert the altitude in meters
+	else:
+		altim=0
         if altim > 15000 or altim < 0:
             altim=0
         alti='%05d' % altim                 # convert it to an string
