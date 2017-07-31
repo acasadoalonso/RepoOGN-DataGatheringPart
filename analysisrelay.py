@@ -116,7 +116,7 @@ while True:                                 # until end of file
         h=int(timefix[0:2])
         m=int(timefix[2:4])
         s=int(timefix[4:6])
-	#print flrmid, ogntracker, data
+	#print nrecs,  flrmid, ogntracker, data
         T=datetime(Y,M,D,h,m,s)			# in formate datetime in order to handle the intervals
         T1=T-inter1				# +/- interval to look into database
         T2=T+inter1
@@ -146,6 +146,7 @@ while True:                                 # until end of file
                         latlon2=(row2[0], row2[1])		# position of the OGN tracker
                         distance=vincenty(latlon1, latlon2).km	# get the distance from the flarm to the tracker
                         distance=round(distance,3)		# round it to 3 decimals
+			#print "DDD", flrmid, ogntracker, distance
                         if distance > maxdist:			# maximun absolute distance
                                 maxdist=distance
                         if distance > maxrr and distance > 0.050:	# max distance for this scan
@@ -200,8 +201,8 @@ while True:                                 # until end of file
                 totdist += maxrr		# add the total distance
 
 if ncount > 0:
-	print "Max. distance", maxdist, "Avg. distance", totdist/ncount, "Total number of records", nrecs
-print "Old relays", relaycnt
+	print "\n\nMax. distance", maxdist, "Avg. distance", totdist/ncount
+print "Old relays", relaycnt, "New relays:", nrecs
 print "\n\n", fid, "\n\n"
 k=list(fid.keys())                  # list the IDs for debugging purposes
 k.sort()                            # sort the list
