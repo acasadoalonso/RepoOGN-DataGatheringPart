@@ -1,0 +1,14 @@
+@reboot     sh ~/src/SARboot_flight_logger.sh
+05 *  * * * sh ~/src/meteo.sh  >/dev/null 2>&1
+35 *  * * * sh ~/src/meteo.sh  >/dev/null 2>&1
+50 23 * * * sh ~/src/metdaily.sh
+00 01 1 * * sh ~/src/SARmonthly.sh
+00 02 * * 1 sh ~/src/SARbkup.sh
+30 23 * * 1 sh ~/src/SARbuildddb.sh
+00 06 * * * sh ~/src/SARrpihealth.sh
+00 00 1 1 * sh ~/src/SARyearly.sh
+00 00 * * * sudo ntpdate -u  -s pool.ntp.org
+*/5 10-18 * * *  /bin/bash ~/src/SARtestogn.sh                      >/dev/null 2>&1
+*/30 * * * *     /bin/bash ~/src/testnoip.sh                        >/dev/null 2>&1
+*/10 * * * *     /bin/bash ~/src/SARtestdirdata.sh                  >/dev/null 2>&1
+
