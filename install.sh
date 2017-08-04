@@ -1,7 +1,8 @@
-#!/bin/bash 
-echo								#
+#!/bin/bash
+echo								                            #
 echo "Installing the SAR system      ...." 			#
-echo								#
+echo "===================================" 			#
+echo								                            #
 export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8		#
 sudo apt-get install -y software-properties-common python-software-properties #
 sudo rm /etc/apt/sources.list.d/ondre*				#
@@ -10,17 +11,16 @@ echo								#
 echo " lets update the operating system libraries  ...." 	#
 echo								#
 sudo apt-get update						#
-sudo apt-get install -y language-pack-en-base 			# 
+sudo apt-get install -y language-pack-en-base 			#
 export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8		#
 echo "export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 " >>~/.profile #
 echo "export LD_LIBRARY_PATH=/usr/local/lib" >>~/.profile 	#
-sudo apt-get -y upgrade						#
-cd /var/www/public/main/libfap-1.5/deb				#
-sudo dpkg -i lib*amd64.deb					#
+sudo apt-get -y upgrade						   #
+cd libfap-1.5/deb				             #
+sudo dpkg -i lib*amd64.deb					 #
 echo								#
 echo "Installing the packages required . (LAMP stack)..."	#
 echo								#
-cd /var/www/public/main						#
 sudo apt-get install -y mysql-server mysql-client sqlite3	#
 sudo apt-get install -y python-dev python-pip python-mysqldb    #
 sudo apt-get install -y dos2unix libarchive-dev	 autoconf mc	#
@@ -76,9 +76,9 @@ then								#
 	sudo chmod 777 /nfs/OGN/DIRdata				#
 	cd /var/www/public/					#
 	mv OGN.db /nfs/OGN/DIRdata				#
-	sudo chown ogn:ogn      *				# 
+	sudo chown ogn:ogn      *				#
 	sudo chmod 777 *					#
-	sudo chown ogn:ogn      */*				# 
+	sudo chown ogn:ogn      */*				#
 	sudo chmod 777 */*					#
 fi								#
 cd								#
