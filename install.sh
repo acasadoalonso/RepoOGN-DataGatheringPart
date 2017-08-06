@@ -56,8 +56,8 @@ then								#
 	rm      OGN.db						#
 fi								#
 sqlite3 OGN.db            < ogndb/DBschema.sql			#
-echo "CREATE DATABASE OGNDB" | mysql -u ogn -pogn		#
-mysql -u ogn -pogn --database OGNDB < ogndb/DBschema.sql	#
+echo "CREATE DATABASE OGNDB" | mysql -u root -pogn		#
+mysql -u root -pogn --database OGNDB < ogndb/DBschema.sql	#
 cp aliases ~/.bash_aliases					#
 crontab <crontab.data						#
 crontab -l 							#
