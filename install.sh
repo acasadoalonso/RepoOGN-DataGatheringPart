@@ -15,9 +15,9 @@ sudo apt-get install -y language-pack-en-base 			#
 export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8		#
 echo "export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 " >>~/.profile #
 echo "export LD_LIBRARY_PATH=/usr/local/lib" >>~/.profile 	#
-sudo apt-get -y upgrade						   #
-cd libfap-1.5/deb				             #
-sudo dpkg -i lib*amd64.deb					 #
+sudo apt-get -y upgrade					   	#
+cd libfap-1.5/deb				             	#
+sudo dpkg -i lib*amd64.deb					#
 echo								#
 echo "Installing the packages required . (LAMP stack)..."	#
 echo								#
@@ -55,7 +55,7 @@ then								#
 fi								#
 sqlite3 OGN.db            < DBschema.sql			#
 echo "CREATE DATABASE OGNDB" | mysql 				#
-mysql --database OGNDB < ogndb/DBschema.sql			#
+mysql -u ogn -pogn --database OGNDB < ogndb/DBschema.sql	#
 cp aliases ~/.bash_aliases					#
 crontab <crontab.data						#
 crontab -l 							#
