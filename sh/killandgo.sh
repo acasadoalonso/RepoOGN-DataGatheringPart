@@ -1,4 +1,4 @@
 #!/bin/sh
 pkill python
-sh /home/pi/src/flight_logger.sh
+sh /home/pi/src/SARflight_logger.sh
 ps -ef
