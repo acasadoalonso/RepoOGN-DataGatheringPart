@@ -18,6 +18,7 @@ echo "export LD_LIBRARY_PATH=/usr/local/lib" >>~/.profile 	#
 sudo apt-get -y upgrade					   	#
 cd libfap-1.5/deb				             	#
 sudo dpkg -i lib*amd64.deb					#
+cd -								#
 echo								#
 echo "Installing the packages required . (LAMP stack)..."	#
 echo								#
@@ -40,6 +41,7 @@ echo "Installing phpmyadmin  ... "				#
 echo								#
 #sudo apt-get install -y phpmyadmin 				#
 sudo service apache2 restart					#
+sudo pip install --upgrade pip                                  #
 sudo pip install ephem pytz geopy configparser pycountry atexit	#
 if [ ! -d /etc/local ]						#
 then								#
@@ -53,8 +55,8 @@ if [ -f OGN.db ]						#
 then								#
 	rm      OGN.db						#
 fi								#
-sqlite3 OGN.db            < DBschema.sql			#
-echo "CREATE DATABASE OGNDB" | mysql 				#
+sqlite3 OGN.db            < ogndb/DBschema.sql			#
+echo "CREATE DATABASE OGNDB" | mysql -u ogn -pogn		#
 mysql -u ogn -pogn --database OGNDB < ogndb/DBschema.sql	#
 cp aliases ~/.bash_aliases					#
 crontab <crontab.data						#
@@ -88,7 +90,6 @@ echo								#
 sudo dpkg-reconfigure tzdata					#
 sudo apt-get -y dist-upgrade					#
 sudo apt-get -y autoremove					#
-mysqladmin -u root password ogn					#
 touch SARinstallation.done					#
 echo								#
 echo "========================================================================================================"	#
