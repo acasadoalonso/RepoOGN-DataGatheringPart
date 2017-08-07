@@ -74,7 +74,7 @@ fi								#
 cp sh/*.sh ~/src						#
 cp *.py ~/src/SARsrc						#
 ls  -la ~/src 							#
-cp -r ../CGI-BIN/* ../cgi-bin					#
+sudo cp -r ../CGI-BIN/* ../cgi-bin				#
 if [ ! -d /nfs  ]						#
 then								#
 	sudo mkdir /nfs						#
@@ -91,6 +91,7 @@ then								#
 fi								#
 cd /var/www/html						#
 if [ ! -f DIRdata ]						#
+then								#
 	ln -s /nfs/OGN/DIRdata .				#
 fi								#
 cd								#
