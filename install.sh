@@ -74,7 +74,7 @@ fi								#
 cp sh/*.sh ~/src						#
 cp *.py ~/src/SARsrc						#
 ls  -la ~/src 							#
-cp -r ../CGI-BIN ../cgi-bin					#
+cp -r ../CGI-BIN/* ../cgi-bin					#
 if [ ! -d /nfs  ]						#
 then								#
 	sudo mkdir /nfs						#
@@ -88,6 +88,10 @@ then								#
 	sudo chmod 777 *					#
 	sudo chown ogn:ogn      */*				#
 	sudo chmod 777 */*					#
+fi								#
+cd /var/www/html						#
+if [ ! -f DIRdata ]						#
+	ln -s /nfs/OGN/DIRdata .				#
 fi								#
 cd								#
 if [ ! -d /usr/local/apache2  ]					#
