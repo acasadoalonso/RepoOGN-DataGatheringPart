@@ -42,12 +42,12 @@ echo "Installing phpmyadmin  ... "				#
 echo								#
 #sudo apt-get install -y phpmyadmin 				#
 sudo service apache2 restart					#
-sudo pip install --upgrade pip                                  #
-sudo pip install ephem 						#
-sudo pip install pytz 						#
-sudo pip install geopy 						#
-sudo pip install configparser 					#
-sudo pip install pycountry 					#
+sudo -H pip install --upgrade pip                               #
+sudo -H pip install ephem 					#
+sudo -H pip install pytz 					#
+sudo -H pip install geopy 					#
+sudo -H pip install configparser 				#
+sudo -H pip install pycountry 					#
 if [ ! -d /etc/local ]						#
 then								#
     sudo mkdir /etc/local					#
