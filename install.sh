@@ -28,6 +28,7 @@ sudo apt-get install -y dos2unix libarchive-dev	 autoconf mc	#
 sudo apt-get install -y pkg-config git mutt			#
 sudo apt-get install -y apache2 php php-mcrypt php-mysql php-cli #
 sudo apt-get install -y php-mbstring php-gettext		#
+sudo apt-get install -y mailutils ntpdate mutt			#
 sudo a2enmod rewrite						#
 sudo a2enmod cgi						#
 sudo phpenmod mcrypt						#
@@ -42,7 +43,11 @@ echo								#
 #sudo apt-get install -y phpmyadmin 				#
 sudo service apache2 restart					#
 sudo pip install --upgrade pip                                  #
-sudo pip install ephem pytz geopy configparser pycountry atexit	#
+sudo pip install ephem 						#
+sudo pip install pytz 						#
+sudo pip install geopy 						#
+sudo pip install configparser 					#
+sudo pip install pycountry 					#
 if [ ! -d /etc/local ]						#
 then								#
     sudo mkdir /etc/local					#
