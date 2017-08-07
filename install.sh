@@ -28,7 +28,7 @@ sudo apt-get install -y dos2unix libarchive-dev	 autoconf mc	#
 sudo apt-get install -y pkg-config git mutt			#
 sudo apt-get install -y apache2 php php-mcrypt php-mysql php-cli #
 sudo apt-get install -y php-mbstring php-gettext		#
-sudo apt-get install -y mailutils ntpdate mutt			#
+sudo apt-get install -y mailutils ntpdate mutt	ssmtp		#
 sudo a2enmod rewrite						#
 sudo a2enmod cgi						#
 sudo phpenmod mcrypt						#
@@ -74,6 +74,7 @@ fi								#
 cp sh/*.sh ~/src						#
 cp *.py ~/src/SARsrc						#
 ls  -la ~/src 							#
+cp -r ../CGI-BIN ../cgi-bin					#
 if [ ! -d /nfs  ]						#
 then								#
 	sudo mkdir /nfs						#
@@ -87,6 +88,13 @@ then								#
 	sudo chmod 777 *					#
 	sudo chown ogn:ogn      */*				#
 	sudo chmod 777 */*					#
+fi								#
+cd								#
+if [ ! -d /usr/local/apache2  ]					#
+then								#
+	mkdir /usr/local/apache2   				#
+	mkdir /usr/local/apache2/passwd				#
+	htpasswd -c passwords acasado				#
 fi								#
 cd								#
 echo								#
