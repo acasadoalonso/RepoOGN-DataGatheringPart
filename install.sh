@@ -29,6 +29,8 @@ sudo apt-get install -y pkg-config git mutt			#
 sudo apt-get install -y apache2 php php-mcrypt php-mysql php-cli #
 sudo apt-get install -y php-mbstring php-gettext		#
 sudo apt-get install -y mailutils ntpdate mutt	ssmtp		#
+sudo apt-get install -y libcurl4-openssl-dev			#
+sudo apt-get install -y libjson0 libjson0-dev			#
 sudo a2enmod rewrite						#
 sudo a2enmod cgi						#
 sudo phpenmod mcrypt						#
@@ -118,5 +120,6 @@ echo "In order to execute the SAR data crawler execute:  bash ~/src/SARlive.sh "
 echo "Check the placement of the RootDocument on APACHE2 ... needs to be /var/www/html				#
 echo "If running in Windows under Virtual Box, run dos2unix on /var/www/html & ./main & ~/src			#
 echo "Install phpmyadmin if needed !!!                                                                          #
+echo "Install libnova and calcelestial										#
 echo "========================================================================================================"	#
 echo								#

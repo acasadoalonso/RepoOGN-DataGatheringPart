@@ -86,7 +86,7 @@ pdte=' '
 reg=' '
 db=(r'OGN.db')
 mydb="OGNDB"
-host="localhost"
+host="ubuntu"
 inittime=datetime.datetime.now()
 #
 # Dump the OGN database
