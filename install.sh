@@ -31,6 +31,7 @@ sudo apt-get install -y php-mbstring php-gettext		#
 sudo apt-get install -y mailutils ntpdate mutt	ssmtp		#
 sudo apt-get install -y libcurl4-openssl-dev			#
 sudo apt-get install -y libjson0 libjson0-dev			#
+sudo apt-get install -y libnova-0.14-0				#
 sudo a2enmod rewrite						#
 sudo a2enmod cgi						#
 sudo phpenmod mcrypt						#

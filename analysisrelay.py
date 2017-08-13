@@ -16,7 +16,7 @@ def printfid (fid):			   # prin the list of relays
                 		gid=kglid.kglid[kk[3:9]]    # report the station name
         		else:
                 		gid="NOSTA"             # marked as no sta
-			print gid, k[kk], 
+			print gid, k[kk], ';',
 	return (';')
 # 
 # ----------------------------------------------------------------------------
