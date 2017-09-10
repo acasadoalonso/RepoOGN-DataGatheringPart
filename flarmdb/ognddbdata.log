@@ -1,23 +1,3 @@
---2017-08-28 23:30:32--  http://ddb.glidernet.org/download
-Resolving ddb.glidernet.org (ddb.glidernet.org)... 37.187.244.41, 2001:41d0:52:500::6f7
-Connecting to ddb.glidernet.org (ddb.glidernet.org)|37.187.244.41|:80... connected.
-HTTP request sent, awaiting response... 301 Moved Permanently
-Location: http://ddb.glidernet.org/download/ [following]
---2017-08-28 23:30:32--  http://ddb.glidernet.org/download/
-Reusing existing connection to ddb.glidernet.org:80.
-HTTP request sent, awaiting response... 200 OK
-Length: unspecified [text/plain]
-Saving to: ‘download’
-
-     0K .......... .......... .......... .......... .......... 15.2M
-    50K .......... .......... .......... .......... .......... 19.7M
-   100K .......... .......... .......... .......... .......... 26.9M
-   150K .......... .......... .......... .......... .......... 25.3M
-   200K .......... .......... .......... .......... .......... 1.67M
-   250K .......... .......... .......... .......... .......... 14.7M
-   300K .......... .......... .......... .......... .......... 1.59M
-   350K .......... .......... .......... .......... .......... 13.9M
-   400K .......... .......... .......... .......... .........  20.6M=0.08s
-
-2017-08-28 23:30:32 (5.59 MB/s) - ‘download’ saved [460432]
-
+--2017-09-04 23:30:50--  http://ddb.glidernet.org/download
+Resolving ddb.glidernet.org (ddb.glidernet.org)... failed: Temporary failure in name resolution.
+wget: unable to resolve host address ‘ddb.glidernet.org’
