@@ -111,7 +111,7 @@ def get_station(data):
         return (station)
 ########################################################################
 def get_source(dstcallsign):
-	return (arpssources[dstcallsign])
+	return (aprssources[str(dstcallsign)])
 #########################################################################
 def gdatal (data, typer):               	# get data on the left
         p=data.find(typer)              	# scan for the type requested
