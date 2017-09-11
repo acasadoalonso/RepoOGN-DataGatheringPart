@@ -251,6 +251,7 @@ def parseraprs(packet_str, msg):
                         msg['temp']=temp
                         msg['rf']=rf
                         msg['status']=status
+                        msg['source']=source
                         return (msg)
 		if path != 'qAS':			# we dealt already with the other paths !!!
 			#print "Path:", path, packet_str

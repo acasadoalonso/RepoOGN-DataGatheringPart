@@ -26,7 +26,7 @@ from   geopy.geocoders import Nominatim     # we need it for resolving the geppo
 # ---------- main code ---------------
 #
 
-pgmver='V1.12'
+pgmver='V1.13'
 fid=  {'NONE  ' : 0}                        # FLARM ID list
 fsta= {'NONE  ' : 'NONE  '}                 # STATION ID list
 ffd=  {'NONE  ' : None}                     # file descriptor list
@@ -174,6 +174,7 @@ while True:                                 # until end of file
     course       = get_course(packet)
     path         = get_path(packet)
     dst_callsign = get_dst_callsign(packet)
+    source       = get_source(dst_callsign) 
     destination  = get_destination(packet)
     header       = get_header(packet)
     otime        = get_otime(packet)
@@ -203,7 +204,7 @@ while True:                                 # until end of file
     station=get_station(data)               # get the station ID
     if ptype == 8:			    # if OGN status report
 	continue
-    if hostname == "CHILEOGN" or spanishsta(station) or frenchsta(station):  # only Chilean or Spanish or frenchstations
+    if (hostname == "CHILEOGN" and source == "OGN") or spanishsta(station) or frenchsta(station):  # only Chilean or Spanish or frenchstations
         if not id in fid :                  # if we did not see the FLARM ID
             fid  [id]=0                     # init the counter
             fsta [id]=station               # init the station receiver
