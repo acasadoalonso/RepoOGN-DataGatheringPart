@@ -287,7 +287,7 @@ def parseraprs(packet_str, msg):
 		
                 p3=data.find(' id')                     # scan for uniqueid info
                 if p3 != -1:
-			uniqueid     = "id"+gdatar("id") # get the unique id
+			uniqueid     = "id"+gdatar(data,"id") # get the unique id
 		else:
 			uniqueid     = ' '		# no unique ID
 			
