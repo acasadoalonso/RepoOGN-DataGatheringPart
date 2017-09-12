@@ -23,7 +23,7 @@ import MySQLdb                              # the SQL data base routines
 # ---------- main code ---------------
 #
 
-pgmver='V1.12'
+pgmver='V1.13'
 fid=  {'NONE  ' : 0}                        # FLARM ID list
 fsta= {'NONE  ' : 'NONE  '}                 # STATION ID list
 ftkot={'NONE  ' : 0}                        # take off time
