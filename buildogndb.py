@@ -292,6 +292,10 @@ while True:                                 # until end of file
                     			fsmax[station]=distance # save the new distance
                 		if altim > fsalt[station]:  	# if higher altitude
                     			fsalt[station]=altim	# save the new altitude
+			if source != 'OGN':
+                		distance=vincenty((latitude, longitude), (config.location_latitude, config.location_longitude)).km    # distance to the station
+                		dist=distance
+				
         		if altim > tmaxa:
                 		tmaxa = altim               	# maximum altitude for the day
                 		tmaxt = hora                	# and time
