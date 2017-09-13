@@ -227,7 +227,7 @@ while True:                                 # until end of file
                 altitude  = msg['altitude']
                 path      = msg['path']
                 otime     = msg['otime']
-                source    = msg['source  ']	# source of the data OGN/SPOT/SPIDER/... 
+                source    = msg['source']	# source of the data OGN/SPOT/SPIDER/... 
                 if path == 'qAS' or path == 'RELAY*' or path[0:3] == "OGN":  # if std records
                         station=msg['station']			# get the station name
 			if path == "RELAY*":
@@ -267,6 +267,8 @@ while True:                                 # until end of file
                 	course    = msg['course']
                 	speed     = msg['speed']
                 	uniqueid  = msg['uniqueid']
+			if len(uniqueid) > 10:
+				uniqueid=uniqueid[0:10]		# in this database only 10 chars 
                 	extpos    = msg['extpos']
                 	roclimb   = msg['roclimb']
                 	rot       = msg['rot']
