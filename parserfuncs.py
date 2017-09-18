@@ -285,7 +285,18 @@ def parseraprs(packet_str, msg):
                         extpos       = data[p2+7:p2+12] # get extended position indicator
                 else:
                         extpos=' '
-		
+		if extpos[0] == '!' and extpos[1] == 'W' and extpos[4] == '!':
+			dlat= int(extpos[2]) * 1e-3
+			dlon= int(extpos[3]) * 1e-3
+			if latitude >0 :
+				latitude += dlat
+			else:
+				latitude -= dlat
+			if longitude >0 :
+				longitude += dlon
+			else:
+				longitude -= dlon
+
                 p3=data.find(' id')                     # scan for uniqueid info
                 if p3 != -1:
 			uniqueid     = "id"+gdatar(data,"id") # get the unique id
