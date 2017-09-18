@@ -187,6 +187,14 @@ def deg2dms(dd):  			# convert degrees float in degrees and decimal minutes (to 
         if dd < 0: cdeg = cdeg * -1  
         return "%2.2d%05.2f"%(cdeg,minsec)
 
+def decdeg2dms(dd):			# convert degress float into DDMMSS
+	is_positive = dd >= 0
+	dd = abs(dd)
+	minutes,seconds = divmod(dd*3600,60)
+	degrees,minutes = divmod(minutes,60)
+	degrees = degrees if is_positive else -degrees
+	return (degrees,minutes,seconds)
+
 ######################################################################### 
 #
 # High level APRS parser function
