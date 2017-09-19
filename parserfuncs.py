@@ -179,13 +179,21 @@ def frenchsta(station):                # return true if is an French station
         return False
 ######################################################################### 
 
-def deg2dms(dd):  			# convert degrees float in degrees and decimal minutes (to two decimal places)
+def deg2dmslat(dd):  			# convert degrees float in degrees and decimal minutes (to two decimal places)
         dd1 = round(abs(float(dd)), 4)  
         cdeg = int(dd1)  
         mmss = dd1 - float(cdeg)
         minsec = mmss*60.0
         if dd < 0: cdeg = cdeg * -1  
         return "%2.2d%05.2f"%(cdeg,minsec)
+
+def deg2dmslon(dd):  			# convert degrees float in degrees and decimal minutes (to two decimal places)
+        dd1 = round(abs(float(dd)), 4)  
+        cdeg = int(dd1)  
+        mmss = dd1 - float(cdeg)
+        minsec = mmss*60.0
+        if dd < 0: cdeg = cdeg * -1  
+        return "%3.3d%05.2f"%(cdeg,minsec)
 
 def decdeg2dms(dd):			# convert degress float into DDMMSS
 	is_positive = dd >= 0

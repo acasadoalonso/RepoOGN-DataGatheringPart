@@ -229,15 +229,15 @@ while True:                                 # until end of file
 		hora=data[p1+2:p1+6]+'00'   # get HHMM
 	else:
         	hora=data[p1:p1+6]          # get the GPS time in UTC
-        long=data[p1+7:p1+11]+data[p1+12:p1+14]+'0'+data[p1+14]         # get the longitude
-        lati=data[p1+16:p1+21]+data[p1+22:p1+24]+'0'+data[p1+24]        # get the latitude
-        p2=data.find('/A=')+3               # scan for the altitude on the body of the message
-        altif=data[p2+1:p2+6]               # get the altitude in feet
+
+
+        lati=data[p1+7:p1+11]+data[p1+12:p1+14]+'0'+data[p1+14]         # get the latitude
+        long=data[p1+16:p1+21]+data[p1+22:p1+24]+'0'+data[p1+24]        # get the longitude
         altim=altitude                      # convert the altitude in meters
         if altim > 15000 or altim < 0:
             altim=0
         alti='%05d' % altim                 # convert it to an string
-        ffd[id].write('B'+hora+long+lati+'A00000'+alti+'\n') # format the IGC B record
+        ffd[id].write('B'+hora+lati+long+'A00000'+alti+'\n') # format the IGC B record
         ffd[id].write('LGNE '+data)         # include the original APRS record for documentation
 
         if speed > 50 and ftkot[id] == 0:   # if we do not have the take off time ??

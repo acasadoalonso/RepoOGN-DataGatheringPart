@@ -55,6 +55,7 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
     print "Number of RELAY packets:",relaycnt, relaycntr
     if relaycnt > 0:
 	print "Relays:", relayglider
+    print "Stations:", stations
     local_time = datetime.now()
     print "Time now:", local_time, "Local time."
     try:
@@ -74,11 +75,12 @@ def signal_term_handler(signal, frame):
 signal.signal(signal.SIGTERM, signal_term_handler)
 
 #----------------------ogn_main.py start-----------------------
-pgmver="V.12"
+pgmver="V.13"
 fid=  {'NONE  ' : 0}                    # FLARM ID list
 fsta= {'NONE  ' : 'NONE  '}             # STATION ID list
 fmaxa={'NONE  ' : 0}                    # maximun altitude
 fmaxs={'NONE  ' : 0}                    # maximun speed
+stations=[]				# stations
 cin   = 0                               # input record counter
 cout  = 0                               # output file counter
 loopcnt = 0                             # loop counter
@@ -245,7 +247,10 @@ try:
             header       = get_header(packet)
             otime        = get_otime(packet)
             if path == 'qAS' or path == 'RELAY*' or path[0:3] == "OGN": # if std records
-                station=get_station(packet_str)
+                station=get_station(packet_str)		# get the station ID
+		if not station in stations:
+			stations.append(station)	# add it to the list of stations ...
+			print "SSS", station
 		if path == "RELAY*":
 				relaycntr += 1
 		if path[0:3] == "OGN":
@@ -295,7 +300,7 @@ except KeyboardInterrupt:
 
 libfap.fap_cleanup() 				# Close libfap.py to avoid memory leak
  
-print 'Counters:', cin, cout                # report number of records read and files generated
+print 'Counters:', cin, cout                	# report number of records read and files generated
 shutdown(sock, datafile, tmaxa, tmaxt,tmid)
 print "Exit now ...", err
 exit(1)
