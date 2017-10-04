@@ -197,7 +197,8 @@ while True:                                 # until end of file
 				sta = "OGNTRK Status: "+status
 			else:
 				sta = ''
-                        print  "N:%3d:%3d  OGNTRK: %9s %9s  FlrmID: %9s %9s Max. dist.: %6.3f Kms. at: %sZ Altitud: %sm. MSL from: %s %s" % (ncount, nr, trk, ogntracker, reg, flrmid, maxrr, timefix, alti, station, sta)
+			if maxrr > 0.5:
+                        	print  "N:%3d:%3d  OGNTRK: %9s %9s  FlrmID: %9s %9s Max. dist.: %6.3f Kms. at: %sZ Altitud: %sm. MSL from: %s %s" % (ncount, nr, trk, ogntracker, reg, flrmid, maxrr, timefix, alti, station, sta)
                 totdist += maxrr		# add the total distance
 
 if ncount > 0:

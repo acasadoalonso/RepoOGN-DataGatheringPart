@@ -371,6 +371,7 @@ def parseraprs(packet_str, msg):
                         p=data.find(':>')             	# scan for the body of the APRS message
                         status=data[p+2:p+254].rstrip() # status information
                         msg['status']=status
+		libfap.fap_free(packet)			# just in case free memory, to avoid memory leaks.
                 return(msg)
         else:
                 return -1				# if length ZERO or just the keep alive
