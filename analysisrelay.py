@@ -8,6 +8,9 @@ import MySQLdb                              # the SQL data base routines
 import sqlite3                              # the SQL data base routines
 import kglid
 import argparse
+from   libfap import *                      # the packet parsing function 
+from   parserfuncs import *                 # the ogn/ham parser functions 
+from   geopy.distance import vincenty       # use the Vincenty algorithm
 
 def printfid (fid):			   # prin the list of relays
         for k in fid[key]:
@@ -21,14 +24,112 @@ def printfid (fid):			   # prin the list of relays
 # 
 # ----------------------------------------------------------------------------
 #
+def sa_builddb(fname,schema_file="DBschema.sql"):	# build a in memory database with all the fixes
+	con = sqlite3.connect(":memory:")		# SQLITE3 DB 
+	con.isolation_level = None
+	curs = con.cursor()				# initial cursor
+    							# create the temporary database clone of OGNDB
+    	fSchema = open(schema_file)
+    	print "Gen SQLITE3 temp DB:", schema_file, " open ok"
+    	for line in fSchema.readlines():
+    		schemaStr = ""
+        	schemaStr += " %s" % line
+    		try:
+        		curs.executescript(schemaStr)
+    		except Exception as e:
+        		print "Failed to create temp.db from schema, error"
+    	fSchema.close()
+    	con.commit()				# commit the DB just created, empty
 
-print "Start RELAY analysis V0.2.7"
+	datafilei = open(fname, 'r')            # open the file with the logged data
+	print "libfap_init"
+	libfap.fap_init()
+	nrecs=0
+	while True:                             # until end of file 
+    		data=datafilei.readline()       # read one line
+		if not data:                    # end of file ???
+                                            	# report the findings and close the files
+			break
+ 		if len(data) < 40:             	# that is the case of end of file 
+        		continue                            	# nothing else to do
+#   		ready to handle a record
+    		ix=data.find('>')				# translate to uppercase the ID
+    		cc= data[0:ix]
+    		cc=cc.upper()
+    		data=cc+data[ix:]
+    		msg={}
+    		if  len(data) > 0 and data[0] <> "#":
+               		msg=parseraprs(data, msg)	# parser the data
+			if msg == -1:			# parser error
+				print "Parser error:", data
+				continue
+                	id        = msg['id']          	# id
+                	type      = msg['type']		# message type
+                	longitude = msg['longitude']
+                	latitude  = msg['latitude']
+			if latitude == -1 or longitude == -1 or type == 8:	
+				continue
+                	altitude  = msg['altitude']
+                	path      = msg['path']
+                	otime     = msg['otime']
+                	source    = msg['source']	# source of the data OGN/SPOT/SPIDER/... 
+                	if path == 'qAS' or path == 'RELAY*' or path[0:3] == "OGN":  # if std records
+                        	station=msg['station']			# get the station name
+				if path == "RELAY*":
+					relaycntr += 1
+				if path[0:3] == "OGN":			# if it is a OGN tracker relay msg
+					if not id in relayglider:
+						rr = {} 		# temp 
+						#print "otime", otime.strftime("%y%m%d%H%M%S")
+						rr[path[0:9]] = otime.strftime("%H%M%S")
+						relayglider[id]=rr 	# add the id to the table of relays.
+					relaycnt += 1			# increase the counter
+                	else:
+                        	station=id				# for qAC just the station is the ID
+        		if path == 'TCPIP*':
+        			continue                            	# go for the next record
+    			id=data[0:9]                            	# the flarm ID/ICA/OGN 
+    			idname=data[0:9]                        	# exclude the FLR part
+    			station=get_station(data)		    	# get the station
+                	course    = msg['course']
+                	speed     = msg['speed']
+                	uniqueid  = msg['uniqueid']
+			if len(uniqueid) > 10:
+				uniqueid=uniqueid[0:10]		# in this database only 10 chars 
+                	extpos    = msg['extpos']
+                	roclimb   = msg['roclimb']
+                	rot       = msg['rot']
+                	sensitivity= msg['sensitivity']
+                	gps       = msg['gps']
+                	hora      = msg['time']
+			dist      = -1				# if we can not get the distance
+                	altim=altitude                          # the altitude in meters
+        		if uniqueid[0:2] != "id":	    	# check for a valid uniqueid
+				continue
+			# write the DB record eithher on MySQL or SQLITE3 
+        		addcmd="insert into OGNDATA values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+        		curs.execute(addcmd, (idname, dte, hora, station, latitude, longitude, altim, speed, course, roclimb, rot,sensitivity, gps, uniqueid, dist, extpos))
+			nrecs +=1
+
+
+	datafilei.close()		# close the input file
+	con.commit()   		    	# commit the DB
+	libfap.fap_cleanup()		# free the parser memory
+	print "Number of records on the temp DB:", nrecs
+	return con			# just return the connetion ID
+# 
+# ----------------------------------------------------------------------------
+#
+
+print "Start RELAY analysis V1.1.0"
 print "==========================="
 maxdist=0.0
 totdist=0.0
 ncount=0
 nrecs=0
+nrecords=0
 relaycnt=0
+lasttime=''
 fid=  {}   		                    # FLARM ID list
 import config                               # import the main settings
 DBname=config.DBname
@@ -44,33 +145,36 @@ date=datetime.now()                         # get the date
 parser=argparse.ArgumentParser(description="OGN Tracker relay analysis")
 parser.add_argument("-n", '--name',      required=True, dest='filename', action='store')
 parser.add_argument('-i', '--intval',    required=False, dest='intval', action='store', default='05')
+parser.add_argument('-sa', '--standalone', required=False, dest='sa', action='store', default='NO')
 args=parser.parse_args()
 fname=args.filename
+sa=args.sa
 intsec=int(args.intval)
 dte=fname[4:10]                             # take the date from the file name
-print "Filename:", args.filename, "Interval:", args.intval
+print "Filename:", args.filename, "Interval:", args.intval, "StandAlone:", sa
 
+if sa == "YES":
+	conn1=sa_builddb(fname)		    # build the temporary DB on memory and return the connect
+        conn2=MySQLdb.connect(host=DBhost, user=DBuser, passwd=DBpasswd, db='APRSLOG')  # connect APRSLOG for the trkstatus values
+	MySQL=False
+else: 
+        conn1=MySQLdb.connect(host=DBhost, user=DBuser, passwd=DBpasswd, db=DBname)     # connect with the daily database
+        conn2=MySQLdb.connect(host=DBhost, user=DBuser, passwd=DBpasswd, db='APRSLOG')  # connect with the ogntrkstatus databasea
 
-if (MySQL):
-        conn1=MySQLdb.connect(host=DBhost, user=DBuser, passwd=DBpasswd, db=DBname)     # connect with the database
-        conn2=MySQLdb.connect(host=DBhost, user=DBuser, passwd=DBpasswd, db='APRSLOG')  # connect with the database
-else:
-        conn=sqlite3.connect(r'../OGN.db')  # connect with the database
-curs1=conn1.cursor()                        # set the cursor
-curs2=conn1.cursor()                        # set the cursora
-curs3=conn2.cursor()                        # set the cursora
+curs1=conn1.cursor()                 	    # set the cursor
+curs2=conn1.cursor()                	    # set the cursora
+curs3=conn2.cursor()                	    # set the cursora
 
 print 'Filename:', fname, "at", dte, 'Process date/time:', date.strftime(" %y-%m-%d %H:%M:%S")     # display file name and time
 datafilei = open(fname, 'r')                # open the file with the logged data
-
-lasttime=''
 while True:                                 # until end of file
         data=datafilei.readline()           # read one line
+	nrecords += 1
         if not data:                        # end of file ???
                 break
 	relpos= data.find("APRS,RELAY*")    # look for old RELAY messages
         if relpos != -1:
-		relaycnt += 1		    # just increas the counter and leva
+		relaycnt += 1		    # just increas the counter and leave
                 continue
 
         relpos= data.find("*,qAS")	    # look for the new RELAY message that tell us who the the station making the RELAY
@@ -203,7 +307,7 @@ while True:                                 # until end of file
 
 if ncount > 0:
 	print "\n\nMax. distance", maxdist, "Avg. distance", totdist/ncount
-print "Old relays", relaycnt, "New relays:", nrecs
+print "Old relays", relaycnt, "New relays:", nrecs, "Number of records:", nrecords
 print "\n\n", fid, "\n\n"
 k=list(fid.keys())                  # list the IDs for debugging purposes
 k.sort()                            # sort the list
@@ -211,9 +315,9 @@ for key in k:                       # report data
         if key[3:9] in kglid.kglid:
                 gid=kglid.kglid[key[3:9]]    # report the glider reg
         else:
-                gid="NOSTA"             # marked as no sta
+                gid="NOSTA"         # marked as no sta
         print key, ':', gid ,"==>" , printfid(fid)
 
-datafilei.close()                           # close the input file
-conn1.close()                               # Close the database
-conn2.close()                               # Close the database
+datafilei.close()                   # close the input file
+conn1.close()                       # Close the database
+conn2.close()                       # Close the database

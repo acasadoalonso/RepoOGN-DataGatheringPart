@@ -16,8 +16,6 @@ export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8		#
 echo "export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 " >>~/.profile #
 echo "export LD_LIBRARY_PATH=/usr/local/lib" >>~/.profile 	#
 sudo apt-get -y upgrade					   	#
-cd libfap-1.5/deb				             	#
-sudo dpkg -i lib*amd64.deb					#
 cd -								#
 echo								#
 echo "Installing the packages required . (LAMP stack)..."	#
@@ -33,6 +31,7 @@ sudo apt-get install -y libcurl4-openssl-dev			#
 sudo apt-get install -y libjson0 libjson0-dev			#
 sudo apt-get install -y libnova-0.14-0				#
 sudo apt-get install -y libfap 					#
+sudo apt-get install -y libfap-dev                              #
 sudo apt-get install -y goaccess 				#
 sudo a2enmod rewrite						#
 sudo a2enmod cgi						#
@@ -103,8 +102,8 @@ fi								#
 cd								#
 if [ ! -d /usr/local/apache2  ]					#
 then								#
-	mkdir /usr/local/apache2   				#
-	mkdir /usr/local/apache2/passwd				#
+	sudo mkdir /usr/local/apache2   			#
+	sudo mkdir /usr/local/apache2/passwd			#
 	htpasswd -c passwords acasado				#
 fi								#
 cd								#
