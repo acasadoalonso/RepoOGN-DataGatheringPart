@@ -26,6 +26,10 @@ def printfid (fid):			   # prin the list of relays
 #
 def sa_builddb(fname,schema_file="STD"):	# build a in memory database with all the fixes
 
+	relaycnt = 0                            # counter of relay packages
+	relaycntr= 0                            # counter of std relay packages
+	relayglider={}                          # list of relay glider and tracker
+
 	ogndatasql="CREATE TABLE OGNDATA (idflarm char(9) , date char(6), time char(6), station char(9), latitude float, longitude float, altitude int, speed float, course int, roclimb int, rot float, sensitivity float, gps char(6), uniqueid char(10), distance float, extpos char (5));"
 
 	trkstatussql="CREATE TABLE OGNTRKSTATUS ( id varchar(9) NOT NULL, station varchar(9) NOT NULL, otime datetime NOT NULL, status varchar(255) NOT NULL)"
