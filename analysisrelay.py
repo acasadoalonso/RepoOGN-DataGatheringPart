@@ -210,7 +210,7 @@ if sa == "YES":				    # standalone case ???
 	print "OGNTRKSTATUS records:",curs1.fetchone()[0]
         curs1.execute("select * from OGNTRKSTATUS;")
         rows=curs1.fetchall()
-        for row in rows:
+        #for row in rows:
                 #print "TRKTRK:", row
 
 else: 
