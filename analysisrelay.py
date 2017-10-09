@@ -110,7 +110,14 @@ def sa_builddb(fname,schema_file="STD"):	# build a in memory database with all t
                 	if type == 8:                           	# if status report
                         	status=msg['status']            	# get the status message
                         	station=msg['station']         	 	# and the station receiving that status report
-                        	otime=datetime.utcnow()         	# get the time from the system
+                                Y=int(dte[0:2])+2000                    # build the OTIME based on the data
+                                M=int(dte[2:4])
+                                D=int(dte[4:])
+                                h=int(status[0:2])
+                                m=int(status[2:4])
+                                s=int(status[4:6])
+                                otime=datetime(Y,M,D,h,m,s)             # date from file name and time from status report
+
                         	if len(status) > 254:
                                 	status=status[0:254]
                         	#print "Status report:", id, station, otime, status
@@ -204,7 +211,7 @@ if sa == "YES":				    # standalone case ???
         curs1.execute("select * from OGNTRKSTATUS;")
         rows=curs1.fetchall()
         for row in rows:
-                print "TRKTRK:", row
+                #print "TRKTRK:", row
 
 else: 
 	import config                       # import the main settings
