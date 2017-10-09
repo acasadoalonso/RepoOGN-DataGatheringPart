@@ -243,7 +243,7 @@ while True:                                 # until end of file
         if relpos == -1:
                 continue		    # nothing to do
 	ogntracker=data[relpos-9:relpos]    # OGN tracker doing the RELAY
-	if ogntracker[0:3] != "OGN"	    # just be sure that is an OGN tracker ???
+	if ogntracker[0:3] != "OGN":	    # just be sure that is an OGN tracker ???
 		continue
         nrecs += 1			    # increase the counter of RELAY messages
         flrmid=data[0:9]		    # device (either flarm or tracker) that has been done the RELAY
