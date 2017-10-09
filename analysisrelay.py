@@ -156,7 +156,7 @@ def sa_builddb(fname,schema_file="STD"):	# build a in memory database with all t
 	con.commit()   		    	# commit the DB
 	libfap.fap_cleanup()		# free the parser memory
 	print "Number of records on the temp DB:", nrecs
-i	print "Number of relay packages:", relaycntr, relaycnt
+	print "Number of relay packages:", relaycntr, relaycnt
 
 	return con			# just return the connetion ID
 # 
