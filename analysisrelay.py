@@ -24,21 +24,38 @@ def printfid (fid):			   # prin the list of relays
 # 
 # ----------------------------------------------------------------------------
 #
-def sa_builddb(fname,schema_file="DBschema.sql"):	# build a in memory database with all the fixes
+def sa_builddb(fname,schema_file="STD"):	# build a in memory database with all the fixes
+
+	ogndatasql="CREATE TABLE OGNDATA (idflarm char(9) , date char(6), time char(6), station char(9), latitude float, longitude float, altitude int, speed float, course int, roclimb int, rot float, sensitivity float, gps char(6), uniqueid char(10), distance float, extpos char (5));"
+
+	trkstatussql="CREATE TABLE OGNTRKSTATUS ( id varchar(9) NOT NULL, station varchar(9) NOT NULL, otime datetime NOT NULL, status varchar(255) NOT NULL)"
+
 	con = sqlite3.connect(":memory:")		# SQLITE3 DB 
 	con.isolation_level = None
 	curs = con.cursor()				# initial cursor
     							# create the temporary database clone of OGNDB
-    	fSchema = open(schema_file)
-    	print "Gen SQLITE3 temp DB:", schema_file, " open ok"
-    	for line in fSchema.readlines():
-    		schemaStr = ""
-        	schemaStr += " %s" % line
+	if schema_file == "STD":
     		try:
-        		curs.executescript(schemaStr)
+        		curs.executescript(ogndatasql)
     		except Exception as e:
-        		print "Failed to create temp.db from schema, error"
-    	fSchema.close()
+        		print "Failed to create temp.db from STD schema, error"
+	else:
+    		fSchema = open(schema_file)
+    		print "Gen SQLITE3 temp DB:", schema_file, " open ok"
+    		for line in fSchema.readlines():
+    			schemaStr = ""
+        		schemaStr += " %s" % line
+    			try:
+        			curs.executescript(schemaStr)
+    			except Exception as e:
+        			print "Failed to create temp.db from schema file, error"
+    		fSchema.close()
+
+  	try:
+        	curs.executescript(trkstatussql)
+    	except Exception as e:
+        	print "Failed to create temp.db from TRKSTATUS schema, error"
+
     	con.commit()				# commit the DB just created, empty
 
 	datafilei = open(fname, 'r')            # open the file with the logged data
@@ -88,9 +105,28 @@ def sa_builddb(fname,schema_file="DBschema.sql"):	# build a in memory database w
                         	station=id				# for qAC just the station is the ID
         		if path == 'TCPIP*':
         			continue                            	# go for the next record
+                	if type == 8:                           	# if status report
+                        	status=msg['status']            	# get the status message
+                        	station=msg['station']         	 	# and the station receiving that status report
+                        	otime=datetime.utcnow()         	# get the time from the system
+                        	if len(status) > 254:
+                                	status=status[0:254]
+                        	#print "Status report:", id, station, otime, status
+                        	inscmd="insert into OGNTRKSTATUS values ('%s', '%s', '%s', '%s' )" %\
+                                         (id, station, otime, status)
+                        	try:
+                                        curs.execute(inscmd)
+                        	except MySQLdb.Error, e:
+                                        try:
+                                                print ">>>SQL1 Error [%d]: %s" % (e.args[0], e.args[1])
+                                        except IndexError:
+                                                print ">>>SQL2 Error: %s" % str(e)
+                                        print ">>>SQL3 error:",  cout, inscmd
+                                        print ">>>SQL4 data :",  data
+
     			id=data[0:9]                            	# the flarm ID/ICA/OGN 
     			idname=data[0:9]                        	# exclude the FLR part
-    			station=get_station(data)		    	# get the station
+                        station   = msg['station']         	 	# and the station receiving that status report
                 	course    = msg['course']
                 	speed     = msg['speed']
                 	uniqueid  = msg['uniqueid']
@@ -131,33 +167,40 @@ nrecords=0
 relaycnt=0
 lasttime=''
 fid=  {}   		                    # FLARM ID list
-import config                               # import the main settings
-DBname=config.DBname
-DBhost=config.DBhost
-DBuser=config.DBuser
-DBpasswd=config.DBpasswd
-MySQL=config.MySQL
 fn=sys.argv[1:]                             # take the name of the second arg
 fname=str(fn)[2:16]
 dte=str(fn)[6:12]                           # take the date from the file name
 date=datetime.now()                         # get the date
 
 parser=argparse.ArgumentParser(description="OGN Tracker relay analysis")
-parser.add_argument("-n", '--name',      required=True, dest='filename', action='store')
-parser.add_argument('-i', '--intval',    required=False, dest='intval', action='store', default='05')
-parser.add_argument('-sa', '--standalone', required=False, dest='sa', action='store', default='NO')
+parser.add_argument("-n",  '--name',       required=True,  dest='filename', action='store')
+parser.add_argument('-i',  '--intval',     required=False, dest='intval',   action='store', default='05')
+parser.add_argument('-sa', '--standalone', required=False, dest='sa',       action='store', default='NO')
+parser.add_argument('-s',  '--schema',     required=False, dest='schema',   action='store', default='STD')
 args=parser.parse_args()
 fname=args.filename
 sa=args.sa
+DBschema=args.schema
 intsec=int(args.intval)
 dte=fname[4:10]                             # take the date from the file name
-print "Filename:", args.filename, "Interval:", args.intval, "StandAlone:", sa
+print "Filename:", args.filename, "Interval:", args.intval, "StandAlone:", sa, "DBschema file", DBschema
 
-if sa == "YES":
-	conn1=sa_builddb(fname)		    # build the temporary DB on memory and return the connect
-        conn2=MySQLdb.connect(host=DBhost, user=DBuser, passwd=DBpasswd, db='APRSLOG')  # connect APRSLOG for the trkstatus values
-	MySQL=False
+if sa == "YES":				    # standalone case ???
+	conn1=sa_builddb(fname,DBschema)    # build the temporary DB on memory and return the connect
+        conn2=conn1			    # same DB
+	MySQL=False			    # do not use SQL in this case
+	curs1=conn1.cursor()           	    # set the cursor
+	curs1.execute("select count(*) from OGNDATA;")
+	print "OGNDATA records:     ",curs1.fetchone()[0]
+	curs1.execute("select count(*) from OGNTRKSTATUS;")
+	print "OGNTRKSTATUS records:",curs1.fetchone()[0]
 else: 
+	import config                       # import the main settings
+	DBname=config.DBname
+	DBhost=config.DBhost
+	DBuser=config.DBuser
+	DBpasswd=config.DBpasswd
+	MySQL=config.MySQL
         conn1=MySQLdb.connect(host=DBhost, user=DBuser, passwd=DBpasswd, db=DBname)     # connect with the daily database
         conn2=MySQLdb.connect(host=DBhost, user=DBuser, passwd=DBpasswd, db='APRSLOG')  # connect with the ogntrkstatus databasea
 
