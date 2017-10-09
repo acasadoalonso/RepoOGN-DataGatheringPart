@@ -88,8 +88,6 @@ def sa_builddb(fname,schema_file="STD"):	# build a in memory database with all t
                 	type      = msg['type']		# message type
                 	longitude = msg['longitude']
                 	latitude  = msg['latitude']
-			if latitude == -1 or longitude == -1 or type == 8:	
-				continue
                 	altitude  = msg['altitude']
                 	path      = msg['path']
                 	otime     = msg['otime']
@@ -127,9 +125,12 @@ def sa_builddb(fname,schema_file="STD"):	# build a in memory database with all t
                                                 print ">>>SQL2 Error: %s" % str(e)
                                         print ">>>SQL3 error:",  cout, inscmd
                                         print ">>>SQL4 data :",  data
+				continue
 
     			id=data[0:9]                            	# the flarm ID/ICA/OGN 
     			idname=data[0:9]                        	# exclude the FLR part
+			if latitude == -1 or longitude == -1 or type == 8:	
+				continue
                         station   = msg['station']         	 	# and the station receiving that status report
                 	course    = msg['course']
                 	speed     = msg['speed']
@@ -200,6 +201,11 @@ if sa == "YES":				    # standalone case ???
 	print "OGNDATA records:     ",curs1.fetchone()[0]
 	curs1.execute("select count(*) from OGNTRKSTATUS;")
 	print "OGNTRKSTATUS records:",curs1.fetchone()[0]
+        curs1.execute("select * from OGNTRKSTATUS;")
+        rows=curs1.fetchall()
+        for row in rows:
+                print "TRKTRK:", row
+
 else: 
 	import config                       # import the main settings
 	DBname=config.DBname
