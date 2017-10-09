@@ -242,8 +242,10 @@ while True:                                 # until end of file
         relpos= data.find("*,qAS")	    # look for the new RELAY message that tell us who the the station making the RELAY
         if relpos == -1:
                 continue		    # nothing to do
-        nrecs += 1			    # increase the counter of RELAY messages
 	ogntracker=data[relpos-9:relpos]    # OGN tracker doing the RELAY
+	if ogntracker[0:3] != "OGN"	    # just be sure that is an OGN tracker ???
+		continue
+        nrecs += 1			    # increase the counter of RELAY messages
         flrmid=data[0:9]		    # device (either flarm or tracker) that has been done the RELAY
         dtepos=data.find(":/")+2	    # position report
 	station=data[relpos+6:dtepos-2]	    # OGN station receiving the RELAY message
