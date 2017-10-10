@@ -191,14 +191,18 @@ parser.add_argument("-n",  '--name',       required=True,  dest='filename', acti
 parser.add_argument('-i',  '--intval',     required=False, dest='intval',   action='store', default='05')
 parser.add_argument('-sa', '--standalone', required=False, dest='sa',       action='store', default='NO')
 parser.add_argument('-s',  '--schema',     required=False, dest='schema',   action='store', default='STD')
+parser.add_argument('-m',  '--mindist',    required=False, dest='mindist',  action='store', default='1.0')
 args=parser.parse_args()
 fname=args.filename
 sa=args.sa
+mindist=float(args.mindist)
 DBschema=args.schema
 intsec=int(args.intval)
 dte=fname[4:10]                             # take the date from the file name
-print "Filename:", args.filename, "Interval:", args.intval, "StandAlone:", sa, "DBschema file", DBschema
-
+print "Filename:", args.filename, "Interval:", args.intval, "StandAlone:", sa, "DBschema file", DBschema, "Min Dist ", mindist
+if ( not os.path.isfile(fname)):
+	print "File does not exists..."
+	exit(1)
 if sa == "YES":				    # standalone case ???
 	conn1=sa_builddb(fname,DBschema)    # build the temporary DB on memory and return the connect
         conn2=conn1			    # same DB
@@ -365,7 +369,7 @@ while True:                                 # until end of file
 				sta = "OGNTRK Status: "+status
 			else:
 				sta = ''
-			if maxrr > 0.5:
+			if maxrr > mindist:
                         	print  "N:%3d:%3d  OGNTRK: %9s %9s  FlrmID: %9s %9s Max. dist.: %6.3f Kms. at: %sZ Altitud: %sm. MSL from: %s %s" % (ncount, nr, trk, ogntracker, reg, flrmid, maxrr, timefix, alti, station, sta)
                 totdist += maxrr		# add the total distance
 
