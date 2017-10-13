@@ -175,7 +175,7 @@ while True:                                 # until end of file
             	curs.execute(selcmd, (key,))
             if curs.fetchone() == None:
 		gid='Noreg '                # for unknown receiver
-        	if config.hostname == "CHILEOGN" or spanishsta(key) or frenchsta(key):
+        	if config.hostname == "CHILEOGN" or config.hostname == "OGNCHILE" or spanishsta(key) or frenchsta(key):
             		if key in kglid.kglid:
                 		gid=kglid.kglid[key]        # report the station name
             		else:
@@ -255,7 +255,7 @@ while True:                                 # until end of file
     		id=data[0:9]                            	# the flarm ID/ICA/OGN 
     		idname=data[0:9]                        	# exclude the FLR part
     		station=get_station(data)		    	# get the station
-    		if config.hostname == "CHILEOGN" or spanishsta(station):   # only Spanish/Chilean stations
+    		if config.hostname == "CHILEOGN" or config.hostname == "OGNCHILE" or spanishsta(station):   # only Spanish/Chilean stations
         		if not id in fid :                  	# if we did not see the FLARM ID
             			fid  [id]=0                    	# init the counter
             			fsta [id]=station               # init the station receiver

@@ -94,7 +94,7 @@ tmaxt = 0                               # time at max altitude
 tmid  = 'None     '                     # glider ID obtaining max altitude
 tmsta = '         '                     # station capturing max altitude
 hostname=socket.gethostname()
-if hostname == 'CHILEOGN':
+if hostname == 'CHILEOGN' or hostname == "OGNCHILE":
 	print "Start ognCL CHILE ", pgmver
 else: 
 	print "Start ognES SPAIN ", pgmver
