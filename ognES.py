@@ -255,7 +255,8 @@ try:
 				relaycntr += 1
 		if path[0:3] == "OGN":
 				relaycnt += 1
-				print "RELAY:", path, station, id, destination, header, otime
+				if prt:
+					print "RELAY:", path, station, id, destination, header, otime
 				if not id in relayglider:
 					relayglider[id]=path[0:9]
 
