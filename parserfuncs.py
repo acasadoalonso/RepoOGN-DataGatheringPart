@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 aprssources = {
 	"APRS"   : "OGN",
 	"OGNSDR" : "OGN",
+	"OGFLR"  : "OGN",
 	"OGNFLR" : "OGN",
 	"OGNTRN" : "OGN",
 	"OGNDSX" : "OGN", 

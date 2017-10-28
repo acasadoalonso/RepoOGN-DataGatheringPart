@@ -34,7 +34,8 @@ ftkot={'NONE  ' : 0}                        # take off time
 flndt={'NONE  ' : 0}                        # take off time
 fsloc={'NONE  ' : (0.0, 0.0)}               # station location
 fsmax={'NONE  ' : 0.0}                      # maximun coverage
-fsfix={'NONE  ' : 0}                      # number of fixes
+fsfix={'NONE  ' : 0}                        # number of fixes
+fsour={}				    # sources
 ftkok={datetime.utcnow(): 'NONE  '}         # Take off time
 tfixs = 0                                   # total number of fixes
 tmaxa = 0                                   # maximun altitude for the day
@@ -204,6 +205,11 @@ while True:                                 # until end of file
     station=get_station(data)               # get the station ID
     if ptype == 8:			    # if OGN status report
 	continue
+    if not source in fsour:		    # did we see this source
+	fsour[source]=1			    # init the counter
+    else:
+        fsour[source] += 1		    # increase the counter
+
     if ((hostname == "CHILEOGN" or hostname == "OGNCHILE") and source == "OGN") or spanishsta(station) or frenchsta(station):  # only Chilean or Spanish or frenchstations
         if not id in fid :                  # if we did not see the FLARM ID
             fid  [id]=0                     # init the counter
@@ -280,7 +286,7 @@ else:
 #addr=addr.encode('utf8')                   # convert it to UTF-8
 #addr=str(addr)                             # convert to str just in case, in order to avoid problems when is redirected to a file.
 addr=' '
-
+print "Sources:", fsour
 if prt: print "Maximun altitude for the day  :", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta, "At: ", mlati, mlong, addr
 if prt: print "Total number of fixes today   :", tfixs
 if prt: print 'Bye ... Time now and Time used:', datef, datef-date      # report the processing time
