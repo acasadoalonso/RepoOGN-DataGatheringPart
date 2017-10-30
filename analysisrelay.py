@@ -373,8 +373,9 @@ while True:                                 # until end of file
 			else:
 				sta = ''
 
-			if maxrr > mindist:
-                        	print  "N:%3d:%3d  OGNTRK: %9s %9s  Alt.: FlrmID: %9s %9s Max. dist.: %6.3f Kms. at: %sZ Altitud: %sm. MSL from: %s %s" % (ncount, nr, trk, ogntracker, reg, maxalt, flrmid, maxrr, timefix, alti, station, sta)
+			if maxrr > mindist:	# only report in case of more than minimun distance
+
+				print  "N:%3d:%3d  OGNTRK: %9s %9s  Alt.: %6.1f <<<>>> FlrmID: %9s %9s Max. dist.: %6.3f Kms. at: %sZ Altitud: %sm. MSL from: %s %s" % (ncount, nr, trk, ogntracker, maxalt, reg, flrmid, maxrr, timefix, alti, station, sta)
 
                 totdist += maxrr		# add the total distance
 
