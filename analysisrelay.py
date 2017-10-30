@@ -12,7 +12,7 @@ from   libfap import *                      # the packet parsing function
 from   parserfuncs import *                 # the ogn/ham parser functions 
 from   geopy.distance import vincenty       # use the Vincenty algorithm
 
-def printfid (fid):			   # prin the list of relays
+def printfid (fid):			    # print the list of relays
         for k in fid[key]:
 		for kk in k:
         		if kk[3:9] in kglid.kglid:
@@ -299,8 +299,8 @@ while True:                                 # until end of file
 	otime1  =T1.strftime("%Y-%m-%d %H:%M%:%S")
 	otime2  =T2.strftime("%Y-%m-%d %H:%M%:%S")
 						# build the SQL commands
-        sql1="select latitude, longitude from OGNDATA where idflarm ='"+flrmid+"'     and date = '"+dte+"' and time= '"+timefix+"';"
-        sql2="select latitude, longitude from OGNDATA where idflarm ='"+ogntracker+"' and date = '"+dte+"' and time>='"+timefix1+"' and time <='"+timefix2+"';"
+        sql1="select latitude, longitude, altitude from OGNDATA where idflarm ='"+flrmid+"'     and date = '"+dte+"' and time= '"+timefix+"';"
+        sql2="select latitude, longitude, altitude from OGNDATA where idflarm ='"+ogntracker+"' and date = '"+dte+"' and time>='"+timefix1+"' and time <='"+timefix2+"';"
         sql3="select id, station, status from OGNTRKSTATUS where id = '"+ogntracker+"' and otime > '"+otime1+"' and otime < '"+otime2+"';"
         #print "SSS", nrecs, dte, timefix, flrmid, ogntracker, sql1, sql2, sql3
         curs1.execute(sql1)
@@ -311,11 +311,13 @@ while True:                                 # until end of file
                 curs2.execute(sql2)		# look for all the OGN trackers positions in that interval
                 rows2=curs2.fetchall()		# get all position
                 nr=0
-                maxrr=0
+                maxrr=0				# max distance on this run
+		maxalt=0			# altitude at that max distance
                 for row2 in rows2:		# scan all the posible records
                         nr +=1			# number of OGN tracker reconds found
                         maxrr=0			# maximun range
                         latlon2=(row2[0], row2[1])		# position of the OGN tracker
+			altitude=row2[2]			# altitude of the tracker
                         distance=vincenty(latlon1, latlon2).km	# get the distance from the flarm to the tracker
                         distance=round(distance,3)		# round it to 3 decimals
 			#print "DDD", flrmid, ogntracker, distance
@@ -323,13 +325,14 @@ while True:                                 # until end of file
                                 maxdist=distance
                         if distance > maxrr and distance > 0.050:	# max distance for this scan
                                 maxrr=distance
+				maxalt=altitude		# the altitude at that distance
                         else:
                                 continue
-                if maxrr > 0:			# if we found something
+                if maxrr > 0:				# if we found something
 			maxrange={}			# build the dict
 			maxrange[ogntracker]=maxrr	# just the ogn tracker and max dist
                 	if not flrmid in fid :          # if we did not see the FLARM ID
-				maxlist=[]	# init the list
+				maxlist=[]		# init the list
 				maxlist.append(maxrange)
                                 fid[flrmid]=maxlist
 			else:
@@ -369,8 +372,10 @@ while True:                                 # until end of file
 				sta = "OGNTRK Status: "+status
 			else:
 				sta = ''
+
 			if maxrr > mindist:
-                        	print  "N:%3d:%3d  OGNTRK: %9s %9s  FlrmID: %9s %9s Max. dist.: %6.3f Kms. at: %sZ Altitud: %sm. MSL from: %s %s" % (ncount, nr, trk, ogntracker, reg, flrmid, maxrr, timefix, alti, station, sta)
+                        	print  "N:%3d:%3d  OGNTRK: %9s %9s  Alt.: FlrmID: %9s %9s Max. dist.: %6.3f Kms. at: %sZ Altitud: %sm. MSL from: %s %s" % (ncount, nr, trk, ogntracker, reg, maxalt, flrmid, maxrr, timefix, alti, station, sta)
+
                 totdist += maxrr		# add the total distance
 
 if ncount > 0:
