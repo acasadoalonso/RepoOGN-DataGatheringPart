@@ -29,7 +29,7 @@ def sa_builddb(fname,schema_file="STD"):	# build a in memory database with all t
 	relaycnt = 0                            # counter of relay packages
 	relaycntr= 0                            # counter of std relay packages
 	relayglider={}                          # list of relay glider and tracker
-
+	fsour={}				# sources
 	ogndatasql="CREATE TABLE OGNDATA (idflarm char(9) , date char(6), time char(6), station char(9), latitude float, longitude float, altitude int, speed float, course int, roclimb int, rot float, sensitivity float, gps char(6), uniqueid char(10), distance float, extpos char (5));"
 
 	trkstatussql="CREATE TABLE OGNTRKSTATUS ( id varchar(9) NOT NULL, station varchar(9) NOT NULL, otime datetime NOT NULL, status varchar(255) NOT NULL)"
@@ -92,6 +92,12 @@ def sa_builddb(fname,schema_file="STD"):	# build a in memory database with all t
                 	path      = msg['path']
                 	otime     = msg['otime']
                 	source    = msg['source']	# source of the data OGN/SPOT/SPIDER/... 
+
+			if not source in fsour:		# did we see this source
+				fsour[source]=1		# init the counter
+    			else:
+        			fsour[source] += 1	# increase the counter
+
                 	if path == 'qAS' or path == 'RELAY*' or path[0:3] == "OGN":  # if std records
                         	station=msg['station']			# get the station name
 				if path == "RELAY*":
@@ -165,6 +171,7 @@ def sa_builddb(fname,schema_file="STD"):	# build a in memory database with all t
 	libfap.fap_cleanup()		# free the parser memory
 	print "Number of records on the temp DB:", nrecs
 	print "Number of relay packages:", relaycntr, relaycnt
+	print "Sources: ", fsour
 
 	return con			# just return the connetion ID
 # 
