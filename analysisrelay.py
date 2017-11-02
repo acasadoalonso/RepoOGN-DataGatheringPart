@@ -389,7 +389,7 @@ while True:                                 # until end of file
 if ncount > 0:
 	print "\n\nMax. distance", maxdist, "Avg. distance", totdist/ncount
 print "Old relays", relaycnt, "New relays:", nrecs, "Number of records:", nrecords
-print "\n\n", fid, "\n\n"
+#print "\n\n", fid, "\n\n"
 k=list(fid.keys())                  # list the IDs for debugging purposes
 k.sort()                            # sort the list
 for key in k:                       # report data
