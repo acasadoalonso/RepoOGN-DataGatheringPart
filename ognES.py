@@ -250,7 +250,7 @@ try:
                 station=get_station(packet_str)		# get the station ID
 		if not station in stations:
 			stations.append(station)	# add it to the list of stations ...
-			print "SSS", station
+			#print "SSS", station
 		if path == "RELAY*":
 				relaycntr += 1
 		if path[0:3] == "OGN":
