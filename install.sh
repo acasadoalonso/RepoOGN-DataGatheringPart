@@ -61,6 +61,7 @@ echo								#
 echo "Installing the templates needed  ...." 			#
 echo								#
 sudo cp config.template /etc/local/SARconfig.ini		#
+sudo cp aliases ~/.bash_aliases					#
 if [ -f OGN.db ]						#
 then								#
 	rm      OGN.db						#
@@ -77,6 +78,7 @@ then								#
 	mkdir ~/src/SARsrc					#
 fi								#
 cp sh/*.sh ~/src						#
+cp calcelestial.sh ~/src					#
 cp *.py ~/src/SARsrc						#
 ls  -la ~/src 							#
 sudo cp -r ../CGI-BIN/* ../cgi-bin				#
@@ -104,8 +106,15 @@ if [ ! -d /usr/local/apache2  ]					#
 then								#
 	sudo mkdir /usr/local/apache2   			#
 	sudo mkdir /usr/local/apache2/passwd			#
+	cd /usr/local/apache2/passwd				#
+	echo "Type password for: acasado" 			#
 	htpasswd -c passwords acasado				#
 fi								#
+cd								#
+echo "Execute the base starting scripts"			#
+bash ~/src/fcst.sh						#
+bash ~/src/calcelestial.sh					#
+/bin/echo '/bin/sh ~/src/SARpogn.sh' | at -M $(calcelestial -p sun -m set -q Madrid -H civil) + 15 minutes #
 cd								#
 echo								#
 echo "Optional steps ... "					#
@@ -118,6 +127,7 @@ echo								#
 echo "========================================================================================================"	#
 echo "Installation done ..."											#
 echo "Review the configuration file on /etc/local 								#
+echo "Review the configuration mail and .muttrc  								#
 echo "Review the configuration of the crontab and the shell scripts on ~/src " 					#
 echo "In order to execute the SAR data crawler execute:  bash ~/src/SARlive.sh " 				#
 echo "Check the placement of the RootDocument on APACHE2 ... needs to be /var/www/html				#
