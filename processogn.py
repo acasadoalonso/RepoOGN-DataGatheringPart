@@ -9,9 +9,11 @@
 import time
 import sys
 import socket
+import config
 
 sys.path.insert(0,'/nfs/OGN/src')
-datapath    ='/nfs/OGN/DIRdata/'
+#datapath    ='/nfs/OGN/DIRdata/'
+datapath    =config.DBpath
 
 import os
 import kglid                                # import the list on known gliders
