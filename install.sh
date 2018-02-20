@@ -127,7 +127,7 @@ echo								#
 echo "========================================================================================================"	#
 echo "Installation done ..."											#
 echo "Review the configuration file on /etc/local 								#
-echo "Review the configuration mail and .muttrc  								#
+echo "Review the configuration mail, ssmtp and .muttrc 								#
 echo "Review the configuration of the crontab and the shell scripts on ~/src " 					#
 echo "In order to execute the SAR data crawler execute:  bash ~/src/SARlive.sh " 				#
 echo "Check the placement of the RootDocument on APACHE2 ... needs to be /var/www/html				#
