@@ -3,10 +3,10 @@
 # script to email logfiles 
 # then delete the logfiles to save space
 
-/sbin/ifconfig 		>  hc.log
-df -v 			>> hc.log
-lsusb	 		>> hc.log
-/usr/bin/uptime	 	>> hc.log
+/sbin/ifconfig 		>  ~/hc.log
+df -v 			>> ~/hc.log
+lsusb	 		>> ~/hc.log
+/usr/bin/uptime	 	>> ~/hc.log
 
 # get the single digit of time, ie 0-9 for file extension
 day=`date "+%a"`
@@ -37,5 +37,5 @@ cd /nfs/OGN/DIRdata
 ls -lrt
 } | mutt -a ~/hc.log -s $hn" RPi Health Check "$taken -- acasado@acm.org
 
-#rm -f ~/hc.log
+rm -f ~/hc.log
 

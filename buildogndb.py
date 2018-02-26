@@ -188,9 +188,11 @@ while True:                                 # until end of file
                 	if prt:
                     		print key, 'Adding ==>', gid, lati, long, alti
 			if (MySQL):
-                		addcmd="insert into RECEIVERS values ('" + key + "','" + gid + "'," + str(lati)+  "," + str(long)+ "," + str(alti)+ ")"
+				if len(gid) > 30:
+					gid=gid[0:30]
+                		inscmd="insert into RECEIVERS values ('" + key + "','" + gid + "'," + str(lati)+  "," + str(long)+ "," + str(alti)+ ")"
                         	try:
-					curs.execute(addcmd)
+					curs.execute(inscmd)
                         	except MySQLdb.Error, e:
                                 	try:
                                         	print ">>>MySQL Error [%d]: %s" % (e.args[0], e.args[1])
