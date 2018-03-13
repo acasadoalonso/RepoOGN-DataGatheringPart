@@ -16,6 +16,7 @@ export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8		#
 echo "export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 " >>~/.profile #
 echo "export LD_LIBRARY_PATH=/usr/local/lib" >>~/.profile 	#
 sudo apt-get -y upgrade					   	#
+sudo apt-get -y dist-upgrade					#
 cd -								#
 echo								#
 echo "Installing the packages required . (LAMP stack)..."	#
@@ -109,7 +110,7 @@ then								#
 	sudo mkdir /usr/local/apache2/passwd			#
 	cd /usr/local/apache2/passwd				#
 	echo "Type password for: acasado" 			#
-	htpasswd -c passwords acasado				#
+	sudo htpasswd -c passwords acasado			#
 fi								#
 cd								#
 echo "Execute the base starting scripts"			#
@@ -117,6 +118,8 @@ bash ~/src/fcst.sh						#
 bash ~/src/calcelestial.sh					#
 /bin/echo '/bin/sh ~/src/SARpogn.sh' | at -M $(calcelestial -p sun -m set -q Madrid -H civil) + 15 minutes #
 cd								#
+sudo cat /etc/hosts /nfs/hosts > /etc/hosts			#
+bash ~/src/SARboot*						#
 echo								#
 echo "Optional steps ... "					#
 echo								#
@@ -130,10 +133,9 @@ echo "Installation done ..."											#
 echo "Review the configuration file on /etc/local 								#
 echo "Review the configuration mail, ssmtp and .muttrc 								#
 echo "Review the configuration of the crontab and the shell scripts on ~/src " 					#
-echo "In order to execute the SAR data crawler execute:  bash ~/src/SARlive.sh " 				#
+echo "In order to execute the SAR data crawler execute:  bash ~/src/SARboo*.sh " 				#
 echo "Check the placement of the RootDocument on APACHE2 ... needs to be /var/www/html				#
 echo "If running in Windows under Virtual Box, run dos2unix on /var/www/html & ./main & ~/src			#
 echo "Install phpmyadmin if needed !!!                                                                          #
-echo "Install libnova and calcelestial										#
 echo "========================================================================================================"	#
 echo								#
