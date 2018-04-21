@@ -92,7 +92,7 @@ def sa_builddb(fname,schema_file="STD"):	# build a in memory database with all t
                 	path      = msg['path']
                 	otime     = msg['otime']
                 	source    = msg['source']	# source of the data OGN/SPOT/SPIDER/... 
-			if len(source) > 4
+			if len(source) > 4:
                         	source=source[0:3]
 
 			if not source in fsour:		# did we see this source
