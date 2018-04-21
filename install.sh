@@ -24,7 +24,7 @@ echo								#
 sudo apt-get install -y mysql-server mysql-client sqlite3	#
 sudo apt-get install -y python-dev python-pip python-mysqldb    #
 sudo apt-get install -y dos2unix libarchive-dev	 autoconf mc	#
-sudo apt-get install -y pkg-config git mutt			#
+sudo apt-get install -y pkg-config git mutt git-core		#
 sudo apt-get install -y apache2 php php-mcrypt php-mysql php-cli #
 sudo apt-get install -y php-mbstring php-gettext		#
 sudo apt-get install -y mailutils ntpdate mutt	ssmtp		#

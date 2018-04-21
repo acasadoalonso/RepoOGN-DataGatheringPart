@@ -178,6 +178,8 @@ while True:                                 # until end of file
     path         = get_path(packet)
     dst_callsign = get_dst_callsign(packet)
     source       = get_source(dst_callsign) 
+    if len(source) > 4
+                        source=source[0:3]
     destination  = get_destination(packet)
     header       = get_header(packet)
     otime        = get_otime(packet)
