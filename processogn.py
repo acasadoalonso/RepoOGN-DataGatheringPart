@@ -80,7 +80,7 @@ fname='DATA'+dte+'.log'                     # file name from logging
 hostname=socket.gethostname()
 
 #fname='DATA170515.log'                     # example of file name
-
+fn=''
 if not dter:                                # check if we need to request date
 
     fname='DATA'+dte+'.log'                 # build the file name with today's date
@@ -92,9 +92,10 @@ else:
 if name:
     fn=sys.argv[2:]                         # take the name of the second arg
     fname=str(fn)[2:20]
+    fname=fname.rstrip("]'")			    # clear garbage 
     dte=str(fn)[6:12]                       # take the date from the file name
 if prt:
-    print 'File name: ', fname, 'Process date/time:', date.strftime(" %y-%m-%d %H:%M:%S")     # display file name and time
+    print 'File name: ', fn, fname, 'Process date/time:', date.strftime(" %y-%m-%d %H:%M:%S"), dte     # display file name and time
 
 geolocator=GeoNames(country_bias='Spain', username='acasado' )
 datafilei = open(datapath+fname, 'r')       # open the file with the logged data
