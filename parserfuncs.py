@@ -175,7 +175,8 @@ def spanishsta(station):                # return true if is an Spanish station
 		station[0:8] == 'STOROSIA'  or	\
 		station[0:9] == 'STOROSIAE' or	\
 		station[0:9] == 'STOROSIAW' or	\
-		station[0:4] == 'PALO'      or	\
+		station[0:9] == 'STOROE'    or	\
+		station[0:9] == 'STOROW'    or	\
 		station[0:5] == 'PALOE'     or	\
 		station[0:5] == 'PALOW'     or	\
 		station[0:8] == 'BOITAULL'  or  \

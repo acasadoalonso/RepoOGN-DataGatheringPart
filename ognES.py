@@ -75,7 +75,7 @@ def signal_term_handler(signal, frame):
 signal.signal(signal.SIGTERM, signal_term_handler)
 
 #----------------------ogn_main.py start-----------------------
-pgmver="V.13"
+pgmver="V1.13"
 fid=  {'NONE  ' : 0}                    # FLARM ID list
 fsta= {'NONE  ' : 'NONE  '}             # STATION ID list
 fmaxa={'NONE  ' : 0}                    # maximun altitude

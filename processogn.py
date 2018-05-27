@@ -207,6 +207,8 @@ while True:                                 # until end of file
         continue
     id=data[0:9]                            # exclude the FLR part
     idname=data[0:9]                        # exclude the FLR part
+    if idname[0:3] == 'RND':
+	continue
     station=get_station(data)               # get the station ID
     if ptype == 8:			    # if OGN status report
 	continue

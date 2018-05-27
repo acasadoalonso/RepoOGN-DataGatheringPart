@@ -22,6 +22,8 @@ kglid  = {
            "AVILA"  : "Avila ",
            "PORTAINE":"PortAine Ski station ",
            "STOROSIAW":"Santa Orosia, Huesca ",
+           "STOROE":"Santa Orosia, Huesca ",
+           "STOROW":"Santa Orosia, Huesca ",
            "STOROSIAE":"Santa Orosia, Huesca ",
            "PALOE"   : "Palo, Huesca ",
            "PALOW"   : "Palo, Huesca ",
@@ -74,5 +76,4 @@ kglid  = {
            "ALFALFAL" : "Alfalfal hidroelectic plant",
 #           # list on known gliders
            "DDE3E3" : "EC-JYS",
-           "DDE48A" : "D-2520",
 ###############################

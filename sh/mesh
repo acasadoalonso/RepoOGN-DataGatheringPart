@@ -1,0 +1,11 @@
+mkdir -p /usr/local/mesh
+cd /usr/local/mesh
+wget http://meshcentral.com/public/dh.ashx?mesh=F433C13F1F90B5176498D5C55A8535C29B01C408656D810999C535011637B8FD -O mesh_linux64.msh
+wget http://meshcentral.com/public/dh.ashx?agent=6 -O mesh_linux64
+chmod 755 ./mesh_linux64
+./mesh_linux64 start
+ln -s /usr/local/mesh/mesh_linux64 /sbin/meshcmd
+ln -s /usr/local/mesh/mesh_linux64 /etc/rc2.d/S20mesh
+ln -s /usr/local/mesh/mesh_linux64 /etc/rc3.d/S20mesh
+ln -s /usr/local/mesh/mesh_linux64 /etc/rc5.d/S20mesh
+
