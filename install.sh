@@ -17,7 +17,6 @@ echo "export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 " >>~/.profile #
 echo "export LD_LIBRARY_PATH=/usr/local/lib" >>~/.profile 	#
 sudo apt-get -y upgrade					   	#
 sudo apt-get -y dist-upgrade					#
-cd -								#
 echo								#
 echo "Installing the packages required . (LAMP stack)..."	#
 echo								#
@@ -144,15 +143,15 @@ sudo dpkg-reconfigure tzdata					#
 sudo apt-get -y dist-upgrade					#
 sudo apt-get -y autoremove					#
 touch SARinstallation.done					#
-echo								#
+echo " "							#
 echo "========================================================================================================"	#
 echo "Installation done ..."											#
-echo "Review the configuration file on /etc/local 								#
-echo "Review the configuration mail, ssmtp and .muttrc 								#
+echo "Review the configuration file on /etc/local" 								#
+echo "Review the configuration mail, ssmtp and .muttrc "							#
 echo "Review the configuration of the crontab and the shell scripts on ~/src " 					#
 echo "In order to execute the SAR data crawler execute:  bash ~/src/SARboo*.sh " 				#
-echo "Check the placement of the RootDocument on APACHE2 ... needs to be /var/www/html				#
-echo "If running in Windows under Virtual Box, run dos2unix on /var/www/html and ./main and ~/src		#
-echo "Install phpmyadmin if needed !!!                                                                          #
+echo "Check the placement of the RootDocument on APACHE2 ... needs to be /var/www/html	"			#
+echo "If running in Windows under Virtual Box, run dos2unix on /var/www/html and ./main and ~/src	"	#
+echo "Install phpmyadmin if needed !!!                                                                   "      #
 echo "========================================================================================================"	#
-echo								#
+echo " "							#
