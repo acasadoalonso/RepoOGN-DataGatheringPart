@@ -1,3 +1,4 @@
+MAILTO="pi@acasado.es"
 @reboot     sh ~/src/SARboot_flight_logger.sh
 05 *  * * * sh ~/src/meteo.sh  >/dev/null 2>&1
 35 *  * * * sh ~/src/meteo.sh  >/dev/null 2>&1

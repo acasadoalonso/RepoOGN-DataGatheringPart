@@ -49,7 +49,11 @@ echo								#
 sudo apt-get install -y libmysqlclient-dev			#
 sudo apt-get install -y phpmyadmin 				#
 sudo service apache2 restart					#
+echo								#
+echo "Installing python modules  ... "				#
+echo								#
 sudo -H pip install --upgrade pip                               #
+sudo -H pip install --upgrade setuptools			#
 sudo -H pip install ephem 					#
 sudo -H pip install pytz 					#
 sudo -H pip install geopy 					#
@@ -64,8 +68,12 @@ fi								#
 echo								#
 echo "Installing the templates needed  ...." 			#
 echo								#
+pwd								#
 sudo cp config.template /etc/local/SARconfig.ini		#
 sudo cp aliases ~/.bash_aliases					#
+cp aliases ~/.bash_aliases					#
+crontab <crontab.data						#
+crontab -l 							#
 if [ -f OGN.db ]						#
 then								#
 	rm      OGN.db						#
@@ -78,9 +86,8 @@ echo								#
 echo "Installation mysql done ..."				#
 echo								#
 echo								#
-cp aliases ~/.bash_aliases					#
-crontab <crontab.data						#
-crontab -l 							#
+echo
+pwd
 if [ ! -d ~/src  ]						#
 then								#
 	mkdir ~/src   						#
