@@ -5,8 +5,8 @@ echo "===================================" 			#
 echo								                            #
 export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8		#
 sudo apt-get install -y software-properties-common python-software-properties #
-sudo rm /etc/apt/sources.list.d/ondre*				#
-sudo add-apt-repository ppa:ondrej/php				#
+#sudo rm /etc/apt/sources.list.d/ondre*				#
+#sudo add-apt-repository ppa:ondrej/php				#
 echo								#
 echo " lets update the operating system libraries  ...." 	#
 echo								#
@@ -34,10 +34,12 @@ sudo apt-get install -y libnova-0.14-0				#
 sudo apt-get install -y libfap 					#
 sudo apt-get install -y libfap-dev                              #
 sudo apt-get install -y goaccess 				#
+sudo apt-get install -y avahi-daemon 				#
 sudo a2enmod rewrite						#
 sudo a2enmod cgi						#
 sudo phpenmod mcrypt						#
 sudo phpenmod mbstring						#
+sudo a2enmod php7.2 
 sudo cat /etc/apache2/apache2.conf html.dir 	>>temp.conf	#
 sudo echo "ServerName SAR  " >>temp.conf			#
 sudo mv temp.conf /etc/apache2/apache2.conf			#
@@ -45,7 +47,7 @@ sudo service apache2 restart					#
 echo								#
 echo "Installing phpmyadmin  ... "				#
 echo								#
-#sudo apt-get install -y phpmyadmin 				#
+sudo apt-get install -y phpmyadmin 				#
 sudo service apache2 restart					#
 sudo -H pip install --upgrade pip                               #
 sudo -H pip install ephem 					#
@@ -71,6 +73,11 @@ fi								#
 sqlite3 OGN.db            < ogndb/DBschema.sql			#
 echo "CREATE DATABASE OGNDB" | mysql -u root -pogn		#
 mysql -u root -pogn --database OGNDB < ogndb/DBschema.sql	#
+echo								#
+echo								#
+echo "Installation mysql done ..."				#
+echo								#
+echo								#
 cp aliases ~/.bash_aliases					#
 crontab <crontab.data						#
 crontab -l 							#
@@ -80,7 +87,14 @@ then								#
 	mkdir ~/src/SARsrc					#
 fi								#
 cp sh/*.sh ~/src						#
+echo								#
+echo								#
+echo "Installation calcelestial ..."				#
+echo								#
+echo								#
 cp calcelestial.sh ~/src					#
+bash ~/src/calcelestial.sh					#
+calcelestial -h							#
 cp *.py ~/src/SARsrc						#
 ls  -la ~/src 							#
 sudo cp -r ../CGI-BIN/* ../cgi-bin				#
@@ -115,7 +129,6 @@ fi								#
 cd								#
 echo "Execute the base starting scripts"			#
 bash ~/src/fcst.sh						#
-bash ~/src/calcelestial.sh					#
 /bin/echo '/bin/sh ~/src/SARpogn.sh' | at -M $(calcelestial -p sun -m set -q Madrid -H civil) + 15 minutes #
 cd								#
 sudo cat /etc/hosts /nfs/hosts > /etc/hosts			#
@@ -139,7 +152,7 @@ echo "Review the configuration mail, ssmtp and .muttrc 								#
 echo "Review the configuration of the crontab and the shell scripts on ~/src " 					#
 echo "In order to execute the SAR data crawler execute:  bash ~/src/SARboo*.sh " 				#
 echo "Check the placement of the RootDocument on APACHE2 ... needs to be /var/www/html				#
-echo "If running in Windows under Virtual Box, run dos2unix on /var/www/html & ./main & ~/src			#
+echo "If running in Windows under Virtual Box, run dos2unix on /var/www/html and ./main and ~/src		#
 echo "Install phpmyadmin if needed !!!                                                                          #
 echo "========================================================================================================"	#
 echo								#

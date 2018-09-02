@@ -45,6 +45,6 @@ mv FD*    $dir
 mv proc*.log log
 /bin/echo '/bin/sh ~/src/SARflight_logger.sh' | at -M $(calcelestial -n -p sun -m rise -q Madrid) + 60 minutes
 rm -f tmp/*.IGC
-cd atq 
+atq 
 rm sent
 

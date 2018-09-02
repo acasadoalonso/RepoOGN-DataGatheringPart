@@ -10,7 +10,7 @@ wget -o ognddbdata.log ddb.glidernet.org/download
 mv download ognddbdata.csv
 python ognbuildfile.py 
 python flarmbuildfile.py 
-echo "# $(date) $(hostname) " >TTTbuilt
+echo "# $(date +%F) $(hostname) " >TTTbuilt
 cat flarmhdr flarmdata.txt  >flarmdata.py 
 cat ognhdr   ognddbdata.txt >ognddbdata.py 
 cat TTTbuilt kglidhdr ognddbdata.py  flarmdata.py kglidtrail >kglid.py

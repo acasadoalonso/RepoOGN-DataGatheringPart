@@ -120,6 +120,8 @@ atexit.register(lambda: os.remove(config.PIDfile))
   
 # create socket & connect to server
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+print "Socket created"
+#sock.connect(('aprs.glidernet.org',14580))
 sock.connect((config.APRS_SERVER_HOST, config.APRS_SERVER_PORT))
 print "Socket sock connected"
  

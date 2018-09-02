@@ -28,6 +28,8 @@ kglid  = {
            "PALOE"   : "Palo, Huesca ",
            "PALOW"   : "Palo, Huesca ",
            "BOITAULL" : "Boi Taull, Lerida ",
+           "TorDelOri" : "Torre del Orri, Lerida ",
+           "TORDELORI" : "Torre del Orri, Lerida ",
            "LFCO"   : "Oloron",
            "LFDT"   : "Tarbes",
            "LFIM"   : "Saint Gaudens",
