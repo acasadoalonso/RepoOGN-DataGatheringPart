@@ -38,7 +38,7 @@ sudo a2enmod rewrite						#
 sudo a2enmod cgi						#
 sudo phpenmod mcrypt						#
 sudo phpenmod mbstring						#
-sudo a2enmod php7.2 
+sudo a2enmod php7.2 						#
 sudo cat /etc/apache2/apache2.conf html.dir 	>>temp.conf	#
 sudo echo "ServerName SAR  " >>temp.conf			#
 sudo mv temp.conf /etc/apache2/apache2.conf			#
@@ -46,6 +46,7 @@ sudo service apache2 restart					#
 echo								#
 echo "Installing phpmyadmin  ... "				#
 echo								#
+sudo apt-get install -y libmysqlclient-dev			#
 sudo apt-get install -y phpmyadmin 				#
 sudo service apache2 restart					#
 sudo -H pip install --upgrade pip                               #
@@ -55,7 +56,7 @@ sudo -H pip install geopy 					#
 sudo -H pip install configparser 				#
 sudo -H pip install pycountry 					#
 sudo -H pip install requests 					#
-sudo -H pip install mysql-python				#
+sudo -H pip install MySQL-python				#
 if [ ! -d /etc/local ]						#
 then								#
     sudo mkdir /etc/local					#
