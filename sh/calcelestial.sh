@@ -1,8 +1,12 @@
+#!/bin/sh
+rm -r calcelestial
 git clone https://github.com/stv0g/calcelestial
 cd calcelestial/
-sh autogen.sh
+sudo apt-get install -y libnova-dev libcurl4-openssl-dev libjson-c-dev libdb-dev autoconf make gcc pkg-config
+#sh autogen.sh
+autoreconf -i
 ./configure
-sudo apt -y install libcurl4-openssl-dev libjson-c-dev libnova-dev
 make
 sudo make install
+cd ..
 

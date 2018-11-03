@@ -47,6 +47,8 @@ import socket
 from   geopy.distance  import vincenty      # use the Vincenty algorithm
 from   geopy.geocoders import GeoNames      # use the Nominatim as the geolocator
 from   geopy.geocoders import Nominatim
+Nominatim(user_agent="Repoogn")
+geolocator = Nominatim(user_agent="Repoogn")
 import logging
 import logging.config
 
@@ -185,7 +187,8 @@ if (not MySQL):
 			print row
 	
 logging.info('%30s Dump OGNdata2: ', datetime.datetime.now())
-geolocator = Nominatim(timeout=15)
+geolocator = Nominatim(user_agent="Repoogn", timeout=15)
+#geolocator = Nominatim(timeout=15)
 curs.execute ('select idflarm,date,time, station, altitude, distance , latitude, longitude from OGNDATA')
 while True:
     rows=curs.fetchmany()
