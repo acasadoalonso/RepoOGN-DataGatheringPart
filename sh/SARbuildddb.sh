@@ -1,5 +1,6 @@
 #!/bin/sh
-cd /nfs/OGN/src/flarmdb
+PATHSRC=/nfs/OGN/src
+cd $PATHSRC/flarmdb
 server="ubuntu"
 server2="casadonfs"
 rm *.fln
@@ -24,13 +25,13 @@ cd /nfs/OGN/DIRdata
 echo "Registered gliders: "
 echo "select count(*) from GLIDERS;" |                sqlite3 OGN.db
 echo "drop table GLIDERS;"           |                mysql -h $server -u ogn -pogn OGNDB
-sqlite3 OGN.db ".dump GLIDERS" | python ../src/sql* | mysql -h $server -u ogn -pogn OGNDB 
+sqlite3 OGN.db ".dump GLIDERS" | python $PATHSRC/sql* | mysql -h $server -u ogn -pogn OGNDB 
 echo "select count(*) from GLIDERS;" |                mysql -h $server -u ogn -pogn OGNDB
 echo "delete from GLIDERS;"           |                mysql -h $server -u ogn -pogn APRSLOG
-#sqlite3 OGN.db ".dump GLIDERS" | python ../src/sql* | mysql -h $server -u ogn -pogn APRSLOG 
-mysql -h $server -u ogn -pogn APRSLOG < ~/src/copyGLIDERS.sql
+#sqlite3 OGN.db ".dump GLIDERS" | python $PATHSRC/sql* | mysql -h $server -u ogn -pogn APRSLOG 
+mysql -h $server -u ogn -pogn APRSLOG < $PATHSRC/copyGLIDERS.sql
 echo "select count(*) from GLIDERS;" |                mysql -h $server -u ogn -pogn APRSLOG
 echo "drop table GLIDERS;"           |                mysql -h $server2 -u ogn -pogn SWIFACE
-sqlite3 OGN.db ".dump GLIDERS" | python ../src/sql* | mysql -h $server2 -u ogn -pogn SWIFACE 
+sqlite3 OGN.db ".dump GLIDERS" | python $PATHSRC/sql* | mysql -h $server2 -u ogn -pogn SWIFACE 
 echo "select count(*) from GLIDERS;" |                mysql -h $server2 -u ogn -pogn SWIFACE
 cd 

@@ -1,4 +1,5 @@
 #!//bin/sh
+PATHSRC=/nfs/OGN/src
 dir='/nfs/OGN/DIRdata'
 # test if directory is available
 if [ ! -d $dir ]
@@ -13,6 +14,6 @@ echo "..............." >>getogn.log
 date                   >>getogn.log 
 echo "..............." >>err.log 
 date                   >>err.log 
-python ../src/SARcalsunrisesunset.py >>getogn.log
-python ../src/ognES.py >>getogn.log  2>>err.log &
+python $PATHSRC/SARcalsunrisesunset.py >>getogn.log
+python $PATHSRC/ognES.py >>getogn.log  2>>err.log &
 cd
