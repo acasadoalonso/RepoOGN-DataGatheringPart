@@ -1,7 +1,7 @@
 #!/bin/sh
 PATHSRC=/nfs/OGN/src
 cd $PATHSRC/flarmdb
-server="ubuntu"
+server="localhost"
 server2="casadonfs"
 rm *.fln
 rm *.csv
@@ -29,9 +29,9 @@ sqlite3 OGN.db ".dump GLIDERS" | python $PATHSRC/sql* | mysql -h $server -u ogn 
 echo "select count(*) from GLIDERS;" |                mysql -h $server -u ogn -pogn OGNDB
 echo "delete from GLIDERS;"           |                mysql -h $server -u ogn -pogn APRSLOG
 #sqlite3 OGN.db ".dump GLIDERS" | python $PATHSRC/sql* | mysql -h $server -u ogn -pogn APRSLOG 
-mysql -h $server -u ogn -pogn APRSLOG < $PATHSRC/copyGLIDERS.sql
+mysql -h $server -u ogn -pogn APRSLOG < $PATHSRC/sh/copyGLIDERS.sql
 echo "select count(*) from GLIDERS;" |                mysql -h $server -u ogn -pogn APRSLOG
-echo "drop table GLIDERS;"           |                mysql -h $server2 -u ogn -pogn SWIFACE
-sqlite3 OGN.db ".dump GLIDERS" | python $PATHSRC/sql* | mysql -h $server2 -u ogn -pogn SWIFACE 
-echo "select count(*) from GLIDERS;" |                mysql -h $server2 -u ogn -pogn SWIFACE
+#echo "drop table GLIDERS;"           |                mysql -h $server2 -u ogn -pogn SWIFACE
+#sqlite3 OGN.db ".dump GLIDERS" | python $PATHSRC/sql* | mysql -h $server2 -u ogn -pogn SWIFACE 
+#echo "select count(*) from GLIDERS;" |                mysql -h $server2 -u ogn -pogn SWIFACE
 cd 

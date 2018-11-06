@@ -1,6 +1,6 @@
 #!/bin/sh
 PATHSRC=/nfs/OGN/src
-DBHOST=UBUNTU
+DBHOST=localhost
 cd /nfs/OGN/DIRdata
 echo $(date +%H:%M:%S)      		>>metar$(date +%y%m%d).log
 echo "==============="        		>>metar$(date +%y%m%d).log
