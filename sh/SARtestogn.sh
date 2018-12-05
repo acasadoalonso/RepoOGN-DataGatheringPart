@@ -1,5 +1,4 @@
 #!/bin/bash
-PATHSRC=/nfs/OGN/src
 sunsetfile=$"/nfs/OGN/DIRdata/SAR.sunset"
 alive=$"/nfs/OGN/DIRdata/SAR.alive"
 if [ -f $sunsetfile ]
@@ -24,7 +23,7 @@ else
 			sudo kill $pnum
 		fi
 #               restart OGN data collector
-    		sh $PATHSRC/sh/SARboot_flight_logger.sh
+    		sh ~/src/SARboot_flight_logger.sh
     		logger -t $0 "OGN repo seems down, restarting"
 		date >>/nfs/OGN/DIRdata/.restart.log 
 	else

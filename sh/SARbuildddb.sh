@@ -1,7 +1,6 @@
 #!/bin/sh
-PATHSRC=/nfs/OGN/src
-cd $PATHSRC/flarmdb
-server="localhost"
+cd /nfs/OGN/src/flarmdb
+server="ubuntu"
 server2="casadonfs"
 rm *.fln
 rm *.csv
@@ -9,6 +8,7 @@ wget -o flarmdata.log  www.flarmnet.org/files/data.fln
 mv data.fln flarmdata.fln
 wget -o ognddbdata.log ddb.glidernet.org/download
 mv download ognddbdata.csv
+wget -O ognddbdata.json -o ogndbjson.log ddb.glidernet.org/download/?j=1
 python ognbuildfile.py 
 python flarmbuildfile.py 
 echo "# $(date +%F) $(hostname) " >TTTbuilt
@@ -25,13 +25,13 @@ cd /nfs/OGN/DIRdata
 echo "Registered gliders: "
 echo "select count(*) from GLIDERS;" |                sqlite3 OGN.db
 echo "drop table GLIDERS;"           |                mysql -h $server -u ogn -pogn OGNDB
-sqlite3 OGN.db ".dump GLIDERS" | python $PATHSRC/sql* | mysql -h $server -u ogn -pogn OGNDB 
+sqlite3 OGN.db ".dump GLIDERS" | python ../src/sql* | mysql -h $server -u ogn -pogn OGNDB 
 echo "select count(*) from GLIDERS;" |                mysql -h $server -u ogn -pogn OGNDB
 echo "delete from GLIDERS;"           |                mysql -h $server -u ogn -pogn APRSLOG
-#sqlite3 OGN.db ".dump GLIDERS" | python $PATHSRC/sql* | mysql -h $server -u ogn -pogn APRSLOG 
-mysql -h $server -u ogn -pogn APRSLOG < $PATHSRC/sh/copyGLIDERS.sql
+#sqlite3 OGN.db ".dump GLIDERS" | python ../src/sql* | mysql -h $server -u ogn -pogn APRSLOG 
+mysql -h $server -u ogn -pogn APRSLOG < ~/src/copyGLIDERS.sql
 echo "select count(*) from GLIDERS;" |                mysql -h $server -u ogn -pogn APRSLOG
-#echo "drop table GLIDERS;"           |                mysql -h $server2 -u ogn -pogn SWIFACE
-#sqlite3 OGN.db ".dump GLIDERS" | python $PATHSRC/sql* | mysql -h $server2 -u ogn -pogn SWIFACE 
-#echo "select count(*) from GLIDERS;" |                mysql -h $server2 -u ogn -pogn SWIFACE
+echo "drop table GLIDERS;"           |                mysql -h $server2 -u ogn -pogn SWIFACE
+sqlite3 OGN.db ".dump GLIDERS" | python ../src/sql* | mysql -h $server2 -u ogn -pogn SWIFACE 
+echo "select count(*) from GLIDERS;" |                mysql -h $server2 -u ogn -pogn SWIFACE
 cd 
