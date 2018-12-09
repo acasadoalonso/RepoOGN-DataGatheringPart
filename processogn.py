@@ -53,11 +53,14 @@ prt=True
 
 geolocator = Nominatim(timeout=5)           # create the instance
 
-if 'SERVER_SIGNATURE' in os.environ:        # check if www
+if 'APACHE_RUN_USER' in os.environ:        # check if www
 
         www=True
         prt=False
         tmp='tmp/'
+else:
+    	print os.environ
+    	print "==============================="
 
 if prt:
     print "Start process OGN records "+pgmver
