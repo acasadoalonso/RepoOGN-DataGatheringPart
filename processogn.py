@@ -53,14 +53,15 @@ prt=True
 
 geolocator = Nominatim(timeout=5)           # create the instance
 
-print os.environment
-if 'APACHE_RUN_USER' in os.environ:        # check if www
+#print os.environment
+user=os.environ['USER']
+if 'APACHE_RUN_USER' in os.environ or user == "www-data":        # check if www
 
         www=True
         prt=False
         tmp='tmp/'
 else:
-    	print os.environ
+    	print user
     	print "==============================="
 
 if prt:
