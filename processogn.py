@@ -53,6 +53,7 @@ prt=True
 
 geolocator = Nominatim(timeout=5)           # create the instance
 
+print os.environment
 if 'APACHE_RUN_USER' in os.environ:        # check if www
 
         www=True
