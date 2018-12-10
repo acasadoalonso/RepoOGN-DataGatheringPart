@@ -22,13 +22,15 @@ from   datetime import *                    # the ogn/ham parser functions
 from   parserfuncs import *                 # the ogn/ham parser functions
 from   geopy.distance import vincenty       # use the Vincenty algorithm
 from   geopy.geocoders import GeoNames      # use the Nominatim as the geolocator
-from   geopy.geocoders import Nominatim     # we need it for resolving the geppositions
+from   geopy.geocoders import Nominatim
+
+geolocator = Nominatim(user_agent="Repoogn",timeout=5)	# create the instance
 
 #
 # ---------- main code ---------------
 #
 
-pgmver='V1.13'
+pgmver='V1.14'
 fid=  {'NONE  ' : 0}                        # FLARM ID list
 fsta= {'NONE  ' : 'NONE  '}                 # STATION ID list
 ffd=  {'NONE  ' : None}                     # file descriptor list
@@ -51,7 +53,6 @@ blacklist = ['FLR5B8041']                   # blacklist
 www=False
 prt=True
 
-geolocator = Nominatim(timeout=5)           # create the instance
 
 #print os.environment
 user=os.environ['USER']
@@ -61,12 +62,12 @@ if 'APACHE_RUN_USER' in os.environ or user == "www-data":        # check if www
         prt=False
         tmp='tmp/'
 else:
-    	print user
     	print "==============================="
 
 if prt:
     print "Start process OGN records "+pgmver
     print "==============================="
+    print "User:", user
 dtereq =  sys.argv[1:]
 if dtereq and dtereq[0] == 'date':
     dter = True                             # request the date
@@ -96,9 +97,10 @@ else:
     fname='DATA'+dte+'.log'                 # build the file name with the date entered
 if name:
     fn=sys.argv[2:]                         # take the name of the second arg
-    fname=str(fn)[2:20]
-    fname=fname.rstrip("]'")			    # clear garbage 
-    dte=str(fn)[6:12]                       # take the date from the file name
+    fname=str(fn)[2:]
+    fname=fname.rstrip("]'")		    # clear garbage 
+    p=str(fn).find("DATA")			    # look for DATA
+    dte=str(fn)[p+4:p+10]                   # take the date from the file name
 if prt:
     print 'File name: ', fn, fname, 'Process date/time:', date.strftime(" %y-%m-%d %H:%M:%S"), dte     # display file name and time
 
