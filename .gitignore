@@ -8,10 +8,10 @@
 SWsrc
 APRSsrc
 src
+flarmdb
+html
 aprslog
 archive
 bkup
-html
 lemd.py
 scel.py
-flarmdb/
