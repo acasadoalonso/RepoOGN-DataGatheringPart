@@ -15,7 +15,8 @@ if configdir == None:
 	configdir='/etc/local/'
 configfile=configdir+'SARconfig.ini'
 hostname=socket.gethostname()
-print "Hostname:", hostname
+processid=str(os.getpid())
+print "Hostname:", hostname, " Process ID:", processid
 cfg=ConfigParser()                                                              # get the configuration parameters
 cfg.read(configfile)                                                            # reading it for the configuration file
 print "Config.ini sections:", cfg.sections()                                    # report the different sections
@@ -56,7 +57,7 @@ except:
 # --------------------------------------#
 assert len(APRS_USER) > 3 and len(str(APRS_PASSCODE)) > 0, 'Please set APRS_USER and APRS_PASSCODE in settings.py.'
                                                                                 # report the configuration paramenters
-print "Config server values:",                  "MySQL=", MySQL, DBhost, DBuser, DBpasswd, DBname, DBpath
+print "Config server values:",                  "MySQL=", MySQL, DBhost, DBuser, DBname, DBpath
 print "Config APRS values:",                    APRS_SERVER_HOST, APRS_SERVER_PORT, APRS_USER, APRS_PASSCODE, APRS_FILTER_DETAILS
 print "Config location values:",   		location_name, FLOGGER_LATITUDE, FLOGGER_LONGITUDE
 # --------------------------------------#

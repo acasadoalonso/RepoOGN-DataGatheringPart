@@ -4,7 +4,7 @@ server="ubuntu"
 server2="casadonfs"
 rm *.fln
 rm *.csv
-wget -o flarmdata.log  www.flarmnet.org/files/data.fln
+wget -o flarmdata.log  www.flarmnet.org/static/files/wfn/data.fln
 mv data.fln flarmdata.fln
 wget -o ognddbdata.log ddb.glidernet.org/download
 mv download ognddbdata.csv
@@ -29,7 +29,7 @@ sqlite3 OGN.db ".dump GLIDERS" | python ../src/sql* | mysql -h $server -u ogn -p
 echo "select count(*) from GLIDERS;" |                mysql -h $server -u ogn -pogn OGNDB
 echo "delete from GLIDERS;"           |                mysql -h $server -u ogn -pogn APRSLOG
 #sqlite3 OGN.db ".dump GLIDERS" | python ../src/sql* | mysql -h $server -u ogn -pogn APRSLOG 
-mysql -h $server -u ogn -pogn APRSLOG < ../src/sh/copyGLIDERS.sql
+mysql -h $server -u ogn -pogn APRSLOG < ~/src/copyGLIDERS.sql
 echo "select count(*) from GLIDERS;" |                mysql -h $server -u ogn -pogn APRSLOG
 echo "drop table GLIDERS;"           |                mysql -h $server2 -u ogn -pogn SWIFACE
 sqlite3 OGN.db ".dump GLIDERS" | python ../src/sql* | mysql -h $server2 -u ogn -pogn SWIFACE 

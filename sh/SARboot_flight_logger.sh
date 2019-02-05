@@ -4,7 +4,7 @@ dir='/nfs/OGN/DIRdata'
 if [ ! -d $dir ]
 then
 #       sleep 2 mins for the NFS to start up
-	sudo service rpcbind start
+	#sudo service rpcbind start
 	sudo mount casadonfs:/nfs/NFS/Documents /nfs
 	sleep 120 
 fi

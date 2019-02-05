@@ -29,7 +29,7 @@ echo "============="        					>>proc$(date +%y%m%d).log
 sleep 180
 /bin/echo '/bin/sh ~/src/SARpogn.sh' | at -M $(calcelestial -n -p sun -m set -q Madrid -H civil) + 15 minutes
  
-cat proc$(date +%y%m%d).log | /usr/bin/mutt -a "proc"$(date +%y%m%d)".log" -s "OGN daily report "$taken -- acasado@acm.org
+cat proc$(date +%y%m%d).log | /usr/bin/mutt -a "proc"$(date +%y%m%d)".log" -s "OGN daily report "$taken -- angel@acasado.es
 mv DATA*  data
 rm SAR.alive
 rm SAR.sunset
