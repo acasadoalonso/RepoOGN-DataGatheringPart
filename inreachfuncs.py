@@ -120,7 +120,7 @@ def inreachgetaircraftpos(kml, inreachpos, ttime, regis, flarmid, prt=True):	# r
                                         item=  ccc.attrib["name"]
                                         value= ccc.find('{http://www.opengis.net/kml/2.2}value').text
                                         msg[item]=value
-                                        found=True
+                                        found=True  # we found some data on the KML string
                                         if prt:
                                             print "InreachPos", item, "==>", value
 
@@ -173,9 +173,9 @@ def inreachaprspush(datafix, prt=False):	# push the data into the OGN APRS
 			id=id[0:9]
 		dte=fix['date']                 # date
 		hora=fix['time'] 
-		latitude=fix['Lat'] 
-		longitude=fix['Long'] 
-		altitude=fix['altitude'] 
+		latitude= float(fix['Lat'])
+		longitude=float(fix['Long']) 
+		altitude= float(fix['altitude']) * 3.28084 
 		speed=fix['speed']
 		course=fix['course']
 		roclimb=0
@@ -200,10 +200,10 @@ def inreachaprspush(datafix, prt=False):	# push the data into the OGN APRS
 		
 		aprsmsg=id+">OGINREACH,qAS,INREACH:/"+hora+'h'+lat+"/"+lon+"'000/000/"
 		if altitude > 0:
-			aprsmsg += "A=%06d"%int(altitude*3.28084)
+			aprsmsg += "A=%06d"%int(altitude)
 		aprsmsg += " id"+uniqueid+" "+gps+" "+extpos+" \n"
-		rtn = config.SOCK_FILE.write(aprsmsg) 
 		print "APRSMSG : ", aprsmsg
+		rtn = config.SOCK_FILE.write(aprsmsg) 
 	return(True)
 
 def inreachfindpos(ttime, conn, prt=False, store=True, aprspush=False):	# find all the fixes since TTIME
@@ -236,6 +236,7 @@ def inreachfindpos(ttime, conn, prt=False, store=True, aprspush=False):	# find a
                         url="http://inreach.garmin.com/feed/share/"+inreachID+"?d1="+str(ts)
 		if prt:
 			print url
+		print url
 		inreachpos={"inreachpos":[]}	# init the dict
 		kml=inreachgetapidata(url)	# get the KML data from the InReach server
                 if kml == ' ':
