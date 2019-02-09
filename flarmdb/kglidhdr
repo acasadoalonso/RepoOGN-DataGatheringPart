@@ -57,6 +57,8 @@ kglid  = {
            "PAU"    : "Pau",
            "ROCAUDE": "Les Angles Ski Station",
            "POUBEAU": "Pou Beau",
+	   "BRAM"   : "Puivert test",
+           "CARCA"  : "carcassone",
            "SCLC"   : "Vitacura Municipal ",
            "SCVH"   : "Chacabuco Municipal ",
            "VITACURA1" : "Vitacura - 1 ",
@@ -76,6 +78,10 @@ kglid  = {
            "ELBOSQUE1" : "El Bosque Airfield",
            "ELBOSQUE2" : "El Bosque Airfield",
            "ALFALFAL" : "Alfalfal hidroelectic plant",
+           "PUNTILLA" : "Alfalfal hill",
+           "SANRAMON1": "San Ramon Mountain 1",
+           "SANRAMON2": "San Ramon Mountain 2",
+           "SANRAMON3": "San Ramon Mountain 3",
 #           # list on known gliders
            "DDE3E3" : "EC-JYS",
 ###############################

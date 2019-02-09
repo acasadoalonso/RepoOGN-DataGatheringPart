@@ -19,6 +19,7 @@ aprssources = {
 	"OGNFNT" : "FANE",
 	"OGNPAW" : "PAW",
 	"OGSPOT" : "SPOT",
+	"OGFLYM" : "FLYM",
 	"OGSPID" : "SPID",
 	"OGSKYL" : "SKYL",
 	"OGLT24" : "LT24",
