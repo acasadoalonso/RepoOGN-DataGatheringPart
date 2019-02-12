@@ -224,7 +224,7 @@ while True:                                 # until end of file
     else:
         fsour[source] += 1		    # increase the counter
 
-    if ((hostname == "CHILEOGN" or hostname == "OGNCHILE") and source == "OGN") or spanishsta(station) or frenchsta(station):  # only Chilean or Spanish or frenchstations
+    if ((hostname == "CHILEOGN" or hostname == "OGNCHILE") and source == "OGN") or source == "FLYM" or spanishsta(station) or frenchsta(station):  # only Chilean or Spanish or frenchstations
         if not id in fid :                  # if we did not see the FLARM ID
             fid  [id]=0                     # init the counter
             fsta [id]=station               # init the station receiver

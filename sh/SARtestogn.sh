@@ -17,7 +17,8 @@ else
 	if [ ! -f $alive ]
 	then
 		logger  -t $0 "OGN Repo is not alive"
-		pnum=$(pgrep python)
+		pnum=$(pgrep -x -f "python ../src/ognES.py")
+
 		if [ $? -eq 0 ] # if OGN repo interface is  not running
 		then
 			sudo kill $pnum

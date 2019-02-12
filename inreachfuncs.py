@@ -27,7 +27,8 @@ def inreachgetapidata(url, prt=False):                      	# get the data from
         try:
             r = urllib2.urlopen(req)            # open the url resource
         except urllib2.HTTPError, e:
-            print e.fp.read()
+            print "InReach read error:", e.fp.read()
+            return ' '
         kml= r.read()                           # read the data on KML format
         if kml == "An error occured.":
             return ' '
@@ -89,15 +90,16 @@ def inreachaddpos(msg, inreachpos, ttime, regis, flarmid):	# extract the data fr
         couidx=ccourse.find(" ")                # delete the extra information
         course=ccourse[0:couidx]
 	extpos=msg["Valid GPS Fix"] 		# check if from valid GPS
+        name=msg["Name"]                        # pilot name
 	dte=tt.isoformat()                      # convert to ISO format in order to extract all the DATE
 	date=dte[2:4]+dte[5:7]+dte[8:10]
         time=dte[11:13]+dte[14:16]+dte[17:19]
 	vitlat   =config.FLOGGER_LATITUDE       # get the coordinates of the BASE station
 	vitlon   =config.FLOGGER_LONGITUDE
 	distance=vincenty((lat, lon),(vitlat,vitlon)).km    # distance to the statioan
-        pos={"registration": flarmid, "date": date, "time":time, "Lat":lat, "Long": lon, "altitude": altitude, "UnitID":id, "GPS":mid, "speed":speed, "course":course, "dist":distance, "extpos":extpos}
+        pos={"registration": flarmid, "date": date, "time":time, "Lat":lat, "Long": lon, "altitude": altitude, "UnitID":id, "GPS":mid, "speed":speed, "course":course, "dist":distance, "extpos":extpos, "PilotName": name}
 	inreachpos['inreachpos'].append(pos)		# and store it on the dict
-	print "INREACHPOS :", lat, lon, altitude, id, distance, unixtime, dte, date, time, reg, flarmid, extpos
+	print "INREACHPOS :", lat, lon, altitude, id, distance, unixtime, dte, date, time, reg, flarmid, extpos, name
 	return (True)				# indicate that we added an entry to the dict
 
 def inreachgetaircraftpos(kml, inreachpos, ttime, regis, flarmid, prt=True):	# return on a dictionary the position of all fix positions
@@ -185,7 +187,8 @@ def inreachaprspush(datafix, prt=False):	# push the data into the OGN APRS
 		gps=gps[0:6]                    # only six chars
 		uniqueid=str(fix["UnitID"])	# identifier of the owner
 		dist=fix['dist']		# distance to BASE
-		extpos=fix['extpos']		# battery state
+		extpos=fix['extpos']		# GPS valid fix
+		pilotname=fix['PilotName']	# Pilot name
 						# build the APRS message
 		lat=deg2dmslat(abs(latitude))	# convert the latitude to the format required by APRS
 		if latitude > 0:
@@ -201,7 +204,7 @@ def inreachaprspush(datafix, prt=False):	# push the data into the OGN APRS
 		aprsmsg=id+">OGINREACH,qAS,INREACH:/"+hora+'h'+lat+"/"+lon+"'000/000/"
 		if altitude > 0:
 			aprsmsg += "A=%06d"%int(altitude)
-		aprsmsg += " id"+uniqueid+" "+gps+" "+extpos+" \n"
+		aprsmsg += " id"+uniqueid+" "+gps+" "+extpos+" "+pilotname+" \n"
 		print "APRSMSG : ", aprsmsg
 		rtn = config.SOCK_FILE.write(aprsmsg) 
 	return(True)
