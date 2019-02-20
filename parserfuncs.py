@@ -193,6 +193,7 @@ def spanishsta(station):                # return true if is an Spanish station
 	   	station[0:8] == 'TORDELORI' or	\
 	   	station[0:8] == 'PICDELORI' or	\
 	   	station[0:8] == 'FLYMASTER' or	\
+	   	station[0:8] == 'SPOT'      or	\
 		station[0:8] == 'PORTAINE'  :
         return True
     else:

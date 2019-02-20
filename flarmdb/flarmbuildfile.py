@@ -67,7 +67,7 @@ def flarmdb (prt, curs):
             if prt:
                     print "Line: ", i-1, " ID: ", ID,  " Airport: ", Airport, " Type: ", Type, " Registration: ", Registration,  " Radio: ", Radio
             row = '\t\t"%s":"%s",\n' % (ID,  Registration)              # write just what we need: ID and registration
-            ID=ID.strip("'")
+            ID=ID.strip("'").upper()
             Registration=Registration.strip("'")
             Type=Type.strip("'")
 	    try:

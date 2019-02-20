@@ -1,6 +1,6 @@
 cd /nfs/OGN/DIRdata
-mv getogn.log log/getogn$(date +%m%y).log
-mv err.log    log/err$(date    +%m%y).log
+mv SARgetogn.log log/SARgetogn$(date +%y%m).log
+mv SARerr.log    log/SARerr$(date    +%y%m).log
 rm        db/OGN.BKUP.db
 cp OGN.db db/OGN.BKUP.db
 sqlite3 OGN.db "vacuum;"
