@@ -10,8 +10,6 @@ else
 	server2="localhost"
 fi
 echo $server $server2
-server="ubuntu"
-server2="casadonfs"
 rm *.fln
 rm *.csv
 wget -o flarmdata.log  www.flarmnet.org/static/files/wfn/data.fln
