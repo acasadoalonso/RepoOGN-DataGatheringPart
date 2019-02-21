@@ -15,3 +15,7 @@ archive
 bkup
 lemd.py
 scel.py
+sh/nfs.sh
+sh/test*
+sh/mesh*
+sh/wlan*
