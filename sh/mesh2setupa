@@ -1,1 +1,0 @@
-wget https://ubuntu:1025/meshagents?script=1 --no-check-certificate -O ./meshinstall.sh && chmod 755 ./meshinstall.sh && sudo ./meshinstall.sh https://ubuntu:1025 'mFqYA4LFiUdWjF@h@aU@Ma11ApvkS5vZeiY$CE46Nk$2SHz2KygBDM3XJoRwLpzn'
