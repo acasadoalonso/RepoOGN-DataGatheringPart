@@ -1,6 +1,6 @@
 cd /nfs/OGN/DIRdata
-python ../src/fcst.py       >>fcst$(date +%y%m%d).log
-echo $(date +%H:%M:%S)      >>fcst$(date +%y%m%d).log
-echo "============="        >>fcst$(date +%y%m%d).log
-/bin/echo '/bin/sh ~/src/SARfcst.sh' | at -M $(date +%H:%M)+ 6 hours
+python ../src/fcst.py       >>SARfcst$(date +%y%m%d).log
+echo $(date +%H:%M:%S)      >>SARfcst$(date +%y%m%d).log
+echo "============="        >>SARfcst$(date +%y%m%d).log
+/bin/echo '/bin/sh ~/src/SARsrc/sh/SARfcst.sh' | at -M $(date +%H:%M)+ 6 hours
 cd 

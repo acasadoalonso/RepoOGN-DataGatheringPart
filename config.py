@@ -16,10 +16,8 @@ if configdir == None:
 configfile=configdir+'SARconfig.ini'
 hostname=socket.gethostname()
 processid=str(os.getpid())
-print "Hostname:", hostname, " Process ID:", processid
 cfg=ConfigParser()                                                              # get the configuration parameters
 cfg.read(configfile)                                                            # reading it for the configuration file
-print "Config.ini sections:", cfg.sections()                                    # report the different sections
 
 APRS_SERVER_HOST        = cfg.get    ('APRS', 'APRS_SERVER_HOST').strip("'")
 APRS_SERVER_PORT        = int(cfg.get('APRS', 'APRS_SERVER_PORT'))
@@ -56,8 +54,12 @@ except:
 
 # --------------------------------------#
 assert len(APRS_USER) > 3 and len(str(APRS_PASSCODE)) > 0, 'Please set APRS_USER and APRS_PASSCODE in settings.py.'
+if 'USER' in os.environ:
+	user=os.environ['USER']
                                                                                 # report the configuration paramenters
-print "Config server values:",                  "MySQL=", MySQL, DBhost, DBuser, DBname, DBpath
-print "Config APRS values:",                    APRS_SERVER_HOST, APRS_SERVER_PORT, APRS_USER, APRS_PASSCODE, APRS_FILTER_DETAILS
-print "Config location values:",   		location_name, FLOGGER_LATITUDE, FLOGGER_LONGITUDE
+        print "Hostname:", hostname, " Process ID:", processid, "User:", user
+        print "Config.ini sections:", cfg.sections()                                    # report the different sections
+        print "Config server values:",                  "MySQL=", MySQL, DBhost, DBuser, DBname, DBpath
+        print "Config APRS values:",                    APRS_SERVER_HOST, APRS_SERVER_PORT, APRS_USER, APRS_PASSCODE, APRS_FILTER_DETAILS
+        print "Config location values:",   		location_name, FLOGGER_LATITUDE, FLOGGER_LONGITUDE
 # --------------------------------------#

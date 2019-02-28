@@ -58,7 +58,7 @@ prt=True
 if 'USER' in os.environ:
 	user=os.environ['USER']
 else:
-	use="www-data"			# assume www
+	user="www-data"			    # assume www
 if 'APACHE_RUN_USER' in os.environ or user == "www-data":        # check if www
 
         www=True

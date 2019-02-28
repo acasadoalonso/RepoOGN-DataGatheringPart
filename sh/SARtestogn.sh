@@ -23,7 +23,7 @@ else
 			sudo kill $pnum
 		fi
 #               restart OGN data collector
-    		sh ~/src/SARboot_flight_logger.sh
+    		sh ~/src/SARsrc/sh/SARboot_flight_logger.sh
     		logger -t $0 "OGN repo seems down, restarting"
 		date >>/nfs/OGN/DIRdata/.restart.log 
 	else
