@@ -19,7 +19,7 @@ aprssources = {
 	"OGNFNT" : "FANE",
 	"OGNPAW" : "PAW",
 	"OGSPOT" : "SPOT",
-	"OGINREACH" : "INREACH",
+	"OGINRE" : "INREACH",
 	"OGFLYM" : "FLYM",
 	"OGSPID" : "SPID",
 	"OGSKYL" : "SKYL",
