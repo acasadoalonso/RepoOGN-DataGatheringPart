@@ -75,7 +75,7 @@ def signal_term_handler(signal, frame):
 signal.signal(signal.SIGTERM, signal_term_handler)
 
 #----------------------ogn_main.py start-----------------------
-pgmver="V1.13"
+pgmver="V1.14"
 fid=  {'NONE  ' : 0}                    # FLARM ID list
 fsta= {'NONE  ' : 'NONE  '}             # STATION ID list
 fmaxa={'NONE  ' : 0}                    # maximun altitude
@@ -98,7 +98,7 @@ if hostname == 'CHILEOGN' or hostname == "OGNCHILE":
 	print "Start ognCL CHILE ", pgmver
 else: 
 	print "Start ognES SPAIN ", pgmver
-print "======================="
+print "========================"
 
 import config
 prtreq =  sys.argv[1:]
@@ -227,11 +227,12 @@ try:
                 continue
 #   ready to handle a record
 
-    	ix=packet_str.find('>')
-    	cc= packet_str[0:ix]
-    	cc=cc.upper()
-    	packet_str=cc+packet_str[ix:]    
-        # Parse packet using libfap.py into fields to process, eg:
+    	ix=packet_str.find('>')         # find the station
+    	cc= packet_str[0:ix]            # extract the station
+    	cc=cc.upper()                   # convert it to upper case
+    	packet_str=cc+packet_str[ix:]   # change the packet to be in uppercase
+
+                                        # Parse packet using libfap.py into fields to process
         packet = libfap.fap_parseaprs(packet_str, len(packet_str), 0)
         if  len(packet_str) > 0 and packet_str[0] <> "#":
             callsign=packet[0].src_callsign     # get the call sign FLARM ID
@@ -246,10 +247,11 @@ try:
             dst_callsign = get_dst_callsign(packet)
 	    source	 = get_source(dst_callsign)
 	    if len(source) > 4:
-                        source=source[0:3]
+                        source=source[0:3]      # restrict to the first 4 chars
             destination  = get_destination(packet)
             header       = get_header(packet)
             otime        = get_otime(packet)
+
             if path == 'qAS' or path == 'RELAY*' or path[0:3] == "OGN": # if std records
                 station=get_station(packet_str)		# get the station ID
 		if not station in stations:
@@ -264,41 +266,52 @@ try:
 				if not id in relayglider:
 					relayglider[id]=path[0:9]
 
-            elif path == 'qAC' or path == 'TCPIP*' or path == -1:
+            elif path == 'qAC' or path == 'TCPIP*' or path == "NOPATH":
 		data=packet_str
-		ssep=data.find('>')             # find theseparator
-        	station=data[0:ssep]            # get the station identifier
-        	station=station.upper()         # translate to uppercase
-		id=station
+		ssep=data.find('>')             # find the separatora
+                if ssep != -1:
+                    station=data[0:ssep]        # get the station identifier
+        	    station=station.upper()     # translate to uppercase
+		    id=station
+                else:
+                    id="NOREG"
 
             else:
                 station=id                      # just the station itself 
-            if prt:
+            if prt:                             # just for debugging
                 print 'Packet returned is: ', packet_str
                 print 'Callsign is: ', callsign, 'DST CallSign:', dst_callsign, 'Dest: ', destination, 'header: ', header
                 print 'Parsed data: POS: ', longitude, latitude, altitude,' Speed:',speed,' Course: ',course,' Path: ',path,' Type:', type
-                print 'OTime:', otime, "Source:", source
-            if not id in fid :                  # if we did not see the FLARM ID
+                print 'OTime:', otime, "Source:", source, "\n-------------------------------------------------------\n"
+            if not id in fid :                  # if we did not see the FLARM ID yet
                 fid  [id]=0                     # init the counter
                 fsta [id]=station               # init the station receiver
                 fmaxa[id]=altitude              # maximun altitude
                 fmaxs[id]=speed                 # maximun speed
                 cout += 1                       # one more file to create
+
             cin += 1                            # increase total input records
             fid[id] +=1                         # increase the number of records read
-            if altitude >= fmaxa[id]:
+            if altitude >= fmaxa[id]:           # check for max altitude of the day
                 fmaxa[id] = altitude
                 if altitude > tmaxa and (not spanishsta(id) and not frenchsta(id)):
                         tmaxa = altitude        # maximum altitude for the day
                         tmaxt = date            # date and time
                         tmid  = id              # who did it
                         tmsta = station         # station capturing the max altitude
-            if speed >= fmaxs[id]:
+            if speed >= fmaxs[id]:              # check for max speed of the day
                 fmaxs[id] = speed
         
 
 except KeyboardInterrupt:
     print "Keyboard input received, shutdown ..."
+    libfap.fap_cleanup()			# close libfap
+    shutdown(sock, datafile, tmaxa, tmaxt,tmid) # shutdown orderly 
+    exit(1)
+
+except TypeError:
+    print "TypeError: ..."
+    print ">>>>>>>> Packet: ", packet_str       # print the record for debugging purposes
     libfap.fap_cleanup()			# close libfap
     shutdown(sock, datafile, tmaxa, tmaxt,tmid) # shutdown orderly 
     exit(1)
