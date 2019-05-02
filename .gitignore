@@ -15,7 +15,9 @@ archive
 bkup
 lemd.py
 scel.py
+weather*
 sh/nfs.sh
 sh/test*
 sh/mesh*
 sh/wlan*
+node_modules

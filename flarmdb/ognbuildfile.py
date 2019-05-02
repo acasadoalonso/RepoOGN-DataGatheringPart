@@ -18,7 +18,7 @@ def ogndb (prt, curs):
     db      = open("ognddbdata.csv", 'r')
     flm_txt = open("ognddbdata.txt",'w')
     
-    print "Process OGN databse"
+    print "Process OGN database"
     line = db.readline().encode("latin1")
     if prt:
         print "Format: ", line
