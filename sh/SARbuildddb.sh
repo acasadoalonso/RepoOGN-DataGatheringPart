@@ -29,7 +29,7 @@ sqlite3 OGN.db ".dump GLIDERS" | python ../src/sql* | mysql -h $server -u ogn -p
 echo "select count(*) from GLIDERS;" |                mysql -h $server -u ogn -pogn OGNDB 		2>/dev/null
 echo "delete from GLIDERS;"           |                mysql -h $server -u ogn -pogn APRSLOG 		2>/dev/null
 #sqlite3 OGN.db ".dump GLIDERS" | python ../src/sql* | mysql -h $server -u ogn -pogn APRSLOG  		2>/dev/null
-mysql -h $server -u ogn -pogn APRSLOG < ~/src/SARsrc/sh/copyGLIDERS.sql 				2>/dev/null
+mysql -h $server -u ogn -pogn APRSLOG < ~/src/copyGLIDERS.sql 						2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql -h $server -u ogn -pogn APRSLOG 		2>/dev/null
 echo "drop table GLIDERS;"           |                mysql -h $server2 -u ogn -pogn SWIFACE 		2>/dev/null
 sqlite3 OGN.db ".dump GLIDERS" | python ../src/sql* | mysql -h $server2 -u ogn -pogn SWIFACE  		2>/dev/null
