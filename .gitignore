@@ -21,3 +21,10 @@ sh/test*
 sh/mesh*
 sh/wlan*
 node_modules
+flarmdb/*.log
+flarmdb/*.txt
+flarmdb/*.bkup
+flarmdb/*.json
+flarmdb/*.fln
+flarmdb/*.csv
+
