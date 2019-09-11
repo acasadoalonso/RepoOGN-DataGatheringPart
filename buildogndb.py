@@ -9,13 +9,14 @@
 import time
 import sys
 import os
+sys.path.insert(0, '/nfs/OGN/src/funcs')
 import kglid                                # import the list on known gliders
 import datetime
 import sqlite3                              # the SQL data base routines
 import MySQLdb                              # the SQL data base routines
 from parserfuncs import *                   # the ogn/ham parser functions
 from geopy.distance import vincenty         # use the Vincenty algorithm
-from geopy.geocoders import GeoNames         # use the Nominatim as the geolocator
+from geopy.geocoders import GeoNames        # use the Nominatim as the geolocator
 from datetime import datetime
 
 #
@@ -71,7 +72,8 @@ else:
     nmer = False                            # do not request the name
 
 cin = 0                                     # input record counter
-cout = 0                                    # output file counter
+cout = 0                                    # output record counter
+cfile = 0                                   # output file counter
 date = datetime.now()                	    # get the date
 dte = date.strftime("%y%m%d")               # today's date
 fname = 'DATA'+dte+'.log'                   # file name from logging
@@ -116,7 +118,7 @@ while True:                                 # until end of file
     if not data:                            # end of file ???
                                             # report the findings and close the files
         # report number of records read and files generated
-        print('===> Input records: ', dte, cin, 'Ouput files:', cout)
+        print('===> Input records: ', dte, cin, cout, 'Ouput files:', cfile, len(fid))
         # list the IDs for debugging purposes
         k = list(fid.keys())
         k.sort()                            # sort the list
@@ -185,21 +187,20 @@ while True:                                 # until end of file
                 gid = 'Noreg '              # for unknown receiver
                 if config.hostname == "CHILEOGN" or config.hostname == "OGNCHILE" or spanishsta(key) or frenchsta(key):
                     if key in kglid.kglid:
-                        gid = kglid.kglid[key]        # report the station name
+                        gid = kglid.kglid[key]  # report the station name
                     else:
                         gid = "NOSTA"       # marked as no sta
                 lati = fslla[key]           # latitude
-                long = fsllo[key]           # longitude
+                longi = fsllo[key]          # longitude
                 alti = fslal[key]           # altitude
 
                 if key != "None" and key != None:
                     if prt:
-                        print(key, 'Adding ==>', gid, lati, int, alti)
+                        print(key, 'Adding ==>', gid, lati, longi, alti)
                     if (MySQL):
                         if len(gid) > 30:
                             gid = gid[0:30]
-                        inscmd = "insert into RECEIVERS values ('" + key + "','" + gid + "'," + str(
-                            lati) + "," + str(int) + "," + str(alti) + ")"
+                        inscmd = "insert into RECEIVERS values ('" + key + "','" + gid + "'," + str(lati) + "," + str(longi) + "," + str(alti) + ")"
                         try:
                             curs.execute(inscmd)
                         except MySQLdb.Error as e:
@@ -211,7 +212,7 @@ while True:                                 # until end of file
                             print(">>>MySQL error:", inscmd)
                     else:
                         inscmd = "insert into RECEIVERS values (?, ?, ?, ?, ?)"
-                        curs.execute(inscmd, (key, gid, lati, int, alti))
+                        curs.execute(inscmd, (key, gid, lati, longi, alti))
         #
         conn.commit()
         # commit the changes
@@ -222,6 +223,7 @@ while True:                                 # until end of file
         continue                            # nothing else to do
 #   ready to handle a record
     nrec += 1
+    cin += 1
     ix = data.find('>')			    # translate to uppercase the ID
     cc = data[0:ix]
     cc = cc.upper()
@@ -232,7 +234,7 @@ while True:                                 # until end of file
         if msg == -1:			    # parser error
             print("Parser error:", data)
             continue
-        id = msg['id']          	    # id
+        ident = msg['id']          	    # id
         type = msg['aprstype']		    # message type
         longitude = msg['longitude']
         latitude = msg['latitude']
@@ -244,6 +246,7 @@ while True:                                 # until end of file
             paths.append(path)
         otime = msg['otime']
         source = msg['source']              # source of the data OGN/SPOT/SPIDER/...
+        station = msg['station']
         if len(source) > 4:
             source = source[0:3]
         # if std records
@@ -256,39 +259,36 @@ while True:                                 # until end of file
                     rr = {} 		    # temp
                     #print "otime", otime.strftime("%y%m%d%H%M%S")
                     rr[path[0:9]] = otime.strftime("%H%M%S")
-                    relayglider[id] = rr    # add the id to the table of relays.
+                    relayglider[ident] = rr    # add the id to the table of relays.
                 relaycnt += 1		    # increase the counter
-        else:
-            station = id		    # for qAC just the station is the ID
 
         if path == 'TCPIP*' or path == 'receiver' or path == 'aprs_receiver':
-            if not id in fsloc:		    # if not detected yet
+            if not ident in fsloc:		    # if not detected yet
                 # save the loction of the station
-                fsloc[id] = (latitude, longitude)
-                fslla[id] = latitude
-                fsllo[id] = longitude
-                fslal[id] = altitude
-                fsmax[id] = 0.0             # initial coverage zero
-                fsalt[id] = 0               # initial coverage zero
+                fsloc[ident] = (latitude, longitude)
+                fslla[ident] = latitude
+                fsllo[ident] = longitude
+                fslal[ident] = altitude
+                fsmax[ident] = 0.0          # initial coverage zero
+                fsalt[ident] = 0            # initial coverage zero
             continue                        # go for the next record
         if cc in blacklist:
             continue
-        id = data[0:9]                      # the flarm ID/ICA/OGN
+        ident = data[0:9]                      # the flarm ID/ICA/OGN
         idname = data[0:9]                  # exclude the FLR part
-        station = get_station(data)	    # get the station
         # only Spanish/Chilean stations
         if config.hostname == "CHILEOGN" or config.hostname == "OGNCHILE" or spanishsta(station):
-            if not id in fid:               # if we did not see the FLARM ID
-                fid[id] = 0                 # init the counter
-                fsta[id] = station          # init the station receiver
+            if not ident in fid:            # if we did not see the FLARM ID
+                fid[ident] = 0              # init the counter
+                fsta[ident] = station       # init the station receiver
                 # take off time/ initial seeing  - null for the time being
-                ftkot[id] = 0
+                ftkot[ident] = 0
                 # landing  time - null for the time being
-                flndt[id] = 0
-                cout += 1                   # one more file to create
+                flndt[ident] = 0
+                cfile += 1                  # one more file to create
 
                                             # increase the number of records read
-            fid[id] += 1
+            fid[ident] += 1
             course = msg['course']
             speed = msg['speed']
             uniqueid = msg['uniqueid']
@@ -304,12 +304,12 @@ while True:                                 # until end of file
             altim = altitude                # the altitude in meters
 
                                             # if we do not have the take off time ??
-            if speed > 50 and ftkot[id] == 0:
-                ftkot[id] = otime           # store the take off time
-                ftkok[otime] = id           # list by take off time
+            if speed > 50 and ftkot[ident] == 0:
+                ftkot[ident] = otime        # store the take off time
+                ftkok[otime] = ident        # list by take off time
                                             # if we do not have the take off time ??
-            if speed < 20 and speed > 5 and ftkot[id] != 0:
-                flndt[id] = otime           # store the landing time
+            if speed < 20 and speed > 5 and ftkot[ident] != 0:
+                flndt[ident] = otime           # store the landing time
             if station in fsloc and longitude != -1:  # if we have the station yet
                                             # distance to the station
                 distance = vincenty((latitude, longitude), fsloc[station]).km
@@ -328,13 +328,13 @@ while True:                                 # until end of file
             if altim > tmaxa:
                 tmaxa = altim               # maximum altitude for the day
                 tmaxt = hora                # and time
-                tmid = id                   # who did it
+                tmid = ident                # who did it
                 tmsta = station             # station capturing the max altitude
             if uniqueid[0:2] != "id":	    # check for a valid uniqueid
                 continue
                                             # write the DB record eithher on MySQL or SQLITE3
             if (MySQL):
-                addcmd = "insert into OGNDATA values ('" + id + "','" + dte + "','" + hora + "','" + station + "'," + str(latitude) + "," + \
+                addcmd = "insert into OGNDATA values ('" + ident + "','" + dte + "','" + hora + "','" + station + "'," + str(latitude) + "," + \
                     str(longitude) + "," + str(altim) + "," + str(speed) + "," + \
                     str(course) + "," + str(roclimb) + "," + \
                     str(rot) + "," + str(sensitivity)
@@ -352,7 +352,7 @@ while True:                                 # until end of file
                 addcmd = "insert into OGNDATA values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
                 curs.execute(addcmd, (idname, dte, hora, station, latitude, longitude, altim,
                                       speed, course, roclimb, rot, sensitivity, gps, uniqueid, dist, extpos))
-            cin += 1                        # one more record read
+            cout += 1                        # one more record writen
 
 # -----------------  final process ----------------------
 
@@ -371,5 +371,5 @@ print("Number of relay packages:", relaycntr, relaycnt)
 if relaycnt > 0:
     print("List of relays:", relayglider)
 print (paths)
-print('Bye ...: Stored', cin, " records of ", nrec, ' read. Time and Time used:', datef, datef - \
+print('Bye ...: Stored', cout, " records of ", nrec, ' read. Time and Time used:', datef, datef - \
     date)                                   # report the processing time

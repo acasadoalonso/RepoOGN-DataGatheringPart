@@ -11,7 +11,7 @@ import sys
 import socket
 import config
 
-#sys.path.insert(0, '/nfs/OGN/src/funcs')
+sys.path.insert(0, '/nfs/OGN/src/funcs')
 datapath = config.DBpath
 
 import os
@@ -83,7 +83,7 @@ cout = 0                                    # output file counter
 date = datetime.now()                       # get the date
 dte = date.strftime("%y%m%d")               # today's date
 fname = 'DATA'+dte+'.log'                   # file name from logging
-
+paths=[]				    # paths used
 hostname = socket.gethostname()
 
 # fname='DATA170515.log'                    # example of file name
@@ -173,7 +173,7 @@ while True:                                 # until end of file
                 if prt:
                                             # distance
                     print(key, '==>', fsmax[key], ' Kms. and number of fixes: ', fsfix[key])
-
+        print(paths)
         # work done, finish the reporting now ...
         break
 
@@ -198,6 +198,8 @@ while True:                                 # until end of file
     latitude    = msg['latitude']
     altitude    = msg['altitude']
     path        = msg['path']
+    if path not in paths:
+       paths.append(path)
     if path == 'aprs_aircraft' or path == 'flarm':
         if 'speed' in msg :
             speed   = msg['speed']
