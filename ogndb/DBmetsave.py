@@ -1,6 +1,7 @@
+#!/usr/bin/python3
 import sqlite3
-print "Save METEO data from OGN on METEO DB"
-print "===================================="
+print("Save METEO data from OGN on METEO DB")
+print("====================================")
 conn2=sqlite3.connect(r'METEO.db')
 conn1=sqlite3.connect(r'OGN.db')
 curs1=conn1.cursor()
@@ -13,26 +14,26 @@ curs2.execute(crecmd)
 # print the dictionaries
 curs1.execute('select * from METEO')
 colnames = [desc[0] for desc in curs1.description]
-print "METEO1-->", colnames
+print(("METEO1-->", colnames))
 curs2.execute('select * from METEO')
 colnames = [desc[0] for desc in curs2.description]
-print "METEO2-->", colnames
+print(("METEO2-->", colnames))
 # retrieve all the data from OGN and save it on METEO
 curs1.execute('select * from METEO')
 while True:
     row=curs1.fetchone()
     if not row: break
-    print row
+    print(row)
     try:
         curs2.execute("insert into METEO values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13]))
     except:
-        print "Non unique", row[0],row[1]
+        print(("Non unique", row[0],row[1]))
 
 conn2.commit()
 # print the new data base
 rows=curs2.execute('select * from METEO')
 rows=curs2.fetchall()
-print rows
+print(rows)
 # delete the data on the OGN database
 curs1.execute('delete from METEO')
 conn1.commit()

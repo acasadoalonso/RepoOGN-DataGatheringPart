@@ -1,15 +1,15 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 import sqlite3
 def opendb (schema_file, cursor):
     # Open a connection to the database
     # Build the database from the supplied schema
-    print "opendb"
+    print("opendb")
     try:
         db = sqlite3.connect("OGN.db")
     except Exception as e:
         # Failed to open flogger.db, error
-        print "Failed to open OGN.db, error"
+        print("Failed to open OGN.db, error")
         return False
 
     # Create a cursor to work with
@@ -18,7 +18,7 @@ def opendb (schema_file, cursor):
 
     # Drop tables if they exist in the database
     floggerSchema = open(schema_file)
-    print "opendb:", schema_file, " open ok"
+    print("opendb:", schema_file, " open ok")
     schemaStr = ""
     for line in floggerSchema.readlines():
 #        print "Line is: ", line
@@ -28,12 +28,12 @@ def opendb (schema_file, cursor):
         cur.executescript(schemaStr)
     except Exception as e:
         # Failed to create flogger.db from schema, error
-        print "Failed to create flogger.db from schema, error"
+        print("Failed to create flogger.db from schema, error")
         return False
     floggerSchema.close()
     db.commit()
     db.close()
-    print "opendb: OGN Databases built"
+    print("opendb: OGN Databases built")
     return True
 
 #-----------------------------------------------------------------
@@ -65,29 +65,29 @@ conn.commit()
 						# print the preset values as a way to check it
 curs.execute ('select * from STATIONS')
 for row in curs.fetchall():
-    print row
+    print(row)
 conn.commit()
 curs.execute ('select * from RECEIVERS')
 for row in curs.fetchall():
-    print row
+    print(row)
 
-print "Print dictionaries:"             
+print("Print dictionaries:")             
 curs.execute('select * from STATIONS')
 colnames = [desc[0] for desc in curs.description]
-print "STATATIONS", colnames 
+print("STATATIONS", colnames) 
 curs.execute('select * from RECEIVERS')
 colnames = [desc[0] for desc in curs.description]
-print "RECEIVERS", colnames
+print("RECEIVERS", colnames)
 curs.execute('select * from OGNDATA')
 colnames = [desc[0] for desc in curs.description]
-print "OGNDATA", colnames
+print("OGNDATA", colnames)
 curs.execute('select * from GLIDERS')
 colnames = [desc[0] for desc in curs.description]
-print "GLIDERS", colnames
+print("GLIDERS", colnames)
 curs.execute('select * from METEO')
 colnames = [desc[0] for desc in curs.description]
-print "METEO", colnames
-print "Database created .... "
+print("METEO", colnames)
+print("Database created .... ")
 conn.commit()
 conn.close()
 

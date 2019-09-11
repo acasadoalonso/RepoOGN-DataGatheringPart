@@ -1,6 +1,4 @@
 #!/bin/bash
-cd ~/src
-cp * /nfs/OGN/src/sh
 
 if [ ! -d /bkups ]
 then

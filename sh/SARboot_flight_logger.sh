@@ -13,6 +13,6 @@ echo "..............." >>SARgetogn.log
 date                   >>SARgetogn.log 
 echo "..............." >>SARerr.log 
 date                   >>SARerr.log 
-python ../src/SARcalsunrisesunset.py >>SARgetogn.log
-python ../src/ognES.py               >>SARgetogn.log  2>>SARerr.log &
+python3 ../src/SARsrc/SARcalsunrisesunset.py >>SARgetogn.log
+python3 ../src/SARsrc/ognES.py               >>SARgetogn.log  2>>SARerr.log &
 cd

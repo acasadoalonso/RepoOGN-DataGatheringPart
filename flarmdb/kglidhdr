@@ -7,6 +7,8 @@ kglid  = {
            "LECI1"  : "Santa Cilia de Jaca, Huesca",
            "LECI2"  : "San Juan de la Pena, Huesca",
            "LEFM"   : "Fuentemilanos, Segovia",
+           "LERM"   : "Robledillo de Mohernando",
+           "PWLERM" : "Robledillo de Mohernando",
            "CREAL"  : "Ciudad Real",
            "MORA"   : "Mora de Toledo, Toledo",
            "MADRID" : "Madrid - Test site",
@@ -82,6 +84,7 @@ kglid  = {
            "SANRAMON1": "San Ramon Mountain 1",
            "SANRAMON2": "San Ramon Mountain 2",
            "SANRAMON3": "San Ramon Mountain 3",
+           "OLMUE": "OLMUE Airfield",
 #           # list on known gliders
            "DDE3E3" : "EC-JYS",
 ###############################
