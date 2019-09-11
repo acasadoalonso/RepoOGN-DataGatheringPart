@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # 2019-09-11 SAROGN 
+=======
+# 2019-07-15 vps533982 
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 
 kglid  = {
             # Known Receivers
@@ -117,7 +121,10 @@ kglid  = {
 		'000617' : 'OE-5292',
 		'000634' : 'D-MJPH',
 		'000654' : 'G_CJDL',
+<<<<<<< HEAD
 		'000671' : 'D_KSAB',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'000840' : 'NOREG',
 		'000871' : 'D-NDII',
 		'000888' : '52143',
@@ -148,7 +155,10 @@ kglid  = {
 		'003665' : '110CE9',
 		'003733' : 'VH-ZBV',
 		'003751' : 'D-KKCB',
+<<<<<<< HEAD
 		'003812' : 'NOREG',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'003854' : 'G-CKRO',
 		'003974' : 'C-GFOP',
 		'003B7D' : 'D-3081',
@@ -189,7 +199,12 @@ kglid  = {
 		'00F282' : 'F-CGED',
 		'00F8D7' : 'OM-1615',
 		'011292' : 'NOREG',
+<<<<<<< HEAD
 		'011821' : 'OK6430',
+=======
+		'013020' : 'OK-0550',
+		'013032' : 'OK-3368',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'014312' : 'OKUUO15',
 		'014D71' : 'METEO1',
 		'01542C' : 'D-OVDS',
@@ -200,6 +215,10 @@ kglid  = {
 		'021338' : 'CUBE3',
 		'022710' : 'OK-5314',
 		'023324' : 'MET',
+<<<<<<< HEAD
+=======
+		'023753' : 'OK-6602',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'023C0D' : 'OK-xxxx',
 		'024234' : 'OK-2307',
 		'024932' : 'CC-TR23',
@@ -213,7 +232,10 @@ kglid  = {
 		'033631' : '65-17',
 		'033915' : 'D-KGPC',
 		'03440C' : 'OK-2710',
+<<<<<<< HEAD
 		'034819' : 'OK-3304',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'034B28' : 'NIC',
 		'034EE0' : 'N101GM',
 		'034F00' : 'C-GINY',
@@ -239,8 +261,11 @@ kglid  = {
 		'046217' : 'Peak4',
 		'046758' : 'Grich67',
 		'0477A1' : '0477A1',
+<<<<<<< HEAD
 		'048A30' : '1-238',
 		'049E34' : 'HA-GYH',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'04AAAC' : 'NOREG',
 		'04AAAD' : 'NOREG',
 		'04B729' : 'METEO7',
@@ -260,6 +285,10 @@ kglid  = {
 		'05DB23' : 'OK-3702',
 		'060577' : 'ToddyS',
 		'062323' : 'OK_6907',
+<<<<<<< HEAD
+=======
+		'062909' : 'OK-3123',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'064D0E' : 'HA-1270',
 		'065247' : 'KILY-1',
 		'066015' : 'OK-MPB',
@@ -273,8 +302,11 @@ kglid  = {
 		'071CA9' : 'Jono',
 		'071D23' : 'NOREG',
 		'072000' : 'CC-KWJ',
+<<<<<<< HEAD
 		'072921' : 'OK-0202',
 		'073B55' : 'LY-GQZ',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'07411F' : 'LY-XMF',
 		'0749AF' : 'Lexrobe',
 		'074AD4' : 'OE-66P1',
@@ -292,8 +324,14 @@ kglid  = {
 		'080463' : 'IOTA2',
 		'084431' : 'OK-5331',
 		'089891' : 'D-KJOY',
+<<<<<<< HEAD
 		'090929' : '1600',
 		'093815' : 'OK_9851',
+=======
+		'090929' : '3304',
+		'093815' : 'OK_9851',
+		'094054' : 'OK-0376',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'0ABA93' : 'F-UMDA',
 		'0CFFFF' : 'F-HANM',
 		'0D0037' : 'D-0037',
@@ -316,6 +354,11 @@ kglid  = {
 		'0F8A31' : 'OKRUL96',
 		'100661' : 'NOREG',
 		'100E08' : 'NOREG',
+<<<<<<< HEAD
+=======
+		'101100' : 'NOREG',
+		'101101' : 'NOREG',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'10154A' : 'HB-TCP',
 		'102030' : 'PH-1047',
 		'104280' : 'D2254',
@@ -436,8 +479,12 @@ kglid  = {
 		'1102DB' : 'WDP',
 		'1102E5' : 'RonnyS',
 		'1102E7' : 'NOREG',
+<<<<<<< HEAD
 		'1102F0' : 'MMO',
 		'1102F1' : 'Thomas',
+=======
+		'1102F0' : 'MIMO',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'1102F3' : 'Juergen',
 		'1102F7' : 'D-NCDP',
 		'110315' : 'FuFritz',
@@ -447,7 +494,10 @@ kglid  = {
 		'110331' : 'Joggi',
 		'110338' : 'DG0606',
 		'110339' : 'ChDaus',
+<<<<<<< HEAD
 		'11033A' : 'H5Maikl',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'110347' : 'MRU',
 		'110348' : 'PeFr',
 		'110349' : '58402',
@@ -478,7 +528,10 @@ kglid  = {
 		'110406' : '110406',
 		'11043C' : 'Stefan',
 		'11046D' : 'Lewi',
+<<<<<<< HEAD
 		'11046E' : 'NOREG',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'11047F' : 'JoHigh',
 		'110482' : 'Niklas',
 		'110483' : 'Robin_M',
@@ -509,9 +562,13 @@ kglid  = {
 		'11055F' : 'SIGITAS',
 		'110575' : 'Langer',
 		'110579' : 'TOMOTTI',
+		'11057E' : 'SU1792',
 		'110584' : 'Sebi',
 		'110588' : '10093',
+<<<<<<< HEAD
 		'110591' : '56758',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'110594' : 'DETE',
 		'1105A0' : 'Florian',
 		'1105C8' : 'HB54350',
@@ -592,6 +649,7 @@ kglid  = {
 		'11089B' : 'Ziegler',
 		'1108AF' : 'CHM',
 		'1108B9' : '1108B9',
+		'1108BA' : 'SU1792',
 		'1108D0' : 'Zille',
 		'1108F2' : 'Florian',
 		'1108F6' : 'H.L.',
@@ -653,15 +711,21 @@ kglid  = {
 		'110C31' : 'KaPo',
 		'110C3D' : 'TomKrz',
 		'110CE2' : 'nfedera',
+<<<<<<< HEAD
 		'110CF0' : 'PLauber',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'110D1C' : 'Andy',
 		'110D3F' : 'FRG',
 		'110D50' : 'STJE',
 		'110D52' : 'Martin',
 		'110D54' : 'DannyK',
 		'110D5E' : 'Norbert',
+<<<<<<< HEAD
 		'110D69' : '44419',
 		'110D9B' : 'Peda',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'110DA4' : 'Suckert',
 		'110E01' : 'Koertge',
 		'110E05' : 'B_Genz',
@@ -672,8 +736,11 @@ kglid  = {
 		'110E2F' : '56852',
 		'110E37' : '22716',
 		'110E3F' : 'Alex',
+<<<<<<< HEAD
 		'110E48' : 'Patric',
 		'110F62' : 'Jele',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'110FAC' : 'N-DZAC',
 		'110FCB' : 'Helge_M',
 		'110FF0' : 'AKrauss',
@@ -682,7 +749,11 @@ kglid  = {
 		'111019' : 'Stefan',
 		'11103B' : 'Reiner',
 		'11104C' : 'Sandro',
+<<<<<<< HEAD
 		'111051' : 'Flyer',
+=======
+		'111051' : 'Reto',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'111055' : '39580',
 		'111068' : 'Dirk',
 		'11106E' : '53338',
@@ -695,10 +766,15 @@ kglid  = {
 		'1110B2' : 'NOREG',
 		'1110B6' : 'Matthia',
 		'1110CF' : 'Peter',
+<<<<<<< HEAD
 		'1110D0' : '-',
 		'1110D6' : 'Jens',
 		'1110DB' : '713661',
 		'111101' : 'D-9039',
+=======
+		'1110D6' : 'Jens',
+		'1110DB' : '713661',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'111111' : 'FF78UN',
 		'111112' : 'VH-UKO',
 		'111113' : 'VH-GEM',
@@ -725,6 +801,7 @@ kglid  = {
 		'1111D3' : 'RAFPG04',
 		'1111D5' : 'RAFPG05',
 		'1111D9' : 'RAFPG06',
+<<<<<<< HEAD
 		'1111ED' : '32176',
 		'111201' : 'NOREG',
 		'111203' : 'RE',
@@ -732,6 +809,10 @@ kglid  = {
 		'11121A' : 'hema',
 		'11125C' : 'ManuP',
 		'11127D' : 'Gerhard',
+=======
+		'111201' : 'NOREG',
+		'111203' : 'RE',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'111296' : 'RAFPG07',
 		'111297' : 'RAFPG08',
 		'111298' : 'RAFPG09',
@@ -751,11 +832,15 @@ kglid  = {
 		'1112A6' : 'RAFPG23',
 		'1112A7' : 'RAFPG24',
 		'1112A8' : 'RAFPG25',
+<<<<<<< HEAD
 		'1112AA' : 'D-MXXO',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'1112BA' : 'Klaus_R',
 		'1112CF' : 'FrDu',
 		'1112D1' : 'S.H.',
 		'111301' : 'Awesome',
+<<<<<<< HEAD
 		'111329' : 'MMAB',
 		'11136B' : 'Jack',
 		'111380' : 'WeexAir',
@@ -798,6 +883,20 @@ kglid  = {
 		'111936' : 'Volkmar',
 		'111A9F' : 'Amade',
 		'111B20' : 'Hans',
+=======
+		'111329' : 'SHK',
+		'111382' : 'Kucky',
+		'1113A2' : 'Philip',
+		'1113EF' : '53744',
+		'1113FD' : 'Brunth',
+		'1114B9' : 'Gin_C',
+		'1114C1' : 'BrunoS',
+		'111552' : 'NOREG',
+		'11159B' : 'francko',
+		'1115DF' : 'Andreas',
+		'111657' : 'Martin',
+		'11167D' : 'GAEL',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'112233' : 'b14cbcc',
 		'113D07' : 'C-MSC2',
 		'12004B' : 'NOREG',
@@ -814,10 +913,15 @@ kglid  = {
 		'142121' : 'D-EGYX',
 		'145928' : 'OK_3306',
 		'147F7B' : 'Crow187',
+<<<<<<< HEAD
 		'151035' : 'OK-1600',
 		'152316' : 'OM-9604',
 		'155035' : 'OKNUU94',
 		'159470' : 'TARGET1',
+=======
+		'152316' : 'OM-9604',
+		'155035' : 'OKNUU94',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'15BD05' : 'OH-773',
 		'16000A' : 'NOREG',
 		'16000C' : 'NOREG',
@@ -839,7 +943,12 @@ kglid  = {
 		'185373' : 'OKPUL70',
 		'18543B' : 'OK-9916',
 		'189B11' : 'HA-SJF',
+<<<<<<< HEAD
 		'18AD14' : 'OE-RJA',
+=======
+		'18A823' : 'OK-6676',
+		'18AD14' : 'HA-756',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'18B436' : 'HA-1212',
 		'191612' : 'OM-YRA',
 		'193D0D' : '4293',
@@ -865,14 +974,21 @@ kglid  = {
 		'1A5E08' : 'OM-LKG',
 		'1A6B16' : 'D-6943',
 		'1A6D40' : 'LY-GBA',
+<<<<<<< HEAD
 		'1A9566' : 'UR-AVA',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'1AAB5A' : '65-31',
 		'1AB111' : 'OKSUF57',
 		'1ABC51' : 'OK-0696',
 		'1AC83F' : 'OK-1300',
 		'1ADD3D' : 'HA-WRA',
 		'1B242D' : 'OH-325',
+<<<<<<< HEAD
 		'1B2B5A' : 'PPGTEST',
+=======
+		'1B2B5A' : 'NOREG',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'1B4E24' : 'HA-1286',
 		'1B4F4F' : 'OK-4522',
 		'1B545D' : '08-54',
@@ -881,14 +997,22 @@ kglid  = {
 		'1BAD31' : 'viewAir',
 		'1BBA4E' : 'OK-1526',
 		'1C2902' : 'CC-TR21',
+<<<<<<< HEAD
 		'1C2F07' : 'PH-822',
+=======
+		'1C2F07' : 'JD2',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'1C3C12' : 'viewAir',
 		'1C3D54' : 'OK_3422',
 		'1C4170' : 'OM-1501',
 		'1C4230' : 'CC-TR27',
 		'1C590E' : 'CC-TR6',
 		'1C5F5A' : 'OK-2000',
+<<<<<<< HEAD
 		'1C9B19' : 'viewAir',
+=======
+		'1C9B19' : 'VIEWAIR',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'1CA143' : 'OK-6606',
 		'1CA1E1' : 'Teszt',
 		'1CA8D2' : 'OO-ZVF',
@@ -918,7 +1042,11 @@ kglid  = {
 		'1E6B28' : '01-234',
 		'1EBA23' : 'viewAir',
 		'1F1943' : 'JOSTNAP',
+<<<<<<< HEAD
 		'1F3214' : 'OM-5615',
+=======
+		'1F3214' : 'HA-WRA',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'1F3D2A' : 'HA-VOH',
 		'1F4B09' : '08-64',
 		'1F5D14' : 'HA-4544',
@@ -939,7 +1067,11 @@ kglid  = {
 		'20014C' : '35501',
 		'200153' : 'SondreN',
 		'200156' : 'RICD9',
+<<<<<<< HEAD
 		'200164' : 'MicKess',
+=======
+		'200164' : 'MKES211',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'200167' : '9055',
 		'200168' : '49775',
 		'200169' : 'redyell',
@@ -955,17 +1087,25 @@ kglid  = {
 		'2001B4' : 'Thomas',
 		'2001B5' : 'RAFPG99',
 		'2001C5' : 'SR1C5',
+<<<<<<< HEAD
 		'2001D8' : 'AJW',
 		'2001D9' : 'RICHC',
 		'2001DD' : 'NOREG',
 		'2001DE' : 'TobiHue',
 		'2001E1' : 'D-MRPK',
 		'2001E2' : 'NOREG',
+=======
+		'2001D8' : 'Jasper',
+		'2001DD' : 'NOREG',
+		'2001DE' : 'TobiHue',
+		'2001E1' : 'D-MRPK',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'2001E9' : 'DEDE',
 		'2001ED' : 'NOREG',
 		'2001EE' : 'NOREG',
 		'2001FC' : 'TMF',
 		'2001FD' : 'AndyM88',
+<<<<<<< HEAD
 		'200207' : 'BMA',
 		'20020A' : 'Hendrik',
 		'20021C' : '26557',
@@ -977,15 +1117,25 @@ kglid  = {
 		'20025F' : '27342',
 		'200260' : 'RonnyS',
 		'20029A' : '49390',
+=======
+		'20024B' : 'NOREG',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'201726' : 'JoNi',
 		'202725' : 'NOREG',
 		'202948' : 'PETRA41',
 		'202E5D' : 'HA-VOG',
+<<<<<<< HEAD
 		'203023' : 'OK-1990',
 		'203725' : 'OKTUA33',
 		'203D9B' : 'G-DDSH',
 		'204412' : 'OK-2912',
 		'204D5D' : 'JD1',
+=======
+		'203725' : 'OKTUA33',
+		'203D9B' : 'G-DDSH',
+		'204412' : 'OK-2912',
+		'204D5D' : 'PH-822',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'20A808' : 'OK-6839',
 		'20BB09' : 'NOREG',
 		'20CA62' : 'HA-NTD',
@@ -1009,7 +1159,10 @@ kglid  = {
 		'21A904' : 'S5-OBU',
 		'21B5F4' : 'RC-HB2',
 		'21BD1A' : 'FSE-01',
+<<<<<<< HEAD
 		'21F6B7' : 'D-5539',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'222051' : 'HA-5080',
 		'222222' : 'D-5957',
 		'22244E' : 'OK-5349',
@@ -1048,7 +1201,10 @@ kglid  = {
 		'23B157' : 'HA-JOC',
 		'23BF09' : 'LY-GJU',
 		'23BF30' : 'JU-GJU',
+<<<<<<< HEAD
 		'23EB0F' : 'G-CHME',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'240516' : 'FCEED',
 		'243C29' : 'LKZN02',
 		'243F24' : 'NOREG',
@@ -1057,6 +1213,7 @@ kglid  = {
 		'245913' : 'OK-2029',
 		'24623D' : 'OM-8517',
 		'2466CF' : 'D-KJHL',
+<<<<<<< HEAD
 		'249E3C' : 'NOREG',
 		'24A45C' : 'D-MMUH',
 		'24A538' : 'NOREG',
@@ -1064,6 +1221,12 @@ kglid  = {
 		'24A6BC' : 'SP-2772',
 		'24A744' : 'D-MHKF',
 		'24A8C0' : 'SP-3396',
+=======
+		'24A45C' : 'D-MMUH',
+		'24A538' : 'NOREG',
+		'24A6A8' : 'SP-TVG',
+		'24A744' : 'D-MHKF',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'24A8F0' : 'NOREG',
 		'24CA48' : 'HA-DLF',
 		'24D726' : 'KSK',
@@ -1094,6 +1257,7 @@ kglid  = {
 		'25732C' : 'HA-4205',
 		'259A39' : 'OM-MQC',
 		'259F2A' : 'LY-GBI',
+<<<<<<< HEAD
 		'25A304' : 'OE-AOC',
 		'25A348' : 'NOREG',
 		'25A430' : 'CC-OM1',
@@ -1110,6 +1274,12 @@ kglid  = {
 		'25A9C8' : 'OK-KLPC',
 		'25A9DC' : 'NOREG',
 		'25AA00' : 'NOREG',
+=======
+		'25A82C' : 'G-BDFY',
+		'25A8C0' : 'OK-8168',
+		'25A9C8' : 'OK-KLPC',
+		'25A9DC' : '797t2',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'25AA14' : 'D-MHKF',
 		'25AB3C' : 'HA-SKE',
 		'25BA5F' : 'FC001',
@@ -1130,7 +1300,11 @@ kglid  = {
 		'266F13' : 'HA-1291',
 		'26A031' : 'OM-0509',
 		'26A74C' : 'OKYUL02',
+<<<<<<< HEAD
 		'26B053' : 'CC-CBV',
+=======
+		'26B053' : 'CC-TR29',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'26B50D' : 'HA-BAE',
 		'26BA16' : 'BREB',
 		'26CC5B' : 'LY-GBM',
@@ -1283,7 +1457,7 @@ kglid  = {
 		'2E530F' : 'OM-OLD2',
 		'2E5A11' : 'viewAir',
 		'2E5E18' : 'OK-1730',
-		'2E6E26' : 'OK-0817',
+		'2E6E26' : 'OK-5977',
 		'2E6F33' : 'OK-5100',
 		'2E8DAB' : 'N67WS',
 		'2EA011' : 'OM-FAN',
@@ -1300,7 +1474,11 @@ kglid  = {
 		'2F3349' : 'AZM-1',
 		'2F4A4F' : '62-13',
 		'2F4C08' : 'OKWUV66',
+<<<<<<< HEAD
 		'2F4C13' : 'OK-8441',
+=======
+		'2F4C13' : 'OK-8002',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'2F4E39' : 'PETRA18',
 		'2F4F45' : 'OK-MFO',
 		'2F5C13' : 'OK-1193',
@@ -1335,11 +1513,19 @@ kglid  = {
 		'30DC2D' : 'viewAir',
 		'30DF3B' : 'OH-U674',
 		'312712' : 'SP-',
+<<<<<<< HEAD
 		'312910' : 'OE-RZU',
+=======
+		'312910' : 'HA-915',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'312B5B' : 'viewAir',
 		'312E36' : 'OH-OMG',
 		'313115' : 'LY-GBK',
 		'313825' : 'OK-1100',
+<<<<<<< HEAD
+=======
+		'313D40' : 'D-KKKC',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'314A35' : 'OK-9608',
 		'316550' : 'C-GDXT',
 		'316E2E' : 'METEO2',
@@ -1359,8 +1545,13 @@ kglid  = {
 		'3225C5' : 'viewAir',
 		'323158' : 'I-C066',
 		'323911' : 'LY-GBF',
+<<<<<<< HEAD
 		'325E59' : 'viewAir',
 		'32A739' : 'G-KENR',
+=======
+		'325E59' : 'HA-913',
+		'32A739' : 'D-OFPW',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'32C849' : 'OK-KMP',
 		'32CE64' : 'OK-5616',
 		'32DA1D' : 'OM-4701',
@@ -1390,7 +1581,10 @@ kglid  = {
 		'34563B' : 'OK-9615',
 		'345E10' : 'OKOUY05',
 		'34A86F' : 'NOREG',
+<<<<<<< HEAD
 		'34B113' : 'HA-KYC',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'34B176' : 'NOREG',
 		'34B202' : 'TEST1',
 		'34C016' : '82-15',
@@ -1403,7 +1597,11 @@ kglid  = {
 		'35431F' : 'LV-ERN',
 		'354D15' : 'viewAir',
 		'354E0B' : '9711',
+<<<<<<< HEAD
 		'35720E' : 'HA-756',
+=======
+		'35720E' : 'HA-724',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'358979' : 'OK-2732',
 		'359698' : 'g-dear',
 		'359C45' : 'EC-AC3',
@@ -1414,7 +1612,10 @@ kglid  = {
 		'35B448' : '54-20',
 		'35B55B' : 'OK-9107',
 		'35BA29' : 'METEO4',
+<<<<<<< HEAD
 		'35C7CB' : 'D-5539',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'35CD1E' : 'OM-FOX1',
 		'362339' : 'OK-6504',
 		'362576' : 'FFVP0',
@@ -1494,14 +1695,20 @@ kglid  = {
 		'38C6FB' : 'F-CZCX',
 		'38CB1C' : 'F-JRYJ',
 		'38CB56' : 'LY-GHY',
+<<<<<<< HEAD
 		'38D99B' : 'NOREG',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'38D9BB' : 'NOREG',
 		'38D9DB' : 'NOREG',
 		'38D9FB' : 'NOREG',
 		'38DADB' : 'NOREG',
 		'38DBBB' : 'NOREG',
 		'38DE3E' : 'NOREG',
+<<<<<<< HEAD
 		'38E81C' : 'F-JDYM',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'38E8DB' : 'F-CGVS',
 		'38E9BB' : 'F-CMHN',
 		'38EE3B' : 'NOREG',
@@ -1510,6 +1717,10 @@ kglid  = {
 		'38F25B' : 'F-CJEK',
 		'38F25F' : 'F-CJEK',
 		'38F27B' : 'F-CJED',
+<<<<<<< HEAD
+=======
+		'38F35B' : 'NOREG',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'39035B' : 'F-CHUG',
 		'3903DB' : 'F-CBEU',
 		'3903FB' : 'F-CFEY',
@@ -1529,6 +1740,13 @@ kglid  = {
 		'39255B' : 'F-CFDY',
 		'392631' : 'D-2247',
 		'39284C' : 'N11843',
+<<<<<<< HEAD
+=======
+		'3929DB' : 'F-CHKS',
+		'392A1B' : 'F-CGNN',
+		'392A3B' : 'F-CGTS',
+		'392A7B' : 'F-CGOD',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'392A9B' : 'F-CGCI',
 		'3930DC' : '25AAV',
 		'393820' : 'F-GOBA',
@@ -1557,13 +1775,20 @@ kglid  = {
 		'39A022' : 'OK-DVG',
 		'39AA1C' : '27AEA',
 		'39B124' : '2916',
+<<<<<<< HEAD
 		'39B494' : 'F-HNEU',
 		'39B580' : 'F-HNMA',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'39BA7B' : 'OK-5232',
 		'39C738' : 'viewAir',
 		'39CD98' : 'F-HTMY',
 		'39D279' : 'OM-EOV',
 		'39D6E4' : 'F-HVXE',
+<<<<<<< HEAD
+=======
+		'39D9FB' : 'NOREG',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'39E6FC' : 'F-JCUY',
 		'39F05C' : 'F-JDPY',
 		'3A027C' : 'F-JYNU',
@@ -1577,15 +1802,25 @@ kglid  = {
 		'3A3B1A' : 'viewAir',
 		'3A3E09' : 'OM-7480',
 		'3A432A' : 'HA-SLW',
+<<<<<<< HEAD
 		'3A4A31' : 'OK-0715',
 		'3A4A37' : 'D-KGAA',
+=======
+		'3A4A31' : 'HA-886',
+		'3A4A37' : 'HA-1300',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3A4C12' : 'HA-4484',
 		'3A5C10' : 'OK-MFY',
 		'3A5E4B' : 'viewAir',
 		'3A5F2B' : 'LKPN_3',
 		'3AA987' : 'D-KPAM',
 		'3AB85A' : 'viewAir',
+<<<<<<< HEAD
 		'3AD90D' : 'TAHIPPG',
+=======
+		'3AD315' : 'F-CJPG',
+		'3AD90D' : '3149646',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3B06F3' : 'HB-CQL',
 		'3B1E27' : 'OK-1368',
 		'3B223D' : 'HA-TUR',
@@ -1645,7 +1880,10 @@ kglid  = {
 		'3D0914' : 'D-EBRO',
 		'3D0929' : 'D-EBSJ',
 		'3D0930' : 'D-EBSQ',
+<<<<<<< HEAD
 		'3D097F' : 'D-EBVR',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3D099D' : 'WV',
 		'3D09F9' : 'D-ECAJ',
 		'3D0A69' : 'D-ECER',
@@ -1666,7 +1904,10 @@ kglid  = {
 		'3D0E9F' : '3D0E9F',
 		'3D0EAC' : 'D-ELGI',
 		'3D0EE0' : 'D-EDWQ',
+<<<<<<< HEAD
 		'3D0EE4' : 'D-EDWU',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3D0F3E' : 'D-EEAG',
 		'3D0FA6' : 'D-EEEG',
 		'3D0FCA' : 'D-EEFQ',
@@ -1674,7 +1915,10 @@ kglid  = {
 		'3D1008' : 'D-EEIA',
 		'3D104D' : 'D-EEKR',
 		'3D1063' : 'D-EELN',
+<<<<<<< HEAD
 		'3D108D' : 'D-EEND',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3D10B9' : 'D-EEOV',
 		'3D10FE' : 'D-EERM',
 		'3D1114' : 'D-EESI',
@@ -1698,7 +1942,10 @@ kglid  = {
 		'3D146C' : 'D-EFZG',
 		'3D14A1' : 'D-EGBH',
 		'3D14BA' : 'D-EGCG',
+<<<<<<< HEAD
 		'3D1543' : 'DEGHN',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3D1544' : 'D-EGHO',
 		'3D1569' : 'D-EGIZ',
 		'3D15A3' : 'D-EGLF',
@@ -1735,6 +1982,7 @@ kglid  = {
 		'3D1CD7' : 'D-EJED',
 		'3D1CF3' : 'D-EJFF',
 		'3D1D38' : 'D-EJHW',
+		'3D1D49' : 'D-EJIN',
 		'3D1D5B' : 'D-EJJF',
 		'3D1F63' : 'D-EKDF',
 		'3D1F64' : 'D-EKDG',
@@ -1828,8 +2076,12 @@ kglid  = {
 		'3D43ED' : 'D-EXYZ',
 		'3D4562' : 'D-EYLA',
 		'3D45F4' : 'D-EYSY',
+<<<<<<< HEAD
 		'3D46C7' : 'NOREG',
 		'3D471C' : 'D-EZEI',
+=======
+		'3D46C7' : 'D-EZBB',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3D476D' : 'D-EZHL',
 		'3D4F14' : 'OM-IFE',
 		'3D542D' : 'HA-ERF',
@@ -1885,7 +2137,10 @@ kglid  = {
 		'3DDC5C' : 'D-HDRW',
 		'3DDC5E' : 'D-HDRY',
 		'3DDC65' : 'D-HDSF',
+<<<<<<< HEAD
 		'3DDC66' : 'D-HDSG',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3DDC6D' : 'D-HDSN',
 		'3DDC73' : 'D-HDST',
 		'3DDD69' : 'D-HECF',
@@ -2056,17 +2311,26 @@ kglid  = {
 		'3E644F' : 'D-KDEL',
 		'3E6468' : 'D-KDFK',
 		'3E6496' : 'D-KDHE',
+<<<<<<< HEAD
 		'3E64AC' : 'D-KDIA',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3E64C3' : 'D-KXDX',
 		'3E64F1' : 'D-KDKR',
 		'3E64FA' : 'D-KDLA',
 		'3E64FE' : 'D-KDLE',
 		'3E6512' : 'D-KDLY',
+<<<<<<< HEAD
 		'3E6515' : 'D-KDMB',
 		'3E651D' : 'D-KDMJ',
 		'3E6554' : 'D-KDOM',
 		'3E6577' : 'D-KDPV',
 		'3E658E' : 'D-KDRS',
+=======
+		'3E651D' : 'D-KDMJ',
+		'3E6554' : 'D-KDOM',
+		'3E6577' : 'D-KDPV',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3E65B3' : 'D-KDSD',
 		'3E65C2' : 'SS',
 		'3E65D6' : 'D-KDTM',
@@ -2104,7 +2368,11 @@ kglid  = {
 		'3E6A03' : 'D-KFIP',
 		'3E6A20' : 'D-KFJS',
 		'3E6A5D' : 'D-KFMB',
+<<<<<<< HEAD
 		'3E6ADF' : 'D_KFRB',
+=======
+		'3E6ADF' : 'NOREG',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3E6B02' : 'D-KFSK',
 		'3E6B12' : 'D-KFTA',
 		'3E6BC9' : 'D-KGAB',
@@ -2114,6 +2382,10 @@ kglid  = {
 		'3E6BE8' : 'D-KGBG',
 		'3E6C1D' : 'D-KGDH',
 		'3E6C5D' : 'FT',
+<<<<<<< HEAD
+=======
+		'3E6CAC' : 'D-KGIU',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3E6CF1' : 'D-KGLL',
 		'3E6D03' : 'D-KGMD',
 		'3E6D12' : 'D-KGMS',
@@ -2128,7 +2400,10 @@ kglid  = {
 		'3E6DF6' : 'D-KGVM',
 		'3E6DFC' : 'NOREG',
 		'3E6E0B' : 'D-KGWH',
+<<<<<<< HEAD
 		'3E6E93' : 'D-KHBN',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3E6EC1' : 'D-KHDH',
 		'3E6EDF' : 'D-KHEL',
 		'3E6EEF' : 'D-KHFB',
@@ -2144,7 +2419,10 @@ kglid  = {
 		'3E717E' : 'D-KIEG',
 		'3E7181' : 'D-KIEJ',
 		'3E7186' : 'D-KIEO',
+<<<<<<< HEAD
 		'3E71AE' : 'D-KIGC',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3E71B5' : 'D-1796',
 		'3E71B6' : 'D-1055',
 		'3E71D1' : 'D-KIHL',
@@ -2157,7 +2435,10 @@ kglid  = {
 		'3E72E5' : 'D-KISB',
 		'3E7327' : 'D-XXUP',
 		'3E732B' : 'D-KIUT',
+<<<<<<< HEAD
 		'3E733F' : 'D-KIVN',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3E7355' : 'D-KIWJ',
 		'3E7362' : 'D-KIWW',
 		'3E73D4' : 'D-KJBG',
@@ -2172,7 +2453,10 @@ kglid  = {
 		'3E7540' : 'D-KJPG',
 		'3E7545' : 'D-KJPL',
 		'3E7590' : 'D-KJSI',
+<<<<<<< HEAD
 		'3E7607' : 'D-KJWX',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3E7659' : 'D-KKAB',
 		'3E765B' : 'D-KKAD',
 		'3E7665' : 'D-KKAN',
@@ -2191,12 +2475,19 @@ kglid  = {
 		'3E7728' : 'D-KKIA',
 		'3E7733' : 'D-KKIL',
 		'3E773A' : 'D-KKIS',
+<<<<<<< HEAD
+=======
+		'3E779E' : 'D-KKMO',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3E781A' : 'D-KKRI',
 		'3E783F' : 'D-KKST',
 		'3E7841' : 'D-KKSV',
 		'3E788F' : 'D-KKVV',
 		'3E789C' : 'D-KKWI',
+<<<<<<< HEAD
 		'3E78FF' : 'D-KLAD',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3E7942' : 'D-KLCS',
 		'3E7951' : 'D-KLDH',
 		'3E7972' : 'D-KLEO',
@@ -2281,7 +2572,11 @@ kglid  = {
 		'3EC8DF' : 'D-KRAL',
 		'3EC8EE' : 'D-KRBA',
 		'3EC931' : 'D-KRDP',
+<<<<<<< HEAD
 		'3EC949' : 'NOREG',
+=======
+		'3EC949' : 'D-KREN',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3EC9CF' : 'D-KRJR',
 		'3EC9F2' : 'D-KRLA',
 		'3ECA6A' : 'D-KRPK',
@@ -2335,11 +2630,17 @@ kglid  = {
 		'3ED3DE' : 'D-KVES',
 		'3ED43C' : 'D-KVII',
 		'3ED494' : 'D-KVLS',
+<<<<<<< HEAD
 		'3ED4F0' : 'D-KVPG',
 		'3ED542' : 'D-KVSK',
 		'3ED565' : 'D-KVTT',
 		'3ED5B1' : 'D-KVWR',
 		'3ED5ED' : 'D-KVYZ',
+=======
+		'3ED542' : 'D-KVSK',
+		'3ED565' : 'D-KVTT',
+		'3ED5B1' : 'D-KVWR',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3ED608' : 'D-KWAA',
 		'3ED60F' : 'AH',
 		'3ED6A0' : 'D-KWFW',
@@ -2448,7 +2749,10 @@ kglid  = {
 		'3EFD3C' : 'D-7333',
 		'3EFD5D' : 'D-7366',
 		'3EFDA3' : 'D-7436',
+<<<<<<< HEAD
 		'3EFDC3' : 'D-7468',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3EFDF7' : 'D-7520',
 		'3EFE1A' : 'D-7555',
 		'3EFE8F' : 'D-7672',
@@ -2520,6 +2824,7 @@ kglid  = {
 		'3FEB2C' : 'D-MFSV',
 		'3FEB50' : 'D-MASV',
 		'3FEBBF' : 'D-MZPF',
+		'3FEBE6' : 'D-MKEF',
 		'3FEBFF' : 'DMSCE',
 		'3FEC21' : 'D-MCSD',
 		'3FEC3C' : 'D-MPUD',
@@ -2588,7 +2893,10 @@ kglid  = {
 		'3FF398' : 'D-MGMW',
 		'3FF3A5' : 'D-MFMO',
 		'3FF3BC' : 'D-MABW',
+<<<<<<< HEAD
 		'3FF3C5' : 'D-MBLM',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3FF3C7' : 'D-MOSR',
 		'3FF3CA' : 'D-MHSF',
 		'3FF3ED' : 'D-MLRP',
@@ -2596,7 +2904,10 @@ kglid  = {
 		'3FF40B' : 'D-MMCK',
 		'3FF435' : 'D-MDWB',
 		'3FF43C' : 'D-MHDF',
+<<<<<<< HEAD
 		'3FF447' : 'D-MRFX',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'3FF449' : 'D-MJXC',
 		'3FF467' : 'D-MVEN',
 		'3FF46A' : 'D-MEFU',
@@ -2975,6 +3286,7 @@ kglid  = {
 		'405597' : 'G-VEGA',
 		'40559F' : 'F-CLSP',
 		'4055A4' : 'G-DFAF',
+		'4055B5' : 'NOREG',
 		'4055E0' : 'G-OZOZ',
 		'4055E2' : 'G-CKFN',
 		'4055E9' : 'G-CJZZ',
@@ -3021,7 +3333,10 @@ kglid  = {
 		'4057B7' : 'NOREG',
 		'4057D6' : 'G-DEHT',
 		'4057E9' : 'G-CHMX',
+<<<<<<< HEAD
 		'405806' : 'G-CJGL',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'40580D' : 'G-CGTO',
 		'405811' : 'G-CHEF',
 		'405817' : 'G-CKCZ',
@@ -3030,6 +3345,10 @@ kglid  = {
 		'405848' : 'G-CGCU',
 		'405851' : 'G-CHDX',
 		'405853' : 'G-DEXA',
+<<<<<<< HEAD
+=======
+		'405855' : 'G-DHTG',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'405870' : 'G-CHGG',
 		'405879' : 'G-CHDE',
 		'40587F' : 'G-CFLH',
@@ -3079,7 +3398,6 @@ kglid  = {
 		'405B20' : 'G-CJNB',
 		'405B37' : 'G-CKEJ',
 		'405B47' : 'G-EEBL',
-		'405B59' : 'G-CHMV',
 		'405B5F' : 'G-CJOZ',
 		'405B61' : 'D-KDPF',
 		'405B7A' : 'G-DEKF',
@@ -3088,6 +3406,7 @@ kglid  = {
 		'405BB8' : 'G-FLUZ',
 		'405BC0' : 'GCKSD',
 		'405BC7' : 'G-DEAE',
+		'405BCB' : 'NOREG',
 		'405C02' : 'G-DRAT',
 		'405C15' : 'G-CHZB',
 		'405C16' : 'G-DCCM',
@@ -3176,7 +3495,10 @@ kglid  = {
 		'40659B' : 'G-TTGV',
 		'40659E' : 'G-HMCE',
 		'4065B1' : 'G-CJBZ',
+<<<<<<< HEAD
 		'4065D3' : 'G-NORK',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'406636' : 'G-CGXW',
 		'406654' : 'G-JKRV',
 		'406667' : 'D-KBSM',
@@ -3217,6 +3539,10 @@ kglid  = {
 		'406C4F' : 'G-PWAL',
 		'406C50' : 'G-HMCF',
 		'406CCD' : 'G-LARD',
+<<<<<<< HEAD
+=======
+		'406CE9' : 'G-CINM',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'406CFD' : 'G-CINO',
 		'406CFF' : 'G-CIKH',
 		'406D30' : 'G-CILB',
@@ -3280,8 +3606,11 @@ kglid  = {
 		'4076C8' : 'G-ICEL',
 		'4076CA' : 'G-OSGC',
 		'40777B' : 'G-KEMJ',
+<<<<<<< HEAD
 		'407810' : 'G-CLEZ',
 		'40FC36' : 'YL-025',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'410047' : 'OK-0739',
 		'413278' : 'CAPLEE',
 		'414931' : 'OK-8522',
@@ -3293,7 +3622,11 @@ kglid  = {
 		'41FF36' : 'HA-SKS',
 		'42454E' : 'BENI-M',
 		'425107' : 'NOREG',
+<<<<<<< HEAD
 		'42BB32' : '438',
+=======
+		'42BB32' : '0732',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'42E630' : '52',
 		'430506' : 'PETRA77',
 		'430840' : 'NOREG',
@@ -3366,7 +3699,10 @@ kglid  = {
 		'44054B' : 'OE-XHI',
 		'440559' : 'OE-ABV',
 		'44058D' : 'OE-XHL',
+<<<<<<< HEAD
 		'440597' : 'OE-XPE',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'4405C0' : 'OE-CCM',
 		'4405F7' : 'OE-CCC',
 		'440628' : 'OE-XLG',
@@ -3487,6 +3823,7 @@ kglid  = {
 		'46903A' : 'D-KWAG',
 		'46A231' : 'TP',
 		'46F631' : 'Phant4',
+		'474400' : 'G-CHME',
 		'477FB5' : '477FB5',
 		'477FB6' : '477FB6',
 		'478405' : 'H_705',
@@ -3595,6 +3932,7 @@ kglid  = {
 		'4848E3' : 'PH-1171',
 		'4848E5' : 'PH-1278',
 		'484900' : 'NOREG',
+		'484903' : 'NOREG',
 		'484911' : 'PH-847',
 		'484912' : 'PH-888',
 		'484913' : 'PH-977',
@@ -3743,7 +4081,11 @@ kglid  = {
 		'484F1E' : 'PH-1479',
 		'484F29' : 'PH-1482',
 		'484F45' : 'PH-1480',
+<<<<<<< HEAD
 		'484F5C' : 'PH1487',
+=======
+		'484F5C' : 'unknown',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'484F68' : 'PH-1491',
 		'484F6F' : 'PH-832',
 		'484F81' : 'PH-1496',
@@ -3844,7 +4186,11 @@ kglid  = {
 		'48FC41' : 'SP-SFCB',
 		'48FDC0' : 'SP-XBOA',
 		'48FF2F' : 'LEGT003',
+<<<<<<< HEAD
 		'490544' : 'viewAir',
+=======
+		'490544' : 'VIEWAIR',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'49510B' : 'OK-3254',
 		'495246' : '48-24',
 		'4958C8' : 'PH-1602',
@@ -3854,6 +4200,10 @@ kglid  = {
 		'49C056' : 'OKKUU62',
 		'49D15A' : 'OK-SVO',
 		'49D433' : 'OK-MLD',
+<<<<<<< HEAD
+=======
+		'49E1A4' : 'F-CHLC',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'4A1E13' : 'OKPUR07',
 		'4A26E7' : 'D-4418',
 		'4A6A19' : 'HA-5076',
@@ -3861,7 +4211,11 @@ kglid  = {
 		'4A972C' : 'SE-EYL',
 		'4A9ADA' : 'SE-FVZ',
 		'4AA46C' : 'SE-ICL',
+<<<<<<< HEAD
 		'4AAB4B' : '699',
+=======
+		'4AAB4B' : '0751',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'4AADF2' : 'SE-KOR',
 		'4AB28B' : 'SE-LTK',
 		'4AB455' : 'SE-MBU',
@@ -4331,7 +4685,10 @@ kglid  = {
 		'4B444D' : 'HB-ZWN',
 		'4B4451' : 'HB-ZWR',
 		'4B4453' : 'HB-ZWT',
+<<<<<<< HEAD
 		'4B4476' : 'HB-ZYC',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'4B4480' : 'HB-ZYM',
 		'4B4487' : 'HB-ZYT',
 		'4B448C' : 'HB-ZYY',
@@ -4369,7 +4726,10 @@ kglid  = {
 		'4B4ADE' : 'HB-1591',
 		'4B4AE2' : 'HB-1595',
 		'4B4AFD' : 'HB-1622',
+<<<<<<< HEAD
 		'4B4AFE' : 'OK-1623',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'4B4B05' : 'HB-1630',
 		'4B4B07' : 'HB-1632',
 		'4B4B08' : 'D-1639',
@@ -4437,7 +4797,11 @@ kglid  = {
 		'4B4C76' : 'HB1999',
 		'4B4C98' : 'HB-2033',
 		'4B4CBB' : 'HB-2068',
+<<<<<<< HEAD
 		'4B4CBD' : 'HB-2070',
+=======
+		'4B4CBD' : 'HB2070',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'4B4CCA' : 'HB-2083',
 		'4B4CCB' : 'HB-2084',
 		'4B4CCE' : 'HB2087',
@@ -4572,7 +4936,10 @@ kglid  = {
 		'4B50CF' : 'HB-3112',
 		'4B50D4' : 'HB-3117',
 		'4B50D9' : 'HB-3122',
+<<<<<<< HEAD
 		'4B50DE' : 'HB3127',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'4B50E0' : 'HB-3129',
 		'4B50E2' : 'HB-3131',
 		'4B50E3' : 'HY',
@@ -4745,10 +5112,16 @@ kglid  = {
 		'4CAA7C' : 'EC-MZU',
 		'4CB3DF' : 'PK-X006',
 		'4CBF04' : 'PK-X005',
+<<<<<<< HEAD
 		'4D02E5' : 'LX-WOW',
 		'4D5142' : 'PETRA45',
 		'4D6128' : 'OK-7501',
 		'4E9513' : 'SO',
+=======
+		'4D5142' : 'PETRA45',
+		'4D6128' : 'OK-7501',
+		'4E9513' : '0063',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'4E9A6A' : 'MS-427',
 		'4EF56E' : 'LEGT002',
 		'4EF801' : 'RICHC',
@@ -4804,9 +5177,15 @@ kglid  = {
 		'58FA60' : '65-19',
 		'595031' : 'HA-5038',
 		'596600' : 'OK-5116',
+<<<<<<< HEAD
 		'598657' : 'ES-2009',
 		'599520' : 'EPPT',
 		'59BEFC' : 'INO-013',
+=======
+		'599520' : 'NOREG',
+		'59BEFC' : 'INO-013',
+		'5A0833' : 'D-5271',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'5A0F01' : 'MAV2',
 		'5A2763' : 'LY-ZBM',
 		'5A700C' : 'HA-1296',
@@ -4814,12 +5193,20 @@ kglid  = {
 		'5AB23C' : 'OE-5651',
 		'5AC0B8' : 'SP-POZ',
 		'5AC0D4' : 'SP-UTB',
+<<<<<<< HEAD
 		'5AC13C' : 'NOREG',
+=======
+		'5AC13C' : 'OK-KNI',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'5AC148' : 'NOREG',
 		'5AC1A4' : 'NOREG',
 		'5AC1C4' : 'G-DDTG',
 		'5AC494' : 'SP-FZX',
+<<<<<<< HEAD
 		'5AC4C4' : 'SP-FZV',
+=======
+		'5AC4C4' : 'SP-KMB',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'5AEB3A' : 'HA-5560',
 		'5AFE4A' : 'AS',
 		'5B417A' : 'NOREG',
@@ -4842,15 +5229,23 @@ kglid  = {
 		'5C8B04' : 'H_704',
 		'5CAA35' : 'EN',
 		'5CBB21' : 'HA-BFE',
+<<<<<<< HEAD
 		'5CFF35' : 'EN',
 		'5D0A37' : '48-73',
 		'5D2152' : 'UR-AVA',
+=======
+		'5CFF35' : '20438',
+		'5D0A37' : '48-73',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'5D4348' : 'OK-7304',
 		'5D5630' : '05-61',
 		'5D8532' : 'HB-WZN',
 		'5DF731' : 'I',
 		'5DFC49' : 'YA',
+<<<<<<< HEAD
 		'5DFD53' : 'D-OKBQ',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'5E1240' : 'NOREG',
 		'5E2B2E' : 'HAJAJ',
 		'5E5CCC' : 'D-KAIM',
@@ -4891,8 +5286,11 @@ kglid  = {
 		'64020A' : 'NOREG',
 		'64020B' : 'Dima_T.',
 		'64020C' : 'Olya_B.',
+<<<<<<< HEAD
 		'64020D' : 'ALC_2D',
 		'64020E' : 'Evgeny',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'641234' : 'RICHC',
 		'642323' : 'SEBTEST',
 		'642610' : 'ALEXKEN',
@@ -4903,7 +5301,11 @@ kglid  = {
 		'649915' : 'F-CHAT',
 		'666666' : 'NOREG',
 		'67B105' : 'JB',
+<<<<<<< HEAD
 		'6846C0' : 'PH-312',
+=======
+		'6846C0' : 'JD3',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'688F4C' : 'PH-1085',
 		'699026' : 'HA-LIX',
 		'6B1511' : 'OE-66P1',
@@ -4932,7 +5334,10 @@ kglid  = {
 		'759147' : 'METEO3',
 		'771409' : 'NOREG',
 		'786211' : '6098',
+<<<<<<< HEAD
 		'786C33' : 'NOREG',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'792864' : 'NOREG',
 		'7938F2' : '1234',
 		'7A1B27' : 'HATRM',
@@ -4981,9 +5386,13 @@ kglid  = {
 		'7E074F' : 'OK-5550',
 		'7E5032' : 'G-PAWZ',
 		'7E93C4' : 'TK',
+<<<<<<< HEAD
 		'7EAB41' : '84',
 		'7EB43A' : 'ES-2009',
 		'800000' : 'HA-4495',
+=======
+		'7EAB41' : '0112',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'801012' : 'NOREG',
 		'811133' : 'HA-1133',
 		'815484' : 'OK-GIB',
@@ -5015,16 +5424,24 @@ kglid  = {
 		'88BFF4' : 'G-OTWS',
 		'88C08C' : 'G-BDGB',
 		'88C0B0' : 'OM-M682',
+<<<<<<< HEAD
 		'88C100' : '_88C',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'88C1F4' : 'CC-KWB',
 		'88C4B8' : 'N101GM',
 		'88C9E8' : 'OK-6556',
 		'88CD3E' : 'OKOUU34',
 		'88E1F8' : 'EC-ACJ',
 		'88E208' : 'SGP-19',
+<<<<<<< HEAD
 		'88E210' : 'EC-G2X',
 		'88E23C' : 'EC-ACK',
 		'88E240' : 'SP-THE',
+=======
+		'88E23C' : 'EC-ACK',
+		'88E240' : 'TBEAM',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'896021' : 'PK-X003',
 		'898910' : 'S5-3101',
 		'89F801' : 'G-CSG1',
@@ -5043,7 +5460,11 @@ kglid  = {
 		'8C1589' : 'OKWAR17',
 		'8C1779' : 'OK-3122',
 		'8C29D9' : 'G-DDJX',
+<<<<<<< HEAD
 		'8C2C25' : 'NOREG',
+=======
+		'8C2C25' : 'G-CHFH',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'8C2D45' : 'BNM',
 		'8D0000' : 'V-18',
 		'8DDEC0' : 'INO-004',
@@ -5123,6 +5544,7 @@ kglid  = {
 		'A1293A' : 'N174NE',
 		'A12CE0' : 'Matter',
 		'A134CF' : 'N177SS',
+<<<<<<< HEAD
 		'A13F67' : 'N18MA',
 		'A146F3' : 'N1811W',
 		'A14D93' : 'N183U',
@@ -5131,6 +5553,12 @@ kglid  = {
 		'A18BF4' : 'N1990B',
 		'A19032' : 'HB-WGH',
 		'A190E8' : 'N20NT',
+=======
+		'A146F3' : 'N1811W',
+		'A15816' : 'Matter',
+		'A182DD' : 'N197HB',
+		'A18BF4' : 'N1990B',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'A1C504' : 'N213DT',
 		'A1CDAD' : 'N215SH',
 		'A1D4A3' : 'Matter',
@@ -5246,18 +5674,25 @@ kglid  = {
 		'B600CC' : 'G-DDTW',
 		'B60144' : 'OKGUA14',
 		'B603C8' : 'B603C8',
+<<<<<<< HEAD
 		'B603F8' : 'OK4506',
 		'B60438' : 'N284BM',
 		'B60488' : 'PH-IBL',
 		'B604B0' : 'OKJUU18',
 		'B604C4' : 'FR1',
 		'B60710' : 'ZARA01',
+=======
+		'B60438' : 'N284BM',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'B60868' : 'OY-XZN',
 		'B60B90' : 'INO-010',
 		'B60D78' : 'SGP-13',
 		'B60D94' : 'SGP-12',
 		'B60DA0' : 'SGP-06',
+<<<<<<< HEAD
 		'B60DB8' : 'OKPUO75',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'B60DDC' : 'SGP-18',
 		'B60E18' : 'SGP-15',
 		'B60E1C' : 'SGP-02',
@@ -5268,8 +5703,12 @@ kglid  = {
 		'B60E94' : 'SGP-10',
 		'B60EDC' : 'SGP-14',
 		'B60F50' : 'SGP-03',
+<<<<<<< HEAD
 		'B60F74' : 'SP-2992',
 		'B60FB0' : 'OK7706',
+=======
+		'B60F74' : 'SP-3162',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'B60FC0' : 'INO-012',
 		'B60FE4' : 'SGP-11',
 		'B61004' : 'SGP-04',
@@ -5294,7 +5733,11 @@ kglid  = {
 		'B99FC4' : 'G-DDTX',
 		'B9A014' : 'OK-6221',
 		'B9A028' : 'OK-JST',
+<<<<<<< HEAD
 		'B9A030' : 'OKGUU40',
+=======
+		'B9A030' : 'OK-0376',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'B9A060' : 'OKIUD01',
 		'B9A06C' : 'OK-9688',
 		'B9A0B8' : 'OK-0501',
@@ -5304,7 +5747,11 @@ kglid  = {
 		'B9A244' : 'SGP-05',
 		'B9A2B8' : 'NOREG',
 		'B9A2C0' : 'SGP-01',
+<<<<<<< HEAD
 		'BAABAA' : 'NOREG',
+=======
+		'BAABAA' : 'gobbo',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'BAB501' : 'BABS-M',
 		'BABE18' : 'HA5002',
 		'BABE69' : 'Delta',
@@ -5334,7 +5781,11 @@ kglid  = {
 		'C00C38' : 'C-FEQH',
 		'C00C6D' : 'C-FESI',
 		'C00CC5' : 'C-FEVS',
+<<<<<<< HEAD
 		'C0109A' : 'C-FLSC',
+=======
+		'C0109A' : 'C-FGHL',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'C010CD' : 'C-FGJK',
 		'C01106' : 'NOREG',
 		'C01163' : 'C-FGPE',
@@ -5408,7 +5859,10 @@ kglid  = {
 		'C05FF1' : 'NOREG',
 		'C06037' : 'C-GKLI',
 		'C06092' : 'C-GKOV',
+<<<<<<< HEAD
 		'C060F8' : 'C-GKST',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'C06170' : 'C-GKXJ',
 		'C0621C' : 'C-GLDZ',
 		'C06253' : 'C-GLGC',
@@ -5452,13 +5906,19 @@ kglid  = {
 		'C1FF2B' : 'VM',
 		'C25128' : 'C25128',
 		'C3B05C' : 'F-CLEF',
+<<<<<<< HEAD
 		'C3FC28' : '33',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'C42264' : 'EC-ACF',
 		'C423BC' : 'EC-ACM',
 		'C423F4' : 'TEST',
 		'C424A0' : 'TB1',
 		'C424E4' : 'HB-X1',
+<<<<<<< HEAD
 		'C4255C' : 'C-GFAQ',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'C425D0' : 'D-TEST',
 		'C42600' : 'Test',
 		'C42614' : 'N171AK',
@@ -5562,8 +6022,11 @@ kglid  = {
 		'C94275' : 'PAW',
 		'C9C26C' : 'EC-AC5',
 		'C9CF40' : '2001',
+<<<<<<< HEAD
 		'C9FB43' : 'V7',
 		'C9FE45' : 'reserv',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'CA6349' : 'NOREG',
 		'CA7017' : 'G-DDSH',
 		'CA9907' : 'TARGET2',
@@ -5607,11 +6070,15 @@ kglid  = {
 		'D000ED' : 'C-GCZV',
 		'D000EE' : 'VHLSL',
 		'D000F3' : 'C-FAQV',
+<<<<<<< HEAD
+=======
+		'D000F4' : 'HA-4403',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D000F8' : 'C-GBVL',
 		'D000FC' : 'C-GZBY',
 		'D000FD' : 'OY-XLN',
 		'D000FE' : 'OH-954',
-		'D00102' : 'OK-7007',
+		'D00102' : 'NOREG',
 		'D00104' : 'F-GYFF',
 		'D00106' : 'OY-XUN',
 		'D00107' : 'OY-VSX',
@@ -5635,7 +6102,10 @@ kglid  = {
 		'D0013D' : 'G-DDWL',
 		'D00144' : 'C-GWGX',
 		'D00148' : 'D-9685',
+<<<<<<< HEAD
 		'D00149' : 'D-XXXX',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D0014A' : 'D-9653',
 		'D0014B' : 'OO-ZMB',
 		'D0014F' : 'C-GWGV',
@@ -5650,12 +6120,18 @@ kglid  = {
 		'D00159' : 'G-CEWI',
 		'D0015A' : 'G-EEAD',
 		'D0015C' : 'ATE0',
-		'D0015D' : 'D-6823',
 		'D00160' : 'OK-0808',
+<<<<<<< HEAD
 		'D00162' : 'OK-0818',
 		'D00165' : 'D-6322',
 		'D00167' : 'D-2794',
 		'D0016B' : 'OK-7000',
+=======
+		'D00162' : 'NOREG',
+		'D00165' : 'D-6322',
+		'D00167' : 'D-2794',
+		'D0016B' : 'NOREG',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D0016C' : 'F_CFDO',
 		'D0016E' : 'VH-GLR',
 		'D0016F' : 'F-CITF',
@@ -5684,8 +6160,13 @@ kglid  = {
 		'D001B8' : 'D-KGBL',
 		'D001B9' : 'VH-GMP',
 		'D001BA' : 'G-CHBO',
+<<<<<<< HEAD
 		'D001BC' : 'DDLN',
 		'D001BD' : 'F-CPAC',
+=======
+		'D001BC' : 'UAV',
+		'D001BD' : 'ENPANNE',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D001C0' : 'D-KBGT',
 		'D001C1' : 'D-8120',
 		'D001C4' : 'D-4490',
@@ -5706,7 +6187,10 @@ kglid  = {
 		'D00225' : 'OY-ZXX',
 		'D00229' : 'D-KCVV',
 		'D0022A' : 'G-CLVO',
+<<<<<<< HEAD
 		'D0022B' : 'G-CJJH',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D00231' : 'MicroDr',
 		'D00232' : 'REV',
 		'D00235' : 'MicroDr',
@@ -5729,6 +6213,10 @@ kglid  = {
 		'D00274' : 'G-CKHM',
 		'D00276' : 'D-7502',
 		'D00277' : 'OH-956',
+<<<<<<< HEAD
+=======
+		'D00278' : 'HA4552',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D00279' : 'D-2738',
 		'D0027B' : 'OH-933',
 		'D00286' : 'CSVVA18',
@@ -5774,7 +6262,10 @@ kglid  = {
 		'D00399' : 'D-KIAJ',
 		'D0039A' : 'D-KKCH',
 		'D0039B' : 'D-KGIC',
+<<<<<<< HEAD
 		'D0039C' : 'D-6092',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D0039D' : 'PH-888',
 		'D0039E' : 'G-GCJA',
 		'D003A0' : 'D-0827',
@@ -5786,7 +6277,10 @@ kglid  = {
 		'D003AA' : 'G-OASM',
 		'D003AD' : 'GCLVD',
 		'D003AE' : 'F-CJRC',
+<<<<<<< HEAD
 		'D003B3' : 'D-KWOB',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D003B5' : 'OK-6394',
 		'D003B7' : 'D-KFFL',
 		'D003BF' : 'D-KKPX',
@@ -5849,7 +6343,6 @@ kglid  = {
 		'D00441' : 'LY-CFL',
 		'D00443' : 'G-CHWC',
 		'D00447' : 'D-KMMW',
-		'D0046A' : 'NOREG',
 		'D0046C' : 'D-KLOL',
 		'D0046D' : 'HF',
 		'D0046E' : 'F-CGPJ',
@@ -5883,20 +6376,29 @@ kglid  = {
 		'D004BD' : 'G-CJHR',
 		'D004BF' : 'D-3118',
 		'D004C4' : 'F-CHUC',
+		'D004C5' : 'F-CJPG',
 		'D004C7' : 'G-CJZB',
 		'D004CA' : 'NO',
 		'D004CB' : 'G-XDUO',
 		'D004CD' : 'G-CHDA',
 		'D004D9' : 'OH-463',
+<<<<<<< HEAD
 		'D004F0' : 'SP-3972',
 		'D004F2' : 'OH-732',
 		'D00506' : 'F-CHKS',
+=======
+		'D004F2' : 'OH-732',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D0050C' : 'D-KDAB',
 		'D00512' : 'S5-3029',
 		'D00513' : 'HB-2540',
 		'D00514' : 'D-KMIP',
 		'D00517' : 'D-KAXF',
 		'D00518' : 'ZS-GCJ',
+<<<<<<< HEAD
+=======
+		'D00519' : 'D-KQIN',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D0051A' : 'D-KFMT',
 		'D0051B' : 'PH-1268',
 		'D0051D' : 'D-7111',
@@ -5927,6 +6429,10 @@ kglid  = {
 		'D0056C' : 'F-CFQO',
 		'D0056E' : 'G-DDKR',
 		'D0056F' : 'D-KSFV',
+<<<<<<< HEAD
+=======
+		'D00571' : 'OY-TVX',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D00572' : 'D-KDSF',
 		'D00575' : 'G-DEAF',
 		'D00576' : 'G-CFHF',
@@ -5965,20 +6471,28 @@ kglid  = {
 		'D006D0' : 'F-PVVA',
 		'D006D1' : 'BLABLA',
 		'D006D4' : 'D-KKTL',
+<<<<<<< HEAD
 		'D006D5' : 'OK-9988',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D006D7' : 'G-CJBT',
 		'D006DA' : 'D-KTWZ',
 		'D006ED' : 'D-EEEM',
 		'D006F1' : 'VH-ZBC',
 		'D006F4' : 'G-DJEB',
+<<<<<<< HEAD
 		'D00705' : 'TWR',
 		'D00710' : 'TWR',
 		'D00716' : 'OH-PEW',
 		'D00717' : 'D-9153',
+=======
+		'D00716' : 'OH-PEW',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D0071E' : 'D-KBVG',
 		'D00729' : 'G-CJPM',
 		'D00737' : 'OH-PDW',
 		'D00740' : 'HA-4050',
+<<<<<<< HEAD
 		'D00756' : 'F-CGOD',
 		'D00758' : 'HA-SKR',
 		'D00768' : 'F-CVTU',
@@ -5986,16 +6500,25 @@ kglid  = {
 		'D00813' : 'TWR',
 		'D00836' : 'G-CFFC',
 		'D0083B' : 'TWR',
+=======
+		'D00768' : 'N-PTAS',
+		'D00836' : 'G-CFFC',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D0083D' : 'OK-7272',
 		'D00849' : 'VH-GFZ',
 		'D00850' : 'G-DEGZ',
 		'D00875' : 'D-6555',
 		'D00881' : 'D-ESKT',
 		'D00884' : 'D-EACJ',
+<<<<<<< HEAD
 		'D0088D' : 'TWR',
 		'D008A2' : 'G-CKPE',
 		'D008A4' : 'CC-PRV',
 		'D008A6' : 'OK-9102',
+=======
+		'D008A2' : 'G-CKPE',
+		'D008A4' : 'CC-PRV',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D008A9' : 'D-7902',
 		'D008AC' : 'FHNW',
 		'D008B4' : 'ZOE',
@@ -6015,8 +6538,11 @@ kglid  = {
 		'D008DE' : 'D-6910',
 		'D008E2' : 'SDU',
 		'D008E8' : 'SDC',
+<<<<<<< HEAD
 		'D008EC' : 'UAV',
 		'D008ED' : 'NO',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D008EE' : 'D-9888',
 		'D008EF' : 'REV',
 		'D008F0' : 'SkyDrns',
@@ -6029,18 +6555,27 @@ kglid  = {
 		'D00904' : 'AFAC',
 		'D00905' : 'SkyDrns',
 		'D00907' : 'SDC',
+<<<<<<< HEAD
 		'D0090B' : 'AFAC',
 		'D0090C' : 'D-KCMI',
 		'D0090E' : 'SDU',
 		'D00912' : 'G-CHEN',
+=======
+		'D00909' : 'D-KKIA',
+		'D0090B' : 'AFAC',
+		'D0090E' : 'SDU',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D0091A' : 'ARC-ID',
 		'D0091C' : 'D-KBDE',
 		'D0091D' : 'F-CGZQ',
 		'D0091E' : 'G-CLWC',
 		'D0091F' : 'OK-2703',
 		'D00920' : 'D-1897',
+<<<<<<< HEAD
 		'D00923' : 'F-CNRB',
 		'D00929' : 'D-4213',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D0092A' : 'NOREG',
 		'D0092C' : 'OH-1031',
 		'D0092D' : 'D-KAAQ',
@@ -6048,6 +6583,10 @@ kglid  = {
 		'D00930' : 'LY-GRO',
 		'D00931' : 'D-KXXM',
 		'D0093B' : 'I-BOOM',
+<<<<<<< HEAD
+=======
+		'D00943' : 'NOREG',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D00947' : 'D-7471',
 		'D00951' : 'F-CNGC',
 		'D00956' : 'OE-5687',
@@ -6068,7 +6607,10 @@ kglid  = {
 		'D00994' : 'NO',
 		'D00995' : 'OY-PIX',
 		'D00998' : 'OK-6767',
+<<<<<<< HEAD
 		'D00999' : 'NO',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D0099E' : 'D-0746',
 		'D009A2' : 'G-GDEDM',
 		'D009B0' : 'F-CGZX',
@@ -6085,7 +6627,10 @@ kglid  = {
 		'D009D6' : 'G-CJCU',
 		'D009D7' : 'LV-EPX',
 		'D009D8' : 'HB-2369',
+<<<<<<< HEAD
 		'D009DB' : 'NO',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D009DC' : 'D-6568',
 		'D009DD' : 'D-KKTH',
 		'D009E3' : 'G-CJSX',
@@ -6095,8 +6640,11 @@ kglid  = {
 		'D009FB' : 'OO-MVA',
 		'D009FD' : 'G-cjde',
 		'D00A07' : 'D-3188',
+<<<<<<< HEAD
 		'D00A08' : 'D-6080',
 		'D00A14' : 'D-KARX',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D00A1C' : 'D-KKDD',
 		'D00A20' : 'NOREG',
 		'D00A26' : 'D-2951',
@@ -6108,6 +6656,7 @@ kglid  = {
 		'D00A31' : 'OM-0329',
 		'D00A32' : 'D--',
 		'D00A34' : 'NOREG',
+		'D00A37' : 'G-CJVL',
 		'D00A39' : 'OO-ZKO',
 		'D00A3A' : 'D-KXBS',
 		'D00A3D' : 'D-KHSH',
@@ -6115,14 +6664,18 @@ kglid  = {
 		'D00A3F' : 'D-KHOT',
 		'D00A4A' : 'D-KMLS',
 		'D00A77' : 'D-KACH',
+<<<<<<< HEAD
 		'D00A78' : 'D-9975',
 		'D00A7B' : 'D-9029',
 		'D00A92' : 'OO-MVA',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D00A9F' : 'OO-ZKN',
 		'D00AA0' : 'D-4735',
 		'D00AA1' : 'ZS-GFM',
 		'D00AAB' : 'D-KEDZ',
 		'D00AB2' : 'BDX-PX',
+<<<<<<< HEAD
 		'D00ABC' : 'D-KCEX',
 		'D00AC8' : 'F-CHMD',
 		'D00AC9' : 'G-CKRC',
@@ -6136,6 +6689,15 @@ kglid  = {
 		'D00B85' : 'Unknown',
 		'D00BB6' : 'G-CFUH',
 		'D00BCF' : 'D-KGLD',
+=======
+		'D00AC8' : 'F-CHMD',
+		'D00AC9' : 'G-CKRC',
+		'D00AFC' : 'D-KFXX',
+		'D00AFE' : 'OO-YYK',
+		'D00B01' : 'G-CKOY',
+		'D00B1B' : 'NOREG',
+		'D00BB6' : 'G-CFUH',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D00BD2' : 'F-CFRK',
 		'D00BE4' : 'G-CVBA',
 		'D00BE5' : 'EI-GMJ',
@@ -6143,6 +6705,7 @@ kglid  = {
 		'D00BE9' : 'F-CEQZ',
 		'D00BEB' : 'VH-GAK',
 		'D00BED' : 'LY-GRV',
+<<<<<<< HEAD
 		'D00BF2' : 'F-CFIN',
 		'D00BF3' : 'G-CFYM',
 		'D00C02' : 'NOREG',
@@ -6172,6 +6735,17 @@ kglid  = {
 		'D0106A' : 'Rigi',
 		'D0106C' : 'Rigi',
 		'D07007' : 'F-BXDR',
+=======
+		'D00BF2' : 'F-BXDR',
+		'D00BF3' : 'G-CFYM',
+		'D00DC2' : 'HA-4483',
+		'D00ED0' : 'ZT-GAA',
+		'D01011' : 's5-per',
+		'D01027' : 'F-CJCA',
+		'D0103B' : 'D-2717',
+		'D0103D' : 'G-CFVH',
+		'D01043' : 'G-DFFP',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'D0961F' : 'F-ACBA2',
 		'D0F0EE' : 'D-KJTM',
 		'D10000' : 'DKMIX',
@@ -6219,7 +6793,10 @@ kglid  = {
 		'DD02AE' : 'D-HBPA',
 		'DD02B0' : 'HB-XLA',
 		'DD02B1' : 'HB-ZIH',
+<<<<<<< HEAD
 		'DD049F' : 'D-9039',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD04DF' : 'D-8709',
 		'DD04E5' : 'D-KNIL',
 		'DD04F2' : 'D-5327',
@@ -6252,7 +6829,11 @@ kglid  = {
 		'DD06C1' : 'D-KEOS',
 		'DD06DE' : 'D-MIIP',
 		'DD06E3' : 'NOREG',
+<<<<<<< HEAD
 		'DD06F0' : 'NOREG',
+=======
+		'DD06F0' : 'D-EJSR',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD070C' : 'D-6009',
 		'DD0771' : 'V-634',
 		'DD0775' : 'MIL',
@@ -6499,7 +7080,10 @@ kglid  = {
 		'DD4EFD' : 'G-CKOU',
 		'DD4EFF' : 'G-EENW',
 		'DD4F01' : 'OY-RAX',
+<<<<<<< HEAD
 		'DD4F03' : 'OY-XWB',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD4F04' : 'OK-3706',
 		'DD4F06' : 'S5-3038',
 		'DD4F11' : 'S5-3092',
@@ -6731,6 +7315,7 @@ kglid  = {
 		'DD50D0' : 'D-KSCC',
 		'DD50D2' : 'G-CFUL',
 		'DD50D3' : 'F-JTXF',
+		'DD50D5' : 'NOREG',
 		'DD50D6' : 'G-DHCO',
 		'DD50D8' : 'G-CJLH',
 		'DD50DB' : 'S5-MMX',
@@ -6775,7 +7360,7 @@ kglid  = {
 		'DD512E' : 'SP-3178',
 		'DD512F' : 'SP-',
 		'DD5133' : 'G-PRKZ',
-		'DD5135' : 'COGNAC',
+		'DD5135' : 'F-CPAC',
 		'DD5136' : 'G-DDNG',
 		'DD5138' : 'F-CHGB',
 		'DD5139' : 'S5-3061',
@@ -7009,13 +7594,23 @@ kglid  = {
 		'DD5325' : 'D-KOLF',
 		'DD5326' : 'PH-832',
 		'DD532E' : 'OK-7567',
+<<<<<<< HEAD
 		'DD5331' : 'PH1382',
 		'DD5334' : 'PH1006',
+=======
+		'DD532F' : 'OY-XUG',
+		'DD5331' : 'PH1382',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD5337' : 'D-9524',
 		'DD6516' : 'D-6516',
 		'DD6A60' : 'G-DGIV',
 		'DD709C' : 'D-KMMB',
 		'DD8016' : 'D-4707',
+<<<<<<< HEAD
+=======
+		'DD8017' : 'F-CHLC',
+		'DD801A' : 'D-KOSR',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD80C9' : 'HB-DCU',
 		'DD80D4' : 'F-JXCK',
 		'DD80D9' : 'HB-1846',
@@ -7158,7 +7753,10 @@ kglid  = {
 		'DD82F8' : 'OE-5505',
 		'DD82F9' : 'D-EFTQ',
 		'DD82FE' : 'D-EFGJ',
+<<<<<<< HEAD
 		'DD82FF' : 'D-8877',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD8306' : 'D-KNUS',
 		'DD8309' : 'D-KTIL',
 		'DD830B' : 'F-COCI',
@@ -7216,9 +7814,13 @@ kglid  = {
 		'DD838E' : 'D9470',
 		'DD838F' : 'D-1476',
 		'DD8391' : 'D-7699',
+<<<<<<< HEAD
 		'DD8399' : 'D-0191',
 		'DD839D' : 'D-6644',
 		'DD839E' : 'D-5779',
+=======
+		'DD839D' : 'D-6644',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD839F' : 'D-KOKI',
 		'DD83A0' : 'D-0953',
 		'DD83A2' : 'D-2374',
@@ -7508,7 +8110,10 @@ kglid  = {
 		'DD8678' : 'D-1533',
 		'DD867A' : 'D-2178',
 		'DD8684' : 'D-9006',
+<<<<<<< HEAD
 		'DD8689' : 'D-6952',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD868A' : 'D-3535',
 		'DD868E' : 'D-7934',
 		'DD868F' : 'G-CHHO',
@@ -7550,6 +8155,10 @@ kglid  = {
 		'DD8706' : 'D-2715',
 		'DD8708' : 'D-KAXB',
 		'DD8711' : 'VH-GMK',
+<<<<<<< HEAD
+=======
+		'DD8713' : 'D-5574',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD8715' : 'D-1962',
 		'DD8719' : 'D-2643',
 		'DD871C' : 'D-1618',
@@ -7567,7 +8176,11 @@ kglid  = {
 		'DD873E' : 'D-KTSG',
 		'DD873F' : 'D-2451',
 		'DD8740' : 'D-ECJB',
+<<<<<<< HEAD
 		'DD8741' : 'D-8252',
+=======
+		'DD8741' : 'D-1111',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD8748' : 'D-KIET',
 		'DD874B' : 'D-6530',
 		'DD874F' : 'D-8484',
@@ -7781,8 +8394,12 @@ kglid  = {
 		'DD8A82' : 'D-7175',
 		'DD8A9B' : 'D-5258',
 		'DD8A9F' : 'D-1648',
+<<<<<<< HEAD
 		'DD8AA1' : 'F-CHLC',
 		'DD8AA6' : 'D-EGTQ',
+=======
+		'DD8AA1' : 'Spare',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD8AA7' : 'D-2122',
 		'DD8AA9' : 'D-KMLN',
 		'DD8AAB' : 'F-CJMA',
@@ -7997,8 +8614,12 @@ kglid  = {
 		'DD8E9E' : 'D-KFOR',
 		'DD8E9F' : 'D-1057',
 		'DD8EA3' : 'F-CHTO',
+<<<<<<< HEAD
 		'DD8EA5' : 'D-2471',
 		'DD8EA7' : 'D-KBOR',
+=======
+		'DD8EA8' : 'D-KHQH',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD8EA9' : 'F-JYUY',
 		'DD8EAC' : 'D-2102',
 		'DD8EAD' : 'D-4887',
@@ -8037,7 +8658,10 @@ kglid  = {
 		'DD8EFA' : 'F-CAJC',
 		'DD8EFC' : 'D-7483',
 		'DD8EFE' : 'G-CGBF',
+<<<<<<< HEAD
 		'DD8EFF' : 'NOREG',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD8F03' : 'D-2773',
 		'DD8F04' : 'F-CHRG',
 		'DD8F0A' : 'D-1050',
@@ -8049,7 +8673,10 @@ kglid  = {
 		'DD8F12' : 'D-7208',
 		'DD8F14' : 'D-KOSH',
 		'DD8F16' : 'D-6981',
+<<<<<<< HEAD
 		'DD8F18' : 'D-5416',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD8F19' : 'G_DDVY',
 		'DD8F1C' : 'G-CHEE',
 		'DD8F1E' : 'OE-DSF',
@@ -8142,6 +8769,10 @@ kglid  = {
 		'DD91BF' : 'D-MZIA',
 		'DD91C6' : 'D-8811',
 		'DD91CC' : 'YAM',
+<<<<<<< HEAD
+=======
+		'DD91CF' : 'D-9123',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD91D1' : 'D-2135',
 		'DD91D2' : 'D-5411',
 		'DD91D4' : 'OE-5263',
@@ -8188,7 +8819,11 @@ kglid  = {
 		'DD924E' : 'D-KEJC',
 		'DD924F' : 'D-8084',
 		'DD9251' : 'OK-5293',
+<<<<<<< HEAD
 		'DD9253' : 'OE-5822',
+=======
+		'DD9253' : 'D-5101',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD925A' : 'NOREG',
 		'DD9263' : 'D-EEUQ',
 		'DD9266' : 'D-3717',
@@ -8201,7 +8836,10 @@ kglid  = {
 		'DD9281' : 'D-6392',
 		'DD9286' : 'D-7348',
 		'DD9287' : 'D-MSHP',
+<<<<<<< HEAD
 		'DD9288' : 'D-5521',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD928E' : 'D-2362',
 		'DD9290' : 'F-CHMZ',
 		'DD9292' : 'HB-2364',
@@ -8265,6 +8903,10 @@ kglid  = {
 		'DD9366' : 'OK-4400',
 		'DD9369' : 'D-3936',
 		'DD936B' : 'OE-KUB',
+<<<<<<< HEAD
+=======
+		'DD936C' : 'HB-1933',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD936E' : 'D-3382',
 		'DD936F' : 'D-6841',
 		'DD9375' : 'D-KDOC',
@@ -8297,7 +8939,11 @@ kglid  = {
 		'DD93D6' : 'D-5908',
 		'DD93D8' : 'HB-1747',
 		'DD93D9' : 'HB-2329',
+<<<<<<< HEAD
 		'DD93DB' : 'D-MRZB',
+=======
+		'DD93DB' : 'D-MVOK',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD93E0' : 'D-2370',
 		'DD93E1' : 'D-8255',
 		'DD93E5' : 'HB-3089',
@@ -8365,7 +9011,11 @@ kglid  = {
 		'DD94AB' : 'AKAMUC5',
 		'DD94B1' : 'D-4257',
 		'DD94B7' : 'HB-PDL',
+<<<<<<< HEAD
 		'DD94B8' : 'D-5101',
+=======
+		'DD94B8' : 'OE-5288',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD94BC' : 'OE-5673',
 		'DD94BE' : 'D-1081',
 		'DD94BF' : 'F-CPAT',
@@ -8464,7 +9114,11 @@ kglid  = {
 		'DD95E4' : 'D-8134',
 		'DD95E5' : 'D-0048',
 		'DD95E6' : 'OE-9404',
+<<<<<<< HEAD
 		'DD95E8' : 'FCRND',
+=======
+		'DD95E8' : 'CRN',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD95EA' : 'OO-CHM',
 		'DD95ED' : 'F-CFIE',
 		'DD95EF' : 'F-CBJR',
@@ -8545,7 +9199,11 @@ kglid  = {
 		'DD96E1' : 'NOREG',
 		'DD96E4' : 'D-9216',
 		'DD96E7' : 'D-MNDM',
+<<<<<<< HEAD
 		'DD96ED' : 'F-CKAN',
+=======
+		'DD96F6' : 'D-3740',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD96FA' : 'D-0523',
 		'DD96FD' : 'D-KUCI',
 		'DD9702' : 'G-CGBS',
@@ -8565,13 +9223,19 @@ kglid  = {
 		'DD972F' : 'D-KPDG',
 		'DD973A' : 'D-KXKX',
 		'DD973B' : 'D-8746',
+<<<<<<< HEAD
 		'DD973C' : 'D-5113',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD973E' : 'OE-5534',
 		'DD9740' : 'ZU-KDP',
 		'DD9742' : 'OE-5493',
 		'DD9745' : 'D-ECOC',
 		'DD9747' : 'OK-0868',
+<<<<<<< HEAD
 		'DD9748' : 'D-KCJJ',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD974A' : 'F-AZBI',
 		'DD9750' : 'D-KDST',
 		'DD9758' : 'NOREG',
@@ -8604,7 +9268,11 @@ kglid  = {
 		'DD97C2' : 'OO-ZXC',
 		'DD97C4' : 'D-XX88',
 		'DD97C6' : 'AKAMUC6',
+<<<<<<< HEAD
 		'DD97D4' : 'F-CFRO',
+=======
+		'DD97D4' : 'NOREG',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD97D5' : 'D-6767',
 		'DD97EB' : 'OK-3123',
 		'DD97ED' : 'HB-1253',
@@ -8620,6 +9288,7 @@ kglid  = {
 		'DD9813' : 'D-4846',
 		'DD9814' : 'D-1061',
 		'DD9818' : 'NAVTEST',
+		'DD981C' : 'NOREG',
 		'DD981E' : 'OE-5401',
 		'DD9820' : 'NOREG',
 		'DD9821' : 'NOREG',
@@ -8643,7 +9312,11 @@ kglid  = {
 		'DD984E' : 'OE-0315',
 		'DD9852' : 'OE-9461',
 		'DD9855' : 'F-CORA',
+<<<<<<< HEAD
 		'DD9857' : 'Lager',
+=======
+		'DD9857' : 'Defekt',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD9858' : 'D-6262',
 		'DD985D' : 'D-7912',
 		'DD985E' : 'D-6116',
@@ -8663,6 +9336,7 @@ kglid  = {
 		'DD988B' : 'D-MORB',
 		'DD988D' : 'D-4046',
 		'DD988E' : 'SGSM_08',
+		'DD988F' : 'D-KYNT',
 		'DD9892' : 'D-9918',
 		'DD9894' : 'OE-9059',
 		'DD9897' : 'OE-5680',
@@ -8753,6 +9427,10 @@ kglid  = {
 		'DD9980' : 'HB-KDM',
 		'DD9981' : 'F-GEIM',
 		'DD9983' : 'D-5354',
+<<<<<<< HEAD
+=======
+		'DD9987' : 'D-5493',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD9988' : 'OOYUE',
 		'DD998C' : 'F-CGSA',
 		'DD9991' : 'D-1592',
@@ -8795,7 +9473,11 @@ kglid  = {
 		'DD99EC' : 'D-3462',
 		'DD99EE' : 'F-CHRM',
 		'DD99F0' : 'D-6988',
+<<<<<<< HEAD
 		'DD99F2' : 'D-8756',
+=======
+		'DD99F2' : 'OO-LVN',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD99F3' : 'F-CHSO',
 		'DD99F7' : 'D-6437',
 		'DD99FC' : 'D-3688',
@@ -8924,7 +9606,10 @@ kglid  = {
 		'DD9B4C' : 'D-0738',
 		'DD9B4D' : 'D-KIEF',
 		'DD9B51' : 'OH-344',
+<<<<<<< HEAD
 		'DD9B53' : 'D-2634',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD9B5A' : 'D-7581',
 		'DD9B5B' : 'NOREG',
 		'DD9B5D' : 'OO-YTS',
@@ -8988,7 +9673,10 @@ kglid  = {
 		'DD9BE8' : 'NOREG',
 		'DD9BE9' : 'D-9399',
 		'DD9BEA' : 'OY-XVE',
+<<<<<<< HEAD
 		'DD9BEC' : 'D-5453',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD9BED' : 'F-CHTA',
 		'DD9BEE' : 'F-CYBN',
 		'DD9BEF' : 'F-CIDJ',
@@ -9036,6 +9724,10 @@ kglid  = {
 		'DD9C5A' : 'd-4761',
 		'DD9C61' : 'D-EIDC',
 		'DD9C62' : 'D-9028',
+<<<<<<< HEAD
+=======
+		'DD9C65' : 'D-5870',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD9C66' : 'D-2769',
 		'DD9C67' : 'D-5400',
 		'DD9C68' : 'D-KCHL',
@@ -9056,7 +9748,11 @@ kglid  = {
 		'DD9C82' : 'D-EHCE',
 		'DD9C89' : 'D-4694',
 		'DD9C8B' : 'D-NEKB',
+<<<<<<< HEAD
 		'DD9C8C' : 'NOREG',
+=======
+		'DD9C8C' : 'D-7018',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD9C92' : 'D-0593',
 		'DD9C93' : 'DD9C93',
 		'DD9C94' : 'F-CFAD',
@@ -9178,6 +9874,7 @@ kglid  = {
 		'DD9E42' : 'F-CUVV',
 		'DD9E43' : 'D-5072',
 		'DD9E44' : 'D-EKJB',
+		'DD9E46' : 'D-3962',
 		'DD9E47' : 'D-3082',
 		'DD9E48' : 'D-8379',
 		'DD9E4A' : 'D-7321',
@@ -9191,7 +9888,10 @@ kglid  = {
 		'DD9E73' : 'D-2056',
 		'DD9E75' : 'F-CHLV',
 		'DD9E79' : 'D-4574',
+<<<<<<< HEAD
 		'DD9E82' : 'F-CECT',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD9E85' : 'SP-3834',
 		'DD9E87' : 'D-6688',
 		'DD9E88' : 'D-7629',
@@ -9257,6 +9957,7 @@ kglid  = {
 		'DD9F5C' : 'EC-KYA',
 		'DD9F5E' : 'D-9481',
 		'DD9F5F' : 'D-8082',
+		'DD9F61' : 'D-KBBF',
 		'DD9F64' : 'D-KSSB',
 		'DD9F6D' : 'D-2206',
 		'DD9F71' : 'D-4515',
@@ -9270,7 +9971,11 @@ kglid  = {
 		'DD9F86' : 'OE-5711',
 		'DD9F88' : 'D-6137',
 		'DD9F89' : 'D-KCPC',
+<<<<<<< HEAD
 		'DD9F8C' : 'DRS',
+=======
+		'DD9F8C' : 'GARBARI',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD9F8E' : 'D-5095',
 		'DD9F93' : 'D-xx73',
 		'DD9F94' : 'D-KBSH',
@@ -9296,19 +10001,26 @@ kglid  = {
 		'DD9FC9' : 'D-2666',
 		'DD9FCD' : 'I-ALOR',
 		'DD9FD1' : 'D-KNDS',
+<<<<<<< HEAD
 		'DD9FD9' : 'D-8592',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DD9FDF' : 'D-6593',
 		'DD9FE0' : 'D-5876',
 		'DD9FE1' : 'D-3366',
 		'DD9FE2' : 'D-9576',
 		'DD9FE3' : 'D-5941',
 		'DD9FE8' : 'D-1909',
-		'DD9FED' : 'D-1111',
+		'DD9FED' : 'D-8252',
 		'DD9FEF' : 'D-7165',
 		'DD9FF1' : 'I-IVAE',
 		'DD9FF2' : 'HB-3323',
 		'DD9FF5' : 'D-KHCT',
 		'DD9FF8' : 'D-0586',
+<<<<<<< HEAD
+=======
+		'DD9FF9' : 'D-3581',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDA228' : 'D-EITR',
 		'DDA25A' : 'F-CJJH',
 		'DDA25B' : 'PH-1298',
@@ -9316,7 +10028,10 @@ kglid  = {
 		'DDA25F' : 'W05',
 		'DDA260' : 'D-KLEO',
 		'DDA263' : 'D-4513',
+<<<<<<< HEAD
 		'DDA264' : 'PH-1302',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDA266' : 'D-KEPG',
 		'DDA268' : 'D-7538',
 		'DDA26B' : 'NOREG',
@@ -9348,9 +10063,15 @@ kglid  = {
 		'DDA2A8' : 'D-5733',
 		'DDA2A9' : 'G-DDHK',
 		'DDA2AA' : 'OM-0296',
+<<<<<<< HEAD
 		'DDA2AD' : 'D-KKUB',
 		'DDA2B2' : 'D-3682',
 		'DDA2B3' : 'NOREG',
+=======
+		'DDA2AD' : 'D-xxxx',
+		'DDA2B2' : 'D-3682',
+		'DDA2B3' : 'D-7622',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDA2B5' : 'D-XXXX',
 		'DDA2B8' : 'D-5633',
 		'DDA2BD' : 'OE-5571',
@@ -9404,11 +10125,19 @@ kglid  = {
 		'DDA317' : 'D-0698',
 		'DDA31E' : 'D-4495',
 		'DDA322' : 'D-KMWD',
+<<<<<<< HEAD
 		'DDA323' : 'NOREG',
 		'DDA324' : 'D-3482',
 		'DDA325' : 'D-9823',
 		'DDA328' : 'D-4944',
 		'DDA32A' : 'NOREG',
+=======
+		'DDA323' : 'D-3867',
+		'DDA324' : 'D-3482',
+		'DDA325' : 'D-9823',
+		'DDA328' : 'D-4944',
+		'DDA32A' : 'D-KMAL',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDA32D' : 'W02',
 		'DDA32F' : 'D-9035',
 		'DDA333' : 'D-0051',
@@ -9507,7 +10236,11 @@ kglid  = {
 		'DDA410' : 'OK-6744',
 		'DDA415' : 'D-3759',
 		'DDA416' : 'W03',
+<<<<<<< HEAD
 		'DDA417' : 'NOREG',
+=======
+		'DDA417' : 'D-8284',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDA418' : 'D-4413',
 		'DDA419' : 'D-KDPI',
 		'DDA41E' : 'D-6505',
@@ -9566,7 +10299,11 @@ kglid  = {
 		'DDA48A' : 'OK-5310',
 		'DDA48D' : 'D-EOAC',
 		'DDA491' : 'D-9456',
+<<<<<<< HEAD
 		'DDA494' : 'EHTest',
+=======
+		'DDA494' : 'D-EMMI',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDA496' : 'OK-1112',
 		'DDA498' : 'D-5960',
 		'DDA499' : 'D-4XXX',
@@ -9689,7 +10426,11 @@ kglid  = {
 		'DDA57A' : 'D-5965',
 		'DDA581' : 'D-5750',
 		'DDA583' : 'D-ESAM',
+<<<<<<< HEAD
 		'DDA586' : 'D-KDTA',
+=======
+		'DDA586' : 'NOREG',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDA587' : 'D-KEGM',
 		'DDA588' : 'F-CEXF',
 		'DDA589' : 'OO-ZQN',
@@ -9747,7 +10488,10 @@ kglid  = {
 		'DDA5D8' : 'F-CHNC',
 		'DDA5D9' : 'F-CHKJ',
 		'DDA5DA' : 'D-1923',
+<<<<<<< HEAD
 		'DDA5DB' : 'D-8963',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDA5DC' : 'F-CERA',
 		'DDA5E0' : 'D-1863',
 		'DDA5E7' : 'DDA5E7',
@@ -9786,7 +10530,10 @@ kglid  = {
 		'DDA634' : 'F-CHRY',
 		'DDA635' : 'NOREG',
 		'DDA636' : 'D-9995',
+<<<<<<< HEAD
 		'DDA638' : 'D-KLZM',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDA63C' : 'D-3288',
 		'DDA642' : 'D-EASG',
 		'DDA646' : 'D-KUHU',
@@ -9891,7 +10638,10 @@ kglid  = {
 		'DDA716' : 'D-KEGR',
 		'DDA718' : 'D-4595',
 		'DDA71B' : 'D-7854',
+<<<<<<< HEAD
 		'DDA71D' : 'D-KADI',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDA71E' : 'D-9544',
 		'DDA71F' : 'D-1509',
 		'DDA720' : 'D-KFOG',
@@ -10175,7 +10925,10 @@ kglid  = {
 		'DDA997' : 'D-KVCT',
 		'DDA999' : 'OK_3945',
 		'DDA99C' : 'D-KBEJ',
+<<<<<<< HEAD
 		'DDA99E' : 'G-CJRU',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDA99F' : 'D-3301',
 		'DDA9A0' : 'OO-TUG',
 		'DDA9A6' : 'D-KOIS',
@@ -10209,7 +10962,10 @@ kglid  = {
 		'DDA9E4' : 'SE-TMB',
 		'DDA9E6' : 'D-4734',
 		'DDA9E8' : 'OO-ZWZ',
+<<<<<<< HEAD
 		'DDA9E9' : 'D-3195',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDA9ED' : 'D-4787',
 		'DDA9F2' : 'OE-5182',
 		'DDA9F3' : 'D-KBNG',
@@ -10219,7 +10975,10 @@ kglid  = {
 		'DDA9F9' : 'D-0032',
 		'DDA9FC' : 'PH-794',
 		'DDA9FD' : 'D-4860',
+<<<<<<< HEAD
 		'DDAA02' : 'F-CGBH',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDAA03' : 'G-DEWG',
 		'DDAA09' : 'D-xxAZ',
 		'DDAA0A' : 'D-6446',
@@ -10388,7 +11147,10 @@ kglid  = {
 		'DDAB88' : 'OK-5129',
 		'DDAB8D' : 'D-KHUB',
 		'DDAB8F' : 'OO-YEI',
+<<<<<<< HEAD
 		'DDAB92' : 'D-3557',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDAB9D' : 'D-7512',
 		'DDABA4' : 'D-0059',
 		'DDABA5' : 'D-4281',
@@ -10405,7 +11167,10 @@ kglid  = {
 		'DDABBE' : 'F-CFAZ',
 		'DDABBF' : 'F-CGXG',
 		'DDABC0' : 'D-4830',
+<<<<<<< HEAD
 		'DDABC1' : 'D-KFDH',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDABC3' : 'D-KHSU',
 		'DDABC4' : 'D-ELWD',
 		'DDABC7' : 'D-5544',
@@ -10549,7 +11314,10 @@ kglid  = {
 		'DDAD1B' : 'D-1290',
 		'DDAD1C' : 'OK-8717',
 		'DDAD1D' : 'D-5559',
+<<<<<<< HEAD
 		'DDAD21' : 'D-3742',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDAD22' : 'G-CJLJ',
 		'DDAD26' : 'D-3365',
 		'DDAD28' : 'D-3365',
@@ -10596,7 +11364,10 @@ kglid  = {
 		'DDAD9C' : 'D-9562',
 		'DDAD9E' : 'HB-ZPI',
 		'DDAD9F' : 'D-2382',
+<<<<<<< HEAD
 		'DDADA1' : 'PH-1509',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDADA3' : 'D-0872',
 		'DDADA4' : 'OO-ZZV',
 		'DDADA7' : 'G-CFVP',
@@ -10643,6 +11414,10 @@ kglid  = {
 		'DDAE2E' : 'D-FLEC',
 		'DDAE31' : 'D-6885',
 		'DDAE35' : 'D-3312',
+<<<<<<< HEAD
+=======
+		'DDAE37' : 'D-1089',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDAE38' : 'D-KEHC',
 		'DDAE3C' : 'D-2022',
 		'DDAE45' : 'D-1248',
@@ -10717,6 +11492,7 @@ kglid  = {
 		'DDAEF7' : 'D-2604',
 		'DDAEFA' : 'D-3469',
 		'DDAEFC' : 'D-4984',
+		'DDAEFE' : 'NOREG',
 		'DDAF01' : 'D-KHFC',
 		'DDAF02' : 'X-B003',
 		'DDAF04' : 'D-KHAH',
@@ -10732,7 +11508,10 @@ kglid  = {
 		'DDAF20' : 'F-CDRE',
 		'DDAF21' : 'F-CEKT',
 		'DDAF23' : 'F-CFRD',
+<<<<<<< HEAD
 		'DDAF27' : 'D-KPTB',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDAF28' : 'HB-ZPE',
 		'DDAF29' : 'F-CHLR',
 		'DDAF2A' : 'F-CIDH',
@@ -10785,7 +11564,10 @@ kglid  = {
 		'DDAFA2' : 'D-KDBD',
 		'DDAFA3' : 'LN-GIK',
 		'DDAFA5' : 'D-5783',
+<<<<<<< HEAD
 		'DDAFA7' : 'SE-UVV',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDAFAE' : 'D-4279',
 		'DDAFAF' : 'F-BLGA',
 		'DDAFB0' : 'F-CEIP',
@@ -10807,7 +11589,10 @@ kglid  = {
 		'DDAFD3' : 'D-3887',
 		'DDAFD6' : 'D-4971',
 		'DDAFD8' : 'F-CGFL',
+<<<<<<< HEAD
 		'DDAFDF' : 'D-3614',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDAFE2' : 'D-2515',
 		'DDAFE4' : 'D-MZOB',
 		'DDAFE5' : 'DDAFE5',
@@ -10830,7 +11615,11 @@ kglid  = {
 		'DDB011' : 'F-CFCR',
 		'DDB015' : 'D-3031',
 		'DDB018' : 'OY-MXC',
+<<<<<<< HEAD
 		'DDB01B' : 'D-7698',
+=======
+		'DDB019' : 'PH-1553',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDB01C' : 'D-7173',
 		'DDB020' : 'D-1917',
 		'DDB022' : 'F-CFZB',
@@ -10931,7 +11720,6 @@ kglid  = {
 		'DDB112' : 'OK-6809',
 		'DDB116' : 'CC-ATZ',
 		'DDB117' : 'F-GJQH',
-		'DDB118' : 'D-9212',
 		'DDB11A' : 'D-8399',
 		'DDB11C' : 'F-CECK',
 		'DDB11E' : 'D-4778',
@@ -11044,9 +11832,13 @@ kglid  = {
 		'DDB225' : 'D-6336',
 		'DDB228' : 'D-7803',
 		'DDB22D' : 'NOREG',
+<<<<<<< HEAD
 		'DDB22E' : 'D-3425',
 		'DDB235' : 'D3564',
 		'DDB236' : 'D-7998',
+=======
+		'DDB235' : 'D3564',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDB239' : 'F-CSVA',
 		'DDB23B' : 'D-5595',
 		'DDB23E' : 'D-0671',
@@ -11423,6 +12215,7 @@ kglid  = {
 		'DDBCB0' : 'BDX-MM',
 		'DDBCB2' : 'D-6925',
 		'DDBCB4' : 'G-YODA',
+		'DDBCB5' : 'D-KJBB',
 		'DDBCB7' : 'F-CJAZ',
 		'DDBCBA' : 'NOREG',
 		'DDBCBB' : 'PH-1171',
@@ -11440,6 +12233,10 @@ kglid  = {
 		'DDBCE7' : 'D-6411',
 		'DDBCE8' : 'F-CLMR',
 		'DDBCF6' : 'G-CFPP',
+<<<<<<< HEAD
+=======
+		'DDBCF8' : 'NOREG',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDBCF9' : 'D-8561',
 		'DDBCFA' : 'D-5494',
 		'DDBCFC' : 'D-KHSC',
@@ -11493,8 +12290,13 @@ kglid  = {
 		'DDBD96' : 'OK9305',
 		'DDBD9A' : 'G-VSGG',
 		'DDBD9B' : 'G-CKLV',
+<<<<<<< HEAD
 		'DDBD9E' : 'OK-1507',
 		'DDBDA0' : 'G-CHZG',
+=======
+		'DDBD9D' : 'D-6773',
+		'DDBD9E' : 'OK-1507',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDBDA1' : 'G-CGCM',
 		'DDBDA2' : 'G-DEKW',
 		'DDBDA3' : 'D-KVES',
@@ -11550,7 +12352,10 @@ kglid  = {
 		'DDBF21' : 'D-3081',
 		'DDBF25' : 'D-8477',
 		'DDBF27' : 'OK-2141',
+<<<<<<< HEAD
 		'DDBF2B' : 'D-7069',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDBF30' : 'D-KOSY',
 		'DDBF38' : 'D-2521',
 		'DDBF3A' : 'D-0229',
@@ -11593,7 +12398,11 @@ kglid  = {
 		'DDC005' : 'G-CHHW',
 		'DDC006' : 'G-CGDZ',
 		'DDC00F' : 'SP-3777',
+<<<<<<< HEAD
 		'DDC010' : 'D-0633',
+=======
+		'DDC010' : 'D-1372',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDC011' : 'D-0057',
 		'DDC013' : 'S5-7125',
 		'DDC015' : 'D-1999',
@@ -11611,7 +12420,10 @@ kglid  = {
 		'DDC03F' : 'OM-2112',
 		'DDC040' : 'LN-GCI',
 		'DDC043' : 'LN-GID',
+<<<<<<< HEAD
 		'DDC04A' : 'OH-886',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDC053' : 'OY-NMX',
 		'DDC058' : 'G-CHWG',
 		'DDC05C' : 'G-OSHK',
@@ -11649,7 +12461,10 @@ kglid  = {
 		'DDC0CD' : 'G-CKHB',
 		'DDC0CF' : 'D-7908',
 		'DDC0D5' : 'OY-TXA',
+<<<<<<< HEAD
 		'DDC0D8' : 'D-KSCR',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDC0DF' : 'SE-UMP',
 		'DDC0E1' : 'G-CHJX',
 		'DDC0E2' : 'SE-UGU',
@@ -11671,7 +12486,10 @@ kglid  = {
 		'DDC113' : 'S5-7510',
 		'DDC115' : 'D-2029',
 		'DDC116' : 'D-9646',
+<<<<<<< HEAD
 		'DDC119' : 'D-EFBK',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDC11F' : 'G-OPHT',
 		'DDC126' : 'SE-UVD',
 		'DDC127' : 'F-BSVU',
@@ -12034,7 +12852,11 @@ kglid  = {
 		'DDD325' : 'F-CHVV',
 		'DDD328' : 'FCERB',
 		'DDD329' : 'NOREG',
+<<<<<<< HEAD
 		'DDD32E' : 'F-CFJB',
+=======
+		'DDD32E' : 'ESPARE',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDD32F' : 'GRAL_21',
 		'DDD331' : 'F-CFBK',
 		'DDD335' : 'F-CGOC',
@@ -12184,7 +13006,10 @@ kglid  = {
 		'DDD4B8' : 'F-CGTK',
 		'DDD4B9' : 'PTFW',
 		'DDD4BB' : 'F-CALI',
+<<<<<<< HEAD
 		'DDD4BE' : 'D-0034',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDD4BF' : 'F-CBDP',
 		'DDD4C1' : 'D-9655',
 		'DDD4C6' : 'NOREG',
@@ -12313,6 +13138,10 @@ kglid  = {
 		'DDD5CA' : 'D-EPBB',
 		'DDD5CB' : 'G-BGGD',
 		'DDD5CD' : 'G-BVYP',
+<<<<<<< HEAD
+=======
+		'DDD5D0' : 'EC-LAH',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDD5D1' : 'F-JURH',
 		'DDD5D4' : 'PH-1207',
 		'DDD5D8' : 'D-6599',
@@ -12382,6 +13211,7 @@ kglid  = {
 		'DDD822' : 'D-4017',
 		'DDD826' : 'F-CVGT',
 		'DDD828' : 'D-8863',
+		'DDD82A' : 'NOREG',
 		'DDD82C' : 'NOREG',
 		'DDD82D' : 'D-0810',
 		'DDD82E' : 'OO-ZCK',
@@ -12588,7 +13418,7 @@ kglid  = {
 		'DDD965' : 'F-CEPT',
 		'DDD967' : 'F-CGER',
 		'DDD968' : 'F-CHFS',
-		'DDD969' : 'F-CBCN',
+		'DDD969' : 'CNFW',
 		'DDD96A' : 'F-CDGC',
 		'DDD96B' : 'OY-XYO',
 		'DDD96C' : 'F-CGMF',
@@ -12607,6 +13437,10 @@ kglid  = {
 		'DDD97C' : 'NOREG',
 		'DDD97D' : 'F-CLFV',
 		'DDD97E' : 'F-CFYH',
+<<<<<<< HEAD
+=======
+		'DDD97F' : 'F-CEKD',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDD980' : 'OH-805',
 		'DDD981' : 'OH-742',
 		'DDD982' : 'QKFW',
@@ -12639,7 +13473,10 @@ kglid  = {
 		'DDD9AD' : 'F-CHGD',
 		'DDD9AE' : 'F-CGUO',
 		'DDD9B0' : 'FCHFN',
+<<<<<<< HEAD
 		'DDD9B5' : 'D-KRGW',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDD9B9' : 'NOREG',
 		'DDD9BC' : 'D-9459',
 		'DDD9BD' : 'F-CIVH',
@@ -12739,7 +13576,10 @@ kglid  = {
 		'DDDA51' : 'SE-GCD',
 		'DDDA55' : 'OH-680',
 		'DDDA56' : 'OY-XXM',
+<<<<<<< HEAD
 		'DDDA57' : 'D-1397',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDDA58' : 'OH-903',
 		'DDDA5A' : 'SE-ULU',
 		'DDDA5B' : 'OH-822',
@@ -13131,7 +13971,10 @@ kglid  = {
 		'DDDCEC' : 'OK-1958',
 		'DDDCEE' : 'D-KCRM',
 		'DDDCEF' : 'OK-3012',
+<<<<<<< HEAD
 		'DDDCF0' : 'G-CKDX',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDDCF1' : 'D-8170',
 		'DDDCF2' : 'S5-3052',
 		'DDDCF6' : 'G-CHTB',
@@ -13284,7 +14127,10 @@ kglid  = {
 		'DDDE44' : 'OY-SXL',
 		'DDDE47' : 'F-CMVO',
 		'DDDE4B' : 'NOREG',
+<<<<<<< HEAD
 		'DDDE4E' : 'D-KEUL',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDDE4F' : 'OK_0800',
 		'DDDE50' : 'OK-8418',
 		'DDDE53' : 'GGGGGGG',
@@ -13306,7 +14152,10 @@ kglid  = {
 		'DDDE89' : 'ZS-gct',
 		'DDDE8A' : 'D-1310',
 		'DDDE91' : 'OH-987',
+<<<<<<< HEAD
 		'DDDE92' : 'D-KAPH',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDDE93' : 'D-KEEZ',
 		'DDDE96' : 'G_CLWZ',
 		'DDDE9A' : 'OY-JXK',
@@ -13426,7 +14275,10 @@ kglid  = {
 		'DDDFBC' : 'D-6877',
 		'DDDFBE' : 'D-KEAP',
 		'DDDFC1' : 'D-KMRF',
+<<<<<<< HEAD
 		'DDDFCD' : 'D-2273',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDDFCF' : 'D-4336',
 		'DDDFD0' : 'G-CJRA',
 		'DDDFD6' : 'D-KRIT',
@@ -13657,12 +14509,19 @@ kglid  = {
 		'DDE317' : 'NOREG',
 		'DDE31A' : 'VH-MMK',
 		'DDE31B' : 'D-6646',
+<<<<<<< HEAD
 		'DDE31F' : 'NOREG',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDE322' : 'G-DCLP',
 		'DDE32A' : 'F-CFCE',
 		'DDE32C' : 'G-CHBE',
 		'DDE32D' : 'LY-TEST',
+<<<<<<< HEAD
 		'DDE330' : 'LY-GZM',
+=======
+		'DDE330' : 'LY-IAP',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDE332' : 'D-KPAJ',
 		'DDE333' : 'G-OGGB',
 		'DDE336' : 'D-8792',
@@ -13681,7 +14540,10 @@ kglid  = {
 		'DDE347' : 'OH-744',
 		'DDE348' : 'OH-726',
 		'DDE349' : 'F-CHCJ',
+<<<<<<< HEAD
 		'DDE34A' : 'OH-655',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDE34B' : 'OH-516',
 		'DDE34D' : 'NOREG',
 		'DDE34E' : 'D-5063',
@@ -13937,7 +14799,11 @@ kglid  = {
 		'DDE4EE' : 'NOREG',
 		'DDE4EF' : 'ANT1',
 		'DDE4F0' : 'EGWN6',
+<<<<<<< HEAD
 		'DDE4F1' : 'HA-4383',
+=======
+		'DDE4F1' : 'HA4399',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDE4F4' : 'G-CHXB',
 		'DDE4F5' : 'G-CKGF',
 		'DDE4F7' : 'HA-5020',
@@ -13953,7 +14819,11 @@ kglid  = {
 		'DDE5AC' : 'G-ONGC',
 		'DDE5AD' : 'SE-KVY',
 		'DDE5AE' : 'SE-UUO',
+<<<<<<< HEAD
 		'DDE5B0' : 'SE-ITY',
+=======
+		'DDE5B0' : 'SE-XVH',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDE5B3' : 'OYXPD',
 		'DDE5B5' : 'F-JXZN',
 		'DDE5B7' : 'NOREG',
@@ -14190,7 +15060,10 @@ kglid  = {
 		'DDE9B6' : 'D-KRHH',
 		'DDE9B7' : 'D-2425',
 		'DDE9B8' : 'D-KMWH',
+<<<<<<< HEAD
 		'DDE9B9' : 'G-CFTL',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDE9BB' : 'F-CLFM',
 		'DDE9BE' : 'D-7720',
 		'DDE9C1' : 'D-KKBX',
@@ -14216,7 +15089,11 @@ kglid  = {
 		'DDE9F0' : 'HB-2241',
 		'DDE9F1' : 'D-MJTS',
 		'DDE9F3' : 'OK-1020',
+<<<<<<< HEAD
 		'DDE9F7' : 'OK-2031',
+=======
+		'DDE9F7' : 'NOREG',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDE9F8' : 'D-KYSA',
 		'DDE9F9' : 'OH-998',
 		'DDE9FB' : 'SP-3887',
@@ -14226,6 +15103,10 @@ kglid  = {
 		'DDEA07' : 'VH-ZKT',
 		'DDEA08' : 'OK_1417',
 		'DDEA0A' : 'D-KJJG',
+<<<<<<< HEAD
+=======
+		'DDEA0B' : 'D-KTAJ',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDEA0C' : 'D-KWOK',
 		'DDEA0D' : 'OK-9902',
 		'DDEA0F' : 'D-KBCX',
@@ -14254,7 +15135,11 @@ kglid  = {
 		'DDEA43' : 'NOREG',
 		'DDEA45' : 'D-KDSN',
 		'DDEA46' : 'D-KEXL',
+<<<<<<< HEAD
 		'DDEA48' : 'NOREG',
+=======
+		'DDEA48' : 'D-6069',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDEA4A' : 'G-DUOT',
 		'DDEA4B' : 'D-3547',
 		'DDEA4E' : 'D-KIJO',
@@ -14276,7 +15161,11 @@ kglid  = {
 		'DDEA73' : 'D-XXXX',
 		'DDEA76' : 'D-1728',
 		'DDEA78' : 'D-KECA',
+<<<<<<< HEAD
 		'DDEA79' : 'NOREG',
+=======
+		'DDEA79' : 'D-6299',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDEA7D' : 'D-KFCS',
 		'DDEA7E' : 'NOREG',
 		'DDEA7F' : 'D-9998',
@@ -14383,6 +15272,7 @@ kglid  = {
 		'DDEB4B' : 'F-CMUR',
 		'DDEB4C' : 'NOREG',
 		'DDEB4D' : 'D-KVKV',
+		'DDEB52' : 'NOREG',
 		'DDEB54' : 'PH-1515',
 		'DDEB56' : 'D-KKHL',
 		'DDEB57' : 'D-4620',
@@ -14439,6 +15329,7 @@ kglid  = {
 		'DDEBCB' : 'D-KSDG',
 		'DDEBD0' : 'D-KJPC',
 		'DDEBD2' : 'F-CFUS',
+		'DDEBD3' : 'OK-4114',
 		'DDEBD5' : 'OK1811',
 		'DDEBD6' : 'G-RIZK',
 		'DDEBDA' : 'D-KBAS',
@@ -14458,6 +15349,10 @@ kglid  = {
 		'DDEBF7' : 'S5-3111',
 		'DDEBF8' : 'G-PBWS',
 		'DDEBFA' : 'G-OTJT',
+<<<<<<< HEAD
+=======
+		'DDEBFB' : 'G-CKJS',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDEC03' : 'D-KKOY',
 		'DDEC0B' : 'VG-GCL',
 		'DDEC0E' : 'D-XXHP',
@@ -14544,6 +15439,7 @@ kglid  = {
 		'DDECE1' : 'HB-2311',
 		'DDECE2' : 'GLIVS',
 		'DDECE3' : 'ZS-GBI',
+		'DDECE4' : 'NOREG',
 		'DDECE5' : 'OK-1885',
 		'DDECE6' : 'HB-2489',
 		'DDECE8' : 'D-KIZF',
@@ -14726,7 +15622,11 @@ kglid  = {
 		'DDEE63' : 'F-CHEH',
 		'DDEE66' : 'NOREG',
 		'DDEE67' : 'CC-AAW',
+<<<<<<< HEAD
 		'DDEE69' : 'D-9190',
+=======
+		'DDEE69' : 'D-2479',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDEE6C' : 'HB-3377',
 		'DDEE6F' : 'SEUPI',
 		'DDEE70' : 'D-KDCL',
@@ -14845,6 +15745,7 @@ kglid  = {
 		'DDEF72' : 'F-CFDU',
 		'DDEF73' : 'D-KBTR',
 		'DDEF77' : 'NOREG',
+		'DDEF7A' : 'D-6823',
 		'DDEF7B' : 'ZS-GXL',
 		'DDEF7C' : 'OK-0130',
 		'DDEF7D' : 'OK-4902',
@@ -14856,6 +15757,7 @@ kglid  = {
 		'DDEF8B' : 'F-CFLX',
 		'DDEF8D' : 'OK-1551',
 		'DDEF8F' : 'D_KBJP',
+		'DDEF94' : 'NOREG',
 		'DDEF96' : 'LV-EQN',
 		'DDEF97' : 'OK-1837',
 		'DDEF98' : 'D4744',
@@ -14869,6 +15771,7 @@ kglid  = {
 		'DDEFA5' : 'HB-2496',
 		'DDEFA6' : 'HB-3038',
 		'DDEFA8' : 'D-9910',
+		'DDEFA9' : 'NOREG',
 		'DDEFAC' : 'OK-0006',
 		'DDEFAE' : 'OK-7707',
 		'DDEFB2' : 'D-KLOE',
@@ -14899,7 +15802,12 @@ kglid  = {
 		'DDEFE5' : 'D-0517',
 		'DDEFE6' : 'D-9529',
 		'DDEFE7' : 'D-6275',
+<<<<<<< HEAD
 		'DDEFEA' : 'LY-GCI',
+=======
+		'DDEFEA' : 'LY-GCG',
+		'DDEFEB' : 'LY-GOT',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDEFEC' : 'D-KWFS',
 		'DDEFED' : 'ZS-GCY',
 		'DDEFEE' : 'D-1501',
@@ -14928,7 +15836,10 @@ kglid  = {
 		'DDF00F' : 'F-CPOL',
 		'DDF010' : 'D-KKCA',
 		'DDF014' : 'D-KKCW',
+<<<<<<< HEAD
 		'DDF015' : 'D-KKKC',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDF016' : 'HB-3354',
 		'DDF017' : 'D-TWWB',
 		'DDF018' : 'F-CHHO',
@@ -14936,7 +15847,13 @@ kglid  = {
 		'DDF01B' : 'PH-1595',
 		'DDF01D' : 'D-1043',
 		'DDF01F' : 'F-COKE',
+<<<<<<< HEAD
 		'DDF022' : 'D-KAPP',
+=======
+		'DDF020' : 'NOREG',
+		'DDF022' : 'D-KAPP',
+		'DDF024' : 'D-8603',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDF027' : 'D-4018',
 		'DDF028' : 'HB-2316',
 		'DDF029' : 'OY-XHZ',
@@ -14971,7 +15888,11 @@ kglid  = {
 		'DDF068' : 'D-6085',
 		'DDF069' : 'W75',
 		'DDF06B' : 'G-CJTM',
+<<<<<<< HEAD
 		'DDF06C' : 'D-5155',
+=======
+		'DDF06C' : 'NOREG',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDF06D' : 'LV-EMV',
 		'DDF06E' : 'G-CJJT',
 		'DDF071' : 'D-MANS',
@@ -15057,8 +15978,12 @@ kglid  = {
 		'DDF106' : 'D-5471',
 		'DDF108' : 'D-3144',
 		'DDF10E' : 'G-XWON',
+<<<<<<< HEAD
 		'DDF10F' : 'D-2108',
 		'DDF110' : 'NOREG',
+=======
+		'DDF110' : 'PH-495',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDF111' : 'D-KHEM',
 		'DDF113' : 'D-4872',
 		'DDF114' : 'G-CILS',
@@ -15349,7 +16274,7 @@ kglid  = {
 		'DDFB61' : 'F-CILL',
 		'DDFB62' : 'F-CEHK',
 		'DDFB64' : 'F-HNZV',
-		'DDFB66' : 'F-CGSK',
+		'DDFB66' : 'SKFW',
 		'DDFB67' : 'D-0664',
 		'DDFB68' : 'NOREG',
 		'DDFB6B' : 'F-CIHD',
@@ -15397,7 +16322,11 @@ kglid  = {
 		'DDFD5F' : 'D9165',
 		'DDFD66' : 'D-2934',
 		'DDFD6B' : 'D-1619',
+<<<<<<< HEAD
 		'DDFD6C' : 'HA-4029',
+=======
+		'DDFD6C' : 'HA-4484',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDFD70' : 'F-CHVB',
 		'DDFD75' : 'F-CVVM',
 		'DDFD77' : 'F-GTZU',
@@ -15500,7 +16429,10 @@ kglid  = {
 		'DDFE73' : 'D-7677',
 		'DDFE75' : 'OO-YBY',
 		'DDFE79' : 'D-KPGC',
+<<<<<<< HEAD
 		'DDFE7C' : 'D-1973',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DDFE83' : 'D2254',
 		'DDFE85' : 'D-0585',
 		'DDFE8A' : 'D-KTTM',
@@ -15535,7 +16467,10 @@ kglid  = {
 		'DE05B7' : 'DAB',
 		'DE05BE' : 'G-CLVZ',
 		'DE05D1' : 'C-FGIV',
+<<<<<<< HEAD
 		'DE05D3' : 'C-GDUQ',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DE05D4' : 'C-GSZD',
 		'DE061D' : 'HB-WYY',
 		'DE0621' : 'OO-H74',
@@ -15572,6 +16507,7 @@ kglid  = {
 		'DF0154' : 'CGTXZ',
 		'DF019A' : 'C-GARS',
 		'DF019F' : 'C-GTMX',
+<<<<<<< HEAD
 		'DF01A1' : 'C-GIVO',
 		'DF01A2' : 'C-FSIR',
 		'DF01A3' : 'CF-NQL',
@@ -15581,6 +16517,13 @@ kglid  = {
 		'DF01B5' : 'C-GJCR',
 		'DF01B9' : 'C-GCTN',
 		'DF0203' : 'C-GBPA',
+=======
+		'DF01AF' : 'C-GZCA',
+		'DF01B1' : 'C-GADR',
+		'DF01B3' : 'C-GUCD',
+		'DF01B5' : 'C-GJCR',
+		'DF01EC' : 'C-GXPY',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DF0206' : 'C-GRKX',
 		'DF0226' : 'D8664',
 		'DF0230' : 'D-2755',
@@ -15639,8 +16582,12 @@ kglid  = {
 		'DF03EB' : 'F-CEZB',
 		'DF03ED' : 'F-CGMI',
 		'DF03EE' : 'F-CIHE',
+<<<<<<< HEAD
 		'DF03EF' : 'F-CBDR',
 		'DF03F0' : 'F-CGFV',
+=======
+		'DF03EF' : 'F-CHDQ',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DF03F2' : 'F-CGFQ',
 		'DF03F3' : 'F-CPPC',
 		'DF03F5' : 'F-CVVJ',
@@ -15661,7 +16608,11 @@ kglid  = {
 		'DF040C' : 'F-BRKP',
 		'DF040D' : 'F-CGTL',
 		'DF040E' : 'F-CFXG',
+<<<<<<< HEAD
 		'DF0410' : 'F-CHDQ',
+=======
+		'DF0410' : 'F-CBDR',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DF0411' : 'F-BXDP',
 		'DF0412' : 'F-xxxxx',
 		'DF0417' : 'F-CHJJ',
@@ -15690,7 +16641,11 @@ kglid  = {
 		'DF047D' : 'D-9442',
 		'DF07DB' : 'D-MHEU',
 		'DF07E9' : 'D-0456',
+<<<<<<< HEAD
 		'DF0807' : 'ZS-GZO',
+=======
+		'DF0807' : 'D-KERW',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DF080C' : 'D-KSEX',
 		'DF0817' : 'D-KWHT',
 		'DF0818' : 'AAALion',
@@ -15725,7 +16680,10 @@ kglid  = {
 		'DF0883' : 'D-1096',
 		'DF0889' : 'D-KBFX',
 		'DF088C' : 'D-KEIC',
+<<<<<<< HEAD
 		'DF0890' : 'D-7076',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DF0898' : 'D-7564',
 		'DF089A' : 'OO-ZBJ',
 		'DF089E' : 'F-CPSL',
@@ -15757,6 +16715,7 @@ kglid  = {
 		'DF0929' : 'D-7152',
 		'DF0930' : 'D-KRPT',
 		'DF0934' : 'D-7771',
+		'DF093A' : 'D-KLAD',
 		'DF0947' : 'T7-MFW',
 		'DF0957' : 'VH-HDL',
 		'DF0981' : 'D-6998',
@@ -15799,7 +16758,10 @@ kglid  = {
 		'DF0AD3' : 'D-7020',
 		'DF0AD7' : 'D-KKNZ',
 		'DF0AD8' : 'D-7020',
+<<<<<<< HEAD
 		'DF0ADD' : 'D-KVWB',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DF0ADF' : '13',
 		'DF0AE7' : 'OE-5619',
 		'DF0AEF' : 'D-6971',
@@ -15985,7 +16947,10 @@ kglid  = {
 		'DF0FD3' : 'D-3571',
 		'DF0FD4' : 'D-6114',
 		'DF0FD6' : 'D-6380',
+<<<<<<< HEAD
 		'DF0FD7' : 'D-KDED',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DF1008' : 'NOREG',
 		'DF100A' : 'D-4156',
 		'DF1015' : 'D-0202',
@@ -16022,7 +16987,11 @@ kglid  = {
 		'DF10CC' : 'F-CHYF',
 		'DF10CE' : 'D-9816',
 		'DF10DA' : 'G-CKNF',
+<<<<<<< HEAD
 		'DF10DF' : 'NOREG',
+=======
+		'DF10DF' : 'D-KGJT',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DF10E5' : 'D-KMMI',
 		'DF10E6' : 'D-KRSG',
 		'DF10E7' : 'D-3196',
@@ -16122,6 +17091,7 @@ kglid  = {
 		'DF13F4' : 'G-DEFZ',
 		'DF13F9' : 'D-4776',
 		'DF13FB' : 'D-KFHD',
+		'DF1407' : 'D-KIRB',
 		'DF1408' : 'D-KABI',
 		'DF1410' : 'D-KSIO',
 		'DF1411' : 'D-KWKA',
@@ -16147,9 +17117,12 @@ kglid  = {
 		'DF1624' : 'D-1208',
 		'DF1626' : 'D-8219',
 		'DF1629' : 'NOREG',
+<<<<<<< HEAD
 		'DF1633' : 'D-0268',
 		'DF1641' : 'D-1442',
 		'DF1680' : 'PH-PXF',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'DF1684' : 'D-3627',
 		'DF1686' : 'G-FOXH',
 		'DF1696' : 'G-CKLT',
@@ -16170,20 +17143,33 @@ kglid  = {
 		'E66F2C' : 'DJI-MAZ',
 		'E66FC4' : 'OM2APF',
 		'E66FCC' : 'DJI-MAH',
+<<<<<<< HEAD
 		'E670B4' : 'CF-LAX',
 		'E670E0' : 'OK-1526',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'E67224' : 'Kmobile',
 		'E672BC' : 'EC-ACG',
 		'E6C86C' : 'V64',
 		'E74751' : 'F-CISA',
 		'E86C48' : 'NOREG',
+<<<<<<< HEAD
 		'E88A3C' : 'AK',
+=======
+		'E88A3C' : '84',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'E95A16' : 'SQ9PCB',
 		'E98C3E' : 'V',
 		'E98CE3' : 'V',
 		'E9903C' : 'CP',
+<<<<<<< HEAD
 		'EA8B50' : '697',
 		'EACF47' : 'FH-1929',
+=======
+		'EA8B50' : '00699',
+		'EACF47' : 'FH-1929',
+		'EAE950' : 'TD',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'EB4E53' : 'NOREG',
 		'EBE4E1' : 'D-kbms',
 		'EC8825' : 'OK-VUR',
@@ -16196,7 +17182,11 @@ kglid  = {
 		'EE8629' : 'LV-ELL',
 		'EE86E9' : 'LV-DNJ',
 		'EE8745' : 'LV-DGY',
+<<<<<<< HEAD
 		'EE87F9' : 'OK-6434',
+=======
+		'EE87F9' : 'OK-4822',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'EE887D' : 'LV-DOO',
 		'EE893D' : 'LV-EMU',
 		'EE8945' : 'D-MGGA',
@@ -16262,6 +17252,10 @@ kglid  = {
 		'F64420' : 'OM-1615',
 		'F64440' : 'D-KYVG',
 		'F64652' : 'D-KILY',
+<<<<<<< HEAD
+=======
+		'F64685' : 'D-3660',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'F64708' : 'G-CHSO',
 		'F64736' : 'NOREG',
 		'F65038' : 'D-8297',
@@ -16289,6 +17283,7 @@ kglid  = {
 		'F71814' : 'D-KQWB',
 		'F71824' : 'G-JURU',
 		'F71899' : 'D2420',
+		'F72129' : 'D-MCKS',
 		'F72165' : 'F-CIEG',
 		'F72185' : 'F-CIHQ',
 		'F72194' : 'F-CGFC',
@@ -16306,6 +17301,10 @@ kglid  = {
 		'F74EEB' : '8525',
 		'F78131' : 'G-DFBY',
 		'F78374' : 'D-2138',
+<<<<<<< HEAD
+=======
+		'F78402' : 'D-1327',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'F78882' : 'D-2609',
 		'F79462' : 'OO-YYO',
 		'F79473' : 'PH-1184',
@@ -16337,7 +17336,10 @@ kglid  = {
 		'FD3F05' : 'RC-HB4',
 		'FD7894' : 'RC-HB7',
 		'FDA48B' : 'RC-HB6',
+<<<<<<< HEAD
 		'FDB2AB' : 'G-PUNT',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'FDB5F4' : 'RC-HB3',
 		'FDD94F' : 'HASUV',
 		'FDDE6E' : '2027',
@@ -16357,7 +17359,10 @@ kglid  = {
 		'FF0528' : 'RomanT',
 		'FF053E' : 'Norbert',
 		'FF059B' : 'ThomasR',
+<<<<<<< HEAD
 		'FF05B2' : 'Michels',
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'FF05BF' : 'DAV',
 		'FF05F8' : 'Juergen',
 		'FF06FB' : 'E.H',
@@ -16378,7 +17383,11 @@ kglid  = {
 		'FF4F4C' : 'mik42',
 		'FF4FF0' : 'TEST3',
 		'FF504C' : 'HA-6765',
+<<<<<<< HEAD
 		'FF50F0' : 'OY-CBX',
+=======
+		'FF50F0' : 'OY-BX',
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		'FF5184' : 'N758WE',
 		'FF8D91' : 'D-4299',
 		'FFA51F' : 'HBPQK',
@@ -16388,11 +17397,17 @@ kglid  = {
 		'FFDE69' : '2049',
 		'FFDE7D' : 'HAJAJ',
 		'FFDF59' : 'HADAO',
+<<<<<<< HEAD
 		'FFFD23' : 'tzt',
 		'FFFFF1' : 'PH-1588',
 		'FFFFFF' : 'ERROR',
 # FLARMNET data
 		"000001":"000000",
+=======
+		'FFFFF1' : 'PH-1588',
+		'FFFFFF' : 'ERROR',
+# FLARMNET data
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"00000f":"D-9527",
 		"00001F":"D-KHGA",
 		"0000B1":"D-9431",
@@ -16472,7 +17487,10 @@ kglid  = {
 		"170385":"33086",
 		"1AB23C":"D-XXXX",
 		"1EA234":"D-0010",
+<<<<<<< HEAD
 		"2001B7":"FLATMX",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"2001DB":"48113",
 		"210556":"D-6161",
 		"215485":"215646",
@@ -16502,7 +17520,10 @@ kglid  = {
 		"39373C":"F-JUQC",
 		"394B5C":"67BVA",
 		"39525C":"F-JABZ",
+<<<<<<< HEAD
 		"3961AD":"F-GYNN",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"396DDC":"F-JDQP",
 		"39BFDC":"29VF",
 		"39C64D":"F-HRSN",
@@ -16610,11 +17631,18 @@ kglid  = {
 		"3e625c":"D-KCLG",
 		"3E62C2":"D-KCPE",
 		"3E641C":"D-KDCM",
+<<<<<<< HEAD
+=======
+		"3E64AC":"D-KDIA",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"3e64ad":"D-KDIB",
 		"3E64CB":"D-KDJH",
 		"3E6552":"D-KDOK",
 		"3E65E4":"D-KDUA",
+<<<<<<< HEAD
 		"3E6806":"D-9746",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"3E6924":"D-KFAA",
 		"3E694C":"D-KFBO",
 		"3E69FB":"D-KFIH",
@@ -16630,9 +17658,14 @@ kglid  = {
 		"3E7217":"D-KIKD",
 		"3e723c":"D-KILO",
 		"3E7290":"D-KIOU",
+		"3E72CB":"D-KIRB",
 		"3E72ED":"D-KISJ",
 		"3E72EF":"D-KISL",
 		"3E72FA":"D-KISW",
+<<<<<<< HEAD
+=======
+		"3E733F":"D-KIVN",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"3E73B4":"D-KJAA",
 		"3E74F2":"D-KBKM",
 		"3E74FE":"D-KJMS",
@@ -16651,21 +17684,34 @@ kglid  = {
 		"3E7DAF":"D-KMUH",
 		"3EC1A8":"DKOHK",
 		"3EC50A":"D-KPOS",
+<<<<<<< HEAD
+=======
+		"3ec8df":"D-KRAL",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"3ec9fe":"D-KRLM",
 		"3ECA64":"D-KRPK",
 		"3ECAC2":"D-KRTA",
 		"3ECC1C":"D-3998",
 		"3ECC65":"D-1259",
 		"3ECD6E":"N177SG",
+		"3ece51":"D-KTCB",
 		"3ECF51":"D-KTLX",
 		"3ED119":"D-KUDL",
 		"3ED27A":"DKURA",
 		"3ED37F":"D-2933",
+<<<<<<< HEAD
 		"3ED614":"D-KWAM",
 		"3ED8EC":"D-KXCM",
+=======
+		"3ed4f0":"D-KVPG",
+		"3ed5ed":"D-KVYZ",
+		"3ED614":"D-KWAM",
+		"3ED70C":"D-KWKA",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"3EDB5A":"D-KYAK",
 		"3EDB97":"D-KYCT",
 		"3EDC76":"D-KYLI",
+		"3EDDD7":"D-KYYX",
 		"3EDE05":"DKZAR",
 		"3EE184":"D-0237",
 		"3EE2DD":"D-0582",
@@ -16685,6 +17731,10 @@ kglid  = {
 		"3EF460":"D5065",
 		"3EF502":"D-5227",
 		"3EF528":"D-5265",
+<<<<<<< HEAD
+=======
+		"3EF57A":"D-5347",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"3EF7EE":"D-5975",
 		"3EF854":"D-6077",
 		"3EF8B1":"D-6170",
@@ -16695,6 +17745,7 @@ kglid  = {
 		"3EFBA8":"D6929",
 		"3EFBBE":"D-6951",
 		"3EFC42":"D-7083",
+		"3EFDC3":"D-7468",
 		"3EFE90":"D-7673",
 		"3F001A":"D-8067",
 		"3F013F":"D-8360",
@@ -16791,6 +17842,7 @@ kglid  = {
 		"404DF4":"G-DUOT",
 		"404E98":"G-CKMA",
 		"405153":"G-SAOC",
+		"40525D":"G-CTWO",
 		"4052A3":"G-CHWH",
 		"4052F2":"G-CKML",
 		"405312":"G-CHNU",
@@ -16813,6 +17865,10 @@ kglid  = {
 		"405C9E":"G-DCSJ",
 		"405D72":"G-DGDJ",
 		"405D7D":"G-CJMS",
+<<<<<<< HEAD
+=======
+		"405E29":"G-CHUE",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"405E9C":"G-CJML",
 		"405F15":"G-IIOO",
 		"406054":"G-DJNE",
@@ -16897,7 +17953,10 @@ kglid  = {
 		"48491A":"PH-136",
 		"48494B":"PH-303",
 		"4849A2":"PH-929",
+<<<<<<< HEAD
 		"4849E5":"PH-130",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"484A8D":"PH-942",
 		"484ABE":"HB-343",
 		"484AE1":"PH1029",
@@ -16937,7 +17996,10 @@ kglid  = {
 		"4AD413":"SE-THS",
 		"4AD5AD":"SEUMM",
 		"4AD5C1":"SE-UNA",
+<<<<<<< HEAD
 		"4AD718":"SE-UXX",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"4B0831":"HB-DCR",
 		"4B1303":"HBHFF",
 		"4B1BDC":"HB-KOI",
@@ -16950,7 +18012,10 @@ kglid  = {
 		"4B2957":"HB-PRB",
 		"4B2D23":"HBRCL",
 		"4B3667":"HB-UPR",
+<<<<<<< HEAD
 		"4B3A20":"HB-WAI",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"4B3D61":"HB-XGJ",
 		"4B3DC8":"HB-233",
 		"4B3DEC":"HB-XLS",
@@ -16985,7 +18050,10 @@ kglid  = {
 		"4B4DAF":"HB-328",
 		"4B4DBE":"hb-232",
 		"4b4de5":"HB-236",
+<<<<<<< HEAD
 		"4b4df8":"HB-238",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"4B4E00":"HB-239",
 		"4B4E01":"HB-239",
 		"4B4E03":"HB-239",
@@ -17201,6 +18269,10 @@ kglid  = {
 		"A26D5E":"N2557",
 		"A26EA9":"N256K",
 		"A27D05":"N26DX",
+<<<<<<< HEAD
+=======
+		"A27D43":"N26GJ",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"A27E9C":"N26WD",
 		"A28E36":"N264DT",
 		"A292E2":"N265PN",
@@ -17288,7 +18360,10 @@ kglid  = {
 		"A3E277":"N35AC",
 		"A3EA14":"N351S",
 		"A3EA78":"N351W",
+<<<<<<< HEAD
 		"A40CE9":"N360GG",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"A412F4":"N3614N",
 		"A41FB3":"N365JM",
 		"A42CA2":"N3682",
@@ -17310,6 +18385,10 @@ kglid  = {
 		"A4D2E7":"N41MN",
 		"A4DD1F":"N412SA",
 		"A4DD39":"412TB",
+<<<<<<< HEAD
+=======
+		"A4E809":"N415PS",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"A4E991":"N41534",
 		"A4EAD5":"416EG",
 		"A4F5A1":"N419AT",
@@ -17507,6 +18586,10 @@ kglid  = {
 		"ABF416":"N87B",
 		"ABF41A":"N87BD",
 		"ABFDC3":"872",
+<<<<<<< HEAD
+=======
+		"AC1232":"N877V",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"AC1BFD":"N88FD",
 		"AC1DF0":"N880BB",
 		"AC28D7":"N8829A",
@@ -17561,6 +18644,7 @@ kglid  = {
 		"C0022E":"C-GAVL",
 		"C002F4":"CFBDB",
 		"C003B6":"C-FBKN",
+		"C0059A":"C-FCDD",
 		"C00A4F":"C-FDXM",
 		"C0123B":"C-FGXM",
 		"C01B36":"C-FKHX",
@@ -17572,6 +18656,10 @@ kglid  = {
 		"C025B8":"C-FOHJ",
 		"C02A2B":"C-FPZE",
 		"C02CD5":"C-FQZK",
+<<<<<<< HEAD
+=======
+		"C03230":"C-FTAD",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"C03879":"C-FVKA",
 		"C03FD9":"C-FYEQ",
 		"C042CE":"C-FZHT",
@@ -17580,6 +18668,8 @@ kglid  = {
 		"C0485B":"C-GBKK",
 		"C0497D":"C-GBVO",
 		"C049D3":"C-GBYW",
+		"C04F02":"C-GDXX",
+		"C04F0E":"C-GDYJ",
 		"C05076":"C-GEMF",
 		"C05205":"C-GFBO",
 		"C0521F":"C-GFCO",
@@ -17596,6 +18686,7 @@ kglid  = {
 		"C05E94":"C-GJVF",
 		"C05F76":"C-GKDX",
 		"C06208":"C-GLDF",
+		"C0621C":"C-GLDZ",
 		"C06230":"C-GLET",
 		"C067D9":"C-GNIM",
 		"C0699F":"C-GNZY",
@@ -17624,6 +18715,10 @@ kglid  = {
 		"C82436":"ZK-GSM",
 		"C82782":"ZK-GOK",
 		"CAFE01":"D-KXVH",
+<<<<<<< HEAD
+=======
+		"D000D6":"N147JA",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"D00113":"D-KOBM",
 		"D0015B":"D-KFOX",
 		"D00161":"D-3505",
@@ -17631,16 +18726,24 @@ kglid  = {
 		"D001AB":"D-0000",
 		"D001D2":"D-KEKF",
 		"D001D5":"D_KDSS",
+<<<<<<< HEAD
 		"D001DC":"D-9990",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"D001DD":"D-KLJM",
 		"D001DF":"D-KICK",
 		"D00275":"G-CGDB",
 		"D00278":"HA-455",
 		"D00319":"N759DE",
+<<<<<<< HEAD
 		"D0038F":"D-6314",
 		"D003AF":"D-KTEE",
 		"D003B9":"D-KHYN",
 		"D003BB":"D-5249",
+=======
+		"D003AF":"D-KTEE",
+		"D003B9":"D-KHYN",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"D003C5":"D-7955",
 		"D003C6":"D-KSUA",
 		"D003EB":"TF-SAX",
@@ -17648,6 +18751,7 @@ kglid  = {
 		"D0040F":"PH-145",
 		"D00433":"D-9571",
 		"D00496":"G-DDVA",
+<<<<<<< HEAD
 		"D004B2":"D-KLXE",
 		"D00511":"D-KYGB",
 		"D0051E":"PH-140",
@@ -17657,9 +18761,14 @@ kglid  = {
 		"D00718":"D-1929",
 		"D0074D":"D-KHMA",
 		"D008AA":"LY-BSA",
+=======
+		"D00511":"D-KYGB",
+		"D0051E":"PH-140",
+		"D00547":"D-2971",
+		"D0074D":"D-KHMA",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"D0092E":"D-3505",
 		"D00942":"VH-BHM",
-		"D00943":"GKSSX",
 		"D00944":"G-CEWC",
 		"D0094B":"D-KPWG",
 		"D009AE":"D-KAKW",
@@ -17673,6 +18782,10 @@ kglid  = {
 		"D00B4D":"SP-399",
 		"D01033":"C-FLXI",
 		"D0103E":"N101RW",
+<<<<<<< HEAD
+=======
+		"D01050":"F-CLAB",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"D2A59B":"D-8795",
 		"DA8A02":"DYZ",
 		"DA8A03":"ZBI",
@@ -17768,7 +18881,12 @@ kglid  = {
 		"DD4EDE":"OY-XVY",
 		"DD4EE0":"SP-371",
 		"DD4EE6":"D-0349",
+<<<<<<< HEAD
 		"DD4EF9":"FJXLT",
+=======
+		"DD4EF9":"67BGL",
+		"DD4F03":"OY-XYK",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD4F35":"OY-EXA",
 		"DD4F38":"D-5729",
 		"DD4F39":"G-chrw",
@@ -17790,6 +18908,10 @@ kglid  = {
 		"DD506A":"15571",
 		"DD509E":"D4073",
 		"DD50B1":"D-0807",
+<<<<<<< HEAD
+=======
+		"DD50E1":"D-KOLT",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD50EB":"ZK-GDX",
 		"DD5132":"PH-118",
 		"DD5140":"D-8121",
@@ -17890,6 +19012,7 @@ kglid  = {
 		"DD8434":"D-KAGS",
 		"DD8438":"D-7842",
 		"DD8449":"D-9609",
+		"DD844C":"F-CBNA",
 		"DD8455":"D-6057",
 		"DD8458":"D-KGBT",
 		"DD8463":"D-7667",
@@ -17909,6 +19032,10 @@ kglid  = {
 		"DD8500":"D-6641",
 		"DD8505":"D-1663",
 		"DD851F":"PH-794",
+<<<<<<< HEAD
+=======
+		"DD853B":"D-5552",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD853C":"PH-721",
 		"DD8541":"D-KIMA",
 		"DD8544":"D-3541",
@@ -17946,14 +19073,21 @@ kglid  = {
 		"DD8654":"D-8676",
 		"DD8659":"D-7329",
 		"DD865D":"D-5117",
+		"DD8665":"D-2474",
 		"DD8668":"D-0228",
 		"DD8674":"D-7304",
 		"DD8679":"D-4162",
+<<<<<<< HEAD
 		"DD867F":"D-7141",
 		"DD8683":"D-4220",
 		"DD8685":"D-KSGA",
 		"DD8688":"D-4521",
 		"DD868B":"D-2240",
+=======
+		"DD8683":"D-4220",
+		"DD8685":"D-KSGA",
+		"DD8688":"D-4521",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD86A1":"D-8810",
 		"DD86A2":"D-1263",
 		"DD86A9":"OE-544",
@@ -17972,7 +19106,10 @@ kglid  = {
 		"DD8705":"D-2528",
 		"DD870E":"D-3924",
 		"DD8712":"D-2482",
+<<<<<<< HEAD
 		"DD8713":"D-5574",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD8718":"D-2919",
 		"DD871A":"ECRQ",
 		"DD8722":"D-9437",
@@ -18097,7 +19234,10 @@ kglid  = {
 		"DD8E20":"SE-SOT",
 		"DD8E2A":"D-4161",
 		"DD8E2B":"D-6842",
+<<<<<<< HEAD
 		"DD8E38":"D-9929",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD8E3E":"D-1817",
 		"DD8E3F":"D-7123",
 		"DD8E56":"OM-LSP",
@@ -18153,6 +19293,10 @@ kglid  = {
 		"DD91C3":"D-5775",
 		"DD91C8":"D-4886",
 		"DD91D0":"D-8568",
+<<<<<<< HEAD
+=======
+		"DD921C":"D-KKAC",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD923F":"OE-519",
 		"DD9248":"D-KLLG",
 		"DD9254":"VH-FQM",
@@ -18185,6 +19329,10 @@ kglid  = {
 		"DD9356":"D-7578",
 		"DD93A3":"OE-063",
 		"DD93BF":"xxx",
+<<<<<<< HEAD
+=======
+		"DD93E6":"D-9204",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD9401":"HB-338",
 		"DD9406":"D-0889",
 		"DD9407":"D-8859",
@@ -18197,6 +19345,7 @@ kglid  = {
 		"DD9451":"D-5732",
 		"DD945C":"D-2877",
 		"DD9474":"D-5310",
+		"DD9478":"D-7211",
 		"DD9482":"D-8975",
 		"DD9487":"D-4904",
 		"DD9488":"D-1773",
@@ -18208,6 +19357,10 @@ kglid  = {
 		"DD94A7":"D-9304",
 		"DD94B0":"HB-247",
 		"DD94B2":"D-EGCH",
+<<<<<<< HEAD
+=======
+		"DD94BE":"D-1081",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD94EA":"D-3466",
 		"DD94F0":"D-4512",
 		"DD9503":"D-9216",
@@ -18304,7 +19457,10 @@ kglid  = {
 		"DD97EA":"D-5348",
 		"DD9800":"D-4467",
 		"DD980C":"D-4447",
+<<<<<<< HEAD
 		"DD981C":"LY-IAP",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD9826":"OE-511",
 		"DD982A":"F-CJLL",
 		"DD982B":"D-2527",
@@ -18316,7 +19472,10 @@ kglid  = {
 		"DD9853":"D-2973",
 		"DD9856":"ZU-GUO",
 		"DD985F":"D-KTAS",
+<<<<<<< HEAD
 		"DD988F":"D-KYNT",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD989C":"D-5707",
 		"DD989F":"D-7757",
 		"DD98A2":"D-2443",
@@ -18338,6 +19497,7 @@ kglid  = {
 		"DD991B":"D-KTGS",
 		"DD9926":"D-3331",
 		"DD9928":"D-4664",
+		"DD992F":"D-9080",
 		"DD993A":"D-6792",
 		"DD9950":"D7663",
 		"DD9951":"D-0481",
@@ -18497,12 +19657,12 @@ kglid  = {
 		"DD9FBE":"D-0315",
 		"DD9FC2":"D-5241",
 		"DD9FC8":"D-5035",
+		"DD9FC9":"D-2666",
 		"DD9FCB":"D-0433",
 		"DD9FD0":"D-KHBB",
 		"DD9FD4":"D-KTMW",
 		"DD9FDE":"D-2864",
 		"DD9FE6":"D-KNTI",
-		"DD9FF9":"D-3581",
 		"DDA225":"D-KIJR",
 		"DDA261":"D-KHBC",
 		"DDA283":"D-KBHH",
@@ -18511,7 +19671,10 @@ kglid  = {
 		"DDA295":"D-KGIU",
 		"DDA299":"D-3739",
 		"DDA2A6":"HB-173",
+<<<<<<< HEAD
 		"DDA2AC":"D-2513",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDA2D7":"D-KEIS",
 		"DDA2DB":"D-KAEY",
 		"DDA2DC":"D-5429",
@@ -18578,6 +19741,10 @@ kglid  = {
 		"DDA61C":"D-2475",
 		"DDA62E":"D-KDHH",
 		"DDA637":"D-7282",
+<<<<<<< HEAD
+=======
+		"DDA638":"D-KLZM",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDA63D":"D-3917",
 		"DDA63F":"D-KIDI",
 		"DDA640":"OE-531",
@@ -18609,6 +19776,10 @@ kglid  = {
 		"DDA70A":"D-8529",
 		"DDA70B":"D-0891",
 		"DDA70F":"D-2921",
+<<<<<<< HEAD
+=======
+		"DDA726":"D-2767",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDA72E":"D-8907",
 		"DDA735":"D-1989",
 		"DDA737":"D-7168",
@@ -18737,11 +19908,19 @@ kglid  = {
 		"DDAB30":"D-0364",
 		"DDAB34":"D-KOIL",
 		"DDAB35":"D-KKKH",
+<<<<<<< HEAD
+=======
+		"DDAB42":"D-9204",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDAB4D":"D-4840",
 		"DDAB54":"D-KLOK",
 		"DDAB58":"OE-571",
 		"DDAB6A":"D-2883",
+<<<<<<< HEAD
 		"DDAB7C":"7C",
+=======
+		"DDAB7C":"D-8206",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDAB81":"D-KLEB",
 		"DDAB89":"D-8126",
 		"DDAB91":"D-7331",
@@ -18759,7 +19938,10 @@ kglid  = {
 		"DDABFC":"D-KIMA",
 		"DDAC08":"D-0425",
 		"DDAC21":"D-KISW",
+<<<<<<< HEAD
 		"DDAC24":"D-5056",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDAC45":"D-5066",
 		"DDAC48":"D-7286",
 		"DDAC4A":"D-5971",
@@ -18837,7 +20019,10 @@ kglid  = {
 		"DDAEA9":"D-4869",
 		"DDAEAC":"D-5914",
 		"DDAEB2":"D-8020",
+<<<<<<< HEAD
 		"DDAEBC":"D-KFFC",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDAEC0":"D-3497",
 		"DDAEC7":"D-1950",
 		"DDAED5":"D-5014",
@@ -18862,6 +20047,7 @@ kglid  = {
 		"DDAF78":"D-9424",
 		"DDAF7B":"D-3775",
 		"DDAF7F":"D-3303",
+		"DDAF83":"D-KLDR",
 		"DDAF86":"HB-XKE",
 		"DDAF87":"D-1972",
 		"DDAF8B":"KBHA",
@@ -18880,6 +20066,10 @@ kglid  = {
 		"DDB007":"D-KKCB",
 		"DDB012":"D-0744",
 		"DDB013":"D-0798",
+<<<<<<< HEAD
+=======
+		"DDB01B":"D-7698",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDB01D":"D-7949",
 		"DDB025":"D-7112",
 		"DDB02C":"D-6439",
@@ -18920,6 +20110,11 @@ kglid  = {
 		"DDB103":"D-3314",
 		"DDB10B":"D-KVFF",
 		"Ddb119":"D-0001",
+<<<<<<< HEAD
+=======
+		"DDB11E":"D-4778",
+		"DDB124":"D-7024",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDB131":"D-5075",
 		"DDB133":"D-KLRR",
 		"DDB134":"D-1206",
@@ -19174,6 +20369,10 @@ kglid  = {
 		"DDBED5":"D-6406",
 		"DDBED9":"D-KHGA",
 		"DDBEDE":"D-9420",
+<<<<<<< HEAD
+=======
+		"DDBEE4":"D-6302",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDBF09":"D-4055",
 		"DDBF1D":"D-KHHO",
 		"DDBF32":"D-KLPY",
@@ -19202,6 +20401,7 @@ kglid  = {
 		"DDBFD7":"OY-XSF",
 		"DDBFF3":"D-1984",
 		"DDC002":"T15",
+		"DDC015":"D-1999",
 		"DDC044":"D-4986",
 		"DDC060":"G-CKNR",
 		"DDC062":"D-7706",
@@ -19301,7 +20501,10 @@ kglid  = {
 		"DDD383":"D-5725",
 		"DDD3B6":"F-CEQZ",
 		"DDD402":"F-CAEM",
+<<<<<<< HEAD
 		"DDD41C":"PH_148",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDD42D":"D-5433",
 		"DDD441":"VH-FOO",
 		"DDD44A":"D-9290",
@@ -19340,6 +20543,7 @@ kglid  = {
 		"DDD830":"F-CFBJ",
 		"DDD846":"OO-ZLE",
 		"DDD84C":"PH-105",
+		"DDD879":"OK-871",
 		"DDD8BD":"D-1039",
 		"DDD8CB":"F-CEKY",
 		"DDD8CE":"PH-920",
@@ -19348,6 +20552,10 @@ kglid  = {
 		"DDD8F5":"RK09VD",
 		"DDD900":"-SE-UN",
 		"DDD908":"D-KHJC",
+<<<<<<< HEAD
+=======
+		"DDD916":"D-7666",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDD91D":"D-9805",
 		"DDD91E":"D-2717",
 		"DDD921":"D-KEBR",
@@ -19360,6 +20568,7 @@ kglid  = {
 		"DDD99A":"PH-588",
 		"DDD9B2":"D-8982",
 		"DDD9B3":"6238",
+		"DDD9B5":"D-KRGW",
 		"DDD9B6":"D-6400",
 		"DDD9C1":"D5886",
 		"DDD9C7":"PH-147",
@@ -19369,6 +20578,10 @@ kglid  = {
 		"DDDA11":"SP-391",
 		"DDDA23":"F-TGDH",
 		"DDDA27":"F-UQTH",
+<<<<<<< HEAD
+=======
+		"DDDA57":"D1397",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDDA8C":"F-JUFA",
 		"DDDAB4":"SE-TVR",
 		"DDDAB5":"D-KPJC",
@@ -19405,6 +20618,7 @@ kglid  = {
 		"DDDCA6":"D-6133",
 		"DDDCA7":"D-6089",
 		"DDDCBD":"OK-213",
+		"DDDCC0":"F-CGQJ",
 		"DDDCDA":"D-5929",
 		"DDDCE2":"D-7311",
 		"DDDD00":"D-5844",
@@ -19503,6 +20717,10 @@ kglid  = {
 		"DDE228":"G-CKCJ",
 		"DDE22B":"D-6715",
 		"DDE23A":"D-4933",
+<<<<<<< HEAD
+=======
+		"DDE23E":"D-4498",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDE26B":"D-KOMY",
 		"DDE271":"LN-GHD",
 		"DDE285":"OO-YVA",
@@ -19587,7 +20805,10 @@ kglid  = {
 		"DDEA61":"D-KJCB",
 		"DDEA67":"D-KMSY",
 		"DDEA6D":"D-KCHR",
+<<<<<<< HEAD
 		"DDEA74":"D_KTCB",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDEA82":"D-KIIR",
 		"DDEA85":"D-8443",
 		"DDEA97":"F-CIJP",
@@ -19606,6 +20827,10 @@ kglid  = {
 		"DDEAD1":"D-KSMF",
 		"DDEAD4":"D-KARX",
 		"DDEAE2":"D-KJAN",
+<<<<<<< HEAD
+=======
+		"DDEAE7":"D-KAFZ",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDEB02":"PH-151",
 		"DDEB03":"D-KWCB",
 		"DDEB0B":"D-1976",
@@ -19620,6 +20845,10 @@ kglid  = {
 		"DDEB74":"HB-331",
 		"DDEB76":"D-KFPE",
 		"DDEB7C":"HB1449",
+<<<<<<< HEAD
+=======
+		"DDEB81":"D-KVVB",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDEB89":"D-KKDS",
 		"DDEB8A":"D-KGBL",
 		"DDEBC3":"D-KLKS",
@@ -19665,6 +20894,10 @@ kglid  = {
 		"DDEDC3":"D-1090",
 		"DDEDDF":"D-3332",
 		"DDEE1D":"D-KCHM",
+<<<<<<< HEAD
+=======
+		"DDEE35":"D-KKRG",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDEE3A":"OK-197",
 		"DDEE40":"D-KPJG",
 		"DDEE44":"ZS-GRT",
@@ -19682,7 +20915,6 @@ kglid  = {
 		"DDEF60":"D-4317",
 		"DDEF6F":"GCJMU",
 		"DDEF83":"D-KAVM",
-		"DDEF94":"GEEKI",
 		"DDEFA7":"YU-446",
 		"DDEFAB":"D-9820",
 		"DDEFAF":"HB-244",
@@ -19803,6 +21035,10 @@ kglid  = {
 		"DE05C5":"C-GBKK",
 		"DE05C6":"C-FMOW",
 		"DE05CF":"C-FTXW",
+<<<<<<< HEAD
+=======
+		"DE05D3":"C-GDUQ",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DE05D6":"C-GNIM",
 		"DE0632":"C-FBMX",
 		"DE0EEA":"D-KKUS",
@@ -19832,6 +21068,13 @@ kglid  = {
 		"DF0171":"N367T",
 		"DF018E":"C-GVTZ",
 		"DF0198":"C-GKHR",
+<<<<<<< HEAD
+=======
+		"DF01A1":"C-GIVO",
+		"DF01A2":"C-FSIR",
+		"DF01A3":"C-FNQL",
+		"DF01A5":"C-FKDT",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DF01B7":"N740XC",
 		"DF01BA":"N26HL",
 		"DF01BD":"N224JR",
@@ -19883,6 +21126,10 @@ kglid  = {
 		"DF0878":"I-ILMA",
 		"DF0881":"D-4222",
 		"DF0895":"D-7266",
+<<<<<<< HEAD
+=======
+		"DF08A2":"D-0419",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DF08B2":"OE-527",
 		"DF08B8":"LNGIM",
 		"DF08B9":"D-6831",
@@ -19967,12 +21214,17 @@ kglid  = {
 		"DF1187":"C-GKNG",
 		"DF1189":"CF-HPI",
 		"DF118D":"VH-YJT",
+		"DF11BB":"OE-573",
 		"DF11D4":"D-5846",
 		"DF11F3":"D-5983",
 		"DF123F":"F-CLBF",
 		"DF124A":"D-6416",
 		"DF1278":"D-KHST",
 		"DF12B9":"D-2704",
+<<<<<<< HEAD
+=======
+		"DF12D0":"D-7333",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DF130F":"D-KFHA",
 		"DF1312":"D-KEBY",
 		"DF1339":"N27SZ",
@@ -19991,7 +21243,10 @@ kglid  = {
 		"DF1618":"VH-FJS",
 		"DF161D":"N67WS",
 		"Df16af":"VH-XLP",
+<<<<<<< HEAD
 		"DF9887":"D-0257",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"E2E0F4":"ZS-GXK",
 		"EA1807":"DKWKW",
 		"ee8631":"N44FF",

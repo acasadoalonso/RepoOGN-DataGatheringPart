@@ -26,3 +26,6 @@ flarmdb/*.bkup
 flarmdb/*.json
 flarmdb/*.fln
 flarmdb/*.csv
+flramdb/kglid.py
+flramdb/ognddbdata.py
+flramdb/flarmdata.py

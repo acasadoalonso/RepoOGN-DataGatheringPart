@@ -1,5 +1,8 @@
 # FLARMNET data
+<<<<<<< HEAD
 		"000001":"000000",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"00000f":"D-9527",
 		"00001F":"D-KHGA",
 		"0000B1":"D-9431",
@@ -79,7 +82,10 @@
 		"170385":"33086",
 		"1AB23C":"D-XXXX",
 		"1EA234":"D-0010",
+<<<<<<< HEAD
 		"2001B7":"FLATMX",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"2001DB":"48113",
 		"210556":"D-6161",
 		"215485":"215646",
@@ -109,7 +115,10 @@
 		"39373C":"F-JUQC",
 		"394B5C":"67BVA",
 		"39525C":"F-JABZ",
+<<<<<<< HEAD
 		"3961AD":"F-GYNN",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"396DDC":"F-JDQP",
 		"39BFDC":"29VF",
 		"39C64D":"F-HRSN",
@@ -217,11 +226,18 @@
 		"3e625c":"D-KCLG",
 		"3E62C2":"D-KCPE",
 		"3E641C":"D-KDCM",
+<<<<<<< HEAD
+=======
+		"3E64AC":"D-KDIA",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"3e64ad":"D-KDIB",
 		"3E64CB":"D-KDJH",
 		"3E6552":"D-KDOK",
 		"3E65E4":"D-KDUA",
+<<<<<<< HEAD
 		"3E6806":"D-9746",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"3E6924":"D-KFAA",
 		"3E694C":"D-KFBO",
 		"3E69FB":"D-KFIH",
@@ -237,9 +253,14 @@
 		"3E7217":"D-KIKD",
 		"3e723c":"D-KILO",
 		"3E7290":"D-KIOU",
+		"3E72CB":"D-KIRB",
 		"3E72ED":"D-KISJ",
 		"3E72EF":"D-KISL",
 		"3E72FA":"D-KISW",
+<<<<<<< HEAD
+=======
+		"3E733F":"D-KIVN",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"3E73B4":"D-KJAA",
 		"3E74F2":"D-KBKM",
 		"3E74FE":"D-KJMS",
@@ -258,21 +279,34 @@
 		"3E7DAF":"D-KMUH",
 		"3EC1A8":"DKOHK",
 		"3EC50A":"D-KPOS",
+<<<<<<< HEAD
+=======
+		"3ec8df":"D-KRAL",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"3ec9fe":"D-KRLM",
 		"3ECA64":"D-KRPK",
 		"3ECAC2":"D-KRTA",
 		"3ECC1C":"D-3998",
 		"3ECC65":"D-1259",
 		"3ECD6E":"N177SG",
+		"3ece51":"D-KTCB",
 		"3ECF51":"D-KTLX",
 		"3ED119":"D-KUDL",
 		"3ED27A":"DKURA",
 		"3ED37F":"D-2933",
+<<<<<<< HEAD
 		"3ED614":"D-KWAM",
 		"3ED8EC":"D-KXCM",
+=======
+		"3ed4f0":"D-KVPG",
+		"3ed5ed":"D-KVYZ",
+		"3ED614":"D-KWAM",
+		"3ED70C":"D-KWKA",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"3EDB5A":"D-KYAK",
 		"3EDB97":"D-KYCT",
 		"3EDC76":"D-KYLI",
+		"3EDDD7":"D-KYYX",
 		"3EDE05":"DKZAR",
 		"3EE184":"D-0237",
 		"3EE2DD":"D-0582",
@@ -292,6 +326,10 @@
 		"3EF460":"D5065",
 		"3EF502":"D-5227",
 		"3EF528":"D-5265",
+<<<<<<< HEAD
+=======
+		"3EF57A":"D-5347",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"3EF7EE":"D-5975",
 		"3EF854":"D-6077",
 		"3EF8B1":"D-6170",
@@ -302,6 +340,7 @@
 		"3EFBA8":"D6929",
 		"3EFBBE":"D-6951",
 		"3EFC42":"D-7083",
+		"3EFDC3":"D-7468",
 		"3EFE90":"D-7673",
 		"3F001A":"D-8067",
 		"3F013F":"D-8360",
@@ -398,6 +437,7 @@
 		"404DF4":"G-DUOT",
 		"404E98":"G-CKMA",
 		"405153":"G-SAOC",
+		"40525D":"G-CTWO",
 		"4052A3":"G-CHWH",
 		"4052F2":"G-CKML",
 		"405312":"G-CHNU",
@@ -420,6 +460,10 @@
 		"405C9E":"G-DCSJ",
 		"405D72":"G-DGDJ",
 		"405D7D":"G-CJMS",
+<<<<<<< HEAD
+=======
+		"405E29":"G-CHUE",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"405E9C":"G-CJML",
 		"405F15":"G-IIOO",
 		"406054":"G-DJNE",
@@ -504,7 +548,10 @@
 		"48491A":"PH-136",
 		"48494B":"PH-303",
 		"4849A2":"PH-929",
+<<<<<<< HEAD
 		"4849E5":"PH-130",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"484A8D":"PH-942",
 		"484ABE":"HB-343",
 		"484AE1":"PH1029",
@@ -544,7 +591,10 @@
 		"4AD413":"SE-THS",
 		"4AD5AD":"SEUMM",
 		"4AD5C1":"SE-UNA",
+<<<<<<< HEAD
 		"4AD718":"SE-UXX",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"4B0831":"HB-DCR",
 		"4B1303":"HBHFF",
 		"4B1BDC":"HB-KOI",
@@ -557,7 +607,10 @@
 		"4B2957":"HB-PRB",
 		"4B2D23":"HBRCL",
 		"4B3667":"HB-UPR",
+<<<<<<< HEAD
 		"4B3A20":"HB-WAI",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"4B3D61":"HB-XGJ",
 		"4B3DC8":"HB-233",
 		"4B3DEC":"HB-XLS",
@@ -592,7 +645,10 @@
 		"4B4DAF":"HB-328",
 		"4B4DBE":"hb-232",
 		"4b4de5":"HB-236",
+<<<<<<< HEAD
 		"4b4df8":"HB-238",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"4B4E00":"HB-239",
 		"4B4E01":"HB-239",
 		"4B4E03":"HB-239",
@@ -808,6 +864,10 @@
 		"A26D5E":"N2557",
 		"A26EA9":"N256K",
 		"A27D05":"N26DX",
+<<<<<<< HEAD
+=======
+		"A27D43":"N26GJ",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"A27E9C":"N26WD",
 		"A28E36":"N264DT",
 		"A292E2":"N265PN",
@@ -895,7 +955,10 @@
 		"A3E277":"N35AC",
 		"A3EA14":"N351S",
 		"A3EA78":"N351W",
+<<<<<<< HEAD
 		"A40CE9":"N360GG",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"A412F4":"N3614N",
 		"A41FB3":"N365JM",
 		"A42CA2":"N3682",
@@ -917,6 +980,10 @@
 		"A4D2E7":"N41MN",
 		"A4DD1F":"N412SA",
 		"A4DD39":"412TB",
+<<<<<<< HEAD
+=======
+		"A4E809":"N415PS",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"A4E991":"N41534",
 		"A4EAD5":"416EG",
 		"A4F5A1":"N419AT",
@@ -1114,6 +1181,10 @@
 		"ABF416":"N87B",
 		"ABF41A":"N87BD",
 		"ABFDC3":"872",
+<<<<<<< HEAD
+=======
+		"AC1232":"N877V",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"AC1BFD":"N88FD",
 		"AC1DF0":"N880BB",
 		"AC28D7":"N8829A",
@@ -1168,6 +1239,7 @@
 		"C0022E":"C-GAVL",
 		"C002F4":"CFBDB",
 		"C003B6":"C-FBKN",
+		"C0059A":"C-FCDD",
 		"C00A4F":"C-FDXM",
 		"C0123B":"C-FGXM",
 		"C01B36":"C-FKHX",
@@ -1179,6 +1251,10 @@
 		"C025B8":"C-FOHJ",
 		"C02A2B":"C-FPZE",
 		"C02CD5":"C-FQZK",
+<<<<<<< HEAD
+=======
+		"C03230":"C-FTAD",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"C03879":"C-FVKA",
 		"C03FD9":"C-FYEQ",
 		"C042CE":"C-FZHT",
@@ -1187,6 +1263,8 @@
 		"C0485B":"C-GBKK",
 		"C0497D":"C-GBVO",
 		"C049D3":"C-GBYW",
+		"C04F02":"C-GDXX",
+		"C04F0E":"C-GDYJ",
 		"C05076":"C-GEMF",
 		"C05205":"C-GFBO",
 		"C0521F":"C-GFCO",
@@ -1203,6 +1281,7 @@
 		"C05E94":"C-GJVF",
 		"C05F76":"C-GKDX",
 		"C06208":"C-GLDF",
+		"C0621C":"C-GLDZ",
 		"C06230":"C-GLET",
 		"C067D9":"C-GNIM",
 		"C0699F":"C-GNZY",
@@ -1231,6 +1310,10 @@
 		"C82436":"ZK-GSM",
 		"C82782":"ZK-GOK",
 		"CAFE01":"D-KXVH",
+<<<<<<< HEAD
+=======
+		"D000D6":"N147JA",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"D00113":"D-KOBM",
 		"D0015B":"D-KFOX",
 		"D00161":"D-3505",
@@ -1238,16 +1321,24 @@
 		"D001AB":"D-0000",
 		"D001D2":"D-KEKF",
 		"D001D5":"D_KDSS",
+<<<<<<< HEAD
 		"D001DC":"D-9990",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"D001DD":"D-KLJM",
 		"D001DF":"D-KICK",
 		"D00275":"G-CGDB",
 		"D00278":"HA-455",
 		"D00319":"N759DE",
+<<<<<<< HEAD
 		"D0038F":"D-6314",
 		"D003AF":"D-KTEE",
 		"D003B9":"D-KHYN",
 		"D003BB":"D-5249",
+=======
+		"D003AF":"D-KTEE",
+		"D003B9":"D-KHYN",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"D003C5":"D-7955",
 		"D003C6":"D-KSUA",
 		"D003EB":"TF-SAX",
@@ -1255,6 +1346,7 @@
 		"D0040F":"PH-145",
 		"D00433":"D-9571",
 		"D00496":"G-DDVA",
+<<<<<<< HEAD
 		"D004B2":"D-KLXE",
 		"D00511":"D-KYGB",
 		"D0051E":"PH-140",
@@ -1264,9 +1356,14 @@
 		"D00718":"D-1929",
 		"D0074D":"D-KHMA",
 		"D008AA":"LY-BSA",
+=======
+		"D00511":"D-KYGB",
+		"D0051E":"PH-140",
+		"D00547":"D-2971",
+		"D0074D":"D-KHMA",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"D0092E":"D-3505",
 		"D00942":"VH-BHM",
-		"D00943":"GKSSX",
 		"D00944":"G-CEWC",
 		"D0094B":"D-KPWG",
 		"D009AE":"D-KAKW",
@@ -1280,6 +1377,10 @@
 		"D00B4D":"SP-399",
 		"D01033":"C-FLXI",
 		"D0103E":"N101RW",
+<<<<<<< HEAD
+=======
+		"D01050":"F-CLAB",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"D2A59B":"D-8795",
 		"DA8A02":"DYZ",
 		"DA8A03":"ZBI",
@@ -1375,7 +1476,12 @@
 		"DD4EDE":"OY-XVY",
 		"DD4EE0":"SP-371",
 		"DD4EE6":"D-0349",
+<<<<<<< HEAD
 		"DD4EF9":"FJXLT",
+=======
+		"DD4EF9":"67BGL",
+		"DD4F03":"OY-XYK",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD4F35":"OY-EXA",
 		"DD4F38":"D-5729",
 		"DD4F39":"G-chrw",
@@ -1397,6 +1503,10 @@
 		"DD506A":"15571",
 		"DD509E":"D4073",
 		"DD50B1":"D-0807",
+<<<<<<< HEAD
+=======
+		"DD50E1":"D-KOLT",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD50EB":"ZK-GDX",
 		"DD5132":"PH-118",
 		"DD5140":"D-8121",
@@ -1497,6 +1607,7 @@
 		"DD8434":"D-KAGS",
 		"DD8438":"D-7842",
 		"DD8449":"D-9609",
+		"DD844C":"F-CBNA",
 		"DD8455":"D-6057",
 		"DD8458":"D-KGBT",
 		"DD8463":"D-7667",
@@ -1516,6 +1627,10 @@
 		"DD8500":"D-6641",
 		"DD8505":"D-1663",
 		"DD851F":"PH-794",
+<<<<<<< HEAD
+=======
+		"DD853B":"D-5552",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD853C":"PH-721",
 		"DD8541":"D-KIMA",
 		"DD8544":"D-3541",
@@ -1553,14 +1668,21 @@
 		"DD8654":"D-8676",
 		"DD8659":"D-7329",
 		"DD865D":"D-5117",
+		"DD8665":"D-2474",
 		"DD8668":"D-0228",
 		"DD8674":"D-7304",
 		"DD8679":"D-4162",
+<<<<<<< HEAD
 		"DD867F":"D-7141",
 		"DD8683":"D-4220",
 		"DD8685":"D-KSGA",
 		"DD8688":"D-4521",
 		"DD868B":"D-2240",
+=======
+		"DD8683":"D-4220",
+		"DD8685":"D-KSGA",
+		"DD8688":"D-4521",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD86A1":"D-8810",
 		"DD86A2":"D-1263",
 		"DD86A9":"OE-544",
@@ -1579,7 +1701,10 @@
 		"DD8705":"D-2528",
 		"DD870E":"D-3924",
 		"DD8712":"D-2482",
+<<<<<<< HEAD
 		"DD8713":"D-5574",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD8718":"D-2919",
 		"DD871A":"ECRQ",
 		"DD8722":"D-9437",
@@ -1704,7 +1829,10 @@
 		"DD8E20":"SE-SOT",
 		"DD8E2A":"D-4161",
 		"DD8E2B":"D-6842",
+<<<<<<< HEAD
 		"DD8E38":"D-9929",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD8E3E":"D-1817",
 		"DD8E3F":"D-7123",
 		"DD8E56":"OM-LSP",
@@ -1760,6 +1888,10 @@
 		"DD91C3":"D-5775",
 		"DD91C8":"D-4886",
 		"DD91D0":"D-8568",
+<<<<<<< HEAD
+=======
+		"DD921C":"D-KKAC",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD923F":"OE-519",
 		"DD9248":"D-KLLG",
 		"DD9254":"VH-FQM",
@@ -1792,6 +1924,10 @@
 		"DD9356":"D-7578",
 		"DD93A3":"OE-063",
 		"DD93BF":"xxx",
+<<<<<<< HEAD
+=======
+		"DD93E6":"D-9204",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD9401":"HB-338",
 		"DD9406":"D-0889",
 		"DD9407":"D-8859",
@@ -1804,6 +1940,7 @@
 		"DD9451":"D-5732",
 		"DD945C":"D-2877",
 		"DD9474":"D-5310",
+		"DD9478":"D-7211",
 		"DD9482":"D-8975",
 		"DD9487":"D-4904",
 		"DD9488":"D-1773",
@@ -1815,6 +1952,10 @@
 		"DD94A7":"D-9304",
 		"DD94B0":"HB-247",
 		"DD94B2":"D-EGCH",
+<<<<<<< HEAD
+=======
+		"DD94BE":"D-1081",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD94EA":"D-3466",
 		"DD94F0":"D-4512",
 		"DD9503":"D-9216",
@@ -1911,7 +2052,10 @@
 		"DD97EA":"D-5348",
 		"DD9800":"D-4467",
 		"DD980C":"D-4447",
+<<<<<<< HEAD
 		"DD981C":"LY-IAP",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD9826":"OE-511",
 		"DD982A":"F-CJLL",
 		"DD982B":"D-2527",
@@ -1923,7 +2067,10 @@
 		"DD9853":"D-2973",
 		"DD9856":"ZU-GUO",
 		"DD985F":"D-KTAS",
+<<<<<<< HEAD
 		"DD988F":"D-KYNT",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DD989C":"D-5707",
 		"DD989F":"D-7757",
 		"DD98A2":"D-2443",
@@ -1945,6 +2092,7 @@
 		"DD991B":"D-KTGS",
 		"DD9926":"D-3331",
 		"DD9928":"D-4664",
+		"DD992F":"D-9080",
 		"DD993A":"D-6792",
 		"DD9950":"D7663",
 		"DD9951":"D-0481",
@@ -2104,12 +2252,12 @@
 		"DD9FBE":"D-0315",
 		"DD9FC2":"D-5241",
 		"DD9FC8":"D-5035",
+		"DD9FC9":"D-2666",
 		"DD9FCB":"D-0433",
 		"DD9FD0":"D-KHBB",
 		"DD9FD4":"D-KTMW",
 		"DD9FDE":"D-2864",
 		"DD9FE6":"D-KNTI",
-		"DD9FF9":"D-3581",
 		"DDA225":"D-KIJR",
 		"DDA261":"D-KHBC",
 		"DDA283":"D-KBHH",
@@ -2118,7 +2266,10 @@
 		"DDA295":"D-KGIU",
 		"DDA299":"D-3739",
 		"DDA2A6":"HB-173",
+<<<<<<< HEAD
 		"DDA2AC":"D-2513",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDA2D7":"D-KEIS",
 		"DDA2DB":"D-KAEY",
 		"DDA2DC":"D-5429",
@@ -2185,6 +2336,10 @@
 		"DDA61C":"D-2475",
 		"DDA62E":"D-KDHH",
 		"DDA637":"D-7282",
+<<<<<<< HEAD
+=======
+		"DDA638":"D-KLZM",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDA63D":"D-3917",
 		"DDA63F":"D-KIDI",
 		"DDA640":"OE-531",
@@ -2216,6 +2371,10 @@
 		"DDA70A":"D-8529",
 		"DDA70B":"D-0891",
 		"DDA70F":"D-2921",
+<<<<<<< HEAD
+=======
+		"DDA726":"D-2767",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDA72E":"D-8907",
 		"DDA735":"D-1989",
 		"DDA737":"D-7168",
@@ -2344,11 +2503,19 @@
 		"DDAB30":"D-0364",
 		"DDAB34":"D-KOIL",
 		"DDAB35":"D-KKKH",
+<<<<<<< HEAD
+=======
+		"DDAB42":"D-9204",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDAB4D":"D-4840",
 		"DDAB54":"D-KLOK",
 		"DDAB58":"OE-571",
 		"DDAB6A":"D-2883",
+<<<<<<< HEAD
 		"DDAB7C":"7C",
+=======
+		"DDAB7C":"D-8206",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDAB81":"D-KLEB",
 		"DDAB89":"D-8126",
 		"DDAB91":"D-7331",
@@ -2366,7 +2533,10 @@
 		"DDABFC":"D-KIMA",
 		"DDAC08":"D-0425",
 		"DDAC21":"D-KISW",
+<<<<<<< HEAD
 		"DDAC24":"D-5056",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDAC45":"D-5066",
 		"DDAC48":"D-7286",
 		"DDAC4A":"D-5971",
@@ -2444,7 +2614,10 @@
 		"DDAEA9":"D-4869",
 		"DDAEAC":"D-5914",
 		"DDAEB2":"D-8020",
+<<<<<<< HEAD
 		"DDAEBC":"D-KFFC",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDAEC0":"D-3497",
 		"DDAEC7":"D-1950",
 		"DDAED5":"D-5014",
@@ -2469,6 +2642,7 @@
 		"DDAF78":"D-9424",
 		"DDAF7B":"D-3775",
 		"DDAF7F":"D-3303",
+		"DDAF83":"D-KLDR",
 		"DDAF86":"HB-XKE",
 		"DDAF87":"D-1972",
 		"DDAF8B":"KBHA",
@@ -2487,6 +2661,10 @@
 		"DDB007":"D-KKCB",
 		"DDB012":"D-0744",
 		"DDB013":"D-0798",
+<<<<<<< HEAD
+=======
+		"DDB01B":"D-7698",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDB01D":"D-7949",
 		"DDB025":"D-7112",
 		"DDB02C":"D-6439",
@@ -2527,6 +2705,11 @@
 		"DDB103":"D-3314",
 		"DDB10B":"D-KVFF",
 		"Ddb119":"D-0001",
+<<<<<<< HEAD
+=======
+		"DDB11E":"D-4778",
+		"DDB124":"D-7024",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDB131":"D-5075",
 		"DDB133":"D-KLRR",
 		"DDB134":"D-1206",
@@ -2781,6 +2964,10 @@
 		"DDBED5":"D-6406",
 		"DDBED9":"D-KHGA",
 		"DDBEDE":"D-9420",
+<<<<<<< HEAD
+=======
+		"DDBEE4":"D-6302",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDBF09":"D-4055",
 		"DDBF1D":"D-KHHO",
 		"DDBF32":"D-KLPY",
@@ -2809,6 +2996,7 @@
 		"DDBFD7":"OY-XSF",
 		"DDBFF3":"D-1984",
 		"DDC002":"T15",
+		"DDC015":"D-1999",
 		"DDC044":"D-4986",
 		"DDC060":"G-CKNR",
 		"DDC062":"D-7706",
@@ -2908,7 +3096,10 @@
 		"DDD383":"D-5725",
 		"DDD3B6":"F-CEQZ",
 		"DDD402":"F-CAEM",
+<<<<<<< HEAD
 		"DDD41C":"PH_148",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDD42D":"D-5433",
 		"DDD441":"VH-FOO",
 		"DDD44A":"D-9290",
@@ -2947,6 +3138,7 @@
 		"DDD830":"F-CFBJ",
 		"DDD846":"OO-ZLE",
 		"DDD84C":"PH-105",
+		"DDD879":"OK-871",
 		"DDD8BD":"D-1039",
 		"DDD8CB":"F-CEKY",
 		"DDD8CE":"PH-920",
@@ -2955,6 +3147,10 @@
 		"DDD8F5":"RK09VD",
 		"DDD900":"-SE-UN",
 		"DDD908":"D-KHJC",
+<<<<<<< HEAD
+=======
+		"DDD916":"D-7666",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDD91D":"D-9805",
 		"DDD91E":"D-2717",
 		"DDD921":"D-KEBR",
@@ -2967,6 +3163,7 @@
 		"DDD99A":"PH-588",
 		"DDD9B2":"D-8982",
 		"DDD9B3":"6238",
+		"DDD9B5":"D-KRGW",
 		"DDD9B6":"D-6400",
 		"DDD9C1":"D5886",
 		"DDD9C7":"PH-147",
@@ -2976,6 +3173,10 @@
 		"DDDA11":"SP-391",
 		"DDDA23":"F-TGDH",
 		"DDDA27":"F-UQTH",
+<<<<<<< HEAD
+=======
+		"DDDA57":"D1397",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDDA8C":"F-JUFA",
 		"DDDAB4":"SE-TVR",
 		"DDDAB5":"D-KPJC",
@@ -3012,6 +3213,7 @@
 		"DDDCA6":"D-6133",
 		"DDDCA7":"D-6089",
 		"DDDCBD":"OK-213",
+		"DDDCC0":"F-CGQJ",
 		"DDDCDA":"D-5929",
 		"DDDCE2":"D-7311",
 		"DDDD00":"D-5844",
@@ -3110,6 +3312,10 @@
 		"DDE228":"G-CKCJ",
 		"DDE22B":"D-6715",
 		"DDE23A":"D-4933",
+<<<<<<< HEAD
+=======
+		"DDE23E":"D-4498",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDE26B":"D-KOMY",
 		"DDE271":"LN-GHD",
 		"DDE285":"OO-YVA",
@@ -3194,7 +3400,10 @@
 		"DDEA61":"D-KJCB",
 		"DDEA67":"D-KMSY",
 		"DDEA6D":"D-KCHR",
+<<<<<<< HEAD
 		"DDEA74":"D_KTCB",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDEA82":"D-KIIR",
 		"DDEA85":"D-8443",
 		"DDEA97":"F-CIJP",
@@ -3213,6 +3422,10 @@
 		"DDEAD1":"D-KSMF",
 		"DDEAD4":"D-KARX",
 		"DDEAE2":"D-KJAN",
+<<<<<<< HEAD
+=======
+		"DDEAE7":"D-KAFZ",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDEB02":"PH-151",
 		"DDEB03":"D-KWCB",
 		"DDEB0B":"D-1976",
@@ -3227,6 +3440,10 @@
 		"DDEB74":"HB-331",
 		"DDEB76":"D-KFPE",
 		"DDEB7C":"HB1449",
+<<<<<<< HEAD
+=======
+		"DDEB81":"D-KVVB",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDEB89":"D-KKDS",
 		"DDEB8A":"D-KGBL",
 		"DDEBC3":"D-KLKS",
@@ -3272,6 +3489,10 @@
 		"DDEDC3":"D-1090",
 		"DDEDDF":"D-3332",
 		"DDEE1D":"D-KCHM",
+<<<<<<< HEAD
+=======
+		"DDEE35":"D-KKRG",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DDEE3A":"OK-197",
 		"DDEE40":"D-KPJG",
 		"DDEE44":"ZS-GRT",
@@ -3289,7 +3510,6 @@
 		"DDEF60":"D-4317",
 		"DDEF6F":"GCJMU",
 		"DDEF83":"D-KAVM",
-		"DDEF94":"GEEKI",
 		"DDEFA7":"YU-446",
 		"DDEFAB":"D-9820",
 		"DDEFAF":"HB-244",
@@ -3410,6 +3630,10 @@
 		"DE05C5":"C-GBKK",
 		"DE05C6":"C-FMOW",
 		"DE05CF":"C-FTXW",
+<<<<<<< HEAD
+=======
+		"DE05D3":"C-GDUQ",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DE05D6":"C-GNIM",
 		"DE0632":"C-FBMX",
 		"DE0EEA":"D-KKUS",
@@ -3439,6 +3663,13 @@
 		"DF0171":"N367T",
 		"DF018E":"C-GVTZ",
 		"DF0198":"C-GKHR",
+<<<<<<< HEAD
+=======
+		"DF01A1":"C-GIVO",
+		"DF01A2":"C-FSIR",
+		"DF01A3":"C-FNQL",
+		"DF01A5":"C-FKDT",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DF01B7":"N740XC",
 		"DF01BA":"N26HL",
 		"DF01BD":"N224JR",
@@ -3490,6 +3721,10 @@
 		"DF0878":"I-ILMA",
 		"DF0881":"D-4222",
 		"DF0895":"D-7266",
+<<<<<<< HEAD
+=======
+		"DF08A2":"D-0419",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DF08B2":"OE-527",
 		"DF08B8":"LNGIM",
 		"DF08B9":"D-6831",
@@ -3574,12 +3809,17 @@
 		"DF1187":"C-GKNG",
 		"DF1189":"CF-HPI",
 		"DF118D":"VH-YJT",
+		"DF11BB":"OE-573",
 		"DF11D4":"D-5846",
 		"DF11F3":"D-5983",
 		"DF123F":"F-CLBF",
 		"DF124A":"D-6416",
 		"DF1278":"D-KHST",
 		"DF12B9":"D-2704",
+<<<<<<< HEAD
+=======
+		"DF12D0":"D-7333",
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"DF130F":"D-KFHA",
 		"DF1312":"D-KEBY",
 		"DF1339":"N27SZ",
@@ -3598,7 +3838,10 @@
 		"DF1618":"VH-FJS",
 		"DF161D":"N67WS",
 		"Df16af":"VH-XLP",
+<<<<<<< HEAD
 		"DF9887":"D-0257",
+=======
+>>>>>>> ddef67fd2f1af5fe1d47c52345e77afe210e66e8
 		"E2E0F4":"ZS-GXK",
 		"EA1807":"DKWKW",
 		"ee8631":"N44FF",
