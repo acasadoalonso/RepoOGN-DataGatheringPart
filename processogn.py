@@ -176,7 +176,7 @@ while True:                                 # until end of file
         print(paths)
         # work done, finish the reporting now ...
         break
-
+#--------------------------------------------------------------------------------------------------
     # that is the case of end of file when the ognES.py process is still running
     if len(data) < 40:
         continue                            # nothing else to do
@@ -191,7 +191,7 @@ while True:                                 # until end of file
     if msg == -1:			    # parser error
             print("Parser error:", data)
             continue
-    id = msg['id']          	            # id
+    ident = msg['id']          	            # id
                                             # get the information once parsed
     ptype       = msg['aprstype']
     longitude   = msg['longitude']
@@ -200,12 +200,11 @@ while True:                                 # until end of file
     path        = msg['path']
     if path not in paths:
        paths.append(path)
-    if path == 'aprs_aircraft' or path == 'flarm':
+    if path == 'aprs_aircraft' or path == 'flarm' or path == 'tracker':
         if 'speed' in msg :
             speed   = msg['speed']
         if 'course' in msg :
             course  = msg['course']
-    dst_callsign = id
     source      = msg['source']
     if len(source) > 4:
         source = source[0:3]
@@ -213,32 +212,31 @@ while True:                                 # until end of file
 
     if longitude == -1 or latitude == -1:
         continue
-    callsign = id                           # get the call sign FLARM ID
+    callsign = ident                        # get the call sign FLARM ID
 
     if (data.find('TCPIP*') != -1) or path == 'aprs_receiver':         # ignore the APRS lines
-        id = callsign                       # station ID
-        if not id in fsloc:
+        ident = callsign                    # station ID
+        if not ident in fsloc:
                                             # save the loction of the station
-            fsloc[id] = (latitude, longitude)
-            fsmax[id] = 0.0                 # initial coverage zero
-            fsfix[id] = 0                   # initial coverage zero
-            #print "ID:", id, data[0:10], latitude, longitude
-        if id == None:
-            id = data[0:data.find('>')]
-            print("ID:", id, data[0:10])
+            fsloc[ident] = (latitude, longitude)
+            fsmax[ident] = 0.0              # initial coverage zero
+            fsfix[ident] = 0                # initial coverage zero
+            #print "ID:", ident, data[0:10], latitude, longitude
+        if ident == None:
+            ident = data[0:data.find('>')]
+            print("ID:", ident, data[0:10])
                                             # save the loction of the station
-            fsloc[id] = (latitude, longitude)
-            fsmax[id] = 0.0                 # initial coverage zero
-            fsfix[id] = 0                   # initial coverage zero
+            fsloc[ident] = (latitude, longitude)
+            fsmax[ident] = 0.0              # initial coverage zero
+            fsfix[ident] = 0                # initial coverage zero
         continue                            # go for the next record
     if cc in blacklist:
         continue
-    id = data[0:9]                          # exclude the FLR part
     idname = data[0:9]                      # exclude the FLR part
     if idname[0:3] == 'RND':
         continue
     station = msg['station']                # get the station ID
-    if ptype == 'status':			    # if OGN status report
+    if ptype == 'status':		    # if OGN status report
         continue
     if not source in fsour:		    # did we see this source
         fsour[source] = 1		    # init the counter
@@ -248,32 +246,33 @@ while True:                                 # until end of file
         continue
     # or frenchsta(station):  # only Chilean or Spanish or frenchstations
     if ((hostname == "CHILEOGN" or hostname == "OGNCHILE") and source == "OGN") or source == "SPOT" or spanishsta(station):
-        if not id in fid:                   # if we did not see the FLARM ID
-            fid[id] = 0                     # init the counter
-            fsta[id] = station              # init the station receiver
+        if not ident in fid:                # if we did not see the FLARM ID
+            fid[ident] = 0                  # init the counter
+            fsta[ident] = station           # init the station receiver
                                             # take off time/ initial seeing  - null for the time being
-            ftkot[id] = 0
+            ftkot[ident] = 0
                                             # landing  time - null for the time being
-            flndt[id] = 0
+            flndt[ident] = 0
             cout += 1                       # one more file to create
                                             # prepare the IGC header
-            if id[3:9] in kglid.kglid:      # if it is a known glider ???
+            if ident[3:9] in kglid.kglid:   # if it is a known glider ???
                 fd = open(datapath+tmp+'FD'+dte+'.'+station+'.' +
-                          kglid.kglid[id[3:9]].strip()+'.'+idname+'.IGC', 'w')
+                          kglid.kglid[ident[3:9]].strip()+'.'+idname+'.IGC', 'w')
             else:
                 fd = open(datapath+tmp+'FD'+dte+'.' +
                           station+'.'+idname+'.IGC', 'w')
+
             fd.write('AGNE001GLIDER\n')     # write the IGC header
             fd.write('HFDTE'+dte+'\n')      # write the date on the header
-            if id[3:9] in kglid.kglid:
+            if ident[3:9] in kglid.kglid:
                                             # write the registration ID
-                fd.write('HFGIDGLIDERID: '+kglid.kglid[id[3:9]]+'\n')
+                fd.write('HFGIDGLIDERID: '+kglid.kglid[ident[3:9]]+'\n')
             else:
                                             # if we do not know it write the FLARM ID
-                fd.write('HFGIDGLIDERID: '+id+'\n')
-            ffd[id] = fd                    # save the file descriptor
+                fd.write('HFGIDGLIDERID: '+ident+'\n')
+            ffd[ident] = fd                 # save the file descriptor
                                             # increase the number of records read
-        fid[id] += 1
+        fid[ident] += 1
                                             # scan for the body of the APRS message
         p1 = data.find(':/')+2
         if data[p1+6] == 'z':		    # if date is Z with date
@@ -283,23 +282,25 @@ while True:                                 # until end of file
 
         lati = data[p1+7:p1+11]+data[p1+12:p1+14] + \
             '0'+data[p1+14]                 # get the latitude
-        long = data[p1+16:p1+21]+data[p1+22:p1+24] + \
+        longi = data[p1+16:p1+21]+data[p1+22:p1+24] + \
             '0'+data[p1+24]                 # get the longitude
-        altim = altitude                    # convert the altitude in meters
+        altim = altitude                    # convert the altitude in metersa
+
         if altim > 15000 or altim < 0:
             altim = 0
         alti = '%05d' % altim               # convert it to an string
-        ffd[id].write('B'+hora+lati+long+'A00000'+alti + '\n')  # format the IGC B record
+
+        ffd[ident].write('B'+hora+lati+longi+'A00000'+alti + '\n')  # format the IGC B record
                                             # include the original APRS record for documentation
-        ffd[id].write('LGNE '+data)
+        ffd[ident].write('LGNE '+data)
 
                                             # if we do not have the take off time ??
-        if speed > 50 and ftkot[id] == 0:
-            ftkot[id] = otime               # store the take off time
-            ftkok[otime] = id               # list by take off time
+        if speed > 50 and ftkot[ident] == 0:
+            ftkot[ident] = otime            # store the take off time
+            ftkok[otime] = ident            # list by take off time
                                             # if we do not have the take off time ??
-        if speed < 20 and speed > 5 and ftkot[id] != 0:
-            flndt[id] = otime               # store the landing time
+        if speed < 20 and speed > 5 and ftkot[ident] != 0:
+            flndt[ident] = otime            # store the landing time
         if station in fsloc:                # if we have the station yet
                                             # increase the number of fixes for that station
             fsfix[station] += 1
@@ -312,7 +313,7 @@ while True:                                 # until end of file
         if altim > tmaxa:
             tmaxa = altim                   # maximum altitude for the day
             tmaxt = hora                    # and time
-            tmid = id                       # who did it
+            tmid = ident                    # who did it
             tmsta = station                 # station capturing the max altitude
             mlong = longitude               # longitude of the max alt point
             mlati = latitude                # latitude

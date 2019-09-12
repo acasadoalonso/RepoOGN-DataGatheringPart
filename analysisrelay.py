@@ -8,6 +8,7 @@ import MySQLdb                              # the SQL data base routines
 import sqlite3                              # the SQL data base routines
 import kglid
 import argparse
+sys.path.insert(0, '/nfs/OGN/src/funcs')
 from parserfuncs import *                   # the ogn/ham parser functions
 from geopy.distance import vincenty         # use the Vincenty algorithm
 
@@ -88,7 +89,7 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
             if msg == -1:		    # parser error
                 print("Parser error:", data)
                 continue
-            id = msg['id']          	    # id
+            ident = msg['id']          	    # id
             type = msg['type']		    # message type
             longitude = msg['longitude']
             latitude = msg['latitude']
@@ -115,10 +116,10 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
                         #print "otime", otime.strftime("%y%m%d%H%M%S")
                         rr[path[0:9]] = otime.strftime("%H%M%S")
                         # add the id to the table of relays.
-                        relayglider[id] = rr
+                        relayglider[ident] = rr
                     relaycnt += 1	    # increase the counter
             else:
-                station = id		    # for qAC just the station is the ID
+                station = ident		    # for qAC just the station is the ID
             if path == 'TCPIP*':
                 continue                    # go for the next record
             if type == 8:                   # if status report
@@ -139,7 +140,7 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
                     status = status[0:254]
                 #print "Status report:", id, station, otime, status
                 inscmd = "insert into OGNTRKSTATUS values ('%s', '%s', '%s', '%s' )" %\
-                    (id, station, otime, status)
+                    (ident, station, otime, status)
                 try:
                     curs.execute(inscmd)
                 except MySQLdb.Error as e:
@@ -151,7 +152,7 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
                     print(">>>SQL4 data :",  data)
                 continue
 
-            id = data[0:9]                  # the flarm ID/ICA/OGN
+            ident = data[0:9]               # the flarm ID/ICA/OGN
             idname = data[0:9]              # exclude the FLR part
             if latitude == -1 or longitude == -1 or type == 8:
                 continue

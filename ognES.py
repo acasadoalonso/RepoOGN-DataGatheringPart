@@ -17,6 +17,7 @@ import os
 import socket
 import kglid                            # import the list on known gliders
 from datetime import datetime
+sys.path.insert(0, '/nfs/OGN/src/funcs')
 from parserfuncs import *               # the ogn/ham parser functions
 from time import sleep                  # the sleep
 
@@ -265,7 +266,7 @@ try:
             ident       = msg['id']
             speed=0.0
             course=0
-            if path == 'aprs_aircraft' or path == 'flarm':
+            if path == 'aprs_aircraft' or path == 'flarm' or path == 'tracker':
                 if 'speed' in msg :
                     speed   = msg['speed']
                 if 'course' in msg :
@@ -278,7 +279,7 @@ try:
 
 
             # if std records
-            if path == 'aprs_aircraft' or path == 'flarm' or path == 'RELAY':
+            if path == 'aprs_aircraft' or path == 'flarm' or path == 'RELAY' or path == 'tracker':
                 station = msg['station']
                 if not station in stations:
                     # add it to the list of stations ...

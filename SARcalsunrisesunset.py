@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+import sys
+sys.path.insert(0, '/nfs/OGN/src/funcs')
 from parserfuncs import *
 import config
 #
