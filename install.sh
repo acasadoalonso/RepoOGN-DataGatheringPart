@@ -143,9 +143,9 @@ then								#
 	sudo chmod 777 */*					#
 fi								#
 cd /var/www/html						#
-if [ ! -f /var/www/html/DIRdata ]				#
+if [ ! -d /var/www/html/DIRdata ]				#
 then								#
-	sudo ln -s /nfs/OGN/DIRdata /var/www/html/DIRdata	#
+	sudo ln -s /nfs/OGN/DIRdata /var/www/html/		#
 fi								#
 cd								#
 if [ ! -d /usr/local/apache2  ]					#
