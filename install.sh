@@ -108,10 +108,10 @@ echo "Installation calcelestial ..."				#
 echo "================================================" 	#
 echo								#
 echo								#
-cp calcelestial.sh ~/src					#
+cp sh/calcelestial.sh ~/src					#
 if [ ! -f /usr/local/bin/calcelestial ]				#
 then								#
-	bash ~/src/calcelestial.sh				#
+	bash ~/src/SARsrc/sh/calcelestial.sh			#
 fi								#
 calcelestial -h							#
 ls  -la ~/src 							#
@@ -157,11 +157,11 @@ echo "Execute the base starting scripts"			#
 echo "================================================" 	#
 echo								#
 echo								#
-bash ~/src/SARfcst.sh						#
-/bin/echo '/bin/sh ~/src/SARpogn.sh' | at -M $(calcelestial -p sun -m set -q Madrid -H civil) + 15 minutes #
+bash ~/src/SARsrc/sh/SARfcst.sh						#
+/bin/echo '/bin/sh ~/src/SARsrc/sh/SARpogn.sh' | at -M $(calcelestial -p sun -m set -q Madrid -H civil) + 15 minutes #
 cd								#
 sudo cat /etc/hosts /nfs/hosts > /etc/hosts			#
-bash ~/src/SARboot*						#
+bash ~/src/SARsrc/sh/SARboot*						#
 pgrep -a python3						#
 echo								#
 echo								#
