@@ -105,13 +105,13 @@ then								#
 	mkdir ~/src   						#
 	ln -s $(pwd) ~/src/SARsrc				#
 fi								#
-echo "~/src ..."						#
+echo " DIR: /src ..."						#
 echo "================================================" 	#
 ls -la ~/src							#
-echo "~/src/SARsrc ..."						#
+echo " DIR: /src/SARsrc ..."					#
 echo "================================================" 	#
 ls -la ~/src/SARsrc						#
-echo "~/src/SARsrc/sh ..."					#
+echo " DIR: /src/SARsrc/sh ..."					#
 echo "================================================" 	#
 ls -la ~/src/SARsrc/sh						#
 echo								#
