@@ -8,24 +8,24 @@ dt=$(date +%y%m%d)
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
-pnum=$(pgrep python)
+pnum=$(pgrep python3)
 if [ $? -eq 0 ] # if OGN repo interface is  not running
 then
 	sudo kill $pnum
 	logger  -t $0 "OGN Repo is alive, should be down"
 	echo "Process running: "$pnum 				>>SARproc$dt.log
 fi
-python ../src/SARsrc/processogn.py 				>>SARproc$dt.log
+python3 ../src/SARsrc/processogn.py 				>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
-python ../src/SARsrc/buildogndb.py prt 				>>SARproc$dt.log
+python3 ../src/SARsrc/buildogndb.py prt				>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
-python ../src/SARsrc/buildogndb.py MYSQL DATA$dt.log  		>>SARproc$dt.log
+python3 ../src/SARsrc/buildogndb.py MYSQL DATA$dt.log  		>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
-python ../src/SARsrc/analysisrelay.py -n DATA$dt.log -i 5	>>SARproc$dt.log
+python3 ../src/SARsrc/analysisrelay.py -n DATA$dt.log -i 5	>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log

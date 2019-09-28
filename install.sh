@@ -1,14 +1,15 @@
 #!/bin/bash
-echo								                            #
+echo							        #
 echo "Installing the SAR system      ...." 			#
 echo "===================================" 			#
-echo								                            #
+echo							        #
 export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8		#
-sudo apt-get install -y software-properties-common python-software-properties #
+sudo apt-get install -y software-properties-common python3-software-properties #
 #sudo rm /etc/apt/sources.list.d/ondre*				#
 #sudo add-apt-repository ppa:ondrej/php				#
 echo								#
-echo " lets update the operating system libraries  ...." 	#
+echo "Lets update the operating system libraries  ...." 	#
+echo "================================================" 	#
 echo								#
 sudo apt-get update						#
 sudo apt-get install -y language-pack-en-base 			#
@@ -21,7 +22,7 @@ echo								#
 echo "Installing the packages required . (LAMP stack)..."	#
 echo								#
 sudo apt-get install -y mysql-server mysql-client sqlite3	#
-sudo apt-get install -y python-dev python-pip python-mysqldb    #
+sudo apt-get install -y python3-dev python3-pip python3-mysqldb #
 sudo apt-get install -y dos2unix libarchive-dev	 autoconf mc	#
 sudo apt-get install -y pkg-config git mutt git-core		#
 sudo apt-get install -y apache2 php php-mcrypt php-mysql php-cli #
@@ -30,9 +31,9 @@ sudo apt-get install -y mailutils ntpdate mutt	ssmtp		#
 sudo apt-get install -y libcurl4-openssl-dev			#
 sudo apt-get install -y libjson0 libjson0-dev			#
 sudo apt-get install -y libnova-0.14-0				#
-sudo apt-get install -y libfap 					#
 sudo apt-get install -y libfap-dev                              #
 sudo apt-get install -y goaccess 				#
+sudo apt-get install -y at	 				#
 sudo apt-get install -y avahi-daemon 				#
 sudo a2enmod rewrite						#
 sudo a2enmod cgi						#
@@ -52,15 +53,17 @@ sudo service apache2 restart					#
 echo								#
 echo "Installing python modules  ... "				#
 echo								#
-sudo -H pip install --upgrade pip                               #
-sudo -H pip install --upgrade setuptools			#
-sudo -H pip install ephem 					#
-sudo -H pip install pytz 					#
-sudo -H pip install geopy 					#
-sudo -H pip install configparser 				#
-sudo -H pip install pycountry 					#
-sudo -H pip install requests 					#
-sudo -H pip install MySQL-python				#
+sudo -H pip3 install --upgrade pip                              #
+sudo -H pip3 install --upgrade setuptools			#
+sudo -H pip3 install ephem 					#
+sudo -H pip3 install pytz 					#
+sudo -H pip3 install geopy 					#
+sudo -H pip3 install configparser 				#
+sudo -H pip3 install pycountry 					#
+sudo -H pip3 install requests 					#
+sudo -H pip3 install MySQL-python				#
+sudo -H pip3 install beeprint					#
+sudo -H pip3 install ogn.client					#
 if [ ! -d /etc/local ]						#
 then								#
     sudo mkdir /etc/local					#
@@ -70,10 +73,12 @@ echo "Installing the templates needed  ...." 			#
 echo								#
 pwd								#
 sudo cp config.template /etc/local/SARconfig.ini		#
-sudo cp aliases ~/.bash_aliases					#
 cp aliases ~/.bash_aliases					#
 crontab <crontab.data						#
 crontab -l 							#
+echo								#
+echo "Check the working directories  ...." 			#
+echo								#
 if [ -f OGN.db ]						#
 then								#
 	rm      OGN.db						#
@@ -84,6 +89,7 @@ mysql -u root -pogn --database OGNDB < ogndb/DBschema.sql	#
 echo								#
 echo								#
 echo "Installation mysql done ..."				#
+echo "================================================" 	#
 echo								#
 echo								#
 echo
@@ -97,12 +103,15 @@ cp sh/*.sh ~/src						#
 echo								#
 echo								#
 echo "Installation calcelestial ..."				#
+echo "================================================" 	#
 echo								#
 echo								#
 cp calcelestial.sh ~/src					#
-bash ~/src/calcelestial.sh					#
+if [ ! -f /usr/local/bin/calcelestial ]				#
+then								#
+	bash ~/src/calcelestial.sh				#
+fi								#
 calcelestial -h							#
-cp *.py ~/src/SARsrc						#
 ls  -la ~/src 							#
 sudo cp -r ../CGI-BIN/* ../cgi-bin				#
 if [ ! -d /nfs  ]						#
@@ -122,7 +131,7 @@ fi								#
 cd /var/www/html						#
 if [ ! -f DIRdata ]						#
 then								#
-	ln -s /nfs/OGN/DIRdata .				#
+	sudo ln -s /nfs/OGN/DIRdata .				#
 fi								#
 cd								#
 if [ ! -d /usr/local/apache2  ]					#
@@ -134,18 +143,36 @@ then								#
 	sudo htpasswd -c passwords acasado			#
 fi								#
 cd								#
+echo								#
+echo								#
 echo "Execute the base starting scripts"			#
-bash ~/src/fcst.sh						#
+echo "================================================" 	#
+echo								#
+echo								#
+bash ~/src/SARfcst.sh						#
 /bin/echo '/bin/sh ~/src/SARpogn.sh' | at -M $(calcelestial -p sun -m set -q Madrid -H civil) + 15 minutes #
 cd								#
 sudo cat /etc/hosts /nfs/hosts > /etc/hosts			#
 bash ~/src/SARboot*						#
-echo "deb http://deb.goaccess.io/ $(lsb_release -cs) main" | sudo tee -a /etc/apt/sources.list.d/goaccess.list #
-wget -O - https://deb.goaccess.io/gnugpg.key | sudo apt-key add - #
-sudo apt-get update						#
-sudo apt-get install goaccess					#
+pgrep -a python3						#
+echo								#
+echo								#
+echo "Install goaccess"						#
+echo "================================================" 	#
+echo								#
+echo								#
+if [ ! -f /usr/bin/goaccess ]
+then
+	echo "deb http://deb.goaccess.io/ $(lsb_release -cs) main" | sudo tee -a /etc/apt/sources.list.d/goaccess.list #
+	wget -O - https://deb.goaccess.io/gnugpg.key | sudo apt-key add - #
+	sudo apt-get update					#
+	sudo apt-get install goaccess				#
+fi								#
+echo								#
 echo								#
 echo "Optional steps ... "					#
+echo "================================================" 	#
+echo								#
 echo								#
 sudo dpkg-reconfigure tzdata					#
 sudo apt-get -y dist-upgrade					#
@@ -162,4 +189,5 @@ echo "Check the placement of the RootDocument on APACHE2 ... needs to be /var/ww
 echo "If running in Windows under Virtual Box, run dos2unix on /var/www/html and ./main and ~/src	"	#
 echo "Install phpmyadmin if needed !!!                                                                   "      #
 echo "========================================================================================================"	#
-echo " "							#
+echo " "	
+

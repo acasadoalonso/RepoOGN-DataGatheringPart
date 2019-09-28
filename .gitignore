@@ -5,6 +5,8 @@
 *.bak
 *.DB
 *.db
+*.fln
+*.csv
 SWsrc
 APRSsrc
 src
