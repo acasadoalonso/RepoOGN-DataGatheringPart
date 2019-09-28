@@ -98,15 +98,21 @@ echo "Installation mysql done ..."				#
 echo "================================================" 	#
 echo								#
 echo								#
-echo
-pwd
+echo								#
+pwd								#
 if [ ! -d ~/src  ]						#
 then								#
 	mkdir ~/src   						#
 	ln -s $(pwd) ~/src/SARsrc				#
 fi								#
+echo "~/src ..."						#
+echo "================================================" 	#
 ls -la ~/src							#
+echo "~/src/SARsrc ..."						#
+echo "================================================" 	#
 ls -la ~/src/SARsrc						#
+echo "~/src/SARsrc/sh ..."					#
+echo "================================================" 	#
 ls -la ~/src/SARsrc/sh						#
 echo								#
 echo								#
@@ -137,9 +143,9 @@ then								#
 	sudo chmod 777 */*					#
 fi								#
 cd /var/www/html						#
-if [ ! -f /var/www/html/DIRdata ]						#
+if [ ! -f /var/www/html/DIRdata ]				#
 then								#
-	sudo ln -s /nfs/OGN/DIRdata .				#
+	sudo ln -s /nfs/OGN/DIRdata /var/www/html/DIRdata	#
 fi								#
 cd								#
 if [ ! -d /usr/local/apache2  ]					#
@@ -163,11 +169,11 @@ echo "Execute the base starting scripts"			#
 echo "================================================" 	#
 echo								#
 echo								#
-bash ~/src/SARsrc/sh/SARfcst.sh						#
+bash ~/src/SARsrc/sh/SARfcst.sh					#
 /bin/echo '/bin/sh ~/src/SARsrc/sh/SARpogn.sh' | at -M $(calcelestial -p sun -m set -q Madrid -H civil) + 15 minutes #
 cd								#
-sudo cat /etc/hosts /nfs/hosts > /etc/hosts			#
-bash ~/src/SARsrc/sh/SARboot*						#
+sudo cat /nfs/hosts >> /etc/hosts				#
+bash ~/src/SARsrc/sh/SARboot*					#
 pgrep -a python3						#
 echo								#
 echo								#
