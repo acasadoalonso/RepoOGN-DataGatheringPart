@@ -97,7 +97,7 @@ pwd
 if [ ! -d ~/src  ]						#
 then								#
 	mkdir ~/src   						#
-	ln -s . ~/src/SARsrc					#
+	ln -s $(pwd) ~/src/SARsrc				#
 fi								#
 ls -la ~/src							#
 ls -la ~/src/SARsrc						#
@@ -187,6 +187,10 @@ sudo apt-get -y dist-upgrade					#
 sudo apt-get -y autoremove					#
 touch SARinstallation.done					#
 echo " "							#
+echo " "							#
+echo " "							#
+echo " "							#
+echo " "							#
 echo "========================================================================================================"	#
 echo "Installation done ..."											#
 echo "Review the configuration file on /etc/local" 								#
@@ -198,4 +202,9 @@ echo "If running in Windows under Virtual Box, run dos2unix on /var/www/html and
 echo "Install phpmyadmin if needed !!!                                                                   "      #
 echo "========================================================================================================"	#
 echo " "	
+echo " "							#
+echo " "							#
+echo " "							#
+echo " "							#
+bash
 
