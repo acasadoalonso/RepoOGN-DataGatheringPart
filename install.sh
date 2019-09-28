@@ -32,9 +32,9 @@ sudo apt-get install -y libcurl4-openssl-dev			#
 sudo apt-get install -y libjson0 libjson0-dev			#
 sudo apt-get install -y libnova-0.14-0				#
 sudo apt-get install -y libfap-dev                              #
-sudo apt-get install -y goaccess 				#
 sudo apt-get install -y at	 				#
 sudo apt-get install -y avahi-daemon 				#
+sudo apt-get install -y php7.2	 				#
 sudo a2enmod rewrite						#
 sudo a2enmod cgi						#
 sudo phpenmod mcrypt						#
@@ -83,7 +83,7 @@ if [ -f OGN.db ]						#
 then								#
 	rm      OGN.db						#
 fi								#
-sqlite3 OGN.db            < ogndb/DBschema.sql			#
+sqlite3 OGN.db            	     < ogndb/DBschema.sql	#
 echo "CREATE DATABASE OGNDB" | mysql -u root -pogn		#
 mysql -u root -pogn --database OGNDB < ogndb/DBschema.sql	#
 echo								#
@@ -97,9 +97,11 @@ pwd
 if [ ! -d ~/src  ]						#
 then								#
 	mkdir ~/src   						#
-	mkdir ~/src/SARsrc					#
+	ln -s . ~/src/SARsrc					#
 fi								#
-cp sh/*.sh ~/src						#
+ls -la ~/src							#
+ls -la ~/src/SARsrc						#
+ls -la ~/src/SARsrc/sh						#
 echo								#
 echo								#
 echo "Installation calcelestial ..."				#
@@ -136,10 +138,16 @@ fi								#
 cd								#
 if [ ! -d /usr/local/apache2  ]					#
 then								#
+	echo							#
+	echo							#
+	echo "Password for apache2 ..."				#
+	echo "================================================" #
+	echo							#
+	echo							#
 	sudo mkdir /usr/local/apache2   			#
 	sudo mkdir /usr/local/apache2/passwd			#
 	cd /usr/local/apache2/passwd				#
-	echo "Type password for: acasado" 			#
+	echo "Type APACHE password for: acasado"		#
 	sudo htpasswd -c passwords acasado			#
 fi								#
 cd								#
