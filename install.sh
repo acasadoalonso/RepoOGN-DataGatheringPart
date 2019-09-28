@@ -20,6 +20,7 @@ sudo apt-get -y upgrade					   	#
 sudo apt-get -y dist-upgrade					#
 echo								#
 echo "Installing the packages required . (LAMP stack)..."	#
+echo "==================================================" 	#
 echo								#
 sudo apt-get install -y mysql-server mysql-client sqlite3	#
 sudo apt-get install -y python3-dev python3-pip python3-mysqldb #
@@ -30,7 +31,7 @@ sudo apt-get install -y php-mbstring php-gettext		#
 sudo apt-get install -y mailutils ntpdate mutt	ssmtp		#
 sudo apt-get install -y libcurl4-openssl-dev			#
 sudo apt-get install -y libjson0 libjson0-dev			#
-sudo apt-get install -y libjson-c-dev0 				#
+sudo apt-get install -y libjson-c-dev 				#
 sudo apt-get install -y libnova-0.14-0				#
 sudo apt-get install -y libfap-dev                              #
 sudo apt-get install -y at	 				#
@@ -47,12 +48,14 @@ sudo mv temp.conf /etc/apache2/apache2.conf			#
 sudo service apache2 restart					#
 echo								#
 echo "Installing phpmyadmin  ... "				#
+echo "================================================" 	#
 echo								#
 sudo apt-get install -y libmysqlclient-dev			#
 sudo apt-get install -y phpmyadmin 				#
 sudo service apache2 restart					#
 echo								#
 echo "Installing python modules  ... "				#
+echo "================================================" 	#
 echo								#
 sudo -H pip3 install --upgrade pip                              #
 sudo -H pip3 install --upgrade setuptools			#
@@ -71,6 +74,7 @@ then								#
 fi								#
 echo								#
 echo "Installing the templates needed  ...." 			#
+echo "================================================" 	#
 echo								#
 pwd								#
 sudo cp config.template /etc/local/SARconfig.ini		#
@@ -79,6 +83,7 @@ crontab <crontab.data						#
 crontab -l 							#
 echo								#
 echo "Check the working directories  ...." 			#
+echo "================================================" 	#
 echo								#
 if [ -f OGN.db ]						#
 then								#
@@ -132,7 +137,7 @@ then								#
 	sudo chmod 777 */*					#
 fi								#
 cd /var/www/html						#
-if [ ! -f DIRdata ]						#
+if [ ! -f /var/www/html/DIRdata ]						#
 then								#
 	sudo ln -s /nfs/OGN/DIRdata .				#
 fi								#
@@ -208,4 +213,4 @@ echo " "							#
 echo " "							#
 echo " "							#
 bash
-
+alias
