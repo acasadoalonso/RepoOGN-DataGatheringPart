@@ -201,7 +201,7 @@ while True:
     rows = curs.fetchmany()
     if not rows:
         break
-    for (ID, dte, tme, sta, alt, dist, lati, int) in rows:
+    for (ID, dte, tme, sta, alt, dist, lati, longi) in rows:
         if pdte != ' ' and pdte != dte:
             if (MySQL):
                 cmd = "select registration from GLIDERS where idglider = '" + tmid + "'"
@@ -256,7 +256,7 @@ while True:
             fmaxdist = dist
         if alt > fmaxalti[ID]:
             fmaxalti[ID] = alt
-            fmaxlong[ID] = int
+            fmaxlong[ID] = longi
             fmaxlati[ID] = lati
         if alt > fmaxalt:
             fmaxalt = alt
@@ -274,17 +274,17 @@ while True:
             tmid = ID                   # who did it
             tmsta = sta                 # station capturing the max altitude
             tpar = cin
-            mlong = int
+            mlong = longi
             mlati = lati
         if sta in fsabsmax:
             if alt > fsabsmax[sta]['alti']:
                 fsabsmax[sta]['alti'] = alt
-                fsabsmax[sta]['long'] = int
+                fsabsmax[sta]['longi'] = longi
                 fsabsmax[sta]['lati'] = lati
                 fsabsmax[sta]['date'] = dte
 
         else:
-            fsabsmax[sta] = dict(alti=alt, int=int, lati=lati, date=dte)
+            fsabsmax[sta] = dict(alti=alt, longi=longi, lati=lati, date=dte)
 
         cin += 1                                 # one more record read
         cpar += 1
@@ -369,14 +369,14 @@ for key in k:                               # report data
 print(("Number of Flarms found: ", numID))
 print("STATION ==> Maximun distance and records received ")
 print("==================================================")
-k = list(fsloc.keys())                        # list the receiving stations
+k = list(fsloc.keys())                      # list the receiving stations
 k.sort()                                    # sort the list
 for key in k:                               # report data distances
     if fsmax[key] > 0:                      # only if we have measured distances
         addr = ' '
         if lnames:
             mlati = fsabsmax[key]['lati']
-            mlong = fsabsmax[key]['long']
+            mlong = fsabsmax[key]['longi']
             loc = geolocator.reverse([mlati, mlong])
             addr = loc.address
             if addr != None:
@@ -387,7 +387,7 @@ for key in k:                               # report data distances
                     key,  fsmax[key],  fsloc[key], fsabsmax[key]['alti'], fsabsmax[key]['date'], addr)
         else:
             msg = "%9s ==> %7.2f Kms. achieved and %8d packets received. %5.2f %5.2f %5.2f " % (
-                key,  fsmax[key],  fsloc[key], fsabsmax[key]['lati'], fsabsmax[key]['long'], fsabsmax[key]['alti'])
+                key,  fsmax[key],  fsloc[key], fsabsmax[key]['lati'], fsabsmax[key]['longi'], fsabsmax[key]['alti'])
         print(msg)
 
 print(("Nrecs:", cin, "Number IDs:", len(fid), "Number Sta.:", len(

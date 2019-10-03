@@ -26,6 +26,8 @@ sudo apt-get install -y mysql-server mysql-client sqlite3	#
 sudo apt-get install -y python3-dev python3-pip python3-mysqldb #
 sudo apt-get install -y dos2unix libarchive-dev	 autoconf mc	#
 sudo apt-get install -y pkg-config git mutt git-core		#
+git config --global user.email "acasadoalonso@gmail.com"        #
+git config --global user.name "Angel Casado"                    #
 sudo apt-get install -y apache2 php php-mcrypt php-mysql php-cli #
 sudo apt-get install -y php-mbstring php-gettext		#
 sudo apt-get install -y mailutils ntpdate mutt	ssmtp		#
