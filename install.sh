@@ -92,8 +92,11 @@ then								#
 	rm      OGN.db						#
 fi								#
 sqlite3 OGN.db            	     < ogndb/DBschema.sql	#
+echo "Create the SARogn loginr-path: Type assigned password"	#
+mysql_config_editor set --login-path=SARogn --user=ogn --password 
+mysql_config_editor print --all					#
 echo "CREATE DATABASE OGNDB" | mysql -u root -pogn		#
-mysql -u root -pogn --database OGNDB < ogndb/DBschema.sql	#
+mysql --login-path=SARogn --database OGNDB < ogndb/DBschema.sql	#
 echo								#
 echo								#
 echo "Installation mysql done ..."				#
