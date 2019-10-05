@@ -1,5 +1,5 @@
 #!/bin/sh
-db='/var/www/DIRdata/OGN.db'
+db='/var/www/DIRdata/SAROGN.db'
 # test if DB is available
 if [ ! -e $db ]
 then

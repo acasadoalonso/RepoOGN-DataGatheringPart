@@ -107,7 +107,7 @@ if (MySQL):
     conn = MySQLdb.connect(host=DBhost, user=DBuser,
                            passwd=DBpasswd, db=DBname)
 else:
-    conn = sqlite3.connect(r'OGN.db')       # connect with the database
+    conn = sqlite3.connect(r'SAROGN.db')       # connect with the database
 curs = conn.cursor()                        # set the cursor
 
 nrec = 0

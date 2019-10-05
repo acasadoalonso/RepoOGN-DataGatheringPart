@@ -24,17 +24,17 @@ cp kglid.py /nfs/OGN/DIRdata
 ls -la
 cd /nfs/OGN/DIRdata
 echo "Registered gliders: "
-echo "select count(*) from GLIDERS;" |                sqlite3 OGN.db
+echo "select count(*) from GLIDERS;" |                sqlite3 SAROGN.db
 echo "drop table GLIDERS;"           |                mysql --login-path=SARogn -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL OGNDB: "
-sqlite3 OGN.db ".dump GLIDERS" | python2 ../src/SARsrc/sql* | mysql --login-path=SARogn -h $server OGNDB  	2>/dev/null
+sqlite3 SAROGN.db ".dump GLIDERS" | python2 ../src/SARsrc/sql* | mysql --login-path=SARogn -h $server OGNDB  	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL APRSLOG: "
 echo "delete from GLIDERS;"           |                mysql --login-path=SARogn -h $server APRSLOG 		2>/dev/null
-#sqlite3 OGN.db ".dump GLIDERS" | python ../src/sql* | mysql --login-path=SARogn -h $server APRSLOG  		2>/dev/null
+#sqlite3 SAROGN.db ".dump GLIDERS" | python ../src/sql* | mysql --login-path=SARogn -h $server APRSLOG  		2>/dev/null
 mysql -h $server --login-path=SARogn APRSLOG < ~/src/SARsrc/copyGLIDERS.sql 					2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server APRSLOG 		2>/dev/null
 echo "drop table GLIDERS;"           |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
-sqlite3 OGN.db ".dump GLIDERS" | python2 ../src/SARsrc/sql* | mysql --login-path=SARogn -h $server2 SWIFACE  	2>/dev/null
+sqlite3 SAROGN.db ".dump GLIDERS" | python2 ../src/SARsrc/sql* | mysql --login-path=SARogn -h $server2 SWIFACE  	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
 cd 

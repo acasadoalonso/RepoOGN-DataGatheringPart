@@ -10,7 +10,7 @@ datapath = "/nfs/OGN/DIRdata/"
 print("Meteo in Santiago... ")
 sta = "SCEL"
 
-conn = sqlite3.connect(datapath+'METEO.db')
+conn = sqlite3.connect(datapath+'SARMETEO.db')
 curs = conn.cursor()
 
 crecmd = "create table IF NOT EXISTS METEO (date char(6), time char (6), metstation char(4), rowdata TEXT NULL DEFAULT NULL, temp REAL, dewp REAL, winddir int, windspeed int, windgust int, visibility int, qnh REAL, cloud TEXT, fcat TEXT, wxstring TEXT)"

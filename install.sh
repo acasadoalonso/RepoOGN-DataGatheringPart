@@ -87,11 +87,11 @@ echo								#
 echo "Check the working directories  ...." 			#
 echo "================================================" 	#
 echo								#
-if [ -f OGN.db ]						#
+if [ -f SAROGN.db ]						#
 then								#
-	rm      OGN.db						#
+	rm      SAROGN.db						#
 fi								#
-sqlite3 OGN.db            	     < ogndb/DBschema.sql	#
+sqlite3 SAROGN.db            	     < ogndb/DBschema.sql	#
 echo "Create the SARogn loginr-path: Type assigned password"	#
 mysql_config_editor set --login-path=SARogn --user=ogn --password 
 mysql_config_editor print --all					#
@@ -141,7 +141,7 @@ then								#
 	sudo chown ogn:ogn      /nfs/OGN/DIRdata		#
 	sudo chmod 777 /nfs/OGN/DIRdata				#
 	cd /var/www/public/					#
-	mv OGN.db /nfs/OGN/DIRdata				#
+	mv SAROGN.db /nfs/OGN/DIRdata				#
 	sudo chown ogn:ogn      *				#
 	sudo chmod 777 *					#
 	sudo chown ogn:ogn      */*				#
