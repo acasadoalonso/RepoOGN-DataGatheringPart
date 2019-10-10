@@ -89,12 +89,20 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
             if msg == -1:		    # parser error
                 print("Parser error:", data)
                 continue
+            path = msg['path']
+            if path == 'aprs_receiver' or path == 'receiver':
+                continue
+            source = msg['source']          # source of the data OGN/SPOT/SPIDER/...
+            if source != 'OGN':
+                continue
             ident = msg['id']          	    # id
-            type = msg['type']		    # message type
+            if 'aprstype' in msg:
+                mtype = msg['aprstype']	    # message type
+            else:
+                print ("MSG>>>", msg)
             longitude = msg['longitude']
             latitude = msg['latitude']
             altitude = msg['altitude']
-            path = msg['path']
             otime = msg['otime']
             source = msg['source']          # source of the data OGN/SPOT/SPIDER/...
             if len(source) > 4:
@@ -122,7 +130,7 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
                 station = ident		    # for qAC just the station is the ID
             if path == 'TCPIP*':
                 continue                    # go for the next record
-            if type == 8:                   # if status report
+            if mtype == 'status':           # if status report
                 status = msg['status']      # get the status message
                 # and the station receiving that status report
                 station = msg['station']
@@ -154,7 +162,7 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
 
             ident = data[0:9]               # the flarm ID/ICA/OGN
             idname = data[0:9]              # exclude the FLR part
-            if latitude == -1 or longitude == -1 or type == 8:
+            if latitude == -1 or longitude == -1 or mtype == 'satus':
                 continue
             # and the station receiving that status report
             station = msg['station']
@@ -181,7 +189,6 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
 
     datafilei.close()		# close the input file
     con.commit()   		    	# commit the DB
-    libfap.fap_cleanup()		# free the parser memory
     print("Number of records on the temp DB:", nrecs)
     print("Number of relay packages:", relaycntr, relaycnt)
     print("Sources: ", fsour)

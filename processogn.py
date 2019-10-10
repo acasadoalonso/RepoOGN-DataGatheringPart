@@ -12,6 +12,7 @@ import socket
 import config
 
 sys.path.insert(0, '/nfs/OGN/src/funcs')
+sys.path.insert(0, '/nfs/OGN/src/SARsrc')
 datapath = config.DBpath
 
 import os
