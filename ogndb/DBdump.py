@@ -121,6 +121,7 @@ else:
     dtar = False                            # do not request the data/ID
     idr = False
 
+# print (dtareq, dtareq[0], "MySQL", MySQL, "dtar", dtar, "LNAMES", lnames, "IDR", idr)
 # ---------------------------------------------------------- #
 logging.basicConfig(filename='.DBdump.log', level=logging.INFO)
 logging.info('%30s Dumping the OGN database User=%s at %s',
@@ -218,10 +219,13 @@ while True:
                 loc = geolocator.reverse([mlati, mlong])
                 addr = loc.address
                 # print addr
-                addr = fixcoding(addr).encode('utf8')
-                addr = str(addr)
-                msg = ("Date: %6s Max Alt: %05d m. MSL at %s UTC by: %6s %14s Under: %9s At: %s" % (
+                if addr != None:
+                    addr = fixcoding(addr).encode('utf8')
+                    addr = str(addr)
+                    msg = ("Date: %6s Max Alt: %05d m. MSL at %s UTC by: %6s %14s Under: %9s At: %s" % (
                     pdte, tmaxa, tmaxt, tmid, regi, tmsta, addr))
+                else:
+                    msg = "Not a valid GeoLocation address ..."
             else:
                 msg = ("Date: %6s Max Alt: %05d m. MSL at %2s:%2s:%2sZ by: %6s %14s Under: %9s " % (
                     pdte, tmaxa, tmaxt[0:2], tmaxt[2:4], tmaxt[4:6], tmid, regi, tmsta))
