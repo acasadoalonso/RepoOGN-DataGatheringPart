@@ -14,7 +14,7 @@ import config
 sys.path.insert(0, '/nfs/OGN/src/funcs')
 sys.path.insert(0, '/nfs/OGN/src/SARsrc')
 datapath = config.DBpath
-
+#print ("Path:", sys.path)
 import os
 import kglid                                # import the list on known gliders
 from datetime import *                      # the ogn/ham parser functions
@@ -28,8 +28,7 @@ geolocator = Nominatim(user_agent="Repoogn", timeout=5)  # create the instance
 #
 # ---------- main code ---------------
 #
-
-pgmver = 'V2.0'
+pgmver="V2.1"
 fid = {'NONE  ': 0}                         # FLARM ID list
 fsta = {'NONE  ': 'NONE  '}                 # STATION ID list
 ffd = {'NONE  ': None}                      # file descriptor list
@@ -287,7 +286,7 @@ while True:                                 # until end of file
             '0'+data[p1+24]                 # get the longitude
         altim = altitude                    # convert the altitude in metersa
 
-        if altim > 15000 or altim < 0:
+        if altim == None or (altim > 15000 or altim < 0):
             altim = 0
         alti = '%05d' % altim               # convert it to an string
 
