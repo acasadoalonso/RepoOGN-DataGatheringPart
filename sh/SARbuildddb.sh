@@ -21,6 +21,10 @@ cp kglid.py ../
 cp kglid.py ../..
 cp kglid.py /var/www/html/
 cp kglid.py /nfs/OGN/DIRdata
+rm *.fln
+rm *.txt
+rm *.csv
+rm flarmdata.py ognddbdat.py
 ls -la
 cd /nfs/OGN/DIRdata
 echo "Registered gliders: "
@@ -37,4 +41,5 @@ echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn 
 echo "drop table GLIDERS;"           |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
 sqlite3 SAROGN.db ".dump GLIDERS" | python2 ../src/SARsrc/sql* | mysql --login-path=SARogn -h $server2 SWIFACE  	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
+
 cd 
