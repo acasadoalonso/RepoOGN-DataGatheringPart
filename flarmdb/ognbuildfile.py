@@ -21,10 +21,10 @@ def isprintable(s, codec='latin1'):
 
 def ogndb(prt, curs):
 
-    db = open("ognddbdata.csv", 'r')
-    flm_txt = open("ognddbdata.txt", 'w')
+    db      = open("ognddbdata.csv", 'r')       # input file
+    flm_txt = open("ognddbdata.txt", 'w')       # output file
 
-    print("Process OGN database")
+    print("Process the OGN Device Database - DDB")
     line = db.readline().encode("latin1")
     if prt:
         print("Format: ", line)
@@ -69,8 +69,7 @@ def ogndb(prt, curs):
         cn = cn.strip("'")
         model = model.strip("'")
 
-        curs.execute("insert into GLIDERS values(?,?,?,?,?, ?)",
-                     (ID, Registration, cn, model, "O", device))
+        curs.execute("insert into GLIDERS values(?,?,?,?,?, ?)", (ID, Registration, cn, model, "O", device))
         if prt:
             print(ID, Registration, cn, model)
 
@@ -87,7 +86,7 @@ conn = sqlite3.connect(r'/nfs/OGN/DIRdata/OGN.db')
 curs = conn.cursor()
 curs.execute("delete from GLIDERS")             # delete all rows
 
-print("Start build OGN file from OGN database")
+print("Start build the OGN file from OGN device database")
 t1 = time.time()
 ogndb(prt, curs)
 t2 = time.time()
