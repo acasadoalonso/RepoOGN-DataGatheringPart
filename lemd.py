@@ -2,6 +2,8 @@
 
 from urllib.request import urlopen
 import datetime
+import ssl
+ssl.match_hostname = lambda cert, hostname: True
 
 from xml.etree.ElementTree import parse
 extend = False

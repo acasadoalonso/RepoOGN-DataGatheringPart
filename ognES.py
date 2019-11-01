@@ -170,7 +170,7 @@ next_sunrise = location.next_rising(ephem.Sun(), date)
 next_sunset = location.next_setting(ephem.Sun(), date)
 print("Sunrise today is at: ", next_sunrise, " UTC ")
 print("Sunset  today is at: ", next_sunset,  " UTC ")
-print("Time now is: ", date, "Local time and Process ID:", os.getpid())
+print("Time now is: ", date, "Local time, Process ID:", os.getpid(), " on Hostname:", hostname)
 nerrors = 0
 paths=[]
 try:

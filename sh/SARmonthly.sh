@@ -17,4 +17,6 @@ echo "delete from RECEIVERS where idrec like 'BSKY%';" |  mysql --login-path=SAR
 cd  log
 mv *$(date +%y)*.log Y$(date +%y) 
 bash ./compress.sh   Y$(date +%y) 
+cd ../
+bash fd/compfull.sh 
 cd
