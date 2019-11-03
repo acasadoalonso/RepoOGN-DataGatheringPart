@@ -1,8 +1,22 @@
 #!/bin/sh
 echo "Build GLIDERS table: "
 cd /nfs/OGN/src/SARsrc/flarmdb
-server="ubuntu"
-server2="casadonfs"
+if [ $# = 0 ]; then
+	server='localhost'
+else
+	server=$1
+fi
+echo "Server: "$server
+if [ $# > 1 ]; then
+	server2=$2
+else
+	server2='localhost'
+fi
+echo "Server2: "$server2
+echo $# $2
+
+#server="ubuntu"
+#server2="casadonfs"
 rm *.fln 2>/dev/null
 rm *.csv 2>/dev/null
 rm *.txt 2>/dev/null
@@ -40,8 +54,9 @@ echo "delete from GLIDERS;"           |                mysql --login-path=SARogn
 #sqlite3 SAROGN.db ".dump GLIDERS" | python2 ../src/SARsrc/sql* | mysql --login-path=SARogn -h $server APRSLOG	2>/dev/null
 mysql --login-path=SARogn -h $server APRSLOG < ~/src/SARsrc/sh/copyGLIDERS.sql 					2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server APRSLOG 		2>/dev/null
+echo "Copy from sqlite3 to MySQL SWIFACE: "
 echo "drop table GLIDERS;"           |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
-sqlite3 SAROGN.db ".dump GLIDERS" | python2 ../src/SARsrc/sql* | mysql --login-path=SARogn -h $server2 SWIFACE  	2>/dev/null
+sqlite3 SAROGN.db ".dump GLIDERS" | python2 ../src/SARsrc/sql* | mysql --login-path=SARogn -h $server2 SWIFACE 	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
 
 cd 

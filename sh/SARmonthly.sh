@@ -1,5 +1,11 @@
 #!/bin/bash
-server="UBUNTU"
+if [ $# = 0 ]; then
+	server='localhost'
+else
+	server=$1
+fi
+echo "Server: "$server
+
 cd /nfs/OGN/DIRdata
 mv SARgetogn.log log/SARgetogn$(date +%y%m).log
 mv SARerr.log    log/SARerr$(date    +%y%m).log

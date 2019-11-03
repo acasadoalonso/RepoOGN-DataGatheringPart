@@ -85,9 +85,10 @@ if not dter and not nmer:                   # check if we need to request date
     fname = 'DATA'+dte+'.log'               # build the file name with today's date
 elif nmer:
     fn = sys.argv[2:]                       # take the name of the second arg
-    fname = str(fn)[2:16]
-                                            # take the date from the file name
-    dte = str(fn)[6:12]
+    fname = str(fn)[2:-2]
+    name = str(fn)[-16:-2]
+    dte = str(name)[-10:-4]
+    print (fname, name, dte)
 else:
     dte = input('Enter date:')              # otherwise ask for the date
     if dte == '':                           # if no input
@@ -96,7 +97,7 @@ else:
     fname = 'DATA'+dte+'.log'
 
                                             # display file name and time
-print('File name:', fname, 'Process date/time:', date.strftime(
+print('File name:', fname, "dte", dte, 'Process date/time:', date.strftime(
     " %y-%m-%d %H:%M:%S"))
 
 geolocator = GeoNames(country_bias='Spain', username='acasado')
@@ -350,8 +351,8 @@ while True:                                 # until end of file
                     print(">>>MySQL error:", nrec, cin, addcmd)
             else:                           # sqlite3
                 addcmd = "insert into OGNDATA values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
-                curs.execute(addcmd, (idname, dte, hora, station, latitude, longitude, altim,
-                                      speed, course, roclimb, rot, sensitivity, gps, uniqueid, dist, extpos))
+                # print ("DDD",idname, dte, hora, station, latitude, longitude, altim, speed, course, roclimb, rot, sensitivity, gps, uniqueid, dist, extpos)
+                curs.execute(addcmd, (idname, dte, hora, station, latitude, longitude, altim, speed, course, roclimb, rot, sensitivity, gps, uniqueid, dist, extpos))
             cout += 1                        # one more record writen
 
 # -----------------  final process ----------------------

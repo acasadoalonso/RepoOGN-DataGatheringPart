@@ -28,6 +28,8 @@ cat tttbuilt kglid.hdr ognddbdata.py  flarmdata.py kglid.trail >kglid.py
 ls -la
 cp kglid.py /var/www/html/files 
 cp kglid.py ../../
+rm *.fln
+rm *.csv
 echo "Registered gliders: "
 echo "select count(*) from GLIDERS;" | sqlite3 ${DBpath}${SQLite3}
 cd 
