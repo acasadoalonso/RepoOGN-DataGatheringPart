@@ -1,4 +1,4 @@
-# 2019-11-03 SAROGN 
+# 2019-11-03 SAROGN
 
 kglid  = {
             # Known Receivers
