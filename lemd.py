@@ -3,13 +3,15 @@
 from urllib.request import urlopen
 import datetime
 import ssl
+import socket
 ssl.match_hostname = lambda cert, hostname: True
 
 from xml.etree.ElementTree import parse
 extend = False
 import sqlite3
 datapath = "/nfs/OGN/DIRdata/"
-print("Meteo in Madrid... ")
+hostname = socket.gethostname()
+print("Meteo in Madrid... ", hostname)
 sta = "LEMD"
 
 conn = sqlite3.connect(datapath+'SARMETEO.db')

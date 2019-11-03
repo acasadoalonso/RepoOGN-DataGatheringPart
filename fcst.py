@@ -3,6 +3,8 @@ import sys
 import urllib.request, urllib.error, urllib.parse
 import datetime
 import xml.etree.ElementTree as ET
+import socket
+
 extend = False
 www = False
 sta = "LEMD"
@@ -15,7 +17,9 @@ if stareq:
 else:
     sta = "LEMD"
     www = False
-print("Meteo in ... ", sta)
+
+hostname = socket.gethostname()
+print("Meteo in ... ", sta, hostname)
 
 
 url = ('https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&stationString=%s&hoursBeforeNow=1' % sta)
