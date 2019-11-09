@@ -5,6 +5,7 @@
 
 /sbin/ifconfig 		>  ~/hc.log
 df -v 			>> ~/hc.log
+lsb_release -a 		>> ~/hc.log
 lsusb	 		>> ~/hc.log
 /usr/bin/uptime	 	>> ~/hc.log
 
@@ -20,6 +21,7 @@ gettime=`date "+%M"`
 {
 echo $taken
 /usr/bin/uptime
+lsb_release -a
 /bin/cat /etc/hostname /etc/issue.net /etc/debian_version
 echo "####################   IP settings  ##################"
 echo "           "
