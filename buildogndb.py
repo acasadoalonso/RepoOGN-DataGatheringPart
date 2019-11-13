@@ -119,7 +119,7 @@ while True:                                 # until end of file
     if not data:                            # end of file ???
                                             # report the findings and close the files
         # report number of records read and files generated
-        print('===> Input records: ', dte, cin, cout, 'Ouput files:', cfile, len(fid))
+        print('===> Input records: ', cin, cout, 'Ouput files:', cfile, len(fid), "DTE:", dte)
         # list the IDs for debugging purposes
         k = list(fid.keys())
         k.sort()                            # sort the list
@@ -251,19 +251,26 @@ while True:                                 # until end of file
         if len(source) > 4:
             source = source[0:3]
         # if std records
-        if path == 'qAS' or path == 'RELAY*' or path[0:3] == "OGN":
-            station = msg['station']	    # get the station name
-            if path == "RELAY*":
-                relaycntr += 1
-            if path[0:3] == "OGN":	    # if it is a OGN tracker relay msg
-                if not id in relayglider:
-                    rr = {} 		    # temp
-                    #print "otime", otime.strftime("%y%m%d%H%M%S")
-                    rr[path[0:9]] = otime.strftime("%H%M%S")
-                    relayglider[ident] = rr    # add the id to the table of relays.
-                relaycnt += 1		    # increase the counter
+        if 'relay' in msg:
+                relay = msg['relay']
+        else:
+                relay = ''
+        if (path == 'aprs_aircraft' and relay == 'RELAY')  or (path == 'tracker' and relay[0:3] == "OGN"):
+                station = msg['station']    # get the station name
+                if relay == "RELAY":
+                    relaycntr += 1
+                if relay[0:3] == "OGN":     # if it is a OGN tracker relay msg
+                    if not id in relayglider:
+                        rr = {}             # temp
+                        #print "otime", otime.strftime("%y%m%d%H%M%S")
+                        rr[path[0:9]] = otime.strftime("%H%M%S")
+                        # add the id to the table of relays.
+                        relayglider[ident] = rr
+                    relaycnt += 1           # increase the counter
+        else:
+                station = msg['station']    # get the station name
 
-        if path == 'TCPIP*' or path == 'receiver' or path == 'aprs_receiver':
+        if path == 'receiver' or path == 'aprs_receiver':
             if not ident in fsloc:		    # if not detected yet
                 # save the loction of the station
                 fsloc[ident] = (latitude, longitude)

@@ -46,6 +46,7 @@ import time
 import sys
 import os
 import socket
+from tqdm import tqdm
 from geopy.distance import vincenty         # use the Vincenty algorithm
 from geopy.geocoders import GeoNames        # use the Nominatim as the geolocator
 from geopy.geocoders import Nominatim
@@ -375,7 +376,7 @@ print("STATION ==> Maximun distance and records received ")
 print("==================================================")
 k = list(fsloc.keys())                      # list the receiving stations
 k.sort()                                    # sort the list
-for key in k:                               # report data distances
+for key in tqdm(k):                         # report data distances
     if fsmax[key] > 0:                      # only if we have measured distances
         addr = ' '
         if lnames:

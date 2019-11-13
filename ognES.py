@@ -278,23 +278,27 @@ try:
             otime       = msg['otime']
 
 
+            station = msg['station']
+            if 'relay' in msg:
+                relay = msg['relay']
+            else:
+                relay = ''
             # if std records
-            if path == 'aprs_aircraft' or path == 'flarm' or path == 'RELAY' or path == 'tracker':
-                station = msg['station']
+            if path == 'aprs_aircraft' or path == 'flarm' or path == 'tracker':
                 if not station in stations:
                     # add it to the list of stations ...
                     stations.append(station)
                     #print "SSS", station
-                if path == "RELAY*":
+                if relay == "RELAY":
                     relaycntr += 1
-                if path[0:3] == "OGN":
+                if relay[0:3] == "OGN":
                     relaycnt += 1
                     if prt:
                         print("RELAY:", path, station, id, destination, header, otime)
                     if not ident in relayglider:
-                        relayglider[ident] = path[0:9]
+                        relayglider[ident] = relay[0:9]
 
-            elif path == 'aprs_receiver' or path == 'TCPIP*' or path == "NOPATH":
+            elif path == 'aprs_receiver' or relay == 'TCPIP' or path == "NOPATH":
                 data = packet_str
                 ssep = data.find('>')               # find the separatora
                 if ssep != -1:
@@ -305,7 +309,7 @@ try:
                     ident = "NOREG"
 
             else:
-                station = ident                        # just the station itself
+                station = ident                     # just the station itself
             if prt:                                 # just for debugging
                 print('Packet returned is: ', packet_str)
                 print('Message: ', msg)

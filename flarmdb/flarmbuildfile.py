@@ -8,13 +8,25 @@ import requests
 import sys
 import time
 import sqlite3
+from tqdm import tqdm
+
+import subprocess
+
+def file_len(fname):
+    p = subprocess.Popen(['wc', '-l', fname], stdout=subprocess.PIPE,
+                                              stderr=subprocess.PIPE)
+    result, err = p.communicate()
+    if p.returncode != 0:
+        raise IOError(err)
+    return int(result.strip().split()[0])
+
+
 
 
 def flarmdb(prt, curs):
-    cin = 0
-    cout = 0
-    dups = 0
 
+    global cin, cout, dups
+    nlines = file_len("flarmdata.fln")
     db = open("flarmdata.fln", 'r')
     flm_txt = open("flarmdata.txt", 'w')
     # Read first line and convert to number
@@ -25,12 +37,13 @@ def flarmdb(prt, curs):
     i = 1
     line = ""
     nos_lines = val
+    pbar = tqdm(total=nlines)               # indicate the total number of lines
     while True:
         # try:
         line = db.readline()
         if not line:
-            print("Input:", cin, "Output:", cout, "Dups:", dups)
             return True
+        pbar.update(1)
         line_lng = len(line)
         cin += 1
         string = ""
@@ -86,12 +99,16 @@ def flarmdb(prt, curs):
         # except:
         #print("Error at row : ", i - 1)
         # return True
+    pbar.close()
     return True
 #
 # Main logic
 #
 
 
+cin = 0
+cout = 0
+dups = 0
 prtreq = sys.argv[1:]
 if prtreq and prtreq[0] == 'prt':
     prt = True
@@ -103,6 +120,8 @@ curs = conn.cursor()
 print("Start build Flarm file from Flarmnet")
 t1 = time.time()
 flarmdb(prt, curs)
+
+print("Input:", cin, "Output:", cout, "Dups:", dups)
 t2 = time.time()
 print("End build Flarm DB in ", t2 - t1, " seconds")
 conn.commit()

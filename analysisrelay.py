@@ -8,9 +8,19 @@ import MySQLdb                              # the SQL data base routines
 import sqlite3                              # the SQL data base routines
 import kglid
 import argparse
+from tqdm import tqdm
 sys.path.insert(0, '/nfs/OGN/src/funcs')
 from parserfuncs import *                   # the ogn/ham parser functions
 from geopy.distance import vincenty         # use the Vincenty algorithm
+import subprocess
+
+def file_len(fname):
+    p = subprocess.Popen(['wc', '-l', fname], stdout=subprocess.PIPE, 
+                                              stderr=subprocess.PIPE)
+    result, err = p.communicate()
+    if p.returncode != 0:
+        raise IOError(err)
+    return int(result.strip().split()[0])
 
 #
 # ----------------------------------------------------------------------------
@@ -67,11 +77,14 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
         print("Failed to create temp.db from TRKSTATUS schema, error")
 
     con.commit()			    # commit the DB just created, empty
-
-    # open the file with the logged data
+    nlines=file_len(fname)                  # get the number of lines 
+    print ("Building the sqlite3 DB using the file: "+fname+" with lines:", nlines)
+                                            # open the file with the logged data
     datafilei = open(fname, 'r')
     nrecs = 0
+    pbar = tqdm(total=nlines)               # indicate the total number of lines 
     while True:                             # until end of file
+        pbar.update(1) 
         data = datafilei.readline()         # read one line
         if not data:                        # end of file ???
                                             # report the findings and close the files
@@ -114,11 +127,15 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
                 fsour[source] += 1          # increase the counter
 
             # if std records
-            if path == 'qAS' or path == 'RELAY*' or path[0:3] == "OGN":
+            if 'relay' in msg:
+                relay = msg['relay']
+            else:
+                relay = ''
+            if (path == 'aprs_aircraft' and relay == 'RELAY')  or (path == 'tracker' and relay[0:3] == "OGN"):
                 station = msg['station']    # get the station name
-                if path == "RELAY*":
+                if relay == "RELAY":
                     relaycntr += 1
-                if path[0:3] == "OGN":	    # if it is a OGN tracker relay msg
+                if relay[0:3] == "OGN":	    # if it is a OGN tracker relay msg
                     if not id in relayglider:
                         rr = {} 	    # temp
                         #print "otime", otime.strftime("%y%m%d%H%M%S")
@@ -127,8 +144,8 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
                         relayglider[ident] = rr
                     relaycnt += 1	    # increase the counter
             else:
-                station = ident		    # for qAC just the station is the ID
-            if path == 'TCPIP*':
+                station = msg['station']    # get the station name
+            if path == 'aprs_receiver':
                 continue                    # go for the next record
             if mtype == 'status':           # if status report
                 status = msg['status']      # get the status message
@@ -188,7 +205,8 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
             nrecs += 1
 
     datafilei.close()		# close the input file
-    con.commit()   		    	# commit the DB
+    con.commit()   	    	# commit the DB
+    pbar.close()                # release the tqdm object
     print("Number of records on the temp DB:", nrecs)
     print("Number of relay packages:", relaycntr, relaycnt)
     print("Sources: ", fsour)
@@ -210,9 +228,6 @@ relaycnt = 0
 lasttime = ''
 fid = {}   		                    # FLARM ID list
 fn = sys.argv[1:]                           # take the name of the second arg
-fname = str(fn)[2:16]
-# take the date from the file name
-dte = str(fn)[6:12]
 date = datetime.now()                       # get the date
 
 parser = argparse.ArgumentParser(description="OGN Tracker relay analysis")
@@ -233,8 +248,8 @@ mindist = float(args.mindist)
 DBschema = args.schema
 intsec = int(args.intval)
 # take the date from the file name
-dte = fname[4:10]
-print("Filename:", args.filename, "Interval:", args.intval, "StandAlone:", sa, "DBschema file", DBschema, "Min Dist ", mindist)
+dte = fname[-10:-4]
+print("Filename:", args.filename, "Interval:", args.intval, "StandAlone:", sa, "DBschema file", DBschema, "Min Dist ", mindist, "Date:", dte)
 if (not os.path.isfile(fname)):
     print("File does not exists...")
     exit(1)
