@@ -10,6 +10,7 @@ DBhost   =ubuntu
 DBuser   =ogn	
 DBpasswd =ogn
 DBname   =OGNDB	
+SQLite3  =SAROGN	
 DBpath=/nfs/OGN/DIRdata/
 
 [APRS]

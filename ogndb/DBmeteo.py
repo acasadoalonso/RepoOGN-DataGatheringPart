@@ -12,7 +12,8 @@ cnt=0
 print("Move meteo data from METEO.db to OGN.db")
 print("=======================================")
 conn1=sqlite3.connect(r'SARMETEO.db')
-conn2=sqlite3.connect(config.SQLite3)
+print (config.DBpath+config.SQLite3)
+conn2=sqlite3.connect(config.DBpath+config.SQLite3)
 curs1=conn1.cursor()
 curs2=conn2.cursor()
 # print the dictionaries

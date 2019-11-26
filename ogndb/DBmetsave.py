@@ -4,7 +4,7 @@ import config
 print("Save METEO data from OGN on METEO DB")
 print("====================================")
 conn2=sqlite3.connect(r'SARMETEO.db')
-conn1=sqlite3.connect(config.SQLite3)
+conn1=sqlite3.connect(config.DBpath+config.SQLite3)
 curs1=conn1.cursor()
 curs2=conn2.cursor()
 #create the table 

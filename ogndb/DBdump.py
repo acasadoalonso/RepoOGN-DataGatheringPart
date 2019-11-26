@@ -95,7 +95,7 @@ host = config.DBhost
 DBuser = config.DBuser
 DBpasswd = config.DBpasswd
 DBpath = config.DBpath
-db = DBpath+(config.SQLite3)
+db = DBpath+config.SQLite3
 inittime = datetime.datetime.now()
 #
 # Dump the OGN database

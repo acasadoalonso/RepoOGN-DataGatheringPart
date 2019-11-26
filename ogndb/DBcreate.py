@@ -45,7 +45,7 @@ cur = [0]    					# cur is mutable
 schema="DBschema.sql"				# OGN database schema
 r = opendb('DBschema.sql', cur, config.SQLite3)	# create the OGN database using the schema
 
-conn=sqlite3.connect(config.SQLite3)		# connect now with the created database
+conn=sqlite3.connect(config.DBpath+config.SQLite3) # connect now with the created database
 curs=conn.cursor()
 
 #####################				# add now the preset values into stations and receivers
