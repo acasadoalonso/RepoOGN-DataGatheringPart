@@ -1,5 +1,5 @@
 #!/bin/sh
-echo "Build GLIDERS table: "
+echo "Build GLIDERS table from server: "$(hostname)
 cd /nfs/OGN/src/SARsrc/flarmdb
 ls -la
 if [ $# -eq  0 ]; then
@@ -42,20 +42,22 @@ rm *.csv
 rm flarmdata.py ognddbdata.py
 ls -la
 cd /nfs/OGN/DIRdata
+echo "Server:  "$server
+echo "Server2: "$server2
 echo "Registered gliders: "
 echo "select count(*) from GLIDERS;" |                sqlite3 SAROGN.db
 echo "drop table GLIDERS;"           |                mysql --login-path=SARogn -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL OGNDB: "$server
-sqlite3 SAROGN.db ".dump GLIDERS" | python2 ../src/SARsrc/sql* | mysql --login-path=SARogn -h $server OGNDB  	2>/dev/null
+sqlite3 SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sql* | mysql --login-path=SARogn  OGNDB  	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL APRSLOG: "$server
 echo "delete from GLIDERS;"           |                mysql --login-path=SARogn -h $server APRSLOG 		2>/dev/null
-#sqlite3 SAROGN.db ".dump GLIDERS" | python2 ../src/SARsrc/sql* | mysql --login-path=SARogn -h $server APRSLOG	2>/dev/null
+#sqlite3 SAROGN.db ".dump GLIDERS" | python2 ../src/SARsrc/sql* | mysql --login-path=SARogn APRSLOG	2>/dev/null
 mysql --login-path=SARogn -h $server APRSLOG < ~/src/SARsrc/sh/copyGLIDERS.sql 					2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server APRSLOG 		2>/dev/null
 echo "Copy from sqlite3 to MySQL SWIFACE: "$server2 
 echo "drop table GLIDERS;"           |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
-sqlite3 SAROGN.db ".dump GLIDERS" | python2 ../src/SARsrc/sql* | mysql --login-path=SARogn -h $server2 SWIFACE 	2>/dev/null
+sqlite3 SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sql* | mysql --login-path=SARogn -h $server2 SWIFACE 	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
 
 cd 

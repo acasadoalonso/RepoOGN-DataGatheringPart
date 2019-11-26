@@ -4,9 +4,9 @@ if [ $# = 0 ]; then
 else
 	server=$1
 fi
-echo "Server: "$server
 
 cd /nfs/OGN/DIRdata
+echo $(hostname)" for Server: "$server >>SARgetogn.log 
 mv SARgetogn.log log/SARgetogn$(date +%y%m).log
 mv SARerr.log    log/SARerr$(date    +%y%m).log
 sqlite3 SAROGN.db "delete from receivers where idrec like 'FNB%'; " 

@@ -1,5 +1,6 @@
 #!/bin/bash
 echo							        #
+echo "===================================" 			#
 echo "Installing the SAR system      ...." 			#
 echo "===================================" 			#
 echo							        #
@@ -8,6 +9,7 @@ sudo apt-get install -y software-properties-common python3-software-properties #
 #sudo rm /etc/apt/sources.list.d/ondre*				#
 #sudo add-apt-repository ppa:ondrej/php				#
 echo								#
+echo "================================================" 	#
 echo "Lets update the operating system libraries  ...." 	#
 echo "================================================" 	#
 echo								#
@@ -18,7 +20,9 @@ echo "export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 " >>~/.profile #
 echo "export LD_LIBRARY_PATH=/usr/local/lib" >>~/.profile 	#
 sudo apt-get -y upgrade					   	#
 sudo apt-get -y dist-upgrade					#
+sudo apt-get -y install lsb_core				#
 echo								#
+echo "==================================================" 	#
 echo "Installing the packages required . (LAMP stack)..."	#
 echo "==================================================" 	#
 echo								#
@@ -49,6 +53,7 @@ sudo echo "ServerName SAR  " >>temp.conf			#
 sudo mv temp.conf /etc/apache2/apache2.conf			#
 sudo service apache2 restart					#
 echo								#
+echo "================================================" 	#
 echo "Installing phpmyadmin  ... "				#
 echo "================================================" 	#
 echo								#
@@ -56,12 +61,14 @@ sudo apt-get install -y libmysqlclient-dev			#
 sudo apt-get install -y phpmyadmin 				#
 sudo service apache2 restart					#
 echo								#
+echo "================================================" 	#
 echo "Installing python modules  ... "				#
 echo "================================================" 	#
 echo								#
 sudo -H pip3 install --upgrade pip                              #
 sudo -H pip3 install --upgrade setuptools			#
 sudo -H pip3 install ephem 					#
+sudo -H pip3 install tqdm 					#
 sudo -H pip3 install pytz 					#
 sudo -H pip3 install geopy 					#
 sudo -H pip3 install configparser 				#
@@ -75,6 +82,7 @@ then								#
     sudo mkdir /etc/local					#
 fi								#
 echo								#
+echo "================================================" 	#
 echo "Installing the templates needed  ...." 			#
 echo "================================================" 	#
 echo								#
@@ -84,6 +92,7 @@ cp aliases ~/.bash_aliases					#
 crontab <crontab.data						#
 crontab -l 							#
 echo								#
+echo "================================================" 	#
 echo "Check the working directories  ...." 			#
 echo "================================================" 	#
 echo								#
@@ -99,6 +108,7 @@ echo "CREATE DATABASE OGNDB" | mysql -u root -pogn		#
 mysql --login-path=SARogn --database OGNDB < ogndb/DBschema.sql	#
 echo								#
 echo								#
+echo "================================================" 	#
 echo "Installation mysql done ..."				#
 echo "================================================" 	#
 echo								#
@@ -110,17 +120,21 @@ then								#
 	mkdir ~/src   						#
 	ln -s $(pwd) ~/src/SARsrc				#
 fi								#
+echo "================================================" 	#
 echo " DIR: /src ..."						#
 echo "================================================" 	#
 ls -la ~/src							#
+echo "================================================" 	#
 echo " DIR: /src/SARsrc ..."					#
 echo "================================================" 	#
 ls -la ~/src/SARsrc						#
+echo "================================================" 	#
 echo " DIR: /src/SARsrc/sh ..."					#
 echo "================================================" 	#
 ls -la ~/src/SARsrc/sh						#
 echo								#
 echo								#
+echo "================================================" 	#
 echo "Installation calcelestial ..."				#
 echo "================================================" 	#
 echo								#
@@ -170,6 +184,7 @@ fi								#
 cd								#
 echo								#
 echo								#
+echo "================================================" 	#
 echo "Execute the base starting scripts"			#
 echo "================================================" 	#
 echo								#
@@ -182,6 +197,7 @@ bash ~/src/SARsrc/sh/SARboot*					#
 pgrep -a python3						#
 echo								#
 echo								#
+echo "================================================" 	#
 echo "Install goaccess"						#
 echo "================================================" 	#
 echo								#
@@ -195,6 +211,7 @@ then
 fi								#
 echo								#
 echo								#
+echo "================================================" 	#
 echo "Optional steps ... "					#
 echo "================================================" 	#
 echo								#

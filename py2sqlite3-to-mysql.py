@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python2
 import re, fileinput, tempfile
 from optparse import OptionParser
 
@@ -12,7 +12,6 @@ IGNOREDPREFIXES = [
 ]
 
 def _replace(line):
-    line=line.decode('utf-8')
     if any(line.startswith(prefix) for prefix in IGNOREDPREFIXES):
         return
     line = line.replace("INTEGER PRIMARY KEY", "INTEGER AUTO_INCREMENT PRIMARY KEY")
@@ -74,8 +73,7 @@ use {d};\n'''.format(d=opts.database, u=opts.username, p=opts.password)
 
 def _removeNewline(line, in_string):
     new = ''
-    lines=line.decode('UTF-8')
-    for c in lines:
+    for c in line:
         if not in_string:
             if c == "'":
                 in_string = True
@@ -89,12 +87,12 @@ def _removeNewline(line, in_string):
                  new = new + 'carriagereturn333'
                  continue
         new = new + c
-    return new.encode('utf-8'), in_string
+    return new, in_string
 	
 def _replaceNewline(lines):
     for line in lines:
-           line = line.replace("Newline333".encode('utf-8'), "\n".encode('utf-8'))
-           line = line.replace("carriagereturn333".encode('utf-8'), "\r".encode('utf-8'))
+           line = line.replace("Newline333", "\n")
+           line = line.replace("carriagereturn333", "\r")
            yield line
 
 def _Newline(lines):
@@ -111,7 +109,7 @@ def main():
     op.add_option('-u', '--username')
     op.add_option('-p', '--password')
     opts, args = op.parse_args()
-    lines = (l.encode('UTF-8') for l in fileinput.input(args))
+    lines = (l for l in fileinput.input(args))
     lines = (l for l in _Newline(lines))
     f = tempfile.TemporaryFile()
     for line in lines:
@@ -119,9 +117,9 @@ def main():
     f.seek(0)
     lines = (l for l in f.readlines())
     f.close()
-    lines = (l.encode('utf-8') for l in _process(opts, lines))
+    lines = (l for l in _process(opts, lines))
     for line in _replaceNewline(lines):
-       print(line.decode('utf-8'))
+       print(line)
 
 if __name__ == "__main__":
     main()

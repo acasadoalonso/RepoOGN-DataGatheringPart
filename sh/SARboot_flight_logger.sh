@@ -9,10 +9,10 @@ then
 	sleep 120 
 fi
 cd $dir
-echo "..............." >>SARgetogn.log 
+echo "......"$(hostname)"........." >>SARgetogn.log 
 date                   >>SARgetogn.log 
-echo "..............." >>SARerr.log 
+echo "......"$(hostname)"........." >>SARerr.log 
 date                   >>SARerr.log 
 python3 ../src/SARsrc/SARcalsunrisesunset.py >>SARgetogn.log
-python3 ../src/SARsrc/ognES.py               >>SARgetogn.log  2>>SARerr.log &
+python3 ../src/SARsrc/SARognES.py            >>SARgetogn.log  2>>SARerr.log &
 cd

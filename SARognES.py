@@ -71,8 +71,8 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
 #########################################################################
 
 
-def signal_term_handler(signal, frame):
-    print('got SIGTERM ... shutdown orderly')
+def signal_term_handler(signal, frame):	# signal handler for SIGTERM
+    print('got SIGTERM ... shutdown orderly Time: ', datetime.now())
     shutdown(sock, datafile, tmaxa, tmaxt, tmid)  # shutdown orderly
     sys.exit(0)
 

@@ -1,6 +1,8 @@
 #!/bin/bash
 sunsetfile=$"/nfs/OGN/DIRdata/SAR.sunset"
 alive=$"/nfs/OGN/DIRdata/SAR.alive"
+hn=`hostname   `
+
 if [ -f $sunsetfile ]
         then
                 ss=$(cat $sunsetfile)
@@ -16,18 +18,18 @@ then
 else 
 	if [ ! -f $alive ]
 	then
-		logger  -t $0 "OGN Repo is not alive"
-		pnum=$(pgrep -x -f 'python3 ../src/SARsrc/ognES.py')
+		logger  -t $0 "OGN Repo is not alive "$hn
+		pnum=$(pgrep -x -f 'python3 ../src/SARsrc/SARognES.py')
 		if [ $? -eq 0 ] # if OGN repo interface is  not running
 		then
 			sudo kill $pnum
 		fi
 #               restart OGN data collector
     		sh ~/src/SARsrc/sh/SARboot_flight_logger.sh
-    		logger -t $0 "OGN repo seems down, restarting"
+    		logger -t $0 "OGN repo seems down, restarting "$hn
 		date >>/nfs/OGN/DIRdata/.restart.log 
 	else
-    		logger -t $0 "OGN repo seems up: "$dif" Now: "$now" Sunset: "$ss
+    		logger -t $0 $hn" OGN repo seems up: "$dif" Now: "$now" Sunset: "$ss
 	fi
 fi
 
