@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import config
 # -*- coding: UTF-8 -*-
 MySQL = False
 #
@@ -89,9 +90,11 @@ idr = False
 lnames = False
 pdte = ' '
 reg = ' '
-db = (r'OGN.db')
-mydb = "OGNDB"
-host = "ubuntu"
+db = (config.SQLite3)
+mydb = config.DBname
+host = config.DBhost
+DBuser = config.DBuser
+DBpasswd = config.DBpasswd
 inittime = datetime.datetime.now()
 #
 # Dump the OGN database
@@ -130,7 +133,7 @@ logging.info('%30s Dumping the OGN database User=%s at %s',
 if (MySQL):
     logging.info('%30s Opening the MySQL database %s on %s',
                  datetime.datetime.now(), mydb, host)
-    conn = MySQLdb.connect(host=host, user="ogn", passwd="ogn", db=mydb)
+    conn = MySQLdb.connect(host=host, user=DBuser, passwd=DBpasswd, db=mydb)
 else:
     logging.info('%30s Opening the SQLite3 database %s ',
                  datetime.datetime.now(), db)
@@ -197,7 +200,6 @@ if (not MySQL):
 
 logging.info('%30s Dump OGNdata2: ', datetime.datetime.now())
 geolocator = Nominatim(user_agent="Repoogn", timeout=15)
-#geolocator = Nominatim(timeout=15)
 curs.execute('select idflarm,date,time, station, altitude, distance , latitude, longitude from OGNDATA')
 while True:
     rows = curs.fetchmany()

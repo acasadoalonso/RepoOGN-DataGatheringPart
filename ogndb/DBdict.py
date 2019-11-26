@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 #
 import sqlite3
+import config
 #-----------------------------------------------------------------
-path="/nfs/OGN/DIRdata/"
-conn=sqlite3.connect(path+r'OGN.db')			# connect now with the created database
+conn=sqlite3.connect(config.DBpath+config.SQLite3)			# connect now with the created database
 curs=conn.cursor()
 
 print("Print dictionaries:")             

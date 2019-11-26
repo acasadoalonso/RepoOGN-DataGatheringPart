@@ -47,6 +47,7 @@ DBhost          = cfg.get('server', 'DBhost').strip("'")
 DBuser          = cfg.get('server', 'DBuser').strip("'")
 DBpasswd        = cfg.get('server', 'DBpasswd').strip("'")
 DBname          = cfg.get('server', 'DBname').strip("'")
+SQLite3         = cfg.get('server', 'SQLite3').strip("'")
 if (MySQLtext == 'True'):
     MySQL = True
 else:
@@ -63,7 +64,7 @@ if 'USER' in os.environ:
     # report the configuration paramenters
     print("Hostname:", hostname, " Process ID:", processid, "User:", user)
     # report the different sections
-    print("Config server values:",                  "MySQL=", MySQL, DBhost, DBuser, DBname, DBpath)
+    print("Config server values:",                  "MySQL=", MySQL, DBhost, DBuser, DBname, DBpath, SQLite3)
     print("Config APRS values:",                    APRS_SERVER_HOST, APRS_SERVER_PORT, APRS_USER, APRS_PASSCODE, APRS_FILTER_DETAILS)
     print("Config location values:",   		location_name, FLOGGER_LATITUDE, FLOGGER_LONGITUDE)
 # --------------------------------------#

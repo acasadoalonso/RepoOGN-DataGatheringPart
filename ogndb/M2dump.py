@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import sqlite3
-path="/nfs/OGN/DIRdata/"
+import config
 print("Meteo on OGN.db")
-conn=sqlite3.connect(path+'OGN.db')
+conn=sqlite3.connect(config.DBpath+config.SQLite3)
 curs=conn.cursor()
 curs.execute('select * from meteo')
 for row in curs.fetchall():

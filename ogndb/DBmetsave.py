@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 import sqlite3
+import config
 print("Save METEO data from OGN on METEO DB")
 print("====================================")
-conn2=sqlite3.connect(r'METEO.db')
-conn1=sqlite3.connect(r'OGN.db')
+conn2=sqlite3.connect(r'SARMETEO.db')
+conn1=sqlite3.connect(config.SQLite3)
 curs1=conn1.cursor()
 curs2=conn2.cursor()
 #create the table 

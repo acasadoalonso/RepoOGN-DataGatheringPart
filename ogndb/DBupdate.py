@@ -1,5 +1,6 @@
 import sqlite3
-conn=sqlite3.connect(r'OGN.db')
+import config
+conn=sqlite3.connect(config.SQLite3)
 curs=conn.cursor()
 curs.execute('select * from STATIONS')
 colnames = [desc[0] for desc in curs.description]

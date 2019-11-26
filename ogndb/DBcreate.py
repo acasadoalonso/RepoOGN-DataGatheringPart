@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 #
 import sqlite3
-def opendb (schema_file, cursor):
+def opendb (schema_file, cursor,sqlite3db):
     # Open a connection to the database
     # Build the database from the supplied schema
     print("opendb")
     try:
-        db = sqlite3.connect("OGN.db")
+        db = sqlite3.connect(sqlite3db)
     except Exception as e:
         # Failed to open flogger.db, error
         print("Failed to open OGN.db, error")
@@ -40,11 +40,12 @@ def opendb (schema_file, cursor):
 # Build flogger db using schema
 #-----------------------------------------------------------------
 #
+import config
 cur = [0]    					# cur is mutable
 schema="DBschema.sql"				# OGN database schema
-r = opendb('DBschema.sql', cur)			# create the OGN database using the schema
+r = opendb('DBschema.sql', cur, config.SQLite3)	# create the OGN database using the schema
 
-conn=sqlite3.connect(r'OGN.db')			# connect now with the created database
+conn=sqlite3.connect(config.SQLite3)		# connect now with the created database
 curs=conn.cursor()
 
 #####################				# add now the preset values into stations and receivers

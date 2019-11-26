@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sqlite3
 import sys
+import config
 prtreq =  sys.argv[1:]
 if prtreq and prtreq[0] == 'prt':
     prt = True
@@ -10,8 +11,8 @@ cnt=0
     
 print("Move meteo data from METEO.db to OGN.db")
 print("=======================================")
-conn1=sqlite3.connect(r'METEO.db')
-conn2=sqlite3.connect(r'OGN.db')
+conn1=sqlite3.connect(r'SARMETEO.db')
+conn2=sqlite3.connect(config.SQLite3)
 curs1=conn1.cursor()
 curs2=conn2.cursor()
 # print the dictionaries
