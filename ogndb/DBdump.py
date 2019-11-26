@@ -90,11 +90,12 @@ idr = False
 lnames = False
 pdte = ' '
 reg = ' '
-db = (config.SQLite3)
 mydb = config.DBname
 host = config.DBhost
 DBuser = config.DBuser
 DBpasswd = config.DBpasswd
+DBpath = config.DBpath
+db = DBpath+(config.SQLite3)
 inittime = datetime.datetime.now()
 #
 # Dump the OGN database
@@ -120,7 +121,7 @@ elif dtareq and dtareq[0] == 'MYSQL':
     MySQL = True
     idr = False
     dtar = False                            # do not request the data/ID
-    print(("MySQL db:", mydb, host))
+    print("MySQL db:", mydb, " at ", host)
 else:
     dtar = False                            # do not request the data/ID
     idr = False
@@ -171,7 +172,6 @@ curs.execute('select * from GLIDERS')
 colnames = [desc[0] for desc in curs.description]
 print(("GLIDERS==>", colnames))
 curs.execute('select * from GLIDERS')
-
 row = curs.fetchone()
 print(row)
 if idr:
@@ -200,11 +200,21 @@ if (not MySQL):
 
 logging.info('%30s Dump OGNdata2: ', datetime.datetime.now())
 geolocator = Nominatim(user_agent="Repoogn", timeout=15)
-curs.execute('select idflarm,date,time, station, altitude, distance , latitude, longitude from OGNDATA')
+curs.execute('select count(*) from OGNDATA')
+row = curs.fetchone()
+nrecs=row[0]
+print("Number of records on OGNDATA:", nrecs)
+curs.execute('select idflarm,date,time, station, altitude, distance , latitude, longitude from OGNDATA limit 1000000')
+offset=1000000
 while True:
     rows = curs.fetchmany()
     if not rows:
-        break
+             if offset > nrecs:
+                break
+             else:
+                curs.execute('select idflarm,date,time, station, altitude, distance , latitude, longitude from OGNDATA limit '+str(offset)+' , 1000000')
+                offset+=1000000
+                continue
     for (ID, dte, tme, sta, alt, dist, lati, longi) in rows:
         if pdte != ' ' and pdte != dte:
             if (MySQL):
@@ -324,7 +334,7 @@ logging.info('%30s Reports: ', datetime.datetime.now())
 # reports
 #
 
-print(('Input records: ', cin))
+print('Input records: ', cin)
 print("ID   REG    => Base       Record counter    average distance Max Distance")
 print("=========================================================================")
 # list the IDs for debugging purposes
@@ -378,7 +388,7 @@ print("STATION ==> Maximun distance and records received ")
 print("==================================================")
 k = list(fsloc.keys())                      # list the receiving stations
 k.sort()                                    # sort the list
-for key in tqdm(k):                         # report data distances
+for key in k:                               # report data distances
     if fsmax[key] > 0:                      # only if we have measured distances
         addr = ' '
         if lnames:
