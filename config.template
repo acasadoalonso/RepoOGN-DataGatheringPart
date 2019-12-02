@@ -6,18 +6,18 @@ pid=/tmp/SAR.pid
 root=/var/www/html
 ; if the MySQL database is used or not
 MySQL    =True			
-DBhost   =ubuntu	
-DBuser   =ogn	
-DBpasswd =ogn
+DBhost   =localhost	
+DBuser   =yourogn	
+DBpasswd =yourpasswd
 DBname   =OGNDB	
-SQLite3  =SAROGN	
+SQLite3  =SAROGN.db	
 DBpath=/nfs/OGN/DIRdata/
 
 [APRS]
 ;APRS_SERVER_HOST = 'aprs.glidernet.org'
-APRS_SERVER_HOST = 'ubuntu'
+APRS_SERVER_HOST = 'localhost'
 APRS_SERVER_PORT = 14580
-APRS_USER     = 'SpainW'
+APRS_USER     = 'youruser'
 APRS_PASSCODE = 12204
 APRS_FILTER_DETAILS = 'filter r/+39.71/-3.31/620  '
 

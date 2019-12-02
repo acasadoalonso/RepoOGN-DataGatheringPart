@@ -63,11 +63,12 @@ if dtereq and dtereq[0] == 'name':
     nmer = True                             # request the name
     # prt=True
     prt = False
-elif dtereq and dtereq[0] == 'MYSQL':
+elif dtereq and dtereq[0] == 'MYSQL' and config.MySQL:
     nmer = True                             # request the name
     prt = False
     MySQL = True
     print("MySQL DB :", DBname, "User:", DBuser, "@", DBhost)
+    print("================================================")
 else:
     nmer = False                            # do not request the name
 
