@@ -8,6 +8,7 @@ import requests
 import time
 import sys
 import sqlite3
+import config
 from tqdm import tqdm
 
 import subprocess
@@ -97,6 +98,7 @@ if prtreq and prtreq[0] == 'prt':
     prt = True
 else:
     prt = False
+filedb=config.DBpath+config.SQLite3
 conn = sqlite3.connect(r'/nfs/OGN/DIRdata/OGN.db')
 curs = conn.cursor()
 curs.execute("delete from GLIDERS")             # delete all rows

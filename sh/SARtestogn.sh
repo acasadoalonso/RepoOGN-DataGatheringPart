@@ -27,7 +27,7 @@ else
 #               restart OGN data collector
     		sh ~/src/SARsrc/sh/SARboot_flight_logger.sh
     		logger -t $0 "OGN repo seems down, restarting "$hn
-		date >>/nfs/OGN/DIRdata/.restart.log 
+		echo $(date)" - "$(hostname) >>/nfs/OGN/DIRdata/.SARrestart.log 
 	else
     		logger -t $0 $hn" OGN repo seems up: "$dif" Now: "$now" Sunset: "$ss
 	fi

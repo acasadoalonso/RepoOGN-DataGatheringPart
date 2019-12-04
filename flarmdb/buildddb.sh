@@ -2,7 +2,7 @@
 # source the config file 
 #eval "$(egrep "^[^ ]*=[^;&]*'" ../config.py )"
 DBpath=/nfs/OGN/DIRdata/
-SQLite3=OGN.db
+SQLite3=SAROGN.db
 echo "DB: "$DBpath$SQLite3
 cd /var/www/html/flarmdb
 rm *.fln 2>/dev/null

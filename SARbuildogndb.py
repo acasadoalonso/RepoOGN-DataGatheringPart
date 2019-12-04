@@ -50,6 +50,7 @@ DBname = config.DBname
 DBhost = config.DBhost
 DBuser = config.DBuser
 DBpasswd = config.DBpasswd
+DBfilename = config.DBpath+config.SQLite3   # where it is the sqlite3 database
 blacklist = ['FLR5B0041']                   # blacklist
 
 
@@ -109,7 +110,7 @@ if (MySQL):
     conn = MySQLdb.connect(host=DBhost, user=DBuser,
                            passwd=DBpasswd, db=DBname)
 else:
-    conn = sqlite3.connect(r'SAROGN.db')       # connect with the database
+    conn = sqlite3.connect(DBfilename)      # connect with the database
 curs = conn.cursor()                        # set the cursor
 
 nrec = 0

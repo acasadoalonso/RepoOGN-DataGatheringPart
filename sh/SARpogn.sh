@@ -1,4 +1,10 @@
 #!/bin/bash
+if [ $# = 0 ]; then
+	city='Madrid'
+else
+	city=$1
+fi
+
 cd /nfs/OGN/DIRdata
 day=`date "+%a"`
 DMY=`date "+%x"`
@@ -31,7 +37,7 @@ echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 sleep 180
-/bin/echo '/bin/sh ~/src/SARsrc/sh/SARpogn.sh' | at -M $(calcelestial -n -p sun -m set -q Madrid -H civil) + 15 minutes
+/bin/echo '/bin/sh ~/src/SARsrc/sh/SARpogn.sh '$city | at -M $(calcelestial -n -p sun -m set -q $city -H civil) + 15 minutes
  
 cat SARproc$(date +%y%m%d).log | /usr/bin/mutt -a "SARproc"$dt".log" -s $(hostname)" OGN daily report "$taken -- angel@acasado.es
 mv DATA*  data
@@ -51,8 +57,8 @@ echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 mv SARproc*.log log
-/bin/echo '/bin/sh ~/src/SARsrc/sh/SARflight_logger.sh' | at -M $(calcelestial -n -p sun -m rise -q Madrid) + 60 minutes
+/bin/echo '/bin/sh ~/src/SARsrc/sh/SARflight_logger.sh '$city | at -M $(calcelestial -n -p sun -m rise -q $city) + 60 minutes
 rm -f tmp/*.IGC
 atq 
-rm sent
+rm ~/sent
 

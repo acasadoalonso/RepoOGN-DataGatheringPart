@@ -8,6 +8,8 @@
 *.db
 *.fln
 *.csv
+sscommit.sh
+sslink.sh
 SWsrc/
 APRSsrc/
 src/
@@ -32,3 +34,4 @@ flarmdb/*.csv
 flramdb/kglid.py
 flramdb/ognddbdata.py
 flramdb/flarmdata.py
+config/

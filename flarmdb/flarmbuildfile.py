@@ -8,6 +8,7 @@ import requests
 import sys
 import time
 import sqlite3
+import config
 from tqdm import tqdm
 
 import subprocess
@@ -114,7 +115,8 @@ if prtreq and prtreq[0] == 'prt':
     prt = True
 else:
     prt = False
-conn = sqlite3.connect(r'/nfs/OGN/DIRdata/OGN.db')
+filedb=config.DBpath+config.SQLite3
+conn = sqlite3.connect(filedb)
 curs = conn.cursor()
 
 print("Start build Flarm file from Flarmnet")
