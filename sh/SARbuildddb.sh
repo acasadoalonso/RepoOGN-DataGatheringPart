@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo "Build GLIDERS table from server: "$(hostname)
 cd /nfs/OGN/src/SARsrc/flarmdb
 ls -la

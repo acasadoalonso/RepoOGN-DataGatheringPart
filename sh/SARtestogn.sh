@@ -2,12 +2,15 @@
 sunsetfile=$"/nfs/OGN/DIRdata/SAR.sunset"
 alive=$"/nfs/OGN/DIRdata/SAR.alive"
 hn=`hostname   `
-
+if [ $# = 0 ]; then
+	city='Madrid'
+else
+	city=$1
+fi
 if [ -f $sunsetfile ]
         then
                 ss=$(cat $sunsetfile)
         else
-                city='Madrid'
                 ss=$(/usr/local/bin/calcelestial -p sun -m set -q $city -H civil -f %s)
 fi
 now=$(date +%s)
@@ -25,7 +28,7 @@ else
 			sudo kill $pnum
 		fi
 #               restart OGN data collector
-    		sh ~/src/SARsrc/sh/SARboot_flight_logger.sh
+    		bash ~/src/SARsrc/sh/SARboot_flight_logger.sh $city
     		logger -t $0 "OGN repo seems down, restarting "$hn
 		echo $(date)" - "$(hostname) >>/nfs/OGN/DIRdata/.SARrestart.log 
 	else
@@ -34,6 +37,6 @@ else
 fi
 
 if [ -f $alive ]
-        then
+then
 		rm $alive
 fi

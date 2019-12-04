@@ -1,4 +1,4 @@
-#!//bin/sh
+#!/bin/bash
 dir='/nfs/OGN/DIRdata'
 # test if directory is available
 if [ ! -d $dir ]
