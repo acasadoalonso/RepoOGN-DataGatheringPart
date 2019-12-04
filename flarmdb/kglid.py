@@ -1,4 +1,4 @@
-# 2019-12-04 SAROGN 
+# 2019-12-04 CASADOUBUNTU 
 
 kglid  = {
             # Known Receivers
@@ -161,6 +161,7 @@ kglid  = {
 		'003EB8' : 'D-KNKJ',
 		'004163' : 'F-CEQV',
 		'004172' : 'D-MXDB',
+		'004202' : 'D-KBZE',
 		'0042F9' : 'D-5480',
 		'004335' : 'NOREG',
 		'004400' : 'OY-XVY',
@@ -3467,6 +3468,7 @@ kglid  = {
 		'43E9DF' : 'M-JCBC',
 		'43EB34' : '2-GSYJ',
 		'43EF2A' : 'EC-IOY',
+		'440016' : 'OE-XGE',
 		'440038' : 'OE-XLR',
 		'440044' : 'NOREG',
 		'4400E0' : 'OE-DID',
@@ -5264,6 +5266,7 @@ kglid  = {
 		'979240' : 'NOREG',
 		'97D275' : 'OK-0620',
 		'984378' : 'oe_7134',
+		'994567' : 'D-KBMC',
 		'99ACED' : 'NOREG',
 		'99B584' : 'OK0913',
 		'99BE48' : 'T-Beam',
@@ -16870,6 +16873,7 @@ kglid  = {
 		"38A49B":"D-EFDM",
 		"38B45D":"F-JDFA",
 		"38B55B":"F-PADU",
+		"38CE5B":"F-PNCE",
 		"38E93B":"F-CARJ",
 		"38F33B":"F-CLLC",
 		"39197C":"FJRHL",
@@ -17076,6 +17080,7 @@ kglid  = {
 		"3EFBA8":"D6929",
 		"3EFBBE":"D-6951",
 		"3EFC42":"D-7083",
+		"3EFE77":"D-7648",
 		"3EFE90":"D-7673",
 		"3F001A":"D-8067",
 		"3F013F":"D-8360",
