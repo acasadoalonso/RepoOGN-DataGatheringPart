@@ -50,7 +50,7 @@ sqlite3 SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sql* | mysql --login-p
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL APRSLOG: "$server
 echo "delete from GLIDERS;"           |                mysql --login-path=SARogn -h $server APRSLOG 		2>/dev/null
-#sqlite3 -echo SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sql* | mysql --login-path=SARogn APRSLOG	2>/dev/null
+#sqlite3  SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sql* | mysql --login-path=SARogn APRSLOG	2>/dev/null
 mysql --login-path=SARogn -h $server APRSLOG < ~/src/SARsrc/sh/copyGLIDERS.sql 					2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server APRSLOG 		2>/dev/null
 echo "Copy from sqlite3 to MySQL SWIFACE: "$server2 

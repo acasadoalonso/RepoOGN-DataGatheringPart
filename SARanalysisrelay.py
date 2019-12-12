@@ -358,8 +358,8 @@ while True:                                 # until end of file
     T4 = T+inter2
     timefix1 = T1.strftime("%H%M%S")	    # now in string format
     timefix2 = T2.strftime("%H%M%S")
-    otime1 = T1.strftime("%Y-%m-%d %H:%M%:%S")
-    otime2 = T2.strftime("%Y-%m-%d %H:%M%:%S")
+    otime1 = T1.strftime("%Y-%m-%d %H:%M:%S")
+    otime2 = T2.strftime("%Y-%m-%d %H:%M:%S")
     # build the SQL commands
     sql1 = "select latitude, longitude, altitude from OGNDATA where idflarm ='" + \
         flrmid+"'     and date = '"+dte+"' and time= '"+timefix+"';"
@@ -368,7 +368,7 @@ while True:                                 # until end of file
         timefix1+"' and time <='"+timefix2+"';"
     sql3 = "select id, station, status from OGNTRKSTATUS where id = '" + \
         ogntracker+"' and otime > '"+otime1+"' and otime < '"+otime2+"';"
-    #print "SSS", nrecs, dte, timefix, flrmid, ogntracker, sql1, sql2, sql3
+    #print ("SSS=>", nrecs, dte, timefix, flrmid, ogntracker,"\n", sql1,"\n", sql2,"\n", sql3, "\n", data)
     curs1.execute(sql1)
     row1 = curs1.fetchone()		    # should be one one record
     #print "R1", row1
