@@ -39,7 +39,7 @@ echo "============="        					>>SARproc$dt.log
 sleep 180
 /bin/echo '/bin/bash ~/src/SARsrc/sh/SARpogn.sh '$city | at -M $(calcelestial -n -p sun -m set -q $city -H civil) + 15 minutes
  
-cat SARproc$(date +%y%m%d).log | /usr/bin/mutt -a "SARproc"$dt".log" -s $(hostname)" OGN daily report "$taken -- $(cat mailnames.txt)
+cat SARproc$(date +%y%m%d).log | /usr/bin/mutt -a "SARproc"$dt".log" -s $(hostname)" OGN daily report "$taken -- $(cat ~/src/SARsrc/sh/mailnames.txt)
 mv DATA*  data
 rm SAR.alive
 rm SAR.sunset
