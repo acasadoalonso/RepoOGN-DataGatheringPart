@@ -32,7 +32,7 @@ else
     		logger -t $0 "OGN repo seems down, restarting "$hn
 		echo $(date)" - "$(hostname) >>/nfs/OGN/DIRdata/.SARrestart.log 
 	else
-    		logger -t $0 $hn" OGN repo seems up: "$dif" Now: "$now" Sunset: "$ss
+    		logger -t $0 $hn" OGN repo seems up: "$dif" Now: "$now" Sunset: "$ss" at: "$city
 	fi
 fi
 
