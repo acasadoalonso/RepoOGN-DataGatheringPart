@@ -25,9 +25,15 @@ wget -O ognddbdata.json -o ogndbjson.log ddb.glidernet.org/download/?j=1
 python3 ognbuildfile.py 
 python3 flarmbuildfile.py 
 echo "# $(date +%F) $(hostname) " >TTTbuilt
+echo "ksta = { "                >>TTTbuilt
+cat ksta.hdr                    >>TTTbuilt
+cat kglid.trail                 >>TTTbuilt
+echo "kglid = { "               >>TTTbuilt
+
 cat flarm.hdr flarmdata.txt  >flarmdata.py 
 cat ogn.hdr   ognddbdata.txt >ognddbdata.py 
-cat TTTbuilt kglid.hdr ognddbdata.py  flarmdata.py kglid.trail >kglid.py
+cat TTTbuilt ksta.hdr kglid.hdr ognddbdata.py  flarmdata.py kglid.trail >kglid.py
+python3 kglid.py
 rm             kglid.bkup
 mv ../kglid.py kglid.bkup
 cp kglid.py ../
@@ -37,6 +43,7 @@ cp kglid.py /nfs/OGN/DIRdata
 rm *.fln
 rm *.txt
 rm *.csv
+rm *.log
 rm flarmdata.py ognddbdata.py
 ls -la
 cd /nfs/OGN/DIRdata
@@ -46,16 +53,16 @@ echo "Registered gliders: "
 echo "select count(*) from GLIDERS;" |                sqlite3 -echo SAROGN.db
 echo "drop table GLIDERS;"           |                mysql --login-path=SARogn -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL OGNDB: "$server
-sqlite3 SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sql* | mysql --login-path=SARogn  OGNDB  		2>/dev/null
+sqlite3 SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sqlite3-to-mysql.py | mysql --login-path=SARogn  OGNDB	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL APRSLOG: "$server
 echo "delete from GLIDERS;"           |                mysql --login-path=SARogn -h $server APRSLOG 		2>/dev/null
-#sqlite3  SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sql* | mysql --login-path=SARogn APRSLOG	2>/dev/null
+#sqlite3  SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sqlite3-to-mysql.py | mysql --login-path=SARogn APRSLOG	2>/dev/null
 mysql --login-path=SARogn -h $server APRSLOG < ~/src/SARsrc/sh/copyGLIDERS.sql 					2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server APRSLOG 		2>/dev/null
 echo "Copy from sqlite3 to MySQL SWIFACE: "$server2 
 echo "drop table GLIDERS;"           |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
-sqlite3 SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sql* | mysql --login-path=SARogn -h $server2 SWIFACE 	2>/dev/null
+sqlite3 SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sqlite3-to-mysql.py | mysql --login-path=SARogn -h $server2 SWIFACE 	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
 
 cd 

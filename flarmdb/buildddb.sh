@@ -23,14 +23,20 @@ echo "Registered gliders: "
 echo "select count(*) from GLIDERS;" | sqlite3 ${DBpath}${SQLite3}
 echo "End of gen the DB"
 echo "# $(date +%F) $(hostname)" >tttbuilt
+echo "ksta = { "                >>tttbuilt
+cat ksta.hdr                    >>tttbuilt
+cat kglid.trail                 >>tttbuilt
+echo "kglid = { "               >>tttbuilt
 cat flarm.hdr flarmdata.txt  >flarmdata.py 
 cat ogn.hdr   ognddbdata.txt >ognddbdata.py 
-cat tttbuilt kglid.hdr ognddbdata.py  flarmdata.py kglid.trail >kglid.py
+cat tttbuilt ksta.hdr kglid.hdr ognddbdata.py  flarmdata.py kglid.trail >kglid.py
+python3 kglid.py 
 cp kglid.py /var/www/html/files 
 cp kglid.py ../../
 rm *.fln
 rm *.csv
 rm *.txt
+rm *.log
 rm flarmdata.py ognddbdata.py
 ls -la
 echo "Registered gliders: "

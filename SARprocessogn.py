@@ -197,6 +197,8 @@ while True:                                 # until end of file
     longitude   = msg['longitude']
     latitude    = msg['latitude']
     altitude    = msg['altitude']
+    if altitude == None:
+       altitude = 0
     path        = msg['path']
     if path not in paths:
        paths.append(path)

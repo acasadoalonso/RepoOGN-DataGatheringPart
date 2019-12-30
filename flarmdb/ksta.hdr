@@ -1,5 +1,3 @@
-# 2019-12-30 CASADOUBUNTU
-ksta = { 
 
             # Known Receivers
            "NONE"   : "None",
@@ -92,6 +90,3 @@ ksta = {
            "SANRAMON3": "San Ramon Mountain 3",
            "OLMUE": "OLMUE Airfield",
 ###############################
-#######################
-	}
-kglid = { 

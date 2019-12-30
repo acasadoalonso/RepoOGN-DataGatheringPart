@@ -34,8 +34,8 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
     for key in k:                       # report data
         gid = 'Noreg '                  # for unknown gliders
         if spanishsta(key) or frenchsta(key):
-            if key in kglid.kglid:
-                gid = kglid.kglid[key]  # report the station name
+            if key in kglid.ksta:
+                gid = kglid.ksta[key]   # report the station name
             else:
                 gid = "NOSTA"           # marked as no sta
         else:
@@ -260,6 +260,8 @@ try:
             longitude   = msg['longitude']
             latitude    = msg['latitude']
             altitude    = msg['altitude']
+            if altitude == None:
+                altitude = 0
             path        = msg['path']
             if path not in paths:
                 paths.append(path)
@@ -340,8 +342,8 @@ except KeyboardInterrupt:
     shutdown(sock, datafile, tmaxa, tmaxt, tmid)  # shutdown orderly
     exit(1)
 #
-except TypeError:
-    print("TypeError: ...")
+except TypeError as e:
+    print("TypeError: ...",e)
     ## print the record for debugging purposes
     print(">>>>>>>> Packet: ", packet_str)
     shutdown(sock, datafile, tmaxa, tmaxt, tmid)  # shutdown orderly

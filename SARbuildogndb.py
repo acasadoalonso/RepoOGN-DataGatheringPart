@@ -177,29 +177,30 @@ while True:                                 # until end of file
                 else:
                     addcmd = "insert into STATIONS values (?,?,?,?)"
                     curs.execute(addcmd, (key, dte, fsmax[key], fsalt[key]))
-        #
+        #				    # check the RECEIVERS table
             if (MySQL):
-                selcmd = "select idrec from RECEIVERS where idrec='" + \
+                selcmd = "select descri from RECEIVERS where idrec='" + \
                     key + "'"               # SQL command to execute: SELECT
                 curs.execute(selcmd)
             else:
                                             # SQL command to execute: SELECT
-                selcmd = "select idrec from RECEIVERS where idrec=?"
+                selcmd = "select descri from RECEIVERS where idrec=?"
                 curs.execute(selcmd, (key,))
-            if curs.fetchone() == None:
-                gid = 'Noreg '              # for unknown receiver
+            row = curs.fetchone()
+            if    row == None:              # if receiver is NOT on the DB ???
+                gid = 'NoregR'              # for unknown receiver
                 if config.hostname == "CHILEOGN" or config.hostname == "OGNCHILE" or spanishsta(key) or frenchsta(key):
-                    if key in kglid.kglid:
-                        gid = kglid.kglid[key]  # report the station name
+                    if key in kglid.ksta:
+                        gid = kglid.ksta[key]  # report the station name
                     else:
-                        gid = "NOSTA"       # marked as no sta
-                lati = fslla[key]           # latitude
+                        gid = "NOSTA"       # marked as no known sta
+                lati  = fslla[key]          # latitude
                 longi = fsllo[key]          # longitude
-                alti = fslal[key]           # altitude
+                alti  = fslal[key]          # altitude
 
                 if key != "None" and key != None:
                     if prt:
-                        print(key, 'Adding ==>', gid, lati, longi, alti)
+                        print(key, ': Adding ==>', gid, lati, longi, alti)
                     if (MySQL):
                         if len(gid) > 30:
                             gid = gid[0:30]
@@ -208,14 +209,15 @@ while True:                                 # until end of file
                             curs.execute(inscmd)
                         except MySQLdb.Error as e:
                             try:
-                                print(">>>MySQL Error [%d]: %s" % (
-                                    e.args[0], e.args[1]))
+                                print(">>>MySQL Error [%d]: %s" % ( e.args[0], e.args[1]))
                             except IndexError:
                                 print(">>>MySQL Error: %s" % str(e))
                             print(">>>MySQL error:", inscmd)
                     else:
                         inscmd = "insert into RECEIVERS values (?, ?, ?, ?, ?)"
                         curs.execute(inscmd, (key, gid, lati, longi, alti))
+            elif row[0] == "NOSTA" and key in kglid.ksta:    
+                print ("Update RECEIVER desciption of: ", key) 
         #
         conn.commit()
         # commit the changes
@@ -244,6 +246,8 @@ while True:                                 # until end of file
         if latitude == -1 or longitude == -1 or type == 8:  # check for the ogn tracker status report
             continue
         altitude = msg['altitude']
+        if altitude == None:
+            altitude = 0
         path = msg['path']
         if path not in paths:
             paths.append(path)
