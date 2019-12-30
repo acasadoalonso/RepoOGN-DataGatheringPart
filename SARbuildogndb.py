@@ -188,7 +188,7 @@ while True:                                 # until end of file
                 curs.execute(selcmd, (key,))
             row = curs.fetchone()
             if    row == None:              # if receiver is NOT on the DB ???
-                gid = 'NoregR'              # for unknown receiver
+                gid = 'Noreg'               # for unknown receiver
                 if config.hostname == "CHILEOGN" or config.hostname == "OGNCHILE" or spanishsta(key) or frenchsta(key):
                     if key in kglid.ksta:
                         gid = kglid.ksta[key]  # report the station name
@@ -216,8 +216,33 @@ while True:                                 # until end of file
                     else:
                         inscmd = "insert into RECEIVERS values (?, ?, ?, ?, ?)"
                         curs.execute(inscmd, (key, gid, lati, longi, alti))
-            elif row[0] == "NOSTA" and key in kglid.ksta:    
-                print ("Update RECEIVER desciption of: ", key) 
+
+            elif (row[0] == "NOSTA" or row[0] == "Noreg") and key in kglid.ksta:   # update the data of the receiver station
+                gid = kglid.ksta[key]  	    # report the station name
+                lati  = fslla[key]          # latitude
+                longi = fsllo[key]          # longitude
+                alti  = fslal[key]          # altitude
+                if len(gid) > 30:
+                        descri = gid[0:30]
+                else:
+                        descri = gid
+                if (MySQL):
+                    updcmd = "update RECEIVERS SET idrec='%s', descri='%s', lati=%f, longi=%f, alti=%f where idrec='%s' " % (key, descri, lati, longi, alti, key)  # SQL command to execute: UPDATE
+                    try:
+                        curs.execute(updcmd)
+                    except MySQLdb.Error as e:
+                        try:
+                            print(">>>MySQL Error [%d]: %s" % (
+                                e.args[0], e.args[1]))
+                        except IndexError:
+                            print(">>>MySQL Error: %s" % str(e))
+                        print(">>>MySQL error:", updcmd)
+                else:
+                    # SQL command to execute: UPDATE
+                    updcmd = "update RECEIVERS SET idrec=?, descri=?, lati=?, longi=?, alti=? where idrec=?"
+                    curs.execute(updcmd, (key, gid, lati, longi, alti, key))
+
+                print ("Update RECEIVER desciption of: ", key, gid, lati, longi, alti) 
         #
         conn.commit()
         # commit the changes

@@ -76,7 +76,7 @@ def ogndb(prt, curs):
         Registration = Registration.strip(" ")
         Registration = Registration.replace(" ", "_")
         # write just what we need: ID and registration
-        row = '\t\t%s : %s,\n' % (ID,  Registration)
+        row = '\t\t%s : %s,\t\t # %s # %s # %s # \n' % (ID,  Registration, model, cn, device)
         flm_txt.write(row)
         device = device.strip("'")
         ID = ID.strip("'")
