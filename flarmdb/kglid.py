@@ -1,4 +1,4 @@
-# 2019-12-30 CASADOUBUNTU
+# 2019-12-31 SAROGN 
 ksta = { 
 # -------------------------------------------------------------------#
 # Known Receivers
@@ -572,7 +572,7 @@ kglid = {
 		'110315' : 'FuFritz',		 # 'Paraglider' # '488' # 'O' # 
 		'110318' : 'JensR',		 # 'Paraglider' # 'JR' # 'F' # 
 		'11031B' : 'CC10',		 # 'Paraglider' # '88' # 'F' # 
-		'110330' : 'DNSLA',		 # 'Paraglider' # '' # 'F' # 
+		'110330' : 'DNSLA',		 # 'Paraglider' # 'SLA' # 'F' # 
 		'110331' : 'Joggi',		 # 'Paraglider' # '' # 'F' # 
 		'110338' : 'DG0606',		 # 'Paraglider' # 'PCS' # 'F' # 
 		'110339' : 'ChDaus',		 # 'Paraglider' # 'CDA' # 'F' # 
@@ -694,7 +694,6 @@ kglid = {
 		'110749' : 'Mentor',		 # 'Paraglider' # 'WIF' # 'F' # 
 		'110755' : 'JoeT',		 # 'Paraglider' # 'JTR' # 'F' # 
 		'11075E' : 'Smily',		 # 'Paraglider' # '666' # 'F' # 
-		'110768' : '48426',		 # 'Paraglider' # 'meb' # 'F' # 
 		'110769' : 'SUI9965',		 # 'Drone/UAV' # '' # 'F' # 
 		'110778' : '42104',		 # 'Paraglider' # 'ChB' # 'F' # 
 		'110779' : 'G-AXSZ',		 # 'PA-28' # '' # 'F' # 
@@ -977,6 +976,7 @@ kglid = {
 		'111B20' : 'Hans',		 # 'Paraglider' # 'HM' # 'F' # 
 		'111B28' : 'Chris',		 # 'Paraglider' # 'CBU' # 'F' # 
 		'111B55' : '52541',		 # 'Paraglider' # '' # 'F' # 
+		'111BFA' : '48426',		 # 'Paraglider' # 'meb' # 'F' # 
 		'111C13' : 'Rudi',		 # 'Paraglider' # 'RMF' # 'F' # 
 		'111C42' : 'Toni_Pa',		 # 'Paraglider' # 'TPA' # 'F' # 
 		'111C4F' : 'NOREG',		 # 'Paraglider' # '' # 'O' # 
@@ -3947,6 +3947,7 @@ kglid = {
 		'484A93' : 'PH-PXC',		 # 'EC 135' # 'POL' # 'F' # 
 		'484A94' : 'PH-PXD',		 # 'EC 135' # 'POL' # 'F' # 
 		'484A95' : 'PH-PXE',		 # 'EC 135' # 'POL' # 'F' # 
+		'484A96' : 'PH-PXF',		 # 'EC 135' # 'POL' # 'I' # 
 		'484A9C' : 'PH1260',		 # 'Duo Discus t' # 'SI' # 'I' # 
 		'484AA4' : 'PH-588',		 # 'Mini Nimbus' # 'BU' # 'F' # 
 		'484AA6' : 'PH-499',		 # 'Cirrus Std' # '13' # 'F' # 
@@ -4100,6 +4101,7 @@ kglid = {
 		'485223' : 'PH-1566',		 # 'Cirrus Std' # 'MA' # 'F' # 
 		'4852F9' : 'PH-1570',		 # 'Janus B' # 'N15' # 'I' # 
 		'4852FD' : 'PH-1573',		 # 'DG-1000' # 'GO8' # 'I' # 
+		'485300' : 'PH-1568',		 # 'ASK-21' # 'NZ' # 'F' # 
 		'485310' : 'PH-1576',		 # 'Discus 2cT' # 'JE' # 'I' # 
 		'485360' : 'PH-1571',		 # 'Duo Discus xlt' # 'YD' # 'I' # 
 		'48536C' : 'PH-1579',		 # 'Cirrus 18m' # 'OC' # 'F' # 
@@ -5313,6 +5315,7 @@ kglid = {
 		'7E93C4' : 'TK',		 # 'Marianne' # '' # 'F' # 
 		'7EAB41' : '84',		 # 'SZD-41 Jantar Std' # '84' # 'O' # 
 		'7EB43A' : 'ES-2009',		 # 'SZD-42 Jantar 2/2b' # '09' # 'O' # 
+		'7F2E6F' : 'D-MAVU',		 # 'Roland Z602 XL' # '' # 'O' # 
 		'800000' : 'HA-4495',		 # 'Ventus 2' # 'V8' # 'F' # 
 		'801012' : 'NOREG',		 # 'Paraglider' # 'PB' # 'O' # 
 		'811133' : 'HA-1133',		 # 'Ka-4' # 'K4M' # 'O' # 
@@ -6559,7 +6562,6 @@ kglid = {
 		'D00BB6' : 'G-CFUH',		 # 'Ventus c' # 'E8' # 'F' # 
 		'D00BCF' : 'D-KGLD',		 # 'ASG-29' # '2L' # 'F' # 
 		'D00BD2' : 'F-CFRK',		 # 'Pegase' # '' # 'F' # 
-		'D00BD4' : 'NOREG',		 # '' # '' # 'F' # 
 		'D00BD7' : 'D-KREI',		 # 'Discus 2c' # 'EI' # 'F' # 
 		'D00BE3' : 'OO-ZXM',		 # 'ASK-21' # 'ZXM' # 'F' # 
 		'D00BE4' : 'G-CVBA',		 # 'LS-6 18' # 'BA' # 'F' # 
@@ -9089,6 +9091,7 @@ kglid = {
 		'DD97C2' : 'OO-ZXC',		 # 'Duo Discus' # 'XC' # 'F' # 
 		'DD97C4' : 'D-XX88',		 # 'LS-4' # 'LR' # 'F' # 
 		'DD97C6' : 'AKMUC28',		 # 'Unknown' # 'A28' # 'F' # 
+		'DD97D3' : 'D-1665',		 # 'Ka-6 cr' # '' # 'F' # 
 		'DD97D4' : 'F-CFRO',		 # 'Pegase' # 'B17' # 'F' # 
 		'DD97D5' : 'D-6767',		 # 'DG-100' # 'E9' # 'F' # 
 		'DD97EB' : 'OK-3123',		 # 'LS-6 18' # 'MM' # 'F' # 
@@ -13118,7 +13121,6 @@ kglid = {
 		'DDD982' : 'QKFW',		 # 'Pegase' # 'WQK' # 'F' # 
 		'DDD983' : 'F-CGFK',		 # 'Pegase' # 'FK' # 'F' # 
 		'DDD986' : 'F-CHFH',		 # 'Pegase' # 'FH' # 'F' # 
-		'DDD987' : 'NOREG',		 # '' # '' # 'F' # 
 		'DDD989' : 'D-2327',		 # 'ASW-15' # '' # 'F' # 
 		'DDD98A' : 'D-2677',		 # 'ASK-13' # '' # 'F' # 
 		'DDD98B' : 'G-CJUP',		 # 'Discus 2' # '183' # 'F' # 
@@ -13234,7 +13236,6 @@ kglid = {
 		'DDDA41' : 'G-XIXX',		 # 'DG-300' # '19X' # 'F' # 
 		'DDDA42' : 'D-KHDW',		 # 'ASH-25' # '907' # 'F' # 
 		'DDDA44' : 'SE-USI',		 # 'LS-4' # 'SI' # 'F' # 
-		'DDDA46' : 'SE-ULZ',		 # 'LS-7' # 'LZ' # 'F' # 
 		'DDDA47' : 'SE-UMD',		 # 'Twin Astir III' # 'MD' # 'F' # 
 		'DDDA49' : 'OY-XJR',		 # 'LS-1 d' # 'K3' # 'F' # 
 		'DDDA4A' : 'SE-UCZ',		 # 'HK36 Super Dimona' # 'UCZ' # 'F' # 
@@ -18875,7 +18876,6 @@ kglid = {
 		"DD97C3":"D-KDPR",
 		"DD97C7":"D-0219",
 		"DD97D1":"EC-DNI",
-		"DD97D3":"D-1665",
 		"DD97D6":"D-KAIC",
 		"DD97DD":"D-EPXP",
 		"DD97DE":"TF-SAL",

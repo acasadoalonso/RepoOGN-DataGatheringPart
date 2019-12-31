@@ -55,7 +55,7 @@ DBname              = cfg.get('server', 'DBname').strip("'")
 try:
 	SQLite3     = cfg.get('server', 'SQLite3').strip("'")
 except:
-	SQLite3     = 'SAROGN'
+	SQLite3     = 'SAROGN.db'
 
 if (MySQLtext == 'True'):
     MySQL = True

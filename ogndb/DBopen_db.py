@@ -1,14 +1,15 @@
 import sqlite3
-
+import config
 def opendb (schema_file, cursor):
     # Open a connection to the database
     # Build the database from the supplied schema
-    print("opendb")
+    dbfile=config.DBpath+config.SQLite3
+    print("opendb:", dbfile)
     try:
-        db = sqlite3.connect("OGN.db")
+        db = sqlite3.connect(dbfile)
     except Exception as e:
         # Failed to open flogger.db, error
-        print("Failed to open OGN.db, error")
+        print("Failed to open SAROGN.db, error")
         return False
     
     # Create a cursor to work with

@@ -99,7 +99,8 @@ if prtreq and prtreq[0] == 'prt':
 else:
     prt = False
 filedb=config.DBpath+config.SQLite3
-conn = sqlite3.connect(r'/nfs/OGN/DIRdata/OGN.db')
+#conn = sqlite3.connect(r'/nfs/OGN/DIRdata/SAROGN.db')
+conn = sqlite3.connect(filedb)
 curs = conn.cursor()
 curs.execute("delete from GLIDERS")             # delete all rows
 

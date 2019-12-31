@@ -4,12 +4,12 @@ import sqlite3
 def opendb (schema_file, cursor,sqlite3db):
     # Open a connection to the database
     # Build the database from the supplied schema
-    print("opendb")
+    print("opendb:", sqlite3db)
     try:
         db = sqlite3.connect(sqlite3db)
     except Exception as e:
         # Failed to open flogger.db, error
-        print("Failed to open OGN.db, error")
+        print("Failed to open SAROGN.db, error")
         return False
 
     # Create a cursor to work with
@@ -43,7 +43,7 @@ def opendb (schema_file, cursor,sqlite3db):
 import config
 cur = [0]    					# cur is mutable
 schema="DBschema.sql"				# OGN database schema
-r = opendb('DBschema.sql', cur, config.SQLite3)	# create the OGN database using the schema
+r = opendb('DBschema.sql', cur, config.DBpath+config.SQLite3)	# create the OGN database using the schema
 
 conn=sqlite3.connect(config.DBpath+config.SQLite3) # connect now with the created database
 curs=conn.cursor()

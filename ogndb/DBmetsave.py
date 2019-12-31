@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import sqlite3
 import config
-print("Save METEO data from OGN on METEO DB")
-print("====================================")
+print("Save METEO data from SAROGN on SARMETEO DB")
+print("==========================================")
 conn2=sqlite3.connect(r'SARMETEO.db')
 conn1=sqlite3.connect(config.DBpath+config.SQLite3)
 curs1=conn1.cursor()

@@ -9,8 +9,8 @@ else:
     prt = False
 cnt=0
     
-print("Move meteo data from METEO.db to OGN.db")
-print("=======================================")
+print("Move meteo data from SARMETEO.db to SAROGN.db")
+print("=============================================")
 conn1=sqlite3.connect(r'SARMETEO.db')
 print (config.DBpath+config.SQLite3)
 conn2=sqlite3.connect(config.DBpath+config.SQLite3)
@@ -30,7 +30,7 @@ while True:
     if not row: break
     if prt:
         print(row)
-    try:					# add the data to OGN.db
+    try:					# add the data to SAROGN.db
         curs2.execute("insert into METEO values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)", (row[0],row[1],row[2],row[3],row[4],row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[13]))
         cnt+=1
     except:
@@ -45,6 +45,6 @@ if prt:
 # delete the data from METEO.db
 curs1.execute('delete from METEO')
 conn1.commit()					# commit the changes
-print(("Meteo data", cnt, " records moved into OGN.db")) 
+print(("Meteo data", cnt, " records moved into SAROGN.db")) 
 conn1.close()
 conn2.close()
