@@ -4,7 +4,6 @@
 DBpath=/nfs/OGN/DIRdata/
 SQLite3=SAROGN.db
 echo "DB: "$DBpath$SQLite3
-cd /var/www/html/flarmdb
 rm *.fln 2>/dev/null
 rm *.csv 2>/dev/null
 rm *.txt 2>/dev/null
@@ -15,13 +14,16 @@ wget -o ognddbdata.log ddb.glidernet.org/download
 mv download ognddbdata.csv
 wget -O ognddbdata.json -o ogndbjson.log ddb.glidernet.org/download/?j=1
 echo "Start gen the DB"
+echo "================"
 python3 ognbuildfile.py 
-echo "Registered gliders OGN: "
-echo "select count(*) from GLIDERS;" | sqlite3 ${DBpath}${SQLite3}
+echo "Registered gliders from OGN DDB: "
+echo "select count(*) from GLIDERS;" | sqlite3 ${DBpath}${SQLite3} -echo
 python3 flarmbuildfile.py 
-echo "Registered gliders: "
-echo "select count(*) from GLIDERS;" | sqlite3 ${DBpath}${SQLite3}
-echo "End of gen the DB"
+echo "Registered gliders after FlarmNET: "
+echo "select count(*) from GLIDERS;" | sqlite3 ${DBpath}${SQLite3} -echo
+echo "End of gen the DB ... build now the kglid.py file"
+echo
+echo
 echo "# $(date +%F) $(hostname)" >tttbuilt
 echo "ksta = { "                >>tttbuilt
 cat ksta.hdr                    >>tttbuilt
@@ -33,12 +35,13 @@ cat tttbuilt ksta.hdr kglid.hdr ognddbdata.py  flarmdata.py kglid.trail >kglid.p
 python3 kglid.py 
 cp kglid.py /var/www/html/files 
 cp kglid.py ../../
+ls -la kglid.py
 rm *.fln
 rm *.csv
 rm *.txt
 rm *.log
 rm flarmdata.py ognddbdata.py
-ls -la
+#ls -la
 echo "Registered gliders: "
-echo "select count(*) from GLIDERS;" | sqlite3 ${DBpath}${SQLite3}
+echo "select count(*) from GLIDERS;" | sqlite3 ${DBpath}${SQLite3} -echo
 cd 

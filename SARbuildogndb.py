@@ -364,7 +364,7 @@ while True:                                 # until end of file
                                                             config.location_longitude)).km    # distance to the station
                 dist = distance
 
-            if altim > tmaxa:
+            if altim != None and altim > tmaxa:
                 tmaxa = altim               # maximum altitude for the day
                 tmaxt = hora                # and time
                 tmid = ident                # who did it

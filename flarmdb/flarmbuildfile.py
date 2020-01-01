@@ -115,16 +115,17 @@ if prtreq and prtreq[0] == 'prt':
     prt = True
 else:
     prt = False
+print("\n\nStart build Flarm file from Flarmnet")
 filedb=config.DBpath+config.SQLite3
+print ("Updating SQLite3 DB:", filedb)
 conn = sqlite3.connect(filedb)
 curs = conn.cursor()
 
-print("Start build Flarm file from Flarmnet")
 t1 = time.time()
 flarmdb(prt, curs)
 
 print("Input:", cin, "Output:", cout, "Dups:", dups)
 t2 = time.time()
-print("End build Flarm DB in ", t2 - t1, " seconds")
+print("End build Flarm DB in ", t2 - t1, " seconds\n\n")
 conn.commit()
 conn.close()

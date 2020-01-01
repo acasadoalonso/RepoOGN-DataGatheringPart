@@ -24,6 +24,9 @@ mv download ognddbdata.csv
 wget -O ognddbdata.json -o ogndbjson.log ddb.glidernet.org/download/?j=1
 python3 ognbuildfile.py 
 python3 flarmbuildfile.py 
+echo
+echo "Build now the kglid.py file"
+echo
 echo "# $(date +%F) $(hostname) " >TTTbuilt
 echo "ksta = { "                >>TTTbuilt
 cat ksta.hdr                    >>TTTbuilt
@@ -33,6 +36,7 @@ echo "kglid = { "               >>TTTbuilt
 cat flarm.hdr flarmdata.txt  >flarmdata.py 
 cat ogn.hdr   ognddbdata.txt >ognddbdata.py 
 cat TTTbuilt ksta.hdr kglid.hdr ognddbdata.py  flarmdata.py kglid.trail >kglid.py
+ls -la kglid.py
 python3 kglid.py
 rm             kglid.bkup
 mv ../kglid.py kglid.bkup
@@ -45,8 +49,10 @@ rm *.txt
 rm *.csv
 rm *.log
 rm flarmdata.py ognddbdata.py
-ls -la
 cd /nfs/OGN/DIRdata
+echo
+echo "Build the MySQL databses on the servers:"
+echo
 echo "Server:  "$server
 echo "Server2: "$server2
 echo "Registered gliders: "
@@ -64,5 +70,5 @@ echo "Copy from sqlite3 to MySQL SWIFACE: "$server2
 echo "drop table GLIDERS;"           |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
 sqlite3 SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sqlite3-to-mysql.py | mysql --login-path=SARogn -h $server2 SWIFACE 	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
-
+echo "============================================================================================================================================="
 cd 

@@ -202,6 +202,8 @@ while True:                                 # until end of file
     path        = msg['path']
     if path not in paths:
        paths.append(path)
+    speed       = 0
+    course      = 0
     if path == 'aprs_aircraft' or path == 'flarm' or path == 'tracker':
         if 'speed' in msg :
             speed   = msg['speed']

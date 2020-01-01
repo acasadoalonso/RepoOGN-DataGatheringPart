@@ -98,16 +98,16 @@ if prtreq and prtreq[0] == 'prt':
     prt = True
 else:
     prt = False
+print("\n\nStart build the OGN file from OGN device database")
 filedb=config.DBpath+config.SQLite3
-#conn = sqlite3.connect(r'/nfs/OGN/DIRdata/SAROGN.db')
+print ("Updating SQLite3 DB:", filedb)
 conn = sqlite3.connect(filedb)
 curs = conn.cursor()
 curs.execute("delete from GLIDERS")             # delete all rows
 
-print("Start build the OGN file from OGN device database")
 t1 = time.time()
 nlines=ogndb(prt, curs)
 print("\n\n\nNumber of rows is: ", nlines)
 t2 = time.time()
-print("End build OGN DB in ", t2 - t1, " seconds")
+print("End build OGN DB in ", t2 - t1, " seconds\n\n")
 conn.commit()
