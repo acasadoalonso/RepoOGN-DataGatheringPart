@@ -131,9 +131,9 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
                 relay = msg['relay']
             else:
                 relay = ''
-            if (path == 'aprs_aircraft' and relay == 'RELAY')  or (path == 'tracker' and relay[0:3] == "OGN"):
+            if (path == 'aprs_aircraft' and (relay == 'RELAY' or relay == "OGNDELAY")  or (path == 'tracker' and relay[0:3] == "OGN")):
                 station = msg['station']    # get the station name
-                if relay == "RELAY":
+                if relay == "RELAY" or relay == "OGNDELAY":
                     relaycntr += 1
                 if relay[0:3] == "OGN":	    # if it is a OGN tracker relay msg
                     if not id in relayglider:

@@ -283,12 +283,18 @@ while True:                                 # until end of file
             hora = data[p1+2:p1+6]+'00'     # get HHMM
         else:
             hora = data[p1:p1+6]            # get the GPS time in UTC
-
+        ep=data.find('!W')
+        if (ep != -1):			    # get the extended position !Wxy!
+            elat=data[ep+2]
+            elon=data[ep+3] 
+        else:				    # if not extended position, make it zero
+            elat='0'
+            elon='0'   
         lati = data[p1+7:p1+11]+data[p1+12:p1+14] + \
-            '0'+data[p1+14]                 # get the latitude
+            elat+data[p1+14]                # get the latitude
         longi = data[p1+16:p1+21]+data[p1+22:p1+24] + \
-            '0'+data[p1+24]                 # get the longitude
-        altim = altitude                    # convert the altitude in metersa
+            elon+data[p1+24]                # get the longitude
+        altim = altitude                    # convert the altitude in meters
 
         if altim == None or (altim > 15000 or altim < 0):
             altim = 0

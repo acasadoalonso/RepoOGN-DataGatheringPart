@@ -1,4 +1,4 @@
-# 2019-12-31 CASADOUBUNTU
+# 2020-02-14 CASADOUBUNTU
 ksta = { 
 # -------------------------------------------------------------------#
 # Known Receivers
@@ -36,10 +36,13 @@ ksta = {
            "LFNW"   : "Puivert",
            "LFNQ"   : "Mount-Louis",
            "LFNQ2"  : "Mount-Louis",
+           "LFDA"   : "Air sur Adoir",
            "LFDH"   : "Auch",
+           "LFDHTWR": "Auch",
            "LFID"   : "Condom/Valence",
            "LFCN"   : "Novaro",
            "LFIT"   : "Toulouse Bourg",
+           "LFIL"   : "Rion des Landes",
            "LFCB"   : "Bagneres de Luchon",
            "LFCQ"   : "Graulhet",
            "LFNB"   : "Mende",

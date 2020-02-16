@@ -73,6 +73,7 @@ def flarmdb(prt, curs):
         Registration = Registration.strip("'")
         Registration = Registration.strip(" ")
         Registration = Registration.replace(" ", "_")
+        Registration = Registration.replace(b'\xC2\x96'.decode('utf-8'), "-")
 
         try:
             Radio = string[79:86]

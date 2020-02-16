@@ -291,7 +291,7 @@ try:
                     # add it to the list of stations ...
                     stations.append(station)
                     #print "SSS", station
-                if relay == "RELAY":
+                if relay == "RELAY" or relay == "OGNDELAY":
                     relaycntr += 1
                 if relay[0:3] == "OGN":
                     relaycnt += 1
