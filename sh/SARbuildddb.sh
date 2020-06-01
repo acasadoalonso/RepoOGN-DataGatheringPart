@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "Build GLIDERS table from server: "$(hostname)
+echo "============================================================================================================================================="
 cd /nfs/OGN/src/SARsrc/flarmdb
 ls -la
 if [ $# -eq  0 ]; then
@@ -51,11 +52,11 @@ rm *.log
 rm flarmdata.py ognddbdata.py
 cd /nfs/OGN/DIRdata
 echo
-echo "Build the MySQL databses on the servers:"
+echo "Build the MySQL databases on the servers:"
 echo
 echo "Server:  "$server
 echo "Server2: "$server2
-echo "Registered gliders: "
+echo "Registered gliders from sqlite3: "
 echo "select count(*) from GLIDERS;" |                sqlite3 -echo SAROGN.db
 echo "drop table GLIDERS;"           |                mysql --login-path=SARogn -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL OGNDB: "$server
