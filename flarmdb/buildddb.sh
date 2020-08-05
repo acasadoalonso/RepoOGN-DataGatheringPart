@@ -11,8 +11,10 @@ rm *.txt 2>/dev/null
 wget -o flarmdata.log  www.flarmnet.org/static/files/wfn/data.fln --no-check-certificate 
 mv data.fln flarmdata.fln
 wget -o ognddbdata.log ddb.glidernet.org/download
+#wget -o ognddbdata.log localhost:82/download
 mv download ognddbdata.csv
 wget -O ognddbdata.json -o ogndbjson.log ddb.glidernet.org/download/?j=1
+#wget -O ognddbdata.json -o ogndbjson.log localhost:82/download/?j=1
 echo "Start gen the DB"
 echo "================"
 python3 ognbuildfile.py 

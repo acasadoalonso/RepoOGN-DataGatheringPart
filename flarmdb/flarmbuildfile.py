@@ -127,6 +127,5 @@ flarmdb(prt, curs)
 
 print("Input:", cin, "Output:", cout, "Dups:", dups)
 t2 = time.time()
-print("End build Flarm DB in ", t2 - t1, " seconds\n\n")
-conn.commit()
+print("End build FlarmNET DB in ", t2 - t1, " seconds\n\n")
 conn.close()
