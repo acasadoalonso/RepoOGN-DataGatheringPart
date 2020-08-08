@@ -23,33 +23,14 @@ mv data.fln flarmdata.fln
 wget -o ognddbdata.log ddb.glidernet.org/download
 mv download ognddbdata.csv
 wget -O ognddbdata.json -o ogndbjson.log ddb.glidernet.org/download/?j=1
+
 python3 ognbuildfile.py 
 python3 flarmbuildfile.py 
-echo
-echo "Build now the kglid.py file"
-echo
-echo "# $(date +%F) $(hostname) " >TTTbuilt
-echo "ksta = { "                >>TTTbuilt
-cat ksta.hdr                    >>TTTbuilt
-cat kglid.trail                 >>TTTbuilt
-echo "kglid = { "               >>TTTbuilt
 
-cat flarm.hdr flarmdata.txt  >flarmdata.py 
-cat ogn.hdr   ognddbdata.txt >ognddbdata.py 
-cat TTTbuilt ksta.hdr kglid.hdr ognddbdata.py  flarmdata.py kglid.trail >kglid.py
-ls -la kglid.py
-python3 kglid.py
-rm             kglid.bkup
-mv ../kglid.py kglid.bkup
-cp kglid.py ../
-cp kglid.py ../..
-cp kglid.py /var/www/html/
-cp kglid.py /nfs/OGN/DIRdata
 rm *.fln
 rm *.txt
 rm *.csv
 rm *.log
-rm flarmdata.py ognddbdata.py
 cd /nfs/OGN/DIRdata
 echo
 echo "Build the MySQL databases on the servers:"

@@ -16,7 +16,7 @@ sys.path.insert(0, '/nfs/OGN/src/SARsrc')
 datapath = config.DBpath
 #print ("Path:", sys.path)
 import os
-import kglid                                # import the list on known gliders
+from ognddbfuncs import *                   # import the list on known gliders
 from datetime import *                      # the ogn/ham parser functions
 from parserfuncs import *                   # the ogn/ham parser functions
 from geopy.distance import vincenty         # use the Vincenty algorithm
@@ -28,7 +28,7 @@ geolocator = Nominatim(user_agent="Repoogn", timeout=5)  # create the instance
 #
 # ---------- main code ---------------
 #
-pgmver="V2.1"
+pgmver="V2.2"
 fid = {'NONE  ': 0}                         # FLARM ID list
 fsta = {'NONE  ': 'NONE  '}                 # STATION ID list
 ffd = {'NONE  ': None}                      # file descriptor list
@@ -125,8 +125,8 @@ while True:                                 # until end of file
         k.sort()                            # sort the list
 
         for key in k:                       # report data by flarm id
-            if key[3:9] in kglid.kglid:     # if it is a known glider ???
-                r = kglid.kglid[key[3:9]]   # get the registration
+            if getognchk(key[3:9]):         # if it is a known glider ???
+                r = getognreg(key[3:9])     # get the registration
             else:
                 r = 'NOREG '                # no registration
             ttime = 0                       # flying time
@@ -149,8 +149,8 @@ while True:                                 # until end of file
         k.sort()                            # sort the list
         for to in k:                        # report by take off time
             key = ftkok[to]
-            if key[3:9] in kglid.kglid:     # if it is a known glider ???
-                r = kglid.kglid[key[3:9]]   # get the registration
+            if getognchk(key[3:9]):         # if it is a known glider ???
+                r = getognreg(key[3:9])     # get the registration
             else:
                 r = 'Noreg '                # no registration
             ttime = 0                       # flying time
@@ -259,18 +259,18 @@ while True:                                 # until end of file
             flndt[ident] = 0
             cout += 1                       # one more file to create
                                             # prepare the IGC header
-            if ident[3:9] in kglid.kglid:   # if it is a known glider ???
+            if getognchk(ident[3:9]):       # if it is a known glider ???
                 fd = open(datapath+tmp+'FD'+dte+'.'+station+'.' +
-                          kglid.kglid[ident[3:9]].strip()+'.'+idname+'.IGC', 'w')
+                          getognreg(ident[3:9]).strip()+'.'+idname+'.IGC', 'w')
             else:
                 fd = open(datapath+tmp+'FD'+dte+'.' +
                           station+'.'+idname+'.IGC', 'w')
 
             fd.write('AGNE001GLIDER\n')     # write the IGC header
             fd.write('HFDTE'+dte+'\n')      # write the date on the header
-            if ident[3:9] in kglid.kglid:
+            if getognchk(ident[3:9]):
                                             # write the registration ID
-                fd.write('HFGIDGLIDERID: '+kglid.kglid[ident[3:9]]+'\n')
+                fd.write('HFGIDGLIDERID: '+getognreg(ident[3:9])+'\n')
             else:
                                             # if we do not know it write the FLARM ID
                 fd.write('HFGIDGLIDERID: '+ident+'\n')
@@ -333,8 +333,8 @@ while True:                                 # until end of file
 # -----------------  final process ----------------------
 datafilei.close()                           # close the input file
 datef = datetime.now()                      # get the time & date
-if tmid != 0 and tmid[3:9] in kglid.kglid:  # if it is a known glider ???
-    gid = kglid.kglid[tmid[3:9]]            # report the registration
+if tmid != 0 and getognchk(tmid[3:9] ):     # if it is a known glider ???
+    gid = getognreg(tmid[3:9])              # report the registration
 else:
     gid = tmid                              # just report the flarmid
 # geolocator = Nominatim(timeout=5)         # define the geolocator, we need 5 second timeout

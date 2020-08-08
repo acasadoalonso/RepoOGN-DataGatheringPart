@@ -15,7 +15,8 @@ import signal
 import atexit
 import os
 import socket
-import kglid                            # import the list on known gliders
+import ksta                             # import the list on known gliders
+from ognddbfuncs import *               # import the OGN DDB functions
 from datetime import datetime
 sys.path.insert(0, '/nfs/OGN/src/funcs')
 from parserfuncs import *               # the ogn/ham parser functions
@@ -34,14 +35,14 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
     for key in k:                       # report data
         gid = 'Noreg '                  # for unknown gliders
         if spanishsta(key) or frenchsta(key):
-            if key in kglid.ksta:
-                gid = kglid.ksta[key]   # report the station name
+            if key in ksta.ksta:
+                gid = ksta.ksta[key]   # report the station name
             else:
                 gid = "NOSTA"           # marked as no sta
         else:
             # if it is a known glider ???
-            if key != None and key[3:9] in kglid.kglid:
-                gid = kglid.kglid[key[3:9]]   # report the registration
+            if key != None and getognchk(key[3:9]):
+                gid = getognreg(key[3:9])   # report the registration
 
         if fmaxs[key] > 0:
             # report FLARM ID, station used, registration and record counter
@@ -50,8 +51,8 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
             print(key, '=>', fsta[key], gid, fid[key], "Max alt:", fmaxa[key])
 
             # report now the maximun altitude for the day
-    if tmid[3:9] in kglid.kglid:        # if it is a known glider ???
-        gid = kglid.kglid[tmid[3:9]]    # report the registration
+    if getognchk(tmid[3:9]):            # if it is a known glider ???
+        gid = getognreg(tmid[3:9])      # report the registration
     else:
         gid = tmid                      # use the ID instead
     print("Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'by:', gid, 'Station:', tmsta)

@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from geopy.distance import vincenty         # use the Vincenty algorithm
 import MySQLdb                              # the SQL data base routines
 import sqlite3                              # the SQL data base routines
-import kglid
+from ognddbfuncs import *		    # import the DDB functions
 import argparse
 from tqdm import tqdm
 sys.path.insert(0, '/nfs/OGN/src/funcs')
@@ -26,11 +26,11 @@ def file_len(fname):
 # ----------------------------------------------------------------------------
 #
 
-def printfid(fid):		            # print the list of relays
+def printfid(fid, key):		            # print the list of relays
     for k in fid[key]:
         for kk in k:
-            if kk[3:9] in kglid.kglid:
-                gid = kglid.kglid[kk[3:9]]  # report the station name
+            if getognchk(kk[3:9]):
+                gid = getognreg(kk[3:9])    # report the registration
             else:
                 gid = "NOSTA"               # marked as no sta
             print(gid, k[kk], ';', end=' ')
@@ -333,12 +333,12 @@ while True:                                 # until end of file
         altim = 0
     alti = '%05d' % altim                   # convert it to an string
 
-    if flrmid[3:9] in kglid.kglid:          # if it is a known glider ???
-        reg = kglid.kglid[flrmid[3:9]]      # get the registration
+    if getognchk(flrmid[3:9]):              # if it is a known glider ???
+        reg = getognreg(flrmid[3:9])        # get the registration
     else:
         reg = 'NOREG '                      # no registration
-    if ogntracker[3:9] in kglid.kglid:      # if it is a known glider ???
-        trk = kglid.kglid[ogntracker[3:9]]
+    if getognchk(ogntracker[3:9]):          # if it is a known glider ???
+        trk = getognreg(ogntracker[3:9])
     else:
         trk = ogntracker	            # no tracker registration
     inter1 = timedelta(seconds=intsec)
@@ -426,8 +426,8 @@ while True:                                 # until end of file
             status = ' '
             for row in row3:
                 key = row[0]
-                if key[3:9] in kglid.kglid:
-                    gid = kglid.kglid[key[3:9]]    # report the glider reg
+                if getognchk(key[3:9]):
+                    gid = getognreg(key[3:9])    # report the glider reg
                 else:
                     gid = "NOSTA"
                 status += gid
@@ -455,11 +455,11 @@ print("Old relays", relaycnt, "New relays:", nrecs, "Number of records:", nrecor
 k = list(fid.keys())                    # list the IDs for debugging purposes
 k.sort()                                # sort the list
 for key in k:                           # report data
-    if key[3:9] in kglid.kglid:
-        gid = kglid.kglid[key[3:9]]     # report the glider reg
+    if getognchk(key[3:9]):
+        gid = getognreg(key[3:9])       # report the glider reg
     else:
         gid = "NOSTA"                   # marked as no sta
-    print(key, ':', gid, "==>", printfid(fid))
+    print(key, ':', gid, "==>", printfid(fid, key))
 
 datafilei.close()                       # close the input file
 conn1.close()                           # Close the database

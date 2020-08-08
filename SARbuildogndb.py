@@ -10,7 +10,8 @@ import time
 import sys
 import os
 sys.path.insert(0, '/nfs/OGN/src/funcs')
-import kglid                                # import the list on known gliders
+import ksta                                 # import the list on known stations
+from ognddbfuncs import *		    # 
 import datetime
 import sqlite3                              # the SQL data base routines
 import MySQLdb                              # the SQL data base routines
@@ -23,7 +24,7 @@ from datetime import datetime
 # ---------- main code ---------------
 #
 
-pgmver = 'V2.0'
+pgmver = 'V2.1'
 fid   = {'NONE  ': 0}                       # FLARM ID list
 fsta  = {'NONE  ': 'NONE  '}                # STATION ID list
 ftkot = {'NONE  ': 0}                       # take off time
@@ -127,8 +128,8 @@ while True:                                 # until end of file
         k.sort()                            # sort the list
 
         for key in k:                       # report data
-            if key[3:9] in kglid.kglid:     # if it is a known glider ???
-                r = kglid.kglid[key[3:9]]   # get the registration
+            if getognchk(key[3:9]):         # if it is a known glider ???
+                r = getognreg(key[3:9])     # get the registration
             else:
                 r = 'NOREG '                # no registration
             ttime = 0                       # flying time
@@ -149,8 +150,8 @@ while True:                                 # until end of file
         k.sort()                            # sort the list
         for to in k:                        # report by take off time
             key = ftkok[to]
-            if key[3:9] in kglid.kglid:     # if it is a known glider ???
-                r = kglid.kglid[key[3:9]]   # get the registration
+            if getognchk(key[3:9]):         # if it is a known glider ???
+                r = getognreg(key[3:9])     # get the registration
             else:
                 r = 'Noreg '                # no registration
             ttime = 0                       # flying time
@@ -190,8 +191,8 @@ while True:                                 # until end of file
             if    row == None:              # if receiver is NOT on the DB ???
                 gid = 'Noreg'               # for unknown receiver
                 if config.hostname == "CHILEOGN" or config.hostname == "OGNCHILE" or spanishsta(key) or frenchsta(key):
-                    if key in kglid.ksta:
-                        gid = kglid.ksta[key]  # report the station name
+                    if key in ksta.ksta:
+                        gid = ksta.ksta[key]  # report the station name
                     else:
                         gid = "NOSTA"       # marked as no known sta
                 lati  = fslla[key]          # latitude
@@ -217,8 +218,8 @@ while True:                                 # until end of file
                         inscmd = "insert into RECEIVERS values (?, ?, ?, ?, ?)"
                         curs.execute(inscmd, (key, gid, lati, longi, alti))
 
-            elif (row[0] == "NOSTA" or row[0] == "Noreg") and key in kglid.ksta:   # update the data of the receiver station
-                gid = kglid.ksta[key]  	    # report the station name
+            elif (row[0] == "NOSTA" or row[0] == "Noreg") and key in ksta.ksta:   # update the data of the receiver station
+                gid = ksta.ksta[key]  	    # report the station name
                 lati  = fslla[key]          # latitude
                 longi = fsllo[key]          # longitude
                 alti  = fslal[key]          # altitude
@@ -401,8 +402,8 @@ conn.commit()
 # commit the DB
 conn.close()                                # Close libfap.py to avoid memory leak
 
-if tmid != 0 and tmid[3:9] in kglid.kglid:  # if it is a known glider ???
-    gid = kglid.kglid[tmid[3:9]]            # report the registration
+if tmid != 0 and getognchk(tmid[3:9]):      # if it is a known glider ???
+    gid = getognreg(tmid[3:9])              # report the registration
 else:
     gid = tmid
 print("Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta)
