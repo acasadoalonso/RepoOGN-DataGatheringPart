@@ -23,7 +23,7 @@ echo "select count(*) from GLIDERS;" | sqlite3 ${DBpath}${SQLite3} -echo
 python3 flarmbuildfile.py 
 echo "Registered gliders after FlarmNET: "
 echo "select count(*) from GLIDERS;" | sqlite3 ${DBpath}${SQLite3} -echo
-echo "End of gen the DB ... build now the kglid.py file"
+echo "End of gen the DB ... "
 echo
 echo
 rm *.fln

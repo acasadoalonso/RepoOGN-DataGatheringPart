@@ -43,6 +43,7 @@ relaycnt = 0				    # counter of relay packages
 relaycntr = 0				    # counter of std relay packages
 relayglider = {}			    # list of relay glider and tracker
 tmsta = ''
+CCerrors=[]
 print("Start build OGN database "+pgmver)
 print("==============================")
 prt = False
@@ -263,7 +264,9 @@ while True:                                 # until end of file
     if len(data) > 0 and data[0] != "#":
         msg = parseraprs(data, msg)         # parser the data
         if msg == -1:			    # parser error
-            print("Parser error:", data)
+            if cc not in CCerrors:
+               print("Parser error:", data)
+               CCerrors.append(cc)
             continue
         ident = msg['id']          	    # id
         type = msg['aprstype']		    # message type

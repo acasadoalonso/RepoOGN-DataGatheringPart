@@ -50,7 +50,7 @@ mlati = 0.0                                 # latitude of idem
 blacklist = ['FLR5B8041']                   # blacklist
 www = False
 prt = True
-
+CCerrors=[]
 
 #print os.environment
 if 'USER' in os.environ:
@@ -189,8 +189,10 @@ while True:                                 # until end of file
 
     msg = parseraprs(data, msg)             # parser the data
     if msg == -1:			    # parser error
-            print("Parser error:", data)
-            continue
+        if cc not in CCerrors:
+             print("Parser error:", data)
+             CCerrors.append(cc)
+        continue
     ident = msg['id']          	            # id
                                             # get the information once parsed
     ptype       = msg['aprstype']

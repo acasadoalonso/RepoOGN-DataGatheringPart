@@ -60,6 +60,7 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
     if relaycnt > 0:
         print("Relays:", relayglider)
     print("Stations:", stations)
+    print("Sources:", sources)
     print (paths)
     local_time = datetime.now()
     print("Time now:", local_time, "Local time.")
@@ -81,12 +82,14 @@ def signal_term_handler(signal, frame):	# signal handler for SIGTERM
 signal.signal(signal.SIGTERM, signal_term_handler)
 
 #----------------------ogn_main.py start-----------------------
-pgmver = "V2.0"
+pgmver = "V2.1"
 fid = {'NONE  ': 0}                     # FLARM ID list
 fsta = {'NONE  ': 'NONE  '}             # STATION ID list
 fmaxa = {'NONE  ': 0}                   # maximun altitude
 fmaxs = {'NONE  ': 0}                   # maximun speed
 stations = []				# stations
+sources  = []				# sources found
+CCerrors = []				# station with parser errors
 cin = 0                                 # input record counter
 cout = 0                                # output file counter
 loopcnt = 0                             # loop counter
@@ -253,7 +256,9 @@ try:
         # Parse packet using ogn_client into fields to process
         msg = parseraprs(data, msg)         # parser the data
         if msg == -1:			    # parser error
-            print("Parser error:", data)
+            if cc not in CCerrors:
+               print("Parser error:", data)
+               CCerrors.append(cc)
             continue
 
         if len(packet_str) > 0 and packet_str[0] != "#":
@@ -292,6 +297,9 @@ try:
                     # add it to the list of stations ...
                     stations.append(station)
                     #print "SSS", station
+                if not source in sources:
+                    # add it to the list of sources ...
+                    sources.append(source)
                 if relay == "RELAY" or relay == "OGNDELAY":
                     relaycntr += 1
                 if relay[0:3] == "OGN":
