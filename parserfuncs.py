@@ -221,9 +221,10 @@ def gdatar(data, typer):               	# get data on the  right
 def spanishsta(station):                # return true if is an Spanish station
     if (station) == None:
         return False
-    if station[0:2] == 'LE' or 			\
+    if station[0:2] == 'LE' or station[0:2] == "LP" or	\
             station[0:5] == 'CREAL'         or 	\
             station[0:4] == 'MORA'          or 	\
+            station[0:4] == 'LUGO'          or 	\
             station[0:6] == 'MADRID'        or 	\
             station[0:5] == 'AVILA'         or	\
             station[0:9] == 'ALCAZAREN'     or	\
@@ -239,6 +240,7 @@ def spanishsta(station):                # return true if is an Spanish station
             station[0:4] == 'SPOT'          or	\
             station[0:6] == 'PWLERM'        or	\
             station[0:9] == 'CASTEJONS'     or	\
+            station[0:9] == 'BELAVISTA'     or	\
             station[0:8] == 'PORTAINE':
         return True
     else:
