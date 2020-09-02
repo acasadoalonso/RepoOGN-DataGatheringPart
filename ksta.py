@@ -33,6 +33,7 @@ ksta = {
            "BOITAULL" : "Boi Taull, Lerida ",
            "CASTEJONS" : "Castejon de Sos, Huesca ",
            "BELAVISTA" : "Belavista, Lisbon, Portugal ",
+           "LPMN"   : "Amendoeira, Portugal ",
 # french airports
            "LFCO"   : "Oloron",
            "LFDT"   : "Tarbes",
@@ -61,6 +62,9 @@ ksta = {
 	   "LFCS"   : "Bordeaux", 
 	   "LFMG"   : "La Montagne Noir", 
 	   "LFMP"   : "Perpignan", 
+	   "LFIX"   : "Itxassou", 
+	   "LFBA"   : "La Garomme", 
+	   "LFBS"   : "Biscarrosse", 
            "PAU"    : "Pau",
            "ROCAUDE": "Les Angles Ski Station",
            "POUBEAU": "Pou Beau, France",
