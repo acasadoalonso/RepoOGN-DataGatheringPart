@@ -34,6 +34,52 @@ aprssources = {
     "OGNMAV": "NMAV",
     "OGNDELAY": "DLYM"
 }
+aprssymtypes=[ 
+        "/z",                   # 0 = ?
+        "/'",                   # 1 = (moto-)glider (most frequent)
+        "/'",                   # 2 = tow plane (often)
+        "/X",                   # 3 = helicopter (often)
+        "/g",                   # 4 = parachute (rare but seen - often mixed with drop plane)
+        "\\^",                  # 5 = drop plane (seen)
+        "/g",                   # 6 = hang-glider (rare but seen)
+        "/g",                   # 7 = para-glider (rare but seen)
+        "\\^",                  # 8 = powered aircraft (often)
+        "/^",                   # 9 = jet aircraft (rare but seen)
+        "/z",                   # A = UFO (people set for fun)
+        "/O",                   # B = balloon (seen once)
+        "/O",                   # C = airship (seen once)
+        "/'",                   # D = UAV (drones, can become very common)
+        "/z",                   # E = ground support (ground vehicles at airfields)
+        "\\n"                   # F = static object (ground relay ?)
+        ]
+aprstypes=[
+        "Unkown",               # 0 = ?
+        "Glider",               # 1 = (moto-)glider (most frequent)
+        "Plane",                # 2 = tow plane (often)
+        "Helicopter",           # 3 = helicopter (often)
+        "Parachute",            # 4 = parachute (rare but seen - often mixed with drop plane)
+        "DropPlane",            # 5 = drop plane (seen)
+        "HangGlider",           # 6 = hang-glider (rare but seen)
+        "ParaGlider",           # 7 = para-glider (rare but seen)
+        "PowerAircraft",        # 8 = powered aircraft (often)
+        "Jet",                  # 9 = jet aircraft (rare but seen)
+        "UFO",                  # A = UFO (people set for fun)
+        "Balloon",              # B = balloon (seen once)
+        "Airship",              # C = airship (seen once)
+        "Drone",                # D = UAV (drones, can become very common)
+        "GroundVehicle",        # E = ground support (ground vehicles at airfields)
+        "GroundStation"         # F = static object (ground relay ?)
+        ]
+def get_aircraft_type(sym1, sym2):      # return the aircraft type based on the symbol table
+
+    sym=sym1+sym2
+    idx=0
+    while idx < 16:
+          if sym == aprssymtypes[idx]:
+             return (aprstypes[idx])
+          idx += 1
+    return ("UNKOWN")
+
 
 
 def isFloat(string):
@@ -309,6 +355,7 @@ def parseraprs(packet_str, msg):
     # args: packet_str the packet stream with the data, msg the dict where to return the parsed data
     # patch #######
     packet_str=packet_str.replace("\\","/")		# just a temp patch
+    packet_str += " "					# add an extra blank
     try:
         packet = parse(packet_str)
     except:
@@ -473,7 +520,7 @@ def parseraprs(packet_str, msg):
             sensitivity = 0
         p6 = data.find('gps')                   # scan for gps info
         if p6 != -1:
-            gps = gdatar(data, "gps")  # get the gpsdata
+            gps = gdatar(data, "gps")  		# get the gpsdata
         else:
             p6 = data.find(' GPS')            	# scan for gps info
             if p6 != -1:
@@ -529,7 +576,8 @@ def parseraprs(packet_str, msg):
               msg['source']="DLYM"
               msg['relay']="OGNDELAY*"
                       
-
+        if 'symboltable' in packet and 'symbolcode' in packet:
+              msg['acfttype']=get_aircraft_type(packet['symboltable'], packet['symbolcode'])
         return(msg)
     else:
         return -1				# if length ZERO or just the keep alive
