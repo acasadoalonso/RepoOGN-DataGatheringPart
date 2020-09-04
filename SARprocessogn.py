@@ -28,7 +28,7 @@ geolocator = Nominatim(user_agent="Repoogn", timeout=5)  # create the instance
 #
 # ---------- main code ---------------
 #
-pgmver="V2.2"
+pgmver="V2.3"
 fid = {'NONE  ': 0}                         # FLARM ID list
 fsta = {'NONE  ': 'NONE  '}                 # STATION ID list
 ffd = {'NONE  ': None}                      # file descriptor list
@@ -51,6 +51,7 @@ blacklist = ['FLR5B8041']                   # blacklist
 www = False
 prt = True
 CCerrors=[]
+acfttype=[]
 
 #print os.environment
 if 'USER' in os.environ:
@@ -186,7 +187,6 @@ while True:                                 # until end of file
     cc = cc.upper()
     data = cc+data[ix:]
     msg = {}
-
     msg = parseraprs(data, msg)             # parser the data
     if msg == -1:			    # parser error
         if cc not in CCerrors:
@@ -215,6 +215,11 @@ while True:                                 # until end of file
     if len(source) > 4:
         source = source[0:3]
     otime       = msg['otime']
+
+    if 'acfttype' in msg:
+        acftt=msg['acfttype']
+        if not acftt in acfttype:
+           acfttype.append(acftt)
 
     if longitude == -1 or latitude == -1:
         continue
@@ -347,6 +352,7 @@ else:
 # addr=str(addr)                            # convert to str just in case, in order to avoid problems when is redirected to a file.
 addr = ' '
 print("Sources:", fsour)
+print("Aircraft types:", acfttype)
 if prt:
     print("Maximun altitude for the day  :", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta, "At: ", mlati, mlong, addr)
 if prt:

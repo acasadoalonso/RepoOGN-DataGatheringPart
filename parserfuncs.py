@@ -80,8 +80,6 @@ def get_aircraft_type(sym1, sym2):      # return the aircraft type based on the 
           idx += 1
     return ("UNKOWN")
 
-
-
 def isFloat(string):
     try:
         float(string)
@@ -254,9 +252,10 @@ def gdatar(data, typer):               	# get data on the  right
     max = len(data)-1
     while (pb < max):
         if data[pb] == ' ' or data[pb] == '\n' or data[pb] == '\r':
+            pb += 1
             break
         pb += 1
-    ret = data[p:pb]                  	# return the data requested
+    ret = data[p:pb]                 	# return the data requested
     return(ret)
 ########################################################################
 #
@@ -355,7 +354,6 @@ def parseraprs(packet_str, msg):
     # args: packet_str the packet stream with the data, msg the dict where to return the parsed data
     # patch #######
     packet_str=packet_str.replace("\\","/")		# just a temp patch
-    packet_str += " "					# add an extra blank
     try:
         packet = parse(packet_str)
     except:

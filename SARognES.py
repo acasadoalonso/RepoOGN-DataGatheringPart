@@ -61,6 +61,7 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
         print("Relays:", relayglider)
     print("Stations:", stations)
     print("Sources:", sources)
+    print("Aircraft types:", acfttype)
     print (paths)
     local_time = datetime.now()
     print("Time now:", local_time, "Local time.")
@@ -89,6 +90,7 @@ fmaxa = {'NONE  ': 0}                   # maximun altitude
 fmaxs = {'NONE  ': 0}                   # maximun speed
 stations = []				# stations
 sources  = []				# sources found
+acfttype = []				# aircraft types found
 CCerrors = []				# station with parser errors
 cin = 0                                 # input record counter
 cout = 0                                # output file counter
@@ -292,6 +294,10 @@ try:
             else:
                 relay = ''
             # if std records
+            if 'acfttype' in msg:
+               acftt=msg['acfttype']
+               if not acftt in acfttype:
+                  acfttype.append(acftt)
             if path == 'aprs_aircraft' or path == 'flarm' or path == 'tracker':
                 if not station in stations:
                     # add it to the list of stations ...
