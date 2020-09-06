@@ -70,10 +70,10 @@ except:
 assert len(APRS_USER) > 3 and len(str(APRS_PASSCODE)) > 0, 'Please set APRS_USER and APRS_PASSCODE in SARconfig.ini .'
 if 'USER' in os.environ:
     user = os.environ['USER']
-    						# report the configuration paramenters
-    print("Hostname:              ", hostname, " Process ID:", processid, "User:", user)
-    						# report the different sections
-    print("Config server values:  ",           "MySQL=", MySQL, DBhost, DBuser, DBname, DBpath, SQLite3)
-    print("Config APRS values:    ",            APRS_SERVER_HOST, APRS_SERVER_PORT, APRS_USER, APRS_PASSCODE, APRS_FILTER_DETAILS)
+    						                # report the configuration paramenters
+    print("Hostname:              ",        hostname, " Process ID:", processid, "User:", user)
+    						                # report the different sections
+    print("Config server values:  ",        "MySQL=", MySQL, DBhost, DBuser, DBname, DBpath, SQLite3)
+    print("Config APRS values:    ",        APRS_SERVER_HOST, APRS_SERVER_PORT, APRS_USER, APRS_PASSCODE, APRS_FILTER_DETAILS)
     print("Config location values:",   		location_name, FLOGGER_LATITUDE, FLOGGER_LONGITUDE)
 # --------------------------------------#

@@ -287,7 +287,6 @@ try:
                 source = source[0:3]
             otime       = msg['otime']
 
-
             station = msg['station']
             if 'relay' in msg:
                 relay = msg['relay']
@@ -298,6 +297,7 @@ try:
                acftt=msg['acfttype']
                if not acftt in acfttype:
                   acfttype.append(acftt)
+                  
             if path == 'aprs_aircraft' or path == 'flarm' or path == 'tracker':
                 if not station in stations:
                     # add it to the list of stations ...
