@@ -57,18 +57,26 @@ try:
 except:
 	SQLite3     = 'SAROGN.db'
 
-if (MySQLtext == 'True'):
-    MySQL = True
+if     (MySQLtext == 'True'):
+        MySQL       = True
 else:
-    MySQL = False
+        MySQL       = False
 try:
-    PIDfile         = cfg.get('server', 'pid').strip("'").strip('"')
+        prttext     = cfg.get('server', 'prt').strip("'")
+        if     (prttext == 'False'):
+                prt = False
+        else:
+                prt = True
 except:
-    PIDfile         = '/tmp/'+APP+'.pid'
+        prt         = True
+try:
+        PIDfile     = cfg.get('server', 'pid').strip("'").strip('"')
+except:
+        PIDfile     = '/tmp/'+APP+'.pid'
 
 # --------------------------------------#
 assert len(APRS_USER) > 3 and len(str(APRS_PASSCODE)) > 0, 'Please set APRS_USER and APRS_PASSCODE in SARconfig.ini .'
-if 'USER' in os.environ:
+if 'USER' in os.environ and prt:
     user = os.environ['USER']
     						                # report the configuration paramenters
     print("Hostname:              ",        hostname, " Process ID:", processid, "User:", user)
