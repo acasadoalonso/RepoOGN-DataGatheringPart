@@ -83,7 +83,7 @@ def signal_term_handler(signal, frame):	# signal handler for SIGTERM
 signal.signal(signal.SIGTERM, signal_term_handler)
 
 #----------------------ogn_main.py start-----------------------
-pgmver = "V2.1"
+pgmver = "V2.2"
 fid = {'NONE  ': 0}                     # FLARM ID list
 fsta = {'NONE  ': 'NONE  '}             # STATION ID list
 fmaxa = {'NONE  ': 0}                   # maximun altitude
@@ -367,6 +367,8 @@ except TypeError as e:
 
 # report number of records read and files generated
 print('Counters:', cin, cout)
+if cin == 0):
+    os.system("rm "+OGN_DATA)
 shutdown(sock, datafile, tmaxa, tmaxt, tmid)
 print("Exit now ...", err)
 exit(1)
