@@ -367,7 +367,7 @@ except TypeError as e:
 
 # report number of records read and files generated
 print('Counters:', cin, cout)
-if (cin == 0):
+if (os.stat('OGN_DATA').st_size == 0):
     os.system("rm "+OGN_DATA)
 shutdown(sock, datafile, tmaxa, tmaxt, tmid)
 print("Exit now ...", err)
