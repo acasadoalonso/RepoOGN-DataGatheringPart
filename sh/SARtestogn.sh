@@ -1,6 +1,7 @@
 #!/bin/bash
 sunsetfile=$"/nfs/OGN/DIRdata/SAR.sunset"
 alive=$"/nfs/OGN/DIRdata/SAR.alive"
+pid=$"/tmp/SAR.pid"
 hn=`hostname   `
 if [ $# = 0 ]; then
 	city='Madrid'
@@ -22,11 +23,10 @@ else
 	if [ ! -f $alive ]
 	then
 		logger  -t $0 "OGN Repo is not alive "$hn
-		pnum=$(pgrep -x -f 'python3 ../src/SARsrc/SARognES.py')
-		if [ $? -eq 0 ] # if OGN repo interface is  not running
-		then
-			sudo kill $pnum
-		fi
+                if [ -f $pid ] # if OGN repo interface is  not running
+                then
+                        sudo kill $(cat /tmp/SAR.pid)
+                fi
 #               restart OGN data collector
     		bash ~/src/SARsrc/sh/SARboot_flight_logger.sh $city
     		logger -t $0 "OGN repo seems down, restarting "$hn
