@@ -17,5 +17,9 @@ sed "s/CREATE TABLE/-- CREATE TABLE/g" meteo.sql | sed "s/CREATE UNIQUE INDEX/--
 python3 ../src/SARsrc/ogndb/DBmeteo.py 	>>SARmetar$(date +%y%m%d).log
 mv SARmet* log/
 mv SARfcs* log/
+if [[ -f SAR.alive ]]
+then
+   rm SAR.alive
+fi
 mv meteo.sql meteo.dmp tmp
 cd 
