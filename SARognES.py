@@ -28,6 +28,8 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
     sock.shutdown(0)                    # shutdown the connection
     sock.close()                        # close the connection file
     datafile.close()                    # close the data file
+    if (os.stat(OGN_DATA).st_size == 0):
+        os.system("rm "+OGN_DATA)
     # report number of records read and IDs discovered
     print('Records read:', cin, ' Ids found: ', cout)
     k = list(fid.keys())                # list the IDs for debugging purposes
@@ -367,7 +369,7 @@ except TypeError as e:
 
 # report number of records read and files generated
 print('Counters:', cin, cout)
-if (os.stat('OGN_DATA').st_size == 0):
+if (os.stat(OGN_DATA).st_size == 0):
     os.system("rm "+OGN_DATA)
 shutdown(sock, datafile, tmaxa, tmaxt, tmid)
 print("Exit now ...", err)
