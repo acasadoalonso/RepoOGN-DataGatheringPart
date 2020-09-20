@@ -3,7 +3,7 @@ import time
 import sys
 import os
 from datetime import datetime, timedelta
-from geopy.distance import vincenty         # use the Vincenty algorithm
+from geopy.distance import geodesic	    # use the Vincenty algorithm
 import MySQLdb                              # the SQL data base routines
 import sqlite3                              # the SQL data base routines
 from ognddbfuncs import *		    # import the DDB functions
@@ -11,7 +11,6 @@ import argparse
 from tqdm import tqdm
 sys.path.insert(0, '/nfs/OGN/src/funcs')
 from parserfuncs import *                   # the ogn/ham parser functions
-from geopy.distance import vincenty         # use the Vincenty algorithm
 import subprocess
 
 def file_len(fname):
@@ -386,7 +385,7 @@ while True:                                 # until end of file
             latlon2 = (row2[0], row2[1])    # position of the OGN tracker
             altitude = row2[2]		    # altitude of the tracker
             # get the distance from the flarm to the tracker
-            distance = vincenty(latlon1, latlon2).km
+            distance = geodesic(latlon1, latlon2).km
             distance = round(distance, 3)   # round it to 3 decimals
             #print "DDD", flrmid, ogntracker, distance
             if distance > maxdist:	    # maximun absolute distance

@@ -19,7 +19,7 @@ import os
 from ognddbfuncs import *                   # import the list on known gliders
 from datetime import *                      # the ogn/ham parser functions
 from parserfuncs import *                   # the ogn/ham parser functions
-from geopy.distance import vincenty         # use the Vincenty algorithm
+from geopy.distance import geodesic	    # use the Vincenty algorithm
 from geopy.geocoders import GeoNames        # use the Nominatim as the geolocator
 from geopy.geocoders import Nominatim
 
@@ -322,7 +322,7 @@ while True:                                 # until end of file
                                             # increase the number of fixes for that station
             fsfix[station] += 1
                                             # distance to the station
-            distance = vincenty((latitude, longitude), fsloc[station]).km
+            distance = geodesic((latitude, longitude), fsloc[station]).km
             if distance > 300.0:
                 print(">>>Distcheck: ", distance, data, cin)
             elif distance > fsmax[station]: # if higher distance

@@ -16,7 +16,7 @@ import datetime
 import sqlite3                              # the SQL data base routines
 import MySQLdb                              # the SQL data base routines
 from parserfuncs import *                   # the ogn/ham parser functions
-from geopy.distance import vincenty         # use the Vincenty algorithm
+from geopy.distance import geodesic	    # use the Vincenty algorithm
 from geopy.geocoders import GeoNames        # use the Nominatim as the geolocator
 from datetime import datetime
 
@@ -355,7 +355,7 @@ while True:                                 # until end of file
                 flndt[ident] = otime           # store the landing time
             if station in fsloc and longitude != -1:  # if we have the station yet
                                             # distance to the station
-                distance = vincenty((latitude, longitude), fsloc[station]).km
+                distance = geodesic((latitude, longitude), fsloc[station]).km
                 dist = distance
                 if distance > 250.0:
                     print(">>Distcheck: ", distance, "Nrec:", nrec,  longitude, latitude, data)
@@ -364,7 +364,7 @@ while True:                                 # until end of file
                 if altim > fsalt[station]:  	# if higher altitude
                     fsalt[station] = altim  # save the new altitude
             if source != 'OGN':
-                distance = vincenty((latitude, longitude), (config.location_latitude,
+                distance = geodesic((latitude, longitude), (config.location_latitude,
                                                             config.location_longitude)).km    # distance to the station
                 dist = distance
 
