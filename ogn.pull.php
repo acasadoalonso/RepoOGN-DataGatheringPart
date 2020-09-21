@@ -13,5 +13,5 @@ if ( $_SERVER['HTTP_X_GITHUB_EVENT'] == 'push') {
         ob_end_clean(); 
 }
 echo date("Y-m-d H:i:s")."\n";
-//echo var_dump($_SERVER);
+echo var_dump($_SERVER);
 ?>Hi ... git pull done !!!
