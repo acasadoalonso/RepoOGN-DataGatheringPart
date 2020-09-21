@@ -12,6 +12,7 @@ if ( $_SERVER['HTTP_X_GITHUB_EVENT'] == 'push') {
         passthru("touch UPDATED.by.GIT");
         ob_end_clean(); 
 }
-echo date("Y-m-d H:i:s")."\n";
-echo var_dump($_SERVER);
-?>Hi ... git pull done !!!
+echo date("Y-m-d H:i:s")." ";
+//echo var_dump($_SERVER);a
+echo $_SERVER['HTTP_X_GITHUB_DELIVERY']
+?> Hi ... git pull done !!!
