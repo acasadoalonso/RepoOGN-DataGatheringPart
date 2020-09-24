@@ -1,7 +1,8 @@
 #!/bin/bash
 sunsetfile=$"/nfs/OGN/DIRdata/SAR.sunset"
 alive=$"/nfs/OGN/DIRdata/SAR.alive"
-pid=$"/tmp/SAR.pid"
+#pid=$"/tmp/SAR.pid"
+pid=$(echo  `grep '^pid' /etc/local/SARconfig.ini` | sed 's/=//g' | sed 's/^pid//g')
 hn=`hostname   `
 if [ $# = 0 ]; then
 	city='Madrid'
@@ -25,7 +26,8 @@ else
 		logger  -t $0 "OGN Repo is not alive "$hn
                 if [ -f $pid ] # if OGN repo interface is  not running
                 then
-                        sudo kill $(cat /tmp/SAR.pid)
+       			pnum=$(cat $pid)
+                        sudo $pnum 
                 fi
 #               restart OGN data collector
     		bash ~/src/SARsrc/sh/SARboot_flight_logger.sh $city
