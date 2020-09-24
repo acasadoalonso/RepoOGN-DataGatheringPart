@@ -27,7 +27,8 @@ else
                 if [ -f $pid ] # if OGN repo interface is  not running
                 then
        			pnum=$(cat $pid)
-                        sudo $pnum 
+                        sudo kill $pnum 
+                        rm $pid
                 fi
 #               restart OGN data collector
     		bash ~/src/SARsrc/sh/SARboot_flight_logger.sh $city
