@@ -20,6 +20,7 @@ from ognddbfuncs import *               # import the OGN DDB functions
 from datetime import datetime
 sys.path.insert(0, '/nfs/OGN/src/funcs')
 from parserfuncs import *               # the ogn/ham parser functions
+from adsbfuncs   import getadsbreg
 from time import sleep                  # the sleep
 
 
@@ -46,6 +47,8 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
             if key != None and getognchk(key[3:9]):
                 gid = getognreg(key[3:9])   # report the registration
 
+        if key in fadsb:
+            gid = fadsb[key]
         if fmaxs[key] > 0:
             # report FLARM ID, station used, registration and record counter
             print(key, '=>', fsta[key], gid, fid[key], "Max alt:", fmaxa[key], "Max speed:", fmaxs[key])
@@ -90,6 +93,7 @@ fid = {'NONE  ': 0}                     # FLARM ID list
 fsta = {'NONE  ': 'NONE  '}             # STATION ID list
 fmaxa = {'NONE  ': 0}                   # maximun altitude
 fmaxs = {'NONE  ': 0}                   # maximun speed
+fadsb = {}				# ADSB reg
 stations = []				# stations
 sources  = []				# sources found
 acfttype = []				# aircraft types found
@@ -300,14 +304,14 @@ try:
                if not acftt in acfttype:
                   acfttype.append(acftt)
                   
-            if path == 'aprs_aircraft' or path == 'flarm' or path == 'tracker':
+            if not source in sources:
+                    # add it to the list of sources ...
+               sources.append(source)
+            if path == 'aprs_aircraft' or path == 'flarm' or path == 'tracker' or source == 'TTN'  or source == 'ADSB':
                 if not station in stations:
                     # add it to the list of stations ...
                     stations.append(station)
                     #print "SSS", station
-                if not source in sources:
-                    # add it to the list of sources ...
-                    sources.append(source)
                 if relay == "RELAY" or relay == "OGNDELAY":
                     relaycntr += 1
                 if relay[0:3] == "OGN":
@@ -352,6 +356,10 @@ try:
                     tmsta = station                 # station capturing the max altitude
             if speed >= fmaxs[ident]:               # check for max speed of the day
                 fmaxs[ident] = speed
+
+            if source == 'ADSB':
+                if 'reg' in msg:
+                    fadsb[ident] = msg['reg']
 
 
 except KeyboardInterrupt:

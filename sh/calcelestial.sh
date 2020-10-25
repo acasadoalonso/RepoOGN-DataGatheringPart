@@ -1,4 +1,5 @@
 #!/bin/sh
+cd calcelestial
 rm -r calcelestial
 git clone https://github.com/stv0g/calcelestial
 cd calcelestial/

@@ -269,6 +269,7 @@ while True:                                 # until end of file
                CCerrors.append(cc)
             continue
         ident = msg['id']          	    # id
+        
         type = msg['aprstype']		    # message type
         longitude = msg['longitude']
         latitude = msg['latitude']
@@ -290,7 +291,7 @@ while True:                                 # until end of file
                 relay = msg['relay']
         else:
                 relay = ''
-        if (path == 'aprs_aircraft' and (relay == 'RELAY' or relay == 'OGNDELAY')  or (path == 'tracker' and relay[0:3] == "OGN")):
+        if (path == 'aprs_aircraft' or path == 'tracker' or source == 'TTN') and (relay == 'RELAY' or relay == 'OGNDELAY')  or (path == 'tracker' and relay[0:3] == "OGN"):
                 station = msg['station']    # get the station name
                 if relay == "RELAY" or relay == "OGNDELAY":
                     relaycntr += 1

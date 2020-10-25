@@ -102,10 +102,12 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
                 print("Parser error:", data)
                 continue
             path = msg['path']
-            if path == 'aprs_receiver' or path == 'receiver':
-                continue
             source = msg['source']          # source of the data OGN/SPOT/SPIDER/...
-            if source != 'OGN':
+            if source == 'TTN':
+               print(data)
+            if path == 'aprs_receiver' or path == 'receiver' or source == 'TTN':
+                continue
+            if source != 'OGN' and source != 'TTN':
                 continue
             ident = msg['id']          	    # id
             if 'aprstype' in msg:
@@ -130,7 +132,7 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
                 relay = msg['relay']
             else:
                 relay = ''
-            if (path == 'aprs_aircraft' and (relay == 'RELAY' or relay == "OGNDELAY")  or (path == 'tracker' and relay[0:3] == "OGN")):
+            if ((path == 'aprs_aircraft' or source == 'TTN') and (relay == 'RELAY' or relay == "OGNDELAY"))  or (path == 'tracker' and relay[0:3] == "OGN"):
                 station = msg['station']    # get the station name
                 if relay == "RELAY" or relay == "OGNDELAY":
                     relaycntr += 1
@@ -294,7 +296,7 @@ while True:                                 # until end of file
     nrecords += 1
     if not data:                            # end of file ???
         break
-    relpos = data.find("APRS,RELAY*")       # look for old RELAY messages
+    relpos = data.find(",RELAY*")           # look for old RELAY messages
     if relpos != -1:
         relaycnt += 1		            # just increas the counter and leave
         continue

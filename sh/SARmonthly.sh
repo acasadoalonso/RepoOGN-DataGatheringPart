@@ -26,5 +26,5 @@ bash ./compress.sh   Y$(date +%y)
 cd ../
 pwd
 bash fd/compfull.sh 
-sudo chown ogn:www-data -R fd
+sudo chown $USER:www-data -R fd
 cd

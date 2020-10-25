@@ -13,6 +13,7 @@ ksta = {
            "LEFM"   : "Fuentemilanos, Segovia",
            "LERM"   : "Robledillo de Mohernando, Guadalajara",
            "LEMD"   : "Madrid - Test site",
+           "LEMDADSB"   : "Madrid - ADSB GateWay",
            "LETP"   : "Santo Tome del Puerto, Segovia",
            "LEIG"   : "Igualada, Barcelona ",
            "LECD"   : "La Cerdanya, Girona ",
@@ -34,6 +35,7 @@ ksta = {
            "CASTEJONS" : "Castejon de Sos, Huesca ",
            "BELAVISTA" : "Belavista, Lisbon, Portugal ",
            "LPMN"   : "Amendoeira, Portugal ",
+           "LPCB"   : "Castelo Branco, Portugal ",
 # french airports
            "LFCO"   : "Oloron",
            "LFDT"   : "Tarbes",

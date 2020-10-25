@@ -38,6 +38,7 @@ fsloc = {'NONE  ': (0.0, 0.0)}              # station location
 fsmax = {'NONE  ': 0.0}                     # maximun coverage
 fsfix = {'NONE  ': 0}                       # number of fixes
 fsour = {}				    # sources
+fadsb = {}				    # ADSB sources
 ftkok = {datetime.utcnow(): 'NONE  '}       # Take off time
 tfixs = 0                                   # total number of fixes
 tmaxa = 0                                   # maximun altitude for the day
@@ -129,7 +130,10 @@ while True:                                 # until end of file
             if getognchk(key[3:9]):         # if it is a known glider ???
                 r = getognreg(key[3:9])     # get the registration
             else:
-                r = 'NOREG '                # no registration
+                if key in fadsb:
+                    r=fadsb[key]
+                else:
+                    r = 'NOREG '            # no registration
             ttime = 0                       # flying time
             if ftkot[key] != 0 and flndt[key] != 0:
                 ttime = flndt[key] - ftkot[key]
@@ -153,7 +157,10 @@ while True:                                 # until end of file
             if getognchk(key[3:9]):         # if it is a known glider ???
                 r = getognreg(key[3:9])     # get the registration
             else:
-                r = 'Noreg '                # no registration
+                if key in fadsb:
+                    r=fadsb[key]
+                else:
+                    r = 'Noreg '            # no registration
             ttime = 0                       # flying time
             if ftkot[key] != 0 and flndt[key] != 0:  # if both
                 ttime = flndt[key] - ftkot[key]
@@ -255,6 +262,11 @@ while True:                                 # until end of file
         fsour[source] += 1		    # increase the counter
     if station == "FLYMASTER":
         continue
+     
+    if source == 'ADSB':
+       if 'reg' in msg:
+           fadsb[ident] = msg['reg']
+
     # or frenchsta(station):  # only Chilean or Spanish or frenchstations
     if ((hostname == "CHILEOGN" or hostname == "OGNCHILE") and source == "OGN") or source == "SPOT" or spanishsta(station):
         if not ident in fid:                # if we did not see the FLARM ID
