@@ -4,6 +4,11 @@ echo "===================================" 			#
 echo "Installing the SAR system      ...." 			#
 echo "===================================" 			#
 echo							        #
+if [ $# = 0 ]; then						
+	sql='NO'
+else
+	sql=$1
+fi
 bash commoninstall.sha						#
 sudo cat /etc/apache2/apache2.conf html.dir 	>>temp.conf	#
 sudo echo "ServerName SAR  " >>temp.conf			#
@@ -37,8 +42,29 @@ echo "Create the SARogn loginr-path: Type assigned password"	#
 mysql_config_editor set --login-path=SARogn --user=ogn --password 
 mysql_config_editor print --all					#
 echo "CREATE DATABASE OGNDB" | mysql -u root -pogn		#
-mysql --login-path=SARogn --database OGNDB < ogndb/DBschema.sql	#
+if [ $sql = 'MySQL' ]			
+then	
+   mysql --login-path=SARogn --database OGNDB < ogndb/DBschema.sql	#
+else
+   mysql -u ogn -pogn --database OGNDB < ogndb/DBschema.sql	#
+
+fi
 echo								#
+cd /tmp
+wget acasado.es:60080/files/GLIDERS.sql
+mysql -u ogn -pogn  SWIFACE </tmp/GLIDERS.sql
+cd /var/www/html/main						#
+if [ $sql = 'docker' ]			
+then			
+   echo "Create DB in docker ogn ..."				#
+   echo "========================================================" #
+   echo "CREATE DATABASE if not exists OGNDB" | sudo mysql -u ogn -pogn -h MARIADB
+   echo "SET GLOBAL log_bin_trust_function_creators = 1; " | sudo mysql -u ogn -pogn -h MARIADB
+   sudo mysql -u ogn -pogn -h MARIADB --database OGNDB <ogndb/DBschema.sql 
+   sudo mysql -u ogn -pogn -h MARIADB --database OGNDB </tmp/GLIDERS.sql
+fi
+rm /tmp/GLIDERS.sql
+echo " "		
 echo								#
 echo "================================================" 	#
 echo "Installation mysql done ..."				#
