@@ -9,7 +9,7 @@ if [ $# = 0 ]; then
 else
 	sql=$1
 fi
-bash commoninstall.sha						#
+bash commoninstall.sh						#
 sudo cat /etc/apache2/apache2.conf html.dir 	>>temp.conf	#
 sudo echo "ServerName SAR  " >>temp.conf			#
 sudo mv temp.conf /etc/apache2/apache2.conf			#
