@@ -27,3 +27,4 @@ flarmdb/*.json
 flarmdb/*.fln
 flarmdb/*.csv
 config/
+.vagrant/

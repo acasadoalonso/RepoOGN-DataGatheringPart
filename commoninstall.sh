@@ -1,0 +1,1 @@
+/home/angel/src/sh/commoninstall.sh

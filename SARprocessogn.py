@@ -28,7 +28,7 @@ geolocator = Nominatim(user_agent="Repoogn", timeout=5)  # create the instance
 #
 # ---------- main code ---------------
 #
-pgmver="V2.3"
+pgmver="V2.4"
 fid = {'NONE  ': 0}                         # FLARM ID list
 fsta = {'NONE  ': 'NONE  '}                 # STATION ID list
 ffd = {'NONE  ': None}                      # file descriptor list
@@ -39,6 +39,7 @@ fsmax = {'NONE  ': 0.0}                     # maximun coverage
 fsfix = {'NONE  ': 0}                       # number of fixes
 fsour = {}				    # sources
 fadsb = {}				    # ADSB sources
+fadsbfn = {}				    # ADSB sources
 ftkok = {datetime.utcnow(): 'NONE  '}       # Take off time
 tfixs = 0                                   # total number of fixes
 tmaxa = 0                                   # maximun altitude for the day
@@ -110,7 +111,8 @@ if prt:
     print('File name: ', fn, fname, 'Process date/time:', date.strftime(
         " %y-%m-%d %H:%M:%S"), dte)         # display file name and time
 
-geolocator = GeoNames(country_bias='Spain', username='acasado')
+#geolocator = GeoNames(country_bias='Spain', username='acasado')
+geolocator = GeoNames(username='acasado')
                                             # open the file with the logged data
 datafilei = open(datapath+fname, 'r')
 
@@ -143,9 +145,12 @@ while True:                                 # until end of file
                 ltime = flndt[key]
             else:
                 ltime = ' '
+            fn=''
+            if key in fadsbfn:
+               fn=fadsbfn[key]
             if prt:
                 print(key, '=>', 'Base:', fsta[key], 'Reg:', r, 'Take off:', ftkot[
-                    key], 'Landing:', ltime, ttime, 'Nrecs:', fid[key])
+                    key], 'Landing:', ltime, ttime, 'Nrecs:', fid[key],'\t', fn)
                 # report FLARM ID, station used,  record counter, registration, take off time and landing time
             if ffd[key] != None:
                 ffd[key].close()            # and close all the file
@@ -266,6 +271,8 @@ while True:                                 # until end of file
     if source == 'ADSB':
        if 'reg' in msg:
            fadsb[ident] = msg['reg']
+       if 'fn' in msg:
+           fadsbfn[ident] = msg['fn']
 
     # or frenchsta(station):  # only Chilean or Spanish or frenchstations
     if ((hostname == "CHILEOGN" or hostname == "OGNCHILE") and source == "OGN") or source == "SPOT" or spanishsta(station):

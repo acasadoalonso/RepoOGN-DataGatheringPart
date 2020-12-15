@@ -18,7 +18,7 @@ echo "Server2: "$server2
 rm *.fln 2>/dev/null
 rm *.csv 2>/dev/null
 rm *.txt 2>/dev/null
-wget -o flarmdata.log  www.flarmnet.org/static/files/wfn/data.fln
+wget -o flarmdata.log  --no-check-certificate www.flarmnet.org/static/files/wfn/data.fln
 mv data.fln flarmdata.fln
 wget -o ognddbdata.log ddb.glidernet.org/download
 mv download ognddbdata.csv
@@ -52,5 +52,8 @@ echo "Copy from sqlite3 to MySQL SWIFACE: "$server2
 echo "drop table GLIDERS;"           |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
 sqlite3 SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sqlite3-to-mysql.py | mysql --login-path=SARogn -h $server2 SWIFACE 	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
+mysqldump --login-path=SARogn -h $server --add-drop-table APRSLOG GLIDERS                                       >/var/www/html/files/GLIDERS.sql  
+mysql --defaults-extra-file=~/.mariadb SWIFACE                                                                  </var/www/html/files/GLIDERS.sql  
 echo "============================================================================================================================================="
 cd 
+mv GLIDERS.dump /tmp

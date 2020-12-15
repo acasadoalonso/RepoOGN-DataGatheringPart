@@ -4,81 +4,12 @@ echo "===================================" 			#
 echo "Installing the SAR system      ...." 			#
 echo "===================================" 			#
 echo							        #
-export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8		#
-sudo apt-get install -y software-properties-common python3-software-properties #
-#sudo rm /etc/apt/sources.list.d/ondre*				#
-#sudo add-apt-repository ppa:ondrej/php				#
-echo								#
-echo "================================================" 	#
-echo "Lets update the operating system libraries  ...." 	#
-echo "================================================" 	#
-echo								#
-sudo apt-get update						#
-sudo apt-get install -y language-pack-en-base 			#
-export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8		#
-echo "export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 " >>~/.profile #
-echo "export LD_LIBRARY_PATH=/usr/local/lib" >>~/.profile 	#
-sudo apt-get -y upgrade					   	#
-sudo apt-get -y dist-upgrade					#
-sudo apt-get -y install lsb_core				#
-echo								#
-echo "==================================================" 	#
-echo "Installing the packages required . (LAMP stack)..."	#
-echo "==================================================" 	#
-echo								#
-sudo apt-get install -y mysql-server mysql-client sqlite3	#
-sudo apt-get install -y python3-dev python3-pip python3-mysqldb #
-sudo apt-get install -y dos2unix libarchive-dev	 autoconf mc	#
-sudo apt-get install -y pkg-config git mutt git-core vim	#
-sudo apt-get install -y figlet	#
-git config --global user.email "acasadoalonso@gmail.com"        #
-git config --global user.name "Angel Casado"                    #
-sudo apt-get install -y apache2 php php-mcrypt php-mysql php-cli #
-sudo apt-get install -y php-mbstring php-gettext		#
-sudo apt-get install -y mailutils ntpdate mutt	ssmtp		#
-sudo apt-get install -y libcurl4-openssl-dev			#
-sudo apt-get install -y libjson0 libjson0-dev			#
-sudo apt-get install -y libjson-c-dev 				#
-sudo apt-get install -y libnova-0.14-0				#
-sudo apt-get install -y libfap-dev                              #
-sudo apt-get install -y at	 				#
-sudo apt-get install -y avahi-daemon 				#
-sudo apt-get install -y php7.2	 				#
-sudo a2enmod rewrite						#
-sudo a2enmod cgi						#
-sudo phpenmod mcrypt						#
-sudo phpenmod mbstring						#
-sudo a2enmod php7.2 						#
+bash commoninstall.sha						#
 sudo cat /etc/apache2/apache2.conf html.dir 	>>temp.conf	#
 sudo echo "ServerName SAR  " >>temp.conf			#
 sudo mv temp.conf /etc/apache2/apache2.conf			#
 sudo service apache2 restart					#
-echo								#
-echo "================================================" 	#
-echo "Installing phpmyadmin  ... "				#
-echo "================================================" 	#
-echo								#
-sudo apt-get install -y libmysqlclient-dev			#
-sudo apt-get install -y phpmyadmin 				#
-sudo service apache2 restart					#
-echo								#
-echo "================================================" 	#
-echo "Installing python modules  ... "				#
-echo "================================================" 	#
-echo								#
-sudo -H pip3 install --upgrade pip                              #
-sudo -H pip3 install --upgrade setuptools			#
-sudo -H pip3 install ephem 					#
-sudo -H pip3 install tqdm 					#
-sudo -H pip3 install pytz 					#
-sudo -H pip3 install geopy 					#
-sudo -H pip3 install configparser 				#
-sudo -H pip3 install pycountry 					#
-sudo -H pip3 install requests 					#
-sudo -H pip3 install MySQL-python				#
-sudo -H pip3 install beeprint					#
-sudo -H pip3 install ogn.client					#
-if [ ! -d /etc/local ]						#
+if [ -d /etc/local/ ]						#
 then								#
     sudo mkdir /etc/local					#
 fi								#
@@ -99,7 +30,7 @@ echo "================================================" 	#
 echo								#
 if [ -f SAROGN.db ]						#
 then								#
-	rm      SAROGN.db						#
+	rm      SAROGN.db					#
 fi								#
 sqlite3 SAROGN.db            	     < ogndb/DBschema.sql	#
 echo "Create the SARogn loginr-path: Type assigned password"	#
@@ -217,9 +148,6 @@ echo "Optional steps ... "					#
 echo "================================================" 	#
 echo								#
 echo								#
-sudo dpkg-reconfigure tzdata					#
-sudo apt-get -y dist-upgrade					#
-sudo apt-get -y autoremove					#
 touch SARinstallation.done					#
 echo " "							#
 echo " "							#

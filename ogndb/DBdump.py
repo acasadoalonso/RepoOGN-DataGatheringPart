@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import config
 # -*- coding: UTF-8 -*-
+from adsbfuncs import getadsbreg
 MySQL = False
 #
 # DBdump V3.0
@@ -48,7 +49,7 @@ import sys
 import os
 import socket
 from tqdm import tqdm
-from geopy.distance import vincenty         # use the Vincenty algorithm
+from geopy.distance import distance         # use the Vincenty algorithm
 from geopy.geocoders import GeoNames        # use the Nominatim as the geolocator
 from geopy.geocoders import Nominatim
 Nominatim(user_agent="Repoogn")
@@ -352,10 +353,11 @@ for key in k:                               # report data
         cmd = "select registration from GLIDERS where idglider = '" + gkey+"'"
         curs.execute(cmd)
     else:
-        curs.execute(
-            "select registration from GLIDERS where idglider = ?", [gkey])
+        curs.execute( "select registration from GLIDERS where idglider = ?", [gkey])
 
     reg = curs.fetchone()
+    if reg == None:
+       reg=getadsbreg(gkey)
     try:
 
         mlati = fmaxlati[key]

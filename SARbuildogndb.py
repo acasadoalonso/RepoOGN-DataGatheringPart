@@ -104,7 +104,8 @@ else:
 print('File name:', fname, "dte", dte, 'Process date/time:', date.strftime(
     " %y-%m-%d %H:%M:%S"))
 
-geolocator = GeoNames(country_bias='Spain', username='acasado')
+#geolocator = GeoNames(country_bias='Spain', username='acasado')
+geolocator = GeoNames(username='acasado')
                                             # open the file with the logged data
 datafilei = open(fname, 'r')
 if (MySQL):
