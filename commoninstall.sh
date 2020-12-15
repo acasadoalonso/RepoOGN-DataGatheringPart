@@ -70,6 +70,7 @@ echo "Installing phpmyadmin  ... "				#
 echo								#
 sudo apt-get install -y phpmyadmin 				#
 sudo service apache2 restart					#
+sudo apt-get -y autoremove					#
 echo								#
 echo " "							#
 echo "Installing the PYTHON modules required  ..."		#
@@ -141,6 +142,7 @@ cd								#
 sudo mysql_secure_installation					#
 sudo apt-get install percona-toolkit				#
 sudo dpkg-reconfigure tzdata					#
+sudo apt-get -y autoremove					#
 echo								#
 echo " "							#
 echo "End of common componets  ...." 				#

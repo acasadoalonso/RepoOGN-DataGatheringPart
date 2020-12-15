@@ -10,6 +10,7 @@ else
 	sql=$1
 fi
 bash commoninstall.sh $sql					#
+sudo apt-get -y autoremove
 sudo cat /etc/apache2/apache2.conf html.dir 	>>temp.conf	#
 sudo echo "ServerName SAR  " >>temp.conf			#
 sudo mv temp.conf /etc/apache2/apache2.conf			#
@@ -162,9 +163,12 @@ echo								#
 echo								#
 if [ ! -f /usr/bin/goaccess ]
 then
-	echo "deb http://deb.goaccess.io/ $(lsb_release -cs) main" | sudo tee -a /etc/apt/sources.list.d/goaccess.list #
-	wget -O - https://deb.goaccess.io/gnugpg.key | sudo apt-key add - #
-	sudo apt-get update					#
+        if [ ! -f /etc/apt/sources.list.d/goaccess.list ]
+        then
+	   echo "deb http://deb.goaccess.io/ $(lsb_release -cs) main" | sudo tee -a /etc/apt/sources.list.d/goaccess.list #
+	   wget -O - https://deb.goaccess.io/gnugpg.key | sudo apt-key add - #
+	   sudo apt-get update					#
+        fi
 	sudo apt-get install goaccess				#
 fi								#
 echo								#
