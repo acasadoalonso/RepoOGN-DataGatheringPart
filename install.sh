@@ -151,7 +151,10 @@ echo								#
 bash ~/src/SARsrc/sh/SARfcst.sh					#
 /bin/echo '/bin/sh ~/src/SARsrc/sh/SARpogn.sh' | at -M $(calcelestial -p sun -m set -q Madrid -H civil) + 15 minutes #
 cd								#
-sudo cat /nfs/hosts >> /etc/hosts				#
+if [ -f /nfs/hosts ]
+then
+      sudo cat /nfs/hosts >> /etc/hosts				#
+fi
 bash ~/src/SARsrc/sh/SARboot*					#
 pgrep -a python3						#
 echo								#
