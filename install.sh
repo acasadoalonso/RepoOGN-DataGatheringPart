@@ -105,7 +105,6 @@ then								#
 fi								#
 calcelestial -h							#
 ls  -la ~/src 							#
-sudo cp -r ../CGI-BIN/* ../cgi-bin				#
 if [ ! -d /nfs  ]						#
 then								#
 	sudo mkdir /nfs						#
@@ -172,7 +171,7 @@ then
 	   wget -O - https://deb.goaccess.io/gnugpg.key | sudo apt-key add - #
 	   sudo apt-get update					#
         fi
-	sudo apt-get install goaccess				#
+	sudo apt-get install -y goaccess			#
 fi								#
 echo								#
 echo								#
