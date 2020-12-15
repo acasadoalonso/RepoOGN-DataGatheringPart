@@ -76,7 +76,7 @@ echo "Installing the PYTHON modules required  ..."		#
 echo "=================================================="	#
 echo " "							#
 echo								#
-sudo -H python3 -m pip install --upgrade pip			#
+#sudo -H python3 -m pip install --upgrade pip			#
 pip3 -V								#
 sudo -H python3 -m pip install ephem pytz geopy configparser 	#
 sudo -H python3 -m pip install pycountry uritemplate requests	#
