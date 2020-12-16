@@ -25,6 +25,7 @@ echo "Installing the templates needed  ...." 			#
 echo "================================================" 	#
 echo								#
 pwd								#
+cd /var/www/html/main
 sudo cp config.template /etc/local/SARconfig.ini		#
 cp aliases ~/.bash_aliases					#
 crontab <crontab.data						#
@@ -39,33 +40,32 @@ then								#
 	rm      SAROGN.db					#
 fi								#
 sqlite3 SAROGN.db            	     < ogndb/DBschema.sql	#
-echo "Create the SARogn loginr-path: Type assigned password"	#
+echo "Create the SARogn login-path: Type assigned password"	#
 mysql_config_editor set --login-path=SARogn --user=ogn --password 
 mysql_config_editor print --all					#
 echo "CREATE DATABASE OGNDB" | mysql -u root -pogn		#
 if [ $sql = 'MySQL' ]			
 then	
-   mysql --login-path=SARogn --database OGNDB < ogndb/DBschema.sql	#
+   mysql --login-path=SARogn --database OGNDB < ogndb/DBschema.sql #
 else
    mysql -u ogn -pogn --database OGNDB < ogndb/DBschema.sql	#
-
 fi
 echo								#
-cd /tmp
-wget acasado.es:60080/files/GLIDERS.sql
-mysql -u ogn -pogn  SWIFACE </tmp/GLIDERS.sql
+cd /tmp								#
+wget acasado.es:60080/files/GLIDERS.sql				#
+mysql -u ogn -pogn  OGNDB </tmp/GLIDERS.sql			#
 cd /var/www/html/main						#
 if [ $sql = 'docker' ]			
 then			
-   echo "Create DB in docker ogn ..."				#
+   echo "Create DB in docker ogn ... Host: MARIADB"		#
    echo "========================================================" #
    echo "CREATE DATABASE if not exists OGNDB" | sudo mysql -u ogn -pogn -h MARIADB
    echo "SET GLOBAL log_bin_trust_function_creators = 1; " | sudo mysql -u ogn -pogn -h MARIADB
    sudo mysql -u ogn -pogn -h MARIADB --database OGNDB <ogndb/DBschema.sql 
    sudo mysql -u ogn -pogn -h MARIADB --database OGNDB </tmp/GLIDERS.sql
 fi
-rm /tmp/GLIDERS.sql
-echo " "		
+rm /tmp/GLIDERS.sql						#
+echo " "							#
 echo								#
 echo "================================================" 	#
 echo "Installation mysql done ..."				#
@@ -194,7 +194,6 @@ echo "Review the configuration of the crontab and the shell scripts on ~/src " 	
 echo "In order to execute the SAR data crawler execute:  bash ~/src/SARboo*.sh " 				#
 echo "Check the placement of the RootDocument on APACHE2 ... needs to be /var/www/html	"			#
 echo "If running in Windows under Virtual Box, run dos2unix on /var/www/html and ./main and ~/src	"	#
-echo "Install phpmyadmin if needed !!!                                                                   "      #
 echo "========================================================================================================"	#
 echo " "	
 echo " "							#
@@ -203,3 +202,4 @@ echo " "							#
 echo " "							#
 bash
 alias
+sudo apt-get -y autoremove					#
