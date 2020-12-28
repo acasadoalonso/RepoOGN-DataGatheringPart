@@ -82,6 +82,14 @@ try:
             ADSBreg = True
 except:
         ADSBreg     = False
+try:
+        ADSBsky    = cfg.get('server', 'ADSBOpenSky').strip("'")
+        if     (ADSBsky == 'False'):
+            ADSBOpenSky = False
+        else:
+            ADSBOpenSky = True
+except:
+        ADSBOpenSky     = False
 # --------------------------------------#
 assert len(APRS_USER) > 3 and len(str(APRS_PASSCODE)) > 0, 'Please set APRS_USER and APRS_PASSCODE in SARconfig.ini .'
 if 'USER' in os.environ and prt:
