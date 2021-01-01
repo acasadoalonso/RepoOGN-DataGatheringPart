@@ -67,6 +67,7 @@ ksta = {
 	   "LFIX"   : "Itxassou", 
 	   "LFBA"   : "La Garomme", 
 	   "LFBS"   : "Biscarrosse", 
+           "LFLE"   : "Challes les Eaux", 
            "PAU"    : "Pau",
            "ROCAUDE": "Les Angles Ski Station",
            "POUBEAU": "Pou Beau, France",
