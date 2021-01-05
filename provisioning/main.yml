@@ -8,6 +8,8 @@
   pre_tasks:
     - name: Update apt cache if needed.
       apt: update_cache=yes cache_valid_time=3600
+    - name: Install Ansible
+      apt: name=ansible state=present
 
     - name: Update ansible.
       command: ansible-galaxy collection install community.mysql
