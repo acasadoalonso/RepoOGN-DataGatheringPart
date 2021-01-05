@@ -9,8 +9,8 @@
     - name: Update apt cache if needed.
       apt: update_cache=yes cache_valid_time=3600
 
-  roles:
-    - role: acasadoalonso.docker
+  #roles:
+  #  - role: acasadoalonso.docker
 
   tasks:
     - import_tasks: setup.yml
