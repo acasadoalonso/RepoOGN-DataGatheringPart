@@ -41,7 +41,7 @@
      dest: /tmp
 
 - name: Restore database
-  command: mysql -h 172.17.0.2 -u root -pogn </tmp/APRSLOG.template.sql
+  command: mysql APRSLOG -h 172.17.0.2 -u root -pogn </tmp/APRSLOG.template.sql
 
 - name: Download GLIDERS.sql
   get_url:
@@ -50,5 +50,5 @@
     mode: '0440'
 
 - name: Restore database table GLIDERS.sql
-  command: mysql -h 172.17.0.2 -u root .pohn </tmp/GLIDERS.sql
+  command: mysql APRSLOG  -h 172.17.0.2 -u root .pohn </tmp/GLIDERS.sql
 
