@@ -44,15 +44,15 @@
       - name: mynetsql
         ipv4_address: 172.17.0.2
 
-- name: Create database user with name 'ogntest' and password 'ogntest' with all database privileges
-  community.mysql.mysql_user:
-    name: ogntest
-    password: ogntest
-    login_host: 172.17.0.2
-    login_user: root
-    login_password: ogn
-    priv: '*.*:ALL'
-    state: present
+#- name: Create database user with name 'ogntest' and password 'ogntest' with all database privileges
+#  community.mysql.mysql_user:
+#    name: ogntest
+#    password: ogntest
+#    login_host: 172.17.0.2
+#    login_user: root
+#    login_password: ogn
+#    priv: '*.*:ALL'
+#    state: present
 
 - name: Run a PHPMYADMIN container.
   docker_container:
@@ -61,7 +61,7 @@
     state: present
 
 - name: Create a new database with name 'APRSLOG'
-  mysql_db:
+  community.mysql.mysql_db:
      name: APRSLOG
      login_host: 172.17.0.2
      login_user: root
