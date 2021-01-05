@@ -48,7 +48,7 @@
   community.mysql.mysql_user:
     name: ogntest
     password: ogntest
-    login_host: mariadb
+    login_host: 172.17.0.2
     login_user: root
     login_password: ogn
     priv: '*.*:ALL'
@@ -63,7 +63,7 @@
 - name: Create a new database with name 'APRSLOG'
   mysql_db:
      name: APRSLOG
-     login_host: mariadb
+     login_host: 172.17.0.2
      login_user: root
      login_password: ogn
      unsafe_login_password: true
@@ -78,7 +78,7 @@
   community.mysql.mysql_db:
     name: APRSLOG
     state: import
-    login_host: mariadb
+    login_host: 172.17.0.2
     login_user: root
     login_password: ogn
     target: /tmp/APRSLOG.template.sql
@@ -93,7 +93,7 @@
   community.mysql.mysql_db:
     name: APRSLOG
     state: import
-    login_host: mariadb
+    login_host: 172.17.0.2
     login_user: root
     login_password: ogn
     target: /tmp/GLIDERS.sql
