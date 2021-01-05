@@ -23,7 +23,7 @@
 - name: Create a network with custom IPAM config
   community.general.docker_network:
     name: mynetsql
-    state: started
+    state: present
     ipam_config:
       - subnet: 172.18.0.0/24
         gateway: 172.18.0.0
