@@ -45,7 +45,7 @@
   copy:
      src: "./adduser.sql"
      dest: /tmp
-- name: Copy APRSLOG shell file
+- name: Copy OGNDB shell file
   copy:
      src: "./OGNDB.sh"
      dest: /tmp
