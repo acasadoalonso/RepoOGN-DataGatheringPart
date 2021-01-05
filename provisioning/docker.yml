@@ -19,6 +19,18 @@
       pull: false
     state: present
 
+
+- name: Create a network with custom IPAM config
+  community.general.docker_network:
+    name: mynetsql
+    state: started
+    ipam_config:
+      - subnet: 172.18.0.0/24
+        gateway: 172.18.0.0
+        iprange: 172.18.0.0/26
+        aux_addresses:
+          mariadb: 172.18.0.2
+          pma: 172.18.0.3
 - name: Run a MARIADB MySQL container.
   docker_container:
     image: mariadb:latest
