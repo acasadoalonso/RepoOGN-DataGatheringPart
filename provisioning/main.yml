@@ -8,8 +8,8 @@
   pre_tasks:
     - name: Update apt cache if needed.
       apt: update_cache=yes cache_valid_time=3600
-    - name: Upgrade
-      apt: upgrade
+    - name: Upgrade.
+      apt: upgrade=yes
     - name: Install Ansible
       apt: name=ansible state=present
     - name: Install Mariadb-client
@@ -17,7 +17,7 @@
     - name: Update ansible.
       command: ansible-galaxy collection install community.mysql
     - name: Autoremove
-      apt: autoremove
+      apt: autoremove=yes
 
   #roles:
   #  - role: acasadoalonso.docker
