@@ -19,10 +19,6 @@
       pull: false
     state: present
 
-- name: Does container exist?
-  ansible.builtin.debug:
-    msg: "The container {{ 'exists' if result.exists else 'does not exist' }}"
-
 - name: Run a MARIADB MySQL container.
   docker_container:
     image: mariadb:latest
@@ -30,7 +26,6 @@
     state: started
     restart: yes
     ports: "3306:3306"
-    container_default_behavior: no_defaults
     env:
       MYSQL_ROOT_PASSWORD: ogn
       MYSQL_DATABASE: OGNDB
@@ -42,7 +37,7 @@
         ipv4_address: 172.18.0.2
 
 - name: Create database user with name 'ogntest' and password 'ogntest' with all database privileges
-  community.mysql.mysql_user:
+  mysql_user:
     name: ogntest
     password: ogntest
     login_host: mariadb
@@ -58,7 +53,7 @@
     state: present
 
 - name: Create a new database with name 'APRSLOG'
-  community.mysql.mysql_db:
+  mysql_db:
      name: APRSLOG
      login_host: mariadb
      login_user: root
@@ -72,7 +67,7 @@
      dest: /tmp
 
 - name: Restore database
-  community.mysql.mysql_db:
+  mysql_db:
     name: APRSLOG
     state: import
     login_host: mariadb
@@ -87,7 +82,7 @@
     mode: '0440'
 
 - name: Restore database table GLIDERS.sql
-  community.mysql.mysql_db:
+  mysql_db:
     name: APRSLOG
     state: import
     login_host: mariadb
