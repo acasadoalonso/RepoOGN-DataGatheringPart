@@ -44,7 +44,7 @@
      dest: /tmp
   copy:
      src: "./GLIDERS.sh"
-     dest: /tmp
+     dest: /tmp/GLIDERS.sh
 
 - name: Restore database
   command: "bash /tmp/APRSLOG.sh"
