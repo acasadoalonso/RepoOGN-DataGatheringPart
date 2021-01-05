@@ -1,7 +1,7 @@
 ---
 - name: Build Docker images from Dockerfiles.
   docker_image:
-    name: mariadb
+    name: mariadb:latest
     tag: latest
     source: build
     build:
@@ -11,7 +11,7 @@
 
 - name: Build Docker images from Dockerfiles.
   docker_image:
-    name: phpmyadmin
+    name: phpmyadmin:latest
     tag: latest
     source: build
     build:
