@@ -39,11 +39,11 @@
 # Copy database dump file to remote host and restore it to database 'my_db'
 - name: Copy database dump file
   copy:
-     src: "./DBschema.sql"
+     src: "../ogndb/DBschema.sql"
      dest: /tmp
 - name: Copy adduser file
   copy:
-     src: "./adduser.sql"
+     src: "../doc//adduser.sql"
      dest: /tmp
 - name: Copy OGNDB shell file
   copy:
@@ -57,6 +57,14 @@
   copy:
      src: "./ADDUSER.sh"
      dest: /tmp/ADDUSER.sh
+- name: Copy crontab data
+  copy:
+     src: "../crontab.data"
+     dest: /tmp/
+- name: Copy aliases
+  copy:
+     src: "../aliases"
+     dest: ~/.bash_aliases
 
 - name: Restore database
   command: "bash /tmp/OGNDB.sh"
@@ -70,3 +78,16 @@
 - name: Restore database table GLIDERS.sql
   command: "bash /tmp/GLIDERS.sh" 
 
+- name: Restore crontab
+  command: "crontab </tmp/contab.data"
+
+- name: Create a /etc/local directory
+  file:
+    path: /etc/local
+    state: directory
+    mode: '0755'
+
+- name: Copy 
+  copy:
+     src: "../config.template"
+     dest: /etc/local/SARconfig.ini
