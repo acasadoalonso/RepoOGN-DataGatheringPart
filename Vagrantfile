@@ -17,6 +17,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "/nfs",   "/nfs"
  # Enable provisioning with Ansible.
   config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "provisioning/basicpak.yml"
     ansible.playbook = "provisioning/main.yml"
   end
 end
