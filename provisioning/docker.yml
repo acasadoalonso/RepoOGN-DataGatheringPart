@@ -39,9 +39,12 @@
   copy:
      src: "./APRSLOG.template.sql"
      dest: /tmp
+  copy:
+     src: "./APRSLOG.sh"
+     dest: /tmp
 
 - name: Restore database
-  command: "mysql APRSLOG -h 172.17.0.2 -u root -pogn </tmp/APRSLOG.template.sql  "
+  command: "bash /tmp/APRSLOG.sh"
 
 - name: Download GLIDERS.sql
   get_url:
