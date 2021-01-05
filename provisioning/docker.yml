@@ -39,9 +39,11 @@
   copy:
      src: "./APRSLOG.template.sql"
      dest: /tmp
+- name: Copy APRSLOG shell file
   copy:
      src: "./APRSLOG.sh"
      dest: /tmp
+- name: Copy GLIDERS shel file
   copy:
      src: "./GLIDERS.sh"
      dest: /tmp/GLIDERS.sh
