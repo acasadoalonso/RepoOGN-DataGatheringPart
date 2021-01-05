@@ -1,24 +1,4 @@
 ---
-#- name: Build Docker images from Dockerfiles.
-#  docker_image:
-#    name: mariadb:latest
-#    tag: latest
-#    source: build
-#    build:
-#      path: "/vagrant/mariadb"
-#      pull: false
-#    state: present
-#
-#- name: Build Docker images from Dockerfiles.
-#  docker_image:
-#    name: phpmyadmin:latest
-#    tag: latest
-#    source: build
-#    build:
-#      path: "/vagrant/pma"
-#      pull: false
-#    state: present
-
 
 - name: Create a network with custom IPAM config
   community.general.docker_network:
@@ -49,6 +29,10 @@
     image: phpmyadmin:latest
     name: phpmyadmin
     state: present
+    network_mode: mynetsql
+    networks:
+      - name: mynetsql
+        ipv4_address: 172.17.0.3
 
 # Copy database dump file to remote host and restore it to database 'my_db'
 - name: Copy database dump file
@@ -57,13 +41,7 @@
      dest: /tmp
 
 - name: Restore database
-  community.mysql.mysql_db:
-    name: APRSLOG
-    state: import
-    login_host: 172.17.0.2
-    login_user: root
-    login_password: ogn
-    target: /tmp/APRSLOG.template.sql
+  command: mysql -h 172.17.0.2 -u root -pogn </tmp/APRSLOG.template.sql
 
 - name: Download GLIDERS.sql
   get_url:
@@ -72,11 +50,5 @@
     mode: '0440'
 
 - name: Restore database table GLIDERS.sql
-  community.mysql.mysql_db:
-    name: APRSLOG
-    state: import
-    login_host: 172.17.0.2
-    login_user: root
-    login_password: ogn
-    target: /tmp/GLIDERS.sql
+  command: mysql -h 172.17.0.2 -u root .pohn </tmp/GLIDERS.sql
 
