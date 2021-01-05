@@ -53,5 +53,9 @@
     mode: '0440'
 
 - name: Restore database table GLIDERS.sql
-  command: "mysql APRSLOG  -h 172.17.0.2 -u root -pohn </tmp/GLIDERS.sql "
+  copy:
+     src: "./GLIDERS.sh"
+     dest: /tmp
+
+  command: "bash /tmp/GLIDERS.sh" 
 
