@@ -87,6 +87,12 @@ def signal_term_handler(signal, frame):	# signal handler for SIGTERM
 
 signal.signal(signal.SIGTERM, signal_term_handler)
 
+def osremove (pidfile):
+    try:
+        os.remove(pidfile)
+    except:
+        print("No PID file")
+    return
 #----------------------ogn_main.py start-----------------------
 pgmver = "V2.2"
 fid = {'NONE  ': 0}                     # FLARM ID list
@@ -133,7 +139,7 @@ APP = "SAR"                             # the application name
 with open(config.PIDfile, "w") as f:
     f.write(str(os.getpid()))
     f.close()
-atexit.register(lambda: os.remove(config.PIDfile))
+atexit.register(lambda: osremove(config.PIDfile))
 
 # create socket & connect to server
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

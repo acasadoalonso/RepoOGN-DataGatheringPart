@@ -1,0 +1,90 @@
+---
+- name: Build Docker images from Dockerfiles.
+  docker_image:
+    name: "{{ item.name }}"
+    tag: "{{ item.tag }}"
+    source: build
+    build:
+      path: "{{ build_root }}/{{ item.directory }}"
+      pull: false
+    state: present
+  with_items:
+    - { name: pma, tag: latest, directory: pma }
+    - { name: mariadb, tag: latest, directory: mariadb }
+
+- name: Does container exist?
+  ansible.builtin.debug:
+    msg: "The container {{ 'exists' if result.exists else 'does not exist' }}"
+
+- name: Run a MARIADB MySQL container.
+  docker_container:
+    image: mariadb:latest
+    name: mariadb
+    state: started
+    restart: yes
+    ports: "3306:3306"
+    container_default_behavior: no_defaults
+    env:
+      MYSQL_ROOT_PASSWORD: ogn
+      MYSQL_DATABASE: OGNDB
+      MYSQL_USER: ogn
+      MYSQL_PASSWORD: ogn
+    network_mode: mynetsql
+    networks:
+      - name: mynetsql
+        ipv4_address: 172.18.0.2
+
+- name: Create database user with name 'ogntest' and password 'ogntest' with all database privileges
+  community.mysql.mysql_user:
+    name: ogntest
+    password: ogntest
+    login_host: mariadb
+    login_user: root
+    login_password: ogn
+    priv: '*.*:ALL'
+    state: present
+
+- name: Run a PHPMYADMIN container.
+  docker_container:
+    image: phpmyadmin:latest
+    name: phpmyadmin
+    state: present
+
+- name: Create a new database with name 'APRSLOG'
+   community.mysql.mysql_db:
+     name: APRSLOG
+     login_host: mariadb
+     login_user: root
+     login_password: ogn
+     unsafe_login_password: true
+     state: present
+# Copy database dump file to remote host and restore it to database 'my_db'
+ - name: Copy database dump file
+   copy:
+     src: "./APRSLOG.template.sql"
+     dest: /tmp
+
+- name: Restore database
+  community.mysql.mysql_db:
+    name: APRSLOG
+    state: import
+    login_host: mariadb
+    login_user: root
+    login_password: ogn
+    target: /tmp/APRSLOG.template.sql
+
+- name: Download GLIDERS.sql
+  get_url:
+    url: http://acasado.es:60080/files/GLIDERS.sql
+    dest: /tmp/GLIDERS.sql
+    mode: '0440'
+
+- name: Restore database table GLIDERS.sql
+  community.mysql.mysql_db:
+    name: APRSLOG
+    state: import
+    login_host: mariadb
+    login_user: root
+    login_password: ogn
+    target: /tmp/GLIDERS.sql
+
