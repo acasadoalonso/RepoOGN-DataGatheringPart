@@ -14,7 +14,7 @@
     state: started
     restart: yes
     ports: "3306:3306"
-    container_default_behaviour: no_defaults
+    #container_default_behaviour: no_defaults
     env:
       MYSQL_ROOT_PASSWORD: ogn
       MYSQL_DATABASE: OGNDB
