@@ -1,16 +1,23 @@
 ---
 - name: Build Docker images from Dockerfiles.
   docker_image:
-    name: "{{ item.name }}"
-    tag: "{{ item.tag }}"
+    name: mariadb
+    tag: latest
     source: build
     build:
-      path: "{{ build_root }}/{{ item.directory }}"
+      path: "/vagrant/mariadb"
       pull: false
     state: present
-  with_items:
-    - { name: pma, tag: latest, directory: pma }
-    - { name: mariadb, tag: latest, directory: mariadb }
+
+- name: Build Docker images from Dockerfiles.
+  docker_image:
+    name: phpmyadmin
+    tag: latest
+    source: build
+    build:
+      path: "/vagrant/pma"
+      pull: false
+    state: present
 
 - name: Does container exist?
   ansible.builtin.debug:
