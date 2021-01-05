@@ -36,7 +36,7 @@
     ports: "3306:3306"
     env:
       MYSQL_ROOT_PASSWORD: ogn
-      MYSQL_DATABASE: OGNDB
+      MYSQL_DATABASE: APRSLOG
       MYSQL_USER: ogn
       MYSQL_PASSWORD: ogn
     network_mode: mynetsql
@@ -60,14 +60,6 @@
     name: phpmyadmin
     state: present
 
-- name: Create a new database with name 'APRSLOG'
-  community.mysql.mysql_db:
-     name: APRSLOG
-     login_host: 172.17.0.2
-     login_user: root
-     login_password: ogn
-     unsafe_login_password: true
-     state: present
 # Copy database dump file to remote host and restore it to database 'my_db'
 - name: Copy database dump file
   copy:
