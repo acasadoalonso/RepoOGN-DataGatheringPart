@@ -51,7 +51,7 @@
     state: present
 
 - name: Create a new database with name 'APRSLOG'
-   community.mysql.mysql_db:
+  community.mysql.mysql_db:
      name: APRSLOG
      login_host: mariadb
      login_user: root
@@ -59,8 +59,8 @@
      unsafe_login_password: true
      state: present
 # Copy database dump file to remote host and restore it to database 'my_db'
- - name: Copy database dump file
-   copy:
+- name: Copy database dump file
+  copy:
      src: "./APRSLOG.template.sql"
      dest: /tmp
 

@@ -3,7 +3,7 @@
   become: true
 
   vars:
-    build_root: /vagrant/provisioning
+    build_root: /vagrant/
 
   pre_tasks:
     - name: Update apt cache if needed.
@@ -15,3 +15,4 @@
   tasks:
     - import_tasks: setup.yml
     - import_tasks: docker.yml
+    - import_tasks: basicpak.yml
