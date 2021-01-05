@@ -26,7 +26,6 @@
     state: present
     ipam_config:
       - subnet: 172.17.0.0/24
-        gateway: 172.17.0.0
         iprange: 172.17.0.0/26
         aux_addresses:
           mariadb: 172.17.0.2
