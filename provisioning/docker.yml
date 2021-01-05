@@ -16,7 +16,7 @@
     ports: "3306:3306"
     env:
       MYSQL_ROOT_PASSWORD: ogn
-      MYSQL_DATABASE: APRSLOG
+      MYSQL_DATABASE: OGNDB
       MYSQL_USER: ogn
       MYSQL_PASSWORD: ogn
     network_mode: mynetsql
@@ -37,19 +37,27 @@
 # Copy database dump file to remote host and restore it to database 'my_db'
 - name: Copy database dump file
   copy:
-     src: "./APRSLOG.template.sql"
+     src: "./DBschema.sql"
+     dest: /tmp
+- name: Copy adduser file
+  copy:
+     src: "./adduser.sql"
      dest: /tmp
 - name: Copy APRSLOG shell file
   copy:
-     src: "./APRSLOG.sh"
+     src: "./OGNDB.sh"
      dest: /tmp
-- name: Copy GLIDERS shel file
+- name: Copy GLIDERS shell file
   copy:
      src: "./GLIDERS.sh"
      dest: /tmp/GLIDERS.sh
+- name: Copy ADDUSER shell file
+  copy:
+     src: "./ADDUSER.sh"
+     dest: /tmp/ADDUSER.sh
 
 - name: Restore database
-  command: "bash /tmp/APRSLOG.sh"
+  command: "bash /tmp/OGNDB.sh"
 
 - name: Download GLIDERS.sql
   get_url:
