@@ -25,12 +25,12 @@
     name: mynetsql
     state: present
     ipam_config:
-      - subnet: 172.18.0.0/24
-        gateway: 172.18.0.0
-        iprange: 172.18.0.0/26
+      - subnet: 172.17.0.0/24
+        gateway: 172.17.0.0
+        iprange: 172.17.0.0/26
         aux_addresses:
-          mariadb: 172.18.0.2
-          pma: 172.18.0.3
+          mariadb: 172.17.0.2
+          pma: 172.17.0.3
 - name: Run a MARIADB MySQL container.
   docker_container:
     image: mariadb:latest
@@ -46,7 +46,7 @@
     network_mode: mynetsql
     networks:
       - name: mynetsql
-        ipv4_address: 172.18.0.2
+        ipv4_address: 172.17.0.2
 
 - name: Create database user with name 'ogntest' and password 'ogntest' with all database privileges
   community.mysql.mysql_user:
