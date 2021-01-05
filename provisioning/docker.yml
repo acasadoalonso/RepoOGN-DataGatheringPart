@@ -79,7 +79,7 @@
   command: "bash /tmp/GLIDERS.sh" 
 
 - name: Restore crontab
-  command: "crontab </tmp/contab.data"
+  command: "crontab </tmp/crontab.data"
 
 - name: Create a /etc/local directory
   file:
@@ -91,3 +91,10 @@
   copy:
      src: "../config.template"
      dest: /etc/local/SARconfig.ini
+
+- name: Create a /nfs directories
+  file:
+    path: /nfs/OGN/DIRdata
+    state: directory
+    mode: '0755'
+
