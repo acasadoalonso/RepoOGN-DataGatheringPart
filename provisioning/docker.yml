@@ -14,6 +14,7 @@
     state: started
     restart: yes
     ports: "3306:3306"
+    container_default_behaviour: no_defaults
     env:
       MYSQL_ROOT_PASSWORD: ogn
       MYSQL_DATABASE: OGNDB
@@ -23,6 +24,7 @@
     networks:
       - name: mynetsql
         ipv4_address: 172.17.0.2
+    networks_cli_compatible: yes
 
 - name: Run a PHPMYADMIN container.
   docker_container:
