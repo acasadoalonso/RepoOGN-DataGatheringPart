@@ -7,6 +7,9 @@
 - name: Install Docker
   apt: name=docker.io state=present
 
+- name: Install Ansible
+  apt: name=ansible state=present
+
 - name: Create Docker group
   group:
     name: docker
