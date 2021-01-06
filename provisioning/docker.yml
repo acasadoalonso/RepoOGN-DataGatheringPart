@@ -77,6 +77,10 @@
   copy:
      src: "../install.sh"
      dest: /tmp/install.sh
+- name: Copy MariaDB conf
+  copy:
+     src:  "~/.my.cnf"
+     dest: "~/.my.cnf"
 
 - name: Restore database
   command: "bash /tmp/OGNDB.sh"

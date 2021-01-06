@@ -12,8 +12,9 @@ fi
 if [ ! -f /tmp/commoninstall.sh  ]				#
 then								#
      bash commoninstall.sh $sql					#
-fi
-sudo apt-get -y autoremove
+fi								#
+sudo pat-get -y install mailutils				#
+sudo apt-get -y autoremove					#
 sudo cat /etc/apache2/apache2.conf html.dir 	>>temp.conf	#
 sudo echo "ServerName SAR  " >>temp.conf			#
 sudo mv temp.conf /etc/apache2/apache2.conf			#
@@ -28,7 +29,7 @@ echo "Installing the templates needed  ...." 			#
 echo "================================================" 	#
 echo								#
 pwd								#
-cd /var/www/html/main
+cd /var/www/html/main						#
 sudo cp config.template /etc/local/SARconfig.ini		#
 cp aliases ~/.bash_aliases					#
 crontab <crontab.data						#
@@ -47,12 +48,12 @@ echo "Create the SARogn login-path: Type assigned password"	#
 mysql_config_editor set --login-path=SARogn --user=ogn --password 
 mysql_config_editor print --all					#
 echo "CREATE DATABASE OGNDB" | mysql -u root -pogn		#
-if [ $sql = 'MySQL' ]			
-then	
+if [ $sql = 'MySQL' ]						#
+then								#
    mysql --login-path=SARogn --database OGNDB < ogndb/DBschema.sql #
-else
+else								#
    mysql -u ogn -pogn --database OGNDB < ogndb/DBschema.sql	#
-fi
+fi								#
 echo								#
 cd /tmp								#
 wget acasado.es:60080/files/GLIDERS.sql				#
@@ -77,6 +78,8 @@ echo								#
 echo								#
 echo								#
 pwd								#
+if [ ! -d ~/src ]						#
+then								#
 	mkdir ~/src   						#
 	ln -s $(pwd) ~/src/SARsrc				#
 fi								#

@@ -50,7 +50,7 @@ sudo tasksel install lamp-server                                #
 sudo apt-get install -y percona-toolkit				#
 sudo apt-get install -y sqlite3 ntpdate				#
 sudo apt-get install -y python3-dev python3-pip 		#
-sudo apt-get install -y figlet inetutils-* mailutils		#
+sudo apt-get install -y figlet inetutils-* 			#
 sudo apt-get install -y avahi-daemon libcurl4-openssl-dev       #
 sudo apt-get install -y dos2unix libarchive-dev	 autoconf mc	#
 sudo apt-get install -y pkg-config git	mutt vim		# 
@@ -70,9 +70,15 @@ sudo phpenmod mbstring						#
 echo								#
 echo "Installing phpmyadmin  ... "				#
 echo								#
-sudo apt-get install -y phpmyadmin 				#
-sudo service apache2 restart					#
-sudo apt-get -y autoremove					#
+if [ $sql = 'MySQL' ]			
+then		
+    sudo apt-get install -y phpmyadmin 				#
+    sudo service apache2 restart				#
+    sudo apt-get -y autoremove					#
+    echo "Running msqladmin .... assign root password ... "	#
+    sudo mysqladmin -u root password ogn			#
+    sudo mysql_secure_installation				#
+fi								#
 echo								#
 echo " "							#
 echo "Installing the PYTHON modules required  ..."		#
@@ -123,9 +129,11 @@ echo "Installing the templates needed  ...." 			#
 echo "=================================================="	#
 echo " "							#
 echo								#
-cd /var/www/html/main						#
-echo "Running msqladmin .... assign root password ... "		#
-sudo mysqladmin -u root password ogn				#
+if [ ! -d /var/www/html/main ]					#
+then								#
+     mkdir /var/www/html/main					#
+     chmod 777 /var/www/html/main				#
+fi								#
 cd /var/www/html/main						#
 if [ $sql = 'docker' ]			
 then			
@@ -144,9 +152,9 @@ then
    sudo bash dockerfiles/mariadbpma.sh
    sudo mysql -u root -pogn -h MARIADB <doc/adduser.sql	
    echo "SET GLOBAL log_bin_trust_function_creators = 1; " | sudo mysql -u root -pogn -h MARIADB
+   sudo mysql_secure_installation				#
 fi
 cd								#
-sudo mysql_secure_installation					#
 sudo apt-get install percona-toolkit				#
 sudo dpkg-reconfigure tzdata					#
 sudo apt-get -y autoremove					#
