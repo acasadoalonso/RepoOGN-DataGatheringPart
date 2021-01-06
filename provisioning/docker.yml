@@ -79,7 +79,7 @@
   command: "bash /tmp/GLIDERS.sh" 
 
 - name: Restore crontab
-  command: "crontab </tmp/crontab.data"
+  command: "/usr/bin/crontab </tmp/crontab.data"
 
 - name: Create a /etc/local directory
   file:
