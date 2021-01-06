@@ -4,6 +4,7 @@ sudo apt-get update
 sudo apt-get install -y apache2
 if [ ! -d /home/vagrant/src ]
 then 
+   sudo -u vagrant mkdir /home/vagrant/src
    sudo -u vagrant ln -s /vagrant/public/main /home/vagrant/src/SARsrc
 fi
 if [ -f /nfs/hosts ]
