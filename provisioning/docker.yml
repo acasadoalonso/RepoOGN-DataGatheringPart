@@ -114,3 +114,10 @@
     state: directory
     mode: '0755'
 
+- name: Give permissions to the log file
+  file:
+    path: /var/log/syslog
+    owner: root
+    group: root
+    mode: '1755'
+
