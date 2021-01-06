@@ -57,6 +57,10 @@
   copy:
      src: "./ADDUSER.sh"
      dest: /tmp/ADDUSER.sh
+- name: Copy CRONTAB shell file
+  copy:
+     src: "./CRONTAB.sh"
+     dest: /tmp/CRONTAB.sh
 - name: Copy crontab data
   copy:
      src: "../crontab.data"
@@ -79,7 +83,7 @@
   command: "bash /tmp/GLIDERS.sh" 
 
 - name: Restore crontab
-  command: "/usr/bin/crontab </tmp/crontab.data"
+  command: "bash /tmp/CRONTAB.sh"
 
 - name: Create a /etc/local directory
   file:
