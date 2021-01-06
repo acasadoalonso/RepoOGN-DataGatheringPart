@@ -139,7 +139,7 @@ then								#
      chmod 777 /var/www/html/main				#
 fi								#
 cd /var/www/html/main						#
-if [ $sql = 'docker' || $sql == 'MariaDB' ]			#
+if [ $sql = 'docker' -o $sql == 'MariaDB' ]			#
 then								#
    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
    sudo apt-key fingerprint 0EBFCD88

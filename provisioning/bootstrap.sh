@@ -2,7 +2,10 @@
 
 sudo apt-get update
 sudo apt-get install -y apache2
-sudo -u vagrant ln -s /vagrant/public/main /home/vagrant/src
+if [ ! -d /home/vagrant/src ]
+then 
+   sudo -u vagrant ln -s /vagrant/public/main /home/vagrant/src
+fi
 if [ -f /nfs/hosts ]
 then 
 	sudo cat /nfs/hosts >>/etc/hosts
