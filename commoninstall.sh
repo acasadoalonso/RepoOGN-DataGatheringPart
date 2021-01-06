@@ -156,7 +156,6 @@ then
 fi
 cd								#
 sudo apt-get install percona-toolkit				#
-sudo dpkg-reconfigure tzdata					#
 sudo apt-get -y autoremove					#
 echo								#
 echo " "							#

@@ -183,6 +183,7 @@ echo "================================================" 	#
 echo "Optional steps ... "					#
 echo "================================================" 	#
 echo								#
+sudo dpkg-reconfigure tzdata					#
 echo								#
 touch SARinstallation.done					#
 echo " "							#
