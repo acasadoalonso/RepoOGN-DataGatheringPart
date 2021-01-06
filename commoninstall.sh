@@ -50,8 +50,8 @@ then								#
 	sudo apt policy mysql-server				#
 	sudo apt install mysql-server=5.7.32-1ubuntu18.04	#
 	sudo apt install mysql-client=5.7.32-1ubuntu18.04	#
+        sudo tasksel install lamp-server                                #
 fi								#
-sudo tasksel install lamp-server                                #
 sudo apt-get install -y percona-toolkit				#
 sudo apt-get install -y sqlite3 ntpdate				#
 sudo apt-get install -y python3-dev python3-pip 		#
@@ -140,7 +140,7 @@ then								#
 fi								#
 cd /var/www/html/main						#
 if [ $sql = 'docker' || $sql == 'MariaDB' ]			#
-then			a					#
+then								#
    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
    sudo apt-key fingerprint 0EBFCD88
    sudo add-apt-repository \
