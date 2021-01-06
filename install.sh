@@ -9,7 +9,10 @@ if [ $# = 0 ]; then
 else
 	sql=$1
 fi
-bash commoninstall.sh $sql					#
+if [ ! -f /tmp/commoninstall.sh  ]				#
+then								#
+     bash commoninstall.sh $sql					#
+fi
 sudo apt-get -y autoremove
 sudo cat /etc/apache2/apache2.conf html.dir 	>>temp.conf	#
 sudo echo "ServerName SAR  " >>temp.conf			#
@@ -74,8 +77,6 @@ echo								#
 echo								#
 echo								#
 pwd								#
-if [ ! -d ~/src  ]						#
-then								#
 	mkdir ~/src   						#
 	ln -s $(pwd) ~/src/SARsrc				#
 fi								#
