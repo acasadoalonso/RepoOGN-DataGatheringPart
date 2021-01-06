@@ -1,2 +1,2 @@
 #!/bin/bash 
-/usr/bin/crontab </tmp/crontab.data 
+sudo -u vagrant /usr/bin/crontab </tmp/crontab.data 

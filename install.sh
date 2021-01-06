@@ -13,13 +13,13 @@ if [ ! -f /tmp/commoninstall.sh  ]				#
 then								#
      bash commoninstall.sh $sql					#
 fi								#
-sudo pat-get -y install mailutils				#
+sudo apt-get -y install mailutils				#
 sudo apt-get -y autoremove					#
 sudo cat /etc/apache2/apache2.conf html.dir 	>>temp.conf	#
 sudo echo "ServerName SAR  " >>temp.conf			#
 sudo mv temp.conf /etc/apache2/apache2.conf			#
 sudo service apache2 restart					#
-if [ -d /etc/local/ ]						#
+if [ ! -d /etc/local/ ]						#
 then								#
     sudo mkdir /etc/local					#
 fi								#
@@ -55,9 +55,12 @@ else								#
    mysql -u ogn -pogn --database OGNDB < ogndb/DBschema.sql	#
 fi								#
 echo								#
-cd /tmp								#
-wget acasado.es:60080/files/GLIDERS.sql				#
-mysql -u ogn -pogn  OGNDB </tmp/GLIDERS.sql			#
+if [ ! -f /tmp/GLIDERS.sql  ]				#
+then								#
+   cd /tmp								#
+   wget acasado.es:60080/files/GLIDERS.sql				#
+   mysql -u ogn -pogn  OGNDB </tmp/GLIDERS.sql			#
+fi								#
 cd /var/www/html/main						#
 if [ $sql = 'docker' ]			
 then			
@@ -68,7 +71,7 @@ then
    sudo mysql -u ogn -pogn -h MARIADB --database OGNDB <ogndb/DBschema.sql 
    sudo mysql -u ogn -pogn -h MARIADB --database OGNDB </tmp/GLIDERS.sql
 fi
-rm /tmp/GLIDERS.sql						#
+sudo rm /tmp/GLIDERS.sql						#
 echo " "							#
 echo								#
 echo "================================================" 	#
