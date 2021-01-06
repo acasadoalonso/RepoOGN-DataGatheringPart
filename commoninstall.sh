@@ -37,10 +37,15 @@ echo "=================================================="	#
 echo " "							#
 echo								#
 cd /var/www/html/main						#
-sudo apt install -y mariadb-server mariadb-client		#
+sudo apt install -y mariadb-client				#
 sudo apt install -y libmariadb-dev				#
-if [ $sql = 'MySQL' ]			
-then		
+if [ $sql = 'MariaDB' ]						#
+then								#
+     sudo apt install -y mariadb-server 			#
+     sudo -H python3 -m pip install mariadb            		#
+fi								#
+if [ $sql = 'MySQL' ]						#
+then								#
 	sudo apt-get install -y tasksel  			#
 	sudo apt policy mysql-server				#
 	sudo apt install mysql-server=5.7.32-1ubuntu18.04	#
@@ -94,7 +99,6 @@ sudo -H python3 -m pip install tqdm psutil python-dateutil	#
 sudo -H python3 -m pip install ttn               		#
 sudo -H python3 -m pip install pyserial 			#
 sudo -H python3 -m pip install eciespy pycryptodome rsa         #
-sudo -H python3 -m pip install mariadb               		#
 sudo -H python3 -m pip install ansible               		#
 sudo -H python3 -m pip install ansible-lint            		#
 sudo -H python3 -m pip install molecule               		#
@@ -135,7 +139,7 @@ then								#
      chmod 777 /var/www/html/main				#
 fi								#
 cd /var/www/html/main						#
-if [ $sql = 'docker' ]			
+if [ $sql = 'docker' || $sql == 'MariaDB' ]			
 then			
    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
    sudo apt-key fingerprint 0EBFCD88

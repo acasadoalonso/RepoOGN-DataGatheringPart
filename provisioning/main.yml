@@ -14,6 +14,8 @@
       apt: name=ansible state=present
     - name: Update ansible.
       command: ansible-galaxy collection install community.mysql
+    - name: Install Maria-DB Client
+      apt: name=mariadb-client state=present
     - name: Autoremove
       apt: autoremove=yes
 
