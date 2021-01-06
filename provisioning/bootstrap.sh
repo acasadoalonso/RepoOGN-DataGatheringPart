@@ -8,11 +8,11 @@ if ! [ -L /var/www ]; then
 fi
 if [ -f /nfs/hosts ]
 then 
-	sudo cat /nfs/hosts /etc/hosts
+	sudo cat /nfs/hosts >>/etc/hosts
 fi
 
 if [ -f /tmp/commoninstall.sh ]
 then 
-	sudo bash /tmp/commoninstall.sh
+	sudo cat /tmp/commoninstall.sh
 fi
 
