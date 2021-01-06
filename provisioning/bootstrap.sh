@@ -11,7 +11,12 @@ fi
 if [ -f /tmp/commoninstall.sh ]
 then 
         sudo bash /tmp/commoninstall.sh
+	echo "======================================================================="
 	echo "Install the rest of the software running     bash /tmp/commoninstall.sh"
 	echo "follow by running                            bash /tmp/install.sh"
+	echo "======================================================================="
 fi
 sudo apt-get autoremove
+echo "======================================================================"
+echo "                   end of bootstrap                                   "
+echo "======================================================================"
