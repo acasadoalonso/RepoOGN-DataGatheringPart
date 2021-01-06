@@ -75,8 +75,8 @@ sudo phpenmod mbstring						#
 echo								#
 echo "Installing phpmyadmin  ... "				#
 echo								#
-if [ $sql = 'MySQL' ]			
-then		
+if [ $sql = 'MySQL' ]						#
+then								#
     sudo apt-get install -y phpmyadmin 				#
     sudo service apache2 restart				#
     sudo apt-get -y autoremove					#
@@ -104,10 +104,10 @@ sudo -H python3 -m pip install ansible-lint            		#
 sudo -H python3 -m pip install molecule               		#
 sudo -H python3 -m pip install docker               		#
 sudo -H python3 -m pip install yamllint               		#
-if [ $sql = 'MySQL' ]					
-then	
+if [ $sql = 'MySQL' ]						#	
+then	a							#
 	sudo -H pip3 uninstall mysqlclient			#
-fi
+fi								#
 sudo apt-get install -y libmysqlclient-dev 			#
 sudo -H pip3 install --no-binary mysqlclient mysqlclient 	#
 cd /var/www/html/						#
@@ -139,8 +139,8 @@ then								#
      chmod 777 /var/www/html/main				#
 fi								#
 cd /var/www/html/main						#
-if [ $sql = 'docker' || $sql == 'MariaDB' ]			
-then			
+if [ $sql = 'docker' || $sql == 'MariaDB' ]			#
+then			a					#
    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
    sudo apt-key fingerprint 0EBFCD88
    sudo add-apt-repository \
@@ -157,7 +157,7 @@ then
    sudo mysql -u root -pogn -h MARIADB <doc/adduser.sql	
    echo "SET GLOBAL log_bin_trust_function_creators = 1; " | sudo mysql -u root -pogn -h MARIADB
    sudo mysql_secure_installation				#
-fi
+fi								#
 cd								#
 sudo apt-get install percona-toolkit				#
 sudo apt-get -y autoremove					#
