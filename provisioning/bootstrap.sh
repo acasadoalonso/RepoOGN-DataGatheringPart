@@ -11,4 +11,8 @@ then
 	sudo cat /nfs/hosts /etc/hosts
 fi
 
+if [ -f /tmp/commoninstall.sh ]
+then 
+	sudo bash /tmp/commoninstall.sh
+fi
 
