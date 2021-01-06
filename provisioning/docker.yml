@@ -43,7 +43,7 @@
      dest: /tmp
 - name: Copy adduser file
   copy:
-     src: "../doc//adduser.sql"
+     src: "../doc/adduser.sql"
      dest: /tmp
 - name: Copy OGNDB shell file
   copy:
@@ -69,6 +69,10 @@
   copy:
      src: "../aliases"
      dest: ~/.bash_aliases
+- name: Copy COMMON INSTALL
+  copy:
+     src: "../commoninstall.sh"
+     dest: /tmp/commoninstall.sh
 
 - name: Restore database
   command: "bash /tmp/OGNDB.sh"
