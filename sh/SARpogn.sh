@@ -49,7 +49,7 @@ echo "====================="        				>>SARproc$dt.log
 # create directory if needed, for example at the beginning of the month
 if [ ! -d $dir ]
 then
-    mkdir $dir
+    mkdir -p $dir
 fi
 mv FD*    $dir
 echo "Server: "$(hostname)     					>>SARproc$dt.log

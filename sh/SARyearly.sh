@@ -7,7 +7,7 @@ mysql --login-path=SARogn -e "INSERT into OGNDBARCHIVE.METEO (SELECT * FROM OGND
 mysql --login-path=SARogn -e "DELETE from OGNDB.METEO                                   WHERE OGNDB.METEO.date < '$(date +%y)0000' ;"
 mysql --login-path=SARogn -e "INSERT into OGNDBARCHIVE.OGNDATA (SELECT * FROM OGNDB.OGNDATA WHERE OGNDB.OGNDATA.date < '$(date +%y)0000');"
 mysql --login-path=SARogn -e "DELETE from OGNDB.OGNDATA                                     WHERE OGNDB.OGNDATA.date < '$(date +%y)0000' ;"
-mkdir data/Y$(date +%y)
-mkdir log/Y$(date +%y)
-mkdir fd/Y$(date +%y)
+mkdir -p data/Y$(date +%y)
+mkdir -p log/Y$(date +%y)
+mkdir -p fd/Y$(date +%y)
 cd
