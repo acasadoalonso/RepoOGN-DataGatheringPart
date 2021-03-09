@@ -53,8 +53,12 @@ echo "drop table GLIDERS;"           |                mysql --login-path=SARogn 
 sqlite3 SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sqlite3-to-mysql.py | mysql --login-path=SARogn -h $server2 SWIFACE 	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
 mysqldump --login-path=SARogn -h $server --add-drop-table APRSLOG GLIDERS                                       >/var/www/html/files/GLIDERS.sql  
-mysql --defaults-extra-file=~/.mariadb APRSLOG                                                                  </var/www/html/files/GLIDERS.sql  
-mysql --defaults-extra-file=~/.mariadb OGNDB                                                                    </var/www/html/files/GLIDERS.sql  
-mysql --defaults-extra-file=~/.mariadb SWIFACE                                                                  </var/www/html/files/GLIDERS.sql  
+if [[ $(hostname) == 'CasadoUbuntu' ]]
+then
+	echo "Update MariaDB"
+	mysql --defaults-extra-file=~/.mariadb APRSLOG                                                                  </var/www/html/files/GLIDERS.sql  
+	mysql --defaults-extra-file=~/.mariadb OGNDB                                                                    </var/www/html/files/GLIDERS.sql  
+	mysql --defaults-extra-file=~/.mariadb SWIFACE                                                                  </var/www/html/files/GLIDERS.sql  
+fi
 echo "============================================================================================================================================="
 cd 
