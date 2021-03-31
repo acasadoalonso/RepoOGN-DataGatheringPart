@@ -335,7 +335,11 @@ while True:                                 # until end of file
                                             # increase the number of records read
             fid[ident] += 1
             course = msg['course']
+            if course is None:
+               course = 0
             speed = msg['speed']
+            if speed is None:
+               speed = 0
             uniqueid = msg['uniqueid']
             if len(uniqueid) > 10:
                 uniqueid = uniqueid[0:10]   # in this database only 10 chars
@@ -354,7 +358,7 @@ while True:                                 # until end of file
                 ftkok[otime] = ident        # list by take off time
                                             # if we do not have the take off time ??
             if speed < 20 and speed > 5 and ftkot[ident] != 0:
-                flndt[ident] = otime           # store the landing time
+                flndt[ident] = otime        # store the landing time
             if station in fsloc and longitude != -1:  # if we have the station yet
                                             # distance to the station
                 distance = geodesic((latitude, longitude), fsloc[station]).km
