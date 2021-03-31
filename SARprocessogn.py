@@ -238,7 +238,7 @@ while True:                                 # until end of file
     callsign = ident                        # get the call sign FLARM ID
 
     if (data.find('TCPIP*') != -1) or path == 'aprs_receiver':         # ignore the APRS lines
-        ident = callsign                    # station ID
+        ident = callsign.upper()            # station ID
         if not ident in fsloc:
                                             # save the loction of the station
             fsloc[ident] = (latitude, longitude)
@@ -337,6 +337,7 @@ while True:                                 # until end of file
                                             # if we do not have the take off time ??
         if speed < 20 and speed > 5 and ftkot[ident] != 0:
             flndt[ident] = otime            # store the landing time
+        station=station.upper()
         if station in fsloc:                # if we have the station yet
                                             # increase the number of fixes for that station
             fsfix[station] += 1

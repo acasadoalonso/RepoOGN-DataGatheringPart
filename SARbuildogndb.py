@@ -309,7 +309,7 @@ while True:                                 # until end of file
 
         if path == 'receiver' or path == 'aprs_receiver':
             if not ident in fsloc:		    # if not detected yet
-                # save the loction of the station
+                # save the location of the station
                 fsloc[ident] = (latitude, longitude)
                 fslla[ident] = latitude
                 fsllo[ident] = longitude
