@@ -22,17 +22,17 @@ then
 	logger  -t $0 "OGN Repo is alive, should be down at sunset "$(hostname)
 	echo $(hostname)" Process running at sunset: "$pnum 	>>SARproc$dt.log
 fi
-python3 ../src/SARsrc/SARprocessogn.py 				>>SARproc$dt.log
+python3 ~/src/SARsrc/SARprocessogn.py 				>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
-python3 ../src/SARsrc/SARbuildogndb.py prt			>>SARproc$dt.log
+python3 ~/src/SARsrc/SARbuildogndb.py prt			>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
-python3 ../src/SARsrc/SARbuildogndb.py MYSQL DATA$dt.log  	>>SARproc$dt.log
+python3 ~/src/SARsrc/SARbuildogndb.py MYSQL DATA$dt.log  	>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
-python3 ../src/SARsrc/SARanalysisrelay.py -n DATA$dt.log -i 5	>>SARproc$dt.log
+python3 ~/src/SARsrc/SARanalysisrelay.py -n DATA$dt.log -i 5	>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log

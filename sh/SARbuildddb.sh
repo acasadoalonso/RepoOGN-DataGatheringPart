@@ -41,16 +41,16 @@ echo "Registered gliders from sqlite3: "
 echo "select count(*) from GLIDERS;" |                sqlite3 -echo SAROGN.db
 echo "drop table GLIDERS;"           |                mysql --login-path=SARogn -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL OGNDB: "$server
-sqlite3 SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sqlite3-to-mysql.py | mysql --login-path=SARogn  OGNDB	2>/dev/null
+sqlite3 SAROGN.db ".dump GLIDERS" | python3 ~/src/SARsrc/sqlite3-to-mysql.py | mysql --login-path=SARogn  OGNDB	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL APRSLOG: "$server
 echo "delete from GLIDERS;"           |                mysql --login-path=SARogn -h $server APRSLOG 		2>/dev/null
-#sqlite3  SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sqlite3-to-mysql.py | mysql --login-path=SARogn APRSLOG	2>/dev/null
+#sqlite3  SAROGN.db ".dump GLIDERS" | python3 ~/src/SARsrc/sqlite3-to-mysql.py | mysql --login-path=SARogn APRSLOG	2>/dev/null
 mysql --login-path=SARogn -h $server APRSLOG < ~/src/SARsrc/sh/copyGLIDERS.sql 					2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server APRSLOG 		2>/dev/null
 echo "Copy from sqlite3 to MySQL SWIFACE: "$server2 
 echo "drop table GLIDERS;"           |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
-sqlite3 SAROGN.db ".dump GLIDERS" | python3 ../src/SARsrc/sqlite3-to-mysql.py | mysql --login-path=SARogn -h $server2 SWIFACE 	2>/dev/null
+sqlite3 SAROGN.db ".dump GLIDERS" | python3 ~/src/SARsrc/sqlite3-to-mysql.py | mysql --login-path=SARogn -h $server2 SWIFACE 	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
 mysqldump --login-path=SARogn -h $server --add-drop-table APRSLOG GLIDERS                                       >/var/www/html/files/GLIDERS.sql  
 if [[ $(hostname) == 'CasadoUbuntu' ]]

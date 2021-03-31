@@ -6,7 +6,7 @@ else
 fi
 
 cd /nfs/OGN/DIRdata
-python3 ../src/SARsrc/SARfcst.py $city			>>SARfcst$(date +%y%m%d).log
+python3 ~/src/SARsrc/SARfcst.py $city			>>SARfcst$(date +%y%m%d).log
 echo $(date +%H:%M:%S)      				>>SARfcst$(date +%y%m%d).log
 echo "============="        				>>SARfcst$(date +%y%m%d).log
 echo "======"$(hostname)"======="  			>>SARfcst$(date +%y%m%d).log
