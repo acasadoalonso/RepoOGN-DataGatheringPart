@@ -58,7 +58,7 @@ echo "Copy from sqlite3 to MySQL SWIFACE: "$server2
 echo "drop table GLIDERS;"           |                mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 		2>/dev/null
 sqlite3 SAROGN.db ".dump GLIDERS" | python3 ~/src/SARsrc/sqlite3-to-mysql.py | mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 		2>/dev/null
-mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table APRSLOG GLIDERS                                       >/var/www/html/files/GLIDERS.sql  
+mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB GLIDERS                                       >/var/www/html/files/GLIDERS.sql  
 if [[ $(hostname) == 'CasadoUbuntu' ]]
 then
 	echo "Update MariaDB"
