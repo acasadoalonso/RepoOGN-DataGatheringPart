@@ -15,6 +15,11 @@ if [ $#  -gt  1 ]; then
 	server2=$2
 fi
 echo "Server2: "$server2
+
+DBuser=$(echo  `grep '^DBuser' /etc/local/SARconfig.ini` | sed 's/=//g' | sed 's/^DBuser//g')
+DBpasswd=$(echo  `grep '^DBpasswd' /etc/local/SARconfig.ini` | sed 's/=//g' | sed 's/^DBpasswd//g' | sed 's/ //g' )
+echo "-u "$DBuser" --password="$DBpasswd
+
 rm *.fln 2>/dev/null
 rm *.csv 2>/dev/null
 rm *.txt 2>/dev/null
@@ -31,6 +36,7 @@ rm *.fln
 rm *.txt
 rm *.csv
 rm *.log
+echo "Table GLIDERS on SAROGN.db done ..."
 cd /nfs/OGN/DIRdata
 echo
 echo "Build the MySQL databases on the servers:"
@@ -39,20 +45,20 @@ echo "Server:  "$server
 echo "Server2: "$server2
 echo "Registered gliders from sqlite3: "
 echo "select count(*) from GLIDERS;" |                sqlite3 -echo SAROGN.db
-echo "drop table GLIDERS;"           |                mysql --login-path=SARogn -h $server OGNDB 		2>/dev/null
+echo "drop table GLIDERS;"           |                mysql -u $DBuser -p$DBpasswd -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL OGNDB: "$server
-sqlite3 SAROGN.db ".dump GLIDERS" | python3 ~/src/SARsrc/sqlite3-to-mysql.py | mysql --login-path=SARogn  OGNDB	2>/dev/null
-echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server OGNDB 		2>/dev/null
+sqlite3 SAROGN.db ".dump GLIDERS" | python3 ~/src/SARsrc/sqlite3-to-mysql.py | mysql -u $DBuser -p$DBpasswd  OGNDB	2>/dev/null
+echo "select count(*) from GLIDERS;" |                mysql -u $DBuser -p$DBpasswd -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL APRSLOG: "$server
-echo "delete from GLIDERS;"           |                mysql --login-path=SARogn -h $server APRSLOG 		2>/dev/null
-#sqlite3  SAROGN.db ".dump GLIDERS" | python3 ~/src/SARsrc/sqlite3-to-mysql.py | mysql --login-path=SARogn APRSLOG	2>/dev/null
-mysql --login-path=SARogn -h $server APRSLOG < ~/src/SARsrc/sh/copyGLIDERS.sql 					2>/dev/null
-echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server APRSLOG 		2>/dev/null
+echo "delete from GLIDERS;"           |                mysql -u $DBuser -p$DBpasswd -h $server APRSLOG 		2>/dev/null
+#sqlite3  SAROGN.db ".dump GLIDERS" | python3 ~/src/SARsrc/sqlite3-to-mysql.py | mysql -u $DBuser -p$DBpasswd APRSLOG	2>/dev/null
+mysql -u $DBuser -p$DBpasswd -h $server APRSLOG < ~/src/SARsrc/sh/copyGLIDERS.sql 					2>/dev/null
+echo "select count(*) from GLIDERS;" |                mysql -u $DBuser -p$DBpasswd -h $server APRSLOG 		2>/dev/null
 echo "Copy from sqlite3 to MySQL SWIFACE: "$server2 
-echo "drop table GLIDERS;"           |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
-sqlite3 SAROGN.db ".dump GLIDERS" | python3 ~/src/SARsrc/sqlite3-to-mysql.py | mysql --login-path=SARogn -h $server2 SWIFACE 	2>/dev/null
-echo "select count(*) from GLIDERS;" |                mysql --login-path=SARogn -h $server2 SWIFACE 		2>/dev/null
-mysqldump --login-path=SARogn -h $server --add-drop-table APRSLOG GLIDERS                                       >/var/www/html/files/GLIDERS.sql  
+echo "drop table GLIDERS;"           |                mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 		2>/dev/null
+sqlite3 SAROGN.db ".dump GLIDERS" | python3 ~/src/SARsrc/sqlite3-to-mysql.py | mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 	2>/dev/null
+echo "select count(*) from GLIDERS;" |                mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 		2>/dev/null
+mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table APRSLOG GLIDERS                                       >/var/www/html/files/GLIDERS.sql  
 if [[ $(hostname) == 'CasadoUbuntu' ]]
 then
 	echo "Update MariaDB"
