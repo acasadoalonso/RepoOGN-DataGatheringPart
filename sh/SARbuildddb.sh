@@ -18,7 +18,6 @@ echo "Server2: "$server2
 
 DBuser=$(echo  `grep '^DBuser' /etc/local/SARconfig.ini` | sed 's/=//g' | sed 's/^DBuser//g')
 DBpasswd=$(echo  `grep '^DBpasswd' /etc/local/SARconfig.ini` | sed 's/=//g' | sed 's/^DBpasswd//g' | sed 's/ //g' )
-echo "-u "$DBuser" --password="$DBpasswd
 
 rm *.fln 2>/dev/null
 rm *.csv 2>/dev/null

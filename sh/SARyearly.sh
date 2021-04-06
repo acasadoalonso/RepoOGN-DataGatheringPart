@@ -3,7 +3,6 @@ cd /nfs/OGN/DIRdata
 
 DBuser=$(echo  `grep '^DBuser' /etc/local/SARconfig.ini` | sed 's/=//g' | sed 's/^DBuser//g')
 DBpasswd=$(echo  `grep '^DBpasswd' /etc/local/SARconfig.ini` | sed 's/=//g' | sed 's/^DBpasswd//g' | sed 's/ //g' )
-echo "-u "$DBuser" --password="$DBpasswd
 
 cp SAROGN.db db/SAROGN.Y$(date +%y).db
 sqlite3 -echo SAROGN.db "delete from OGNDATA;"
