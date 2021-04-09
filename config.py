@@ -57,6 +57,26 @@ try:
 except:
 	SQLite3     = 'SAROGN.db'
 
+try:
+	DDBhost     = cfg.get('server', 'DDBhost').strip("'")
+except:
+	DDBhost     = 'acasado.es'
+
+try:
+	DDBport     = cfg.get('server', 'DDBport').strip("'")
+except:
+	DDBport     = '60082'
+
+try:
+	DDBurl1     = cfg.get('server', 'DDBurl1').strip("'")
+except:
+	DDBurl1     = 'http://acasado.es:60082/download/?j=2'
+
+try:
+	DDBurl2     = cfg.get('server', 'DDBurl2').strip("'")
+except:
+	DDBurl2     = 'http://DDB.glidernet.org/download/?j=2'
+
 if     (MySQLtext == 'True'):
         MySQL       = True
 else:
@@ -98,6 +118,7 @@ if 'USER' in os.environ and prt:
     print("Hostname:              ",        hostname, " Process ID:", processid, "User:", user)
     						                # report the different sections
     print("Config server values:  ",        "MySQL=", MySQL, DBhost, DBuser, DBname, DBpath, SQLite3)
-    print("Config APRS values:    ",        APRS_SERVER_HOST, APRS_SERVER_PORT, APRS_USER, APRS_PASSCODE, APRS_FILTER_DETAILS)
-    print("Config location values:",   		location_name, FLOGGER_LATITUDE, FLOGGER_LONGITUDE)
+    print("Config DDB    values:  ",        "Server=", DDBhost, DDBport, DDBurl1, DDBurl2)
+    print("Config APRS   values:  ",        APRS_SERVER_HOST, APRS_SERVER_PORT, APRS_USER, APRS_PASSCODE, APRS_FILTER_DETAILS)
+    print("Config location values:",	    location_name, FLOGGER_LATITUDE, FLOGGER_LONGITUDE)
 # --------------------------------------#
