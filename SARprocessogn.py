@@ -186,7 +186,8 @@ while True:                                 # until end of file
                 if prt:
                                             # distance
                     print(key, '==>', fsmax[key], ' Kms. and number of fixes: ', fsfix[key])
-        print(paths)
+        if prt:
+           print(paths)
         # work done, finish the reporting now ...
         break
 #--------------------------------------------------------------------------------------------------
@@ -371,12 +372,10 @@ else:
 # addr=addr.encode('utf8')                  # convert it to UTF-8
 # addr=str(addr)                            # convert to str just in case, in order to avoid problems when is redirected to a file.
 addr = ' '
-print("Sources:", fsour)
-print("Aircraft types:", acfttype)
 if prt:
+    print("Sources:", fsour)
+    print("Aircraft types:", acfttype)
     print("Maximun altitude for the day  :", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta, "At: ", mlati, mlong, addr)
-if prt:
     print("Total number of fixes today   :", tfixs)
-if prt:
     print('Bye ... Time now and Time used:', datef, datef - \
         date)                               # report the processing time
