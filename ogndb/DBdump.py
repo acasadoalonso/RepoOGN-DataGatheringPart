@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 import config
 # -*- coding: UTF-8 -*-
-from adsbfuncs import getadsbreg
 MySQL = False
 #
-# DBdump V3.0
+# DBdump V3.1
 #
 
 
@@ -56,6 +55,7 @@ Nominatim(user_agent="Repoogn")
 geolocator = Nominatim(user_agent="Repoogn")
 import logging
 import logging.config
+from adsbfuncs import getadsbreg, getsizeadsbcache
 
 maxdist = 300.0
 fid = {'NONE  ': 0}                         # FLARM ID list
@@ -357,7 +357,14 @@ for key in k:                               # report data
 
     reg = curs.fetchone()
     if reg == None:
-       reg=getadsbreg(gkey)
+       regadsb=getadsbreg(gkey)
+       if regadsb != False:
+          reg=regadsb['Reg']
+       else:
+          reg="NoReg"
+       #print ("GGGG", gkey, getsizeadsbcache(), reg, config.ADSBreg)
+    else:
+       reg = reg[0]
     try:
 
         mlati = fmaxlati[key]

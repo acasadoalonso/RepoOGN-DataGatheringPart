@@ -1,8 +1,14 @@
 #!/bin/bash
-sunsetfile=$"/nfs/OGN/DIRdata/SAR.sunset"
-alive=$"/nfs/OGN/DIRdata/SAR.alive"
+
+if [ -z $CONFIGDIR ]
+then 
+     export CONFIGDIR=/etc/local/
+fi
+DBpath=$(echo    `grep '^DBpath '   $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBpath //g' | sed 's/ //g' )
+sunsetfile=$DBpath"/SAR.sunset"
+alive=$DBpath"/SAR.alive"
 #pid=$"/tmp/SAR.pid"
-pid=$(echo  `grep '^pid' /etc/local/SARconfig.ini` | sed 's/=//g' | sed 's/^pid//g')
+pid=$(echo       `grep '^pid'       $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^pid//g')
 hn=`hostname   `
 if [ $# = 0 ]; then
 	city='Madrid'
@@ -33,7 +39,7 @@ else
 #               restart OGN data collector
     		bash ~/src/SARsrc/sh/SARboot_flight_logger.sh $city
     		logger -t $0 "OGN repo seems down, restarting "$hn
-		echo $(date)" - "$(hostname) >>/nfs/OGN/DIRdata/.SARrestart.log 
+		echo $(date)" - "$(hostname) >>$DBpath/.SARrestart.log 
 	else
     		logger -t $0 $hn" OGN repo seems up: "$dif" Now: "$now" Sunset: "$ss" at: "$city
 	fi

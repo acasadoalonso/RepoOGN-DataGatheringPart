@@ -16,8 +16,13 @@ if [ $#  -gt  1 ]; then
 fi
 echo "Server2: "$server2
 
-DBuser=$(echo  `grep '^DBuser' /etc/local/SARconfig.ini` | sed 's/=//g' | sed 's/^DBuser//g')
-DBpasswd=$(echo  `grep '^DBpasswd' /etc/local/SARconfig.ini` | sed 's/=//g' | sed 's/^DBpasswd//g' | sed 's/ //g' )
+if [ -z $CONFIGDIR ]
+then 
+     export CONFIGDIR=/etc/local/
+fi
+DBuser=$(echo    `grep '^DBuser '   $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBuser //g')
+DBpasswd=$(echo  `grep '^DBpasswd ' $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBpasswd //g' | sed 's/ //g' )
+DBpath=$(echo    `grep '^DBpath '   $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBpath //g' | sed 's/ //g' )
 
 rm *.fln 2>/dev/null
 rm *.csv 2>/dev/null
@@ -36,7 +41,7 @@ rm *.txt
 rm *.csv
 rm *.log
 echo "Table GLIDERS on SAROGN.db done ..."
-cd /nfs/OGN/DIRdata
+cd $DBpath
 echo
 echo "Build the MySQL databases on the servers:"
 echo
@@ -46,7 +51,7 @@ echo "Registered gliders from sqlite3: "
 echo "select count(*) from GLIDERS;" |                sqlite3 -echo SAROGN.db
 echo "drop table GLIDERS;"           |                mysql -u $DBuser -p$DBpasswd -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL OGNDB: "$server
-sqlite3 SAROGN.db ".dump GLIDERS" | python3 ~/src/SARsrc/sqlite3-to-mysql.py | mysql -u $DBuser -p$DBpasswd  OGNDB	2>/dev/null
+sqlite3 SAROGN.db ".dump GLIDERS" | python3 ~/src/SARsrc/sqlite3-to-mysql.py | mysql -u $DBuser -p$DBpasswd  -h $server OGNDB	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql -u $DBuser -p$DBpasswd -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL APRSLOG: "$server
 echo "delete from GLIDERS;"           |                mysql -u $DBuser -p$DBpasswd -h $server APRSLOG 		2>/dev/null
@@ -57,7 +62,7 @@ echo "Copy from sqlite3 to MySQL SWIFACE: "$server2
 echo "drop table GLIDERS;"           |                mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 		2>/dev/null
 sqlite3 SAROGN.db ".dump GLIDERS" | python3 ~/src/SARsrc/sqlite3-to-mysql.py | mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 		2>/dev/null
-mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB GLIDERS                                       >/var/www/html/files/GLIDERS.sql  
+mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB GLIDERS                                       >/var/www/html/files/GLIDERS.sql  2>/dev/null
 if [[ $(hostname) == 'CasadoUbuntu' ]]
 then
 	echo "Update MariaDB"

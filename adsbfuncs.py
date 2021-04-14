@@ -1,6 +1,7 @@
 #!/bin/python3
 import json
 import os
+import io
 from datetime import datetime
 from geopy.distance import geodesic       # use the Vincenty algorithm^M
 import config
@@ -13,6 +14,23 @@ if config.ADSBOpenSky:
 else:
     OPENSKY=False
 
+#-------------------------------------------------------------------------------------------------------------------#
+
+def is_raspberrypi():
+    if os.name != 'posix':
+        return False
+    chips = ('BCM2708','BCM2709','BCM2711','BCM2835','BCM2836')
+    try:
+        with io.open('/proc/cpuinfo', 'r') as cpuinfo:
+            for line in cpuinfo:
+                if line.startswith('Hardware'):
+                    _, value = line.strip().split(':', 1)
+                    value = value.strip()
+                    if value in chips:
+                        return True
+    except Exception:
+        pass
+    return False
 #-------------------------------------------------------------------------------------------------------------------#
 global _adsbregcache_
 _adsbregcache_ = {}
@@ -28,7 +46,7 @@ def getadsbreg(icao):			    # get the registration and model from the ICAO ID
         import ADSBreg			    # this file is huge
         _adsbreg_ = ADSBreg.ADSBreg	    # update the global pointer
     if icao in _adsbregcache_:		    # if ID on the table ???
-        return (_adsbregcache_[icao])        # return model and registration
+        return (_adsbregcache_[icao])       # return model and registration
     else:				    # if not found, look into the whole registration DB
         if icao in _adsbreg_:
             _adsbregcache_[icao]=_adsbreg_[icao]  # and update the cache for next time
@@ -291,7 +309,7 @@ def adsbaprspush(datafix, conn, prt=False):
 #LEMD>OGNSDR,TCPIP*,qAC,GLIDERN2:>141436h v0.2.8.RPI-GPU CPU:0.6 RAM:710.8/972.2MB NTP:0.3ms/-5.5ppm +56.9C 2/2Acfts[1h] RF:+50-3.2ppm/+0.76dB/+47.4dB@10km[3859]
 
 
-RPI = True
+RPI = is_raspberrypi()
 
 
 def adsbsetrec(sock, prt=False, store=False, aprspush=False):

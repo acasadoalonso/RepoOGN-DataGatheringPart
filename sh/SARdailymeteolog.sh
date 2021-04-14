@@ -1,4 +1,10 @@
-cd /nfs/OGN/DIRdata
+
+if [ -z $CONFIGDIR ]
+then 
+     export CONFIGDIR=/etc/local/
+fi
+DBpath=$(echo    `grep '^DBpath '   $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBpath //g' | sed 's/ //g' )
+cd $DBpath
 echo "====="$(hostname)"==========" 	>>SARfcst$(date  +%y%m%d).log
 echo $(date +%H:%M:%S)      		>>SARmetar$(date +%y%m%d).log
 echo "==============="        		>>SARmetar$(date +%y%m%d).log

@@ -1,5 +1,11 @@
 #!/bin/sh
-db='/var/www/DIRdata/SAROGN.db'
+
+if [ -z $CONFIGDIR ]
+then 
+     export CONFIGDIR=/etc/local/
+fi
+DBpath=$(echo    `grep '^DBpath '   $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBpath //g' | sed 's/ //g' )
+db=$DBpath'/SAROGN.db'
 # test if DB is available
 if [ ! -e $db ]
 then

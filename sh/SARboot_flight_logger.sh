@@ -1,5 +1,11 @@
 #!/bin/bash
-dir='/nfs/OGN/DIRdata'
+
+if [ -z $CONFIGDIR ]
+then 
+     export CONFIGDIR=/etc/local/
+fi
+DBpath=$(echo    `grep '^DBpath '   $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBpath //g' | sed 's/ //g' )
+dir=$DBpath
 # test if directory is available
 if [ ! -d $dir ]
 then

@@ -1,11 +1,17 @@
 #!/bin/bash
+
+if [ -z $CONFIGDIR ]
+then 
+     export CONFIGDIR=/etc/local/
+fi
+DBpath=$(echo    `grep '^DBpath '   $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBpath //g' | sed 's/ //g' )
 if [ $# = 0 ]; then
 	city='Madrid'
 else
 	city=$1
 fi
 
-cd /nfs/OGN/DIRdata
+cd $DBpath
 echo "......"$(hostname)"........." 		>>SARgetogn.log 
 date                   				>>SARgetogn.log 
 calcelestial -p sun -m set -q $city -H civil 	>>SARgetogn.log 
