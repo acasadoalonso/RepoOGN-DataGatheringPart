@@ -15,7 +15,7 @@ import signal
 import atexit
 import os
 import socket
-import ksta                             # import the list on known gliders
+import ksta                             # import the list on known OGN stations
 from ognddbfuncs import *               # import the OGN DDB functions
 from datetime import datetime
 sys.path.insert(0, '/nfs/OGN/src/funcs')
@@ -39,7 +39,7 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
         gid = 'Noreg '                  # for unknown gliders
         if spanishsta(key) or frenchsta(key):
             if key in ksta.ksta:
-                gid = ksta.ksta[key]   # report the station name
+                gid = ksta.ksta[key]   	# report the station name
             else:
                 gid = "NOSTA"           # marked as no sta
         else:

@@ -16,10 +16,11 @@ else:
 
 #-------------------------------------------------------------------------------------------------------------------#
 
+
 def is_raspberrypi():
     if os.name != 'posix':
         return False
-    chips = ('BCM2708','BCM2709','BCM2711','BCM2835','BCM2836')
+    chips = ('BCM2708', 'BCM2709', 'BCM2711', 'BCM2835', 'BCM2836')
     try:
         with io.open('/proc/cpuinfo', 'r') as cpuinfo:
             for line in cpuinfo:
@@ -32,6 +33,8 @@ def is_raspberrypi():
         pass
     return False
 #-------------------------------------------------------------------------------------------------------------------#
+
+
 global _adsbregcache_
 _adsbregcache_ = {}
 _adsbreg_ = {}
@@ -312,7 +315,7 @@ def adsbaprspush(datafix, conn, prt=False):
 RPI = is_raspberrypi()
 
 
-def adsbsetrec(sock, prt=False, store=False, aprspush=False):
+def adsbsetrec(sock, prt=False, store=False, aprspush=False):			# define on APRS the dummy OGN station
     t = datetime.utcnow()       		# get the date
     tme = t.strftime("%H%M%S")
     aprsmsg=config.ADSBname+">OGNSDR,TCPIP*:/"+tme+"h"+config.ADSBloc+" \n"

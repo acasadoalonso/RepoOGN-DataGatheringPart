@@ -276,7 +276,7 @@ while True:                                 # until end of file
            fadsbfn[ident] = msg['fn']
 
     # or frenchsta(station):  # only Chilean or Spanish or frenchstations
-    if ((hostname == "CHILEOGN" or hostname == "OGNCHILE") and source == "OGN") or source == "SPOT" or spanishsta(station):
+    if ((hostname == "CHILEOGN" or hostname == "OGNCHILE") and source == "OGN") or source == "SPOT" or source == "NAVI" or source == "SKYS" or spanishsta(station):
         if not ident in fid:                # if we did not see the FLARM ID
             fid[ident] = 0                  # init the counter
             fsta[ident] = station           # init the station receiver

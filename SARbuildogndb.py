@@ -24,7 +24,7 @@ from datetime import datetime
 # ---------- main code ---------------
 #
 
-pgmver = 'V2.1'
+pgmver = 'V2.2'
 fid   = {'NONE  ': 0}                       # FLARM ID list
 fsta  = {'NONE  ': 'NONE  '}                # STATION ID list
 ftkot = {'NONE  ': 0}                       # take off time
@@ -190,7 +190,7 @@ while True:                                 # until end of file
                 selcmd = "select descri from RECEIVERS where idrec=?"
                 curs.execute(selcmd, (key,))
             row = curs.fetchone()
-            if    row == None:              # if receiver is NOT on the DB ???
+            if  row == None:                # if receiver is NOT on the DB ???
                 gid = 'Noreg'               # for unknown receiver
                 if config.hostname == "CHILEOGN" or config.hostname == "OGNCHILE" or spanishsta(key) or frenchsta(key):
                     if key in ksta.ksta:
@@ -254,6 +254,7 @@ while True:                                 # until end of file
     # that is the case of end of file when the ognES.py process is still
     if len(data) < 40:
         continue                            # nothing else to do
+#       ---------------------------------------------------------
 #   ready to handle a record
     nrec += 1
     cin += 1
@@ -269,6 +270,7 @@ while True:                                 # until end of file
                print("Parser error:", data)
                CCerrors.append(cc)
             continue
+#           ---------------------------------------------------------
         ident = msg['id']          	    # id
         
         type = msg['aprstype']		    # message type
@@ -276,6 +278,7 @@ while True:                                 # until end of file
         latitude = msg['latitude']
         if latitude == -1 or longitude == -1 or type == 8:  # check for the ogn tracker status report
             continue
+#           ---------------------------------------------------------
         altitude = msg['altitude']
         if altitude == None:
             altitude = 0
@@ -284,7 +287,7 @@ while True:                                 # until end of file
             paths.append(path)
         otime = msg['otime']
         source = msg['source']              # source of the data OGN/SPOT/SPIDER/...
-        station = msg['station']
+        station = msg['station'].upper()    # in uppercase
         if len(source) > 4:
             source = source[0:3]
         # if std records
@@ -305,10 +308,11 @@ while True:                                 # until end of file
                         relayglider[ident] = rr
                     relaycnt += 1           # increase the counter
         else:
-                station = msg['station']    # get the station name
+                station = msg['station'].upper()    # get the station name
 
         if path == 'receiver' or path == 'aprs_receiver':
-            if not ident in fsloc:		    # if not detected yet
+            ident=ident.upper()		    # convert to uppercase
+            if not ident in fsloc:	    # if not detected yet
                 # save the location of the station
                 fsloc[ident] = (latitude, longitude)
                 fslla[ident] = latitude
@@ -317,9 +321,11 @@ while True:                                 # until end of file
                 fsmax[ident] = 0.0          # initial coverage zero
                 fsalt[ident] = 0            # initial coverage zero
             continue                        # go for the next record
+#           ---------------------------------------------------------
         if cc in blacklist:
             continue
-        ident = data[0:9]                      # the flarm ID/ICA/OGN
+#           ---------------------------------------------------------
+        ident = data[0:9]                   # the flarm ID/ICA/OGN
         idname = data[0:9]                  # exclude the FLR part
         # only Spanish/Chilean stations
         if config.hostname == "CHILEOGN" or config.hostname == "OGNCHILE" or spanishsta(station):
@@ -371,7 +377,7 @@ while True:                                 # until end of file
                     fsalt[station] = altim  # save the new altitude
             if source != 'OGN':
                 distance = geodesic((latitude, longitude), (config.location_latitude,
-                                                            config.location_longitude)).km    # distance to the station
+                                     config.location_longitude)).km    # distance to the station
                 dist = distance
 
             if altim != None and altim > tmaxa:
@@ -381,6 +387,7 @@ while True:                                 # until end of file
                 tmsta = station             # station capturing the max altitude
             if uniqueid[0:2] != "id":	    # check for a valid uniqueid
                 continue
+#           ---------------------------------------------------------
                                             # write the DB record eithher on MySQL or SQLITE3
             if (MySQL):
                 addcmd = "insert into OGNDATA values ('" + ident + "','" + dte + "','" + hora + "','" + station + "'," + str(latitude) + "," + \
@@ -402,6 +409,7 @@ while True:                                 # until end of file
                 # print ("DDD",idname, dte, hora, station, latitude, longitude, altim, speed, course, roclimb, rot, sensitivity, gps, uniqueid, dist, extpos)
                 curs.execute(addcmd, (idname, dte, hora, station, latitude, longitude, altim, speed, course, roclimb, rot, sensitivity, gps, uniqueid, dist, extpos))
             cout += 1                        # one more record writen
+#           ---------------------------------------------------------
 
 # -----------------  final process ----------------------
 
@@ -416,9 +424,10 @@ if tmid != 0 and getognchk(tmid[3:9]):      # if it is a known glider ???
 else:
     gid = tmid
 print("Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta)
-print("Number of relay packages:", relaycntr, relaycnt)
+print("Number of relay packages:    ", relaycntr, relaycnt)
 if relaycnt > 0:
     print("List of relays:", relayglider)
 print (paths)
 print('Bye ...: Stored', cout, " records of ", nrec, ' read. Time and Time used:', datef, datef - \
     date)                                   # report the processing time
+#           ---------------------------------------------------------

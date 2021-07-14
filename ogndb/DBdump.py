@@ -130,8 +130,12 @@ else:
 # print (dtareq, dtareq[0], "MySQL", MySQL, "dtar", dtar, "LNAMES", lnames, "IDR", idr)
 # ---------------------------------------------------------- #
 logging.basicConfig(filename='.DBdump.log', level=logging.INFO)
+if 'USER' in os.environ:
+   user=os.environ['USER']
+else:
+   user='NOUSER'
 logging.info('%30s Dumping the OGN database User=%s at %s',
-             datetime.datetime.now(), os.environ['USER'], socket.gethostname())
+             datetime.datetime.now(), user, socket.gethostname())
 if (MySQL):
     logging.info('%30s Opening the MySQL database %s on %s',
                  datetime.datetime.now(), mydb, host)
@@ -217,6 +221,7 @@ while True:
                 offset+=1000000
                 continue
     for (ID, dte, tme, sta, alt, dist, lati, longi) in rows:
+        sta=sta.upper()
         if pdte != ' ' and pdte != dte:
             if (MySQL):
                 cmd = "select registration from GLIDERS where idglider = '" + tmid + "'"
