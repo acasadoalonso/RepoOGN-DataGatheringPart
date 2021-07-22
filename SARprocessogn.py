@@ -292,15 +292,21 @@ while True:                                 # until end of file
             else:
                 fd = open(datapath+tmp+'FD'+dte+'.' +
                           station+'.'+idname+'.IGC', 'w')
-
             fd.write('AGNE001GLIDER\n')     # write the IGC header
             fd.write('HFDTE'+dte+'\n')      # write the date on the header
-            if getognchk(ident[3:9]):
-                                            # write the registration ID
-                fd.write('HFGIDGLIDERID: '+getognreg(ident[3:9])+'\n')
+            fd.write('AHFDTM100DATUM:WGS-1984\n')     # write the IGC header - the datum 
+	    #HFGIDGLIDERID:D2520
+            if getognchk(ident[3:9]):       # write the registration ID
+                fd.write('HFGIDGLIDERID:'+getognreg(ident[3:9])+'\n')
             else:
                                             # if we do not know it write the FLARM ID
-                fd.write('HFGIDGLIDERID: '+ident+'\n')
+                fd.write('HFGIDGLIDERID:'+ident+'\n')
+            #HFGTYGLIDERTYPE:Janus_CE
+            if getognmodel(ident[3:9]):     # write the model
+                fd.write('HFGTYGLIDERTYPE:'+getognmodel(ident[3:9])+'\n')
+	    #HFCIDCOMPETITIONID:K5
+            if getogncn(ident[3:9]):        # write the competition ID
+                fd.write('HFIDCOMPETITION:'+getogncn(ident[3:9])+'\n')
             ffd[ident] = fd                 # save the file descriptor
                                             # increase the number of records read
         fid[ident] += 1
