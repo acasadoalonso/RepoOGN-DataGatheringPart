@@ -427,7 +427,7 @@ print("Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'Z by:',
 print("Number of relay packages:    ", relaycntr, relaycnt)
 if relaycnt > 0:
     print("List of relays:", relayglider)
-print (paths)
+print ("Paths:", paths)
 print('Bye ...: Stored', cout, " records of ", nrec, ' read. Time and Time used:', datef, datef - \
     date)                                   # report the processing time
 #           ---------------------------------------------------------

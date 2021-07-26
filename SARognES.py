@@ -67,7 +67,7 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
     print("Stations:", stations)
     print("Sources:", sources)
     print("Aircraft types:", acfttype)
-    print (paths)
+    print ("Paths:", paths)
     local_time = datetime.now()
     print("Time now:", local_time, "Local time.")
     try:

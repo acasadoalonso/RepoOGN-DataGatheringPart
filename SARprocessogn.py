@@ -187,7 +187,7 @@ while True:                                 # until end of file
                                             # distance
                     print(key, '==>', fsmax[key], ' Kms. and number of fixes: ', fsfix[key])
         if prt:
-           print(paths)
+           print("Paths:", paths)
         # work done, finish the reporting now ...
         break
 #--------------------------------------------------------------------------------------------------
