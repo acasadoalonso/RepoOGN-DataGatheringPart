@@ -24,8 +24,6 @@ python3 ~/src/SARsrc/SARprocessogn.py 				>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
-python3 ~/src/SARsrc/SARbuildogndb.py prt			>>SARproc$dt.log
-echo "============="        					>>SARproc$dt.log
 python3 ~/src/SARsrc/SARbuildogndb.py MYSQL DATA$dt.log  	>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log

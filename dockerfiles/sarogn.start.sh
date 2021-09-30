@@ -10,7 +10,7 @@ location=$(echo  `grep '^location_name '   $CONFIGDIR/SARconfig.ini` | sed 's/=/
 cd $DBpath
 SCRIPT=$(readlink -f $0)
 SCRIPTPATH=`dirname $SCRIPT`
-city='Sisteron'
+city='Madrid'
 echo "Starting docker container sarogn at: "$HOSTNAME $(date) 				>>SARproc.docker.log
 echo "================================================================================"	>>SARproc.docker.log
 echo "Location: "$location "City: "$city 						>>SARproc.docker.log

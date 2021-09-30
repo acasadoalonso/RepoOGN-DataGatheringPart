@@ -204,6 +204,8 @@ try:
                 rtn = sock_file.write("#Python ognES App\n\n")
                 sock_file.flush() 		# Make sure keepalive gets sent. If not flushed then buffered
                 datafile.flush()		# use this opportunity to flush the data file
+                sys.stdout.flush()
+                sys.stderr.flush()
                 alive(config.APP)		# and mark that we are still alive
                 run_time = time.time() - start_time
                 if prt:
@@ -240,7 +242,8 @@ try:
             # Read packet string from socket
             packet_str = sock_file.readline()
             if len(packet_str) > 0 and packet_str[0] != "#":
-                datafile.write(packet_str)
+                if datafile.closed == False:
+                   datafile.write(packet_str)
 
         except socket.error:
             print("Socket error on readline")
