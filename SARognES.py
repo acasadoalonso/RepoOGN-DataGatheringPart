@@ -122,6 +122,7 @@ if hostname == 'CHILEOGN' or hostname == "OGNCHILE":
 else:
     print("Start ognES SPAIN ", pgmver)
 print("========================")
+print("Program Version:", time.ctime(os.path.getmtime(__file__)))
 
 import config
 prtreq = sys.argv[1:]

@@ -1,0 +1,1 @@
+alias sarbash='docker exec -it sarogn /bin/bash'

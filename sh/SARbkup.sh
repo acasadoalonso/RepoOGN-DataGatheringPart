@@ -7,7 +7,7 @@ then
 fi
 if [  -d /bkups/OGN ]
 then
-	tar -czf  --recursion /bkups/OGN/BKUP_$(hostname)_$(date +%y.%m.%d).tar ~/ 
+	tar -czf   /bkups/OGN/BKUP_$(hostname)_$(date +%y.%m.%d).tar ~/ 
 	sudo umount /bkups
 fi
 cd ..

@@ -64,7 +64,6 @@ else:
     dter = False                            # do not request the date
 if dtereq and dtereq[0] == 'name':
     nmer = True                             # request the name
-    # prt=True
     prt = False
 elif dtereq and dtereq[0] == 'MYSQL' and config.MySQL:
     nmer = True                             # request the name
@@ -74,6 +73,8 @@ elif dtereq and dtereq[0] == 'MYSQL' and config.MySQL:
     print("================================================")
 else:
     nmer = False                            # do not request the name
+    print("SQLite3 DB :", DBfilename)
+    print("========================")
 
 cin = 0                                     # input record counter
 cout = 0                                    # output record counter
@@ -114,6 +115,7 @@ if (MySQL):
                            passwd=DBpasswd, db=DBname)
 else:
     conn = sqlite3.connect(DBfilename)      # connect with the database
+
 curs = conn.cursor()                        # set the cursor
 
 nrec = 0
@@ -417,7 +419,7 @@ datafilei.close()                           # close the input file
 datef = datetime.now()                      # get the time & date
 conn.commit()
 # commit the DB
-conn.close()                                # Close libfap.py to avoid memory leak
+conn.close()                                
 
 if tmid != 0 and getognchk(tmid[3:9]):      # if it is a known glider ???
     gid = getognreg(tmid[3:9])              # report the registration
