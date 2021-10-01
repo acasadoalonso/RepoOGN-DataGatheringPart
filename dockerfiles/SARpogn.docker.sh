@@ -50,4 +50,5 @@ echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 mv SARproc*.log log
 rm -f tmp/*.IGC  2>/dev/null
+rm -f /tmp/SAR.pid  2>/dev/null
 

@@ -53,13 +53,13 @@ RUN mkdir -p /nfs/OGN/DIRdata/data
 RUN mkdir -p /nfs/OGN/DIRdata/tmp
 RUN mkdir -p ~/src
 RUN ln -s /var/www/main ~/src/SARsrc 
-VOLUME /var/www
-VOLUME /etc/local
-VOLUME /nfs
 COPY config.docker /etc/local/SARconfig.ini
 COPY DBschema.sql .
 COPY SARpogn.docker.sh .
 COPY SARboot.docker.sh .
+VOLUME /var/www
+VOLUME /etc/local
+VOLUME /nfs
 ARG USER=angel
 ARG UID=1000
 ARG GID=1000
@@ -78,5 +78,6 @@ WORKDIR /var/www/main/
 RUN git config pull.ff only 
 RUN echo 'alias ll="ls -la"' >> ~/.bashrc
 WORKDIR /nfs/OGN/DIRdata
+STOPSIGNAL SIGTERM
 #ENTRYPOINT /usr/bin/python3 /var/www/main/SARognES.py
 CMD ["/usr/bin/python3", "/var/www/main/SARognES.py" ]

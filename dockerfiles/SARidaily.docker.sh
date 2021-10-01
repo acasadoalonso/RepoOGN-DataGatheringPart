@@ -19,8 +19,10 @@ echo "=========================================="	>>SARproc.docker.log
 echo "                   " 				>>SARproc.docker.log
 date			 				>>SARproc.docker.log
 echo "                   " 				>>SARproc.docker.log
+docker start sarogn 	 				>>SARproc.docker.log
 docker exec -it sarogn /bin/bash /var/www/SARpogn.docker.sh
-docker stop sarogn 	 				>>SARproc.docker.log
+docker stop -t 30 sarogn   				>>SARproc.docker.log
+docker logs --timestamps --details --since $(date +%Y-%m-%d) sarogn 				>>SARproc.docker.log
 echo "                   " 				>>SARproc.docker.log
 mysqlcheck -u $DBuser -p$DBpasswd -h $server OGNDB   	>>SARproc.docker.log
 mysqlcheck -u $DBuser -p$DBpasswd -h $server OGNDBARCHIVE 	>>SARproc.docker.log
@@ -33,7 +35,6 @@ mysql      -u $DBuser -p$DBpasswd                  -h $server OGNDBARCHIVE  <ogn
 echo "delete from OGNDATA ...  " 								>>SARproc.docker.log
 echo "delete from OGNDATA;" | mysql -u $DBuser -p$DBpasswd     -v -h $server OGNDB       	>>SARproc.docker.log
 mv ogndata.sql archive
-docker logs --timestamps --details --since $(date +%Y-%m-%d) sarogn 				>>SARproc.docker.log
 echo "End of processes  MariaDB at server: "$hostname $(date) $HOSTNAME $city			>>SARproc.docker.log
 echo "=========================================================================="		>>SARproc.docker.log
 mv SARproc.docker.log archive/SARiproc.docker$(date +%y%m%d).log

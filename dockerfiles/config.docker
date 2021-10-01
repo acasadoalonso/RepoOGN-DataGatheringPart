@@ -20,8 +20,8 @@ DDBport  = 80
 ;APRS_SERVER_HOST = 'aprs.glidernet.org'
 APRS_SERVER_HOST = 'ubuntu'
 APRS_SERVER_PORT = 14580
-APRS_USER     = 'SpainW'
-APRS_PASSCODE = 12204
+APRS_USER     = 'SpainWdoc'
+APRS_PASSCODE =  -1
 APRS_FILTER_DETAILS = 'filter  r/+39.71/-3.31/620  '
 ;APRS_FILTER_DETAILS = 'filter b/OGN* r/+39.71/-3.31/620  '
 

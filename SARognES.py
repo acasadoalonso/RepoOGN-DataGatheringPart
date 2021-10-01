@@ -80,12 +80,13 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
 
 
 def signal_term_handler(signal, frame):	# signal handler for SIGTERM
-    print('got SIGTERM ... shutdown orderly Time: ', datetime.now())
+    print('got SIGTERM/SIGHUP ... shutdown orderly Time: ', signal, datetime.now())
     shutdown(sock, datafile, tmaxa, tmaxt, tmid)  # shutdown orderly
     sys.exit(0)
 
 
 signal.signal(signal.SIGTERM, signal_term_handler)
+signal.signal(signal.SIGHUP, signal_term_handler)
 
 def osremove (pidfile):
     try:
@@ -372,7 +373,7 @@ try:
                     fadsb[ident] = msg['reg']
 
 
-except KeyboardInterrupt:
+except KeyboardInterrupt:			  # SIGINT
     print("Keyboard input received, shutdown ...")
     shutdown(sock, datafile, tmaxa, tmaxt, tmid)  # shutdown orderly
     exit(1)
