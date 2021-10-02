@@ -32,7 +32,7 @@ python3 ~/src/SARsrc/SARanalysisrelay.py -n DATA$dt.log -i 5	>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
-mv DATA*  data
+mv DATA*  data 2>/dev/null
 rm SAR.alive   2>/dev/null
 rm SAR.sunset  2>/dev/null
 dir='fd/Y'$(date +%y)'/M'$(date +%m)
@@ -43,12 +43,12 @@ if [ ! -d $dir ]
 then
     mkdir -p $dir
 fi
-mv FD*    $dir
+mv FD*    $dir      2>/dev/null
 echo "Server: "$(hostname)     					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 mv SARproc*.log log
-rm -f tmp/*.IGC  2>/dev/null
+rm -f tmp/*.IGC     2>/dev/null
 rm -f /tmp/SAR.pid  2>/dev/null
 

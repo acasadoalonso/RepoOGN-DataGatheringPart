@@ -24,13 +24,19 @@ echo "Starting docker container sarogn at: "$HOSTNAME $(date) 				>>SARproc.dock
 echo "================================================================================"	>>SARproc.docker.log
 echo "Location: "$location "City: "$city 						>>SARproc.docker.log
 if [ ! "$(docker ps -q -f name=sarogn)" ]; then
-    echo "Starting a new container sarogn ..."						>>SARproc.docker.log
-    bash $SCRIPTPATH/sarogn.sh								>>SARproc.docker.log
+    if [ "$(docker ps -aq -f status=exited -f name=sarogn)" ]; then
+        echo "Starting an existing container sarogn ..."				>>SARproc.docker.log
+        docker start sarogn								>>SARproc.docker.log
+    else
+        echo "Starting a new container sarogn ..."					>>SARproc.docker.log
+        bash $SCRIPTPATH/sarogn.sh							>>SARproc.docker.log
+    fi
 else
-    echo "Starting a existing container sarogn ..."					>>SARproc.docker.log
+    echo "Starting an existing container sarogn ..."					>>SARproc.docker.log
     docker start sarogn									>>SARproc.docker.log
 fi
 docker exec -it sarogn python3 /var/www/main/SARcalsunrisesunset.py			>>SARproc.docker.log
 docker ps -a										>>SARproc.docker.log
 /bin/echo '/bin/bash ~/src/SARsrc/dockerfiles/SARidaily.docker.sh '$city | at -M $(calcelestial -n -p sun -m set -q $city )  >>SARproc.docker.log 2>&1
-echo "Container scheduled ..."								>>SARproc.docker.log
+echo "Container scheduled ...$(date) "							>>SARproc.docker.log
+echo "============================== "							>>SARproc.docker.log

@@ -124,6 +124,11 @@ else:
     print("Start ognES SPAIN ", pgmver)
 print("========================")
 print("Program Version:", time.ctime(os.path.getmtime(__file__)))
+#print os.environment
+if 'USER' in os.environ:
+    user = os.environ['USER']
+else:
+    user = "www-data"                       # assume www
 
 import config
 prtreq = sys.argv[1:]
@@ -134,6 +139,7 @@ else:
 
 if os.path.exists(config.PIDfile):
     raise RuntimeError("SAR already running !!!")
+    sleep(30)
     exit(-1)
 #
 APP = "SAR"                             # the application name
@@ -190,7 +196,7 @@ next_sunrise = location.next_rising(ephem.Sun(), date)
 next_sunset = location.next_setting(ephem.Sun(), date)
 print("Sunrise today is at: ", next_sunrise, " UTC ")
 print("Sunset  today is at: ", next_sunset,  " UTC ")
-print("Time now is: ", date, "Local time, Process ID:", os.getpid(), " on Hostname:", hostname)
+print("Time now is: ", date, "Local time, Process ID:", os.getpid(), " on Hostname:", hostname, "User:", user)
 nerrors = 0
 paths=[]
 try:
@@ -233,7 +239,8 @@ try:
         if s.alt < twilight:
             print("At Sunset now ... Time is:", date, "UTC ...  Next sunset is: ", next_sunset,  " UTC")
             shutdown(sock, datafile, tmaxa, tmaxt, tmid)
-            print("At Sunset ... Exit")
+            print("At Sunset ... Exit\n===============================================================")
+            sleep(30)				# give a chance to enter intor the container
             exit(0)
 
         if prt:
