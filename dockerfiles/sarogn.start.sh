@@ -26,14 +26,14 @@ echo "Location: "$location "City: "$city 						>>SARproc.docker.log
 if [ ! "$(docker ps -q -f name=sarogn)" ]; then
     if [ "$(docker ps -aq -f status=exited -f name=sarogn)" ]; then
         echo "Starting an existing exited container sarogn ..."				>>SARproc.docker.log
-        docker start sarogn								>>SARproc.docker.log
+        docker start sarogn								>>SARproc.docker.log 2>&1
     else
         echo "Starting a new container sarogn ..."					>>SARproc.docker.log
         bash $SCRIPTPATH/sarogn.sh							>>SARproc.docker.log
     fi
 else
     echo "Starting an existing container sarogn ..."					>>SARproc.docker.log
-    docker start sarogn									>>SARproc.docker.log
+    docker start sarogn									>>SARproc.docker.log 2>&1
 fi
 docker exec -it sarogn python3 /var/www/main/SARcalsunrisesunset.py			>>SARproc.docker.log
 docker ps -a										>>SARproc.docker.log

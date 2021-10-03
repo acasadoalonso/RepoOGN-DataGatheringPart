@@ -1,8 +1,20 @@
 #!/bin/bash
-# source the config file 
-#eval "$(egrep "^[^ ]*=[^;&]*'" ../config.py )"
-DBpath=/nfs/OGN/DIRdata/
-SQLite3=SAROGN.db
+#DBpath=/nfs/OGN/DIRdata/
+#SQLite3=SAROGN.db
+if [ -z $CONFIGDIR ]
+then 
+     export CONFIGDIR=/etc/local/
+fi
+
+DBuser=$(echo    `grep '^DBuser '   $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBuser //g')
+DBpasswd=$(echo  `grep '^DBpasswd ' $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBpasswd //g' | sed 's/ //g' )
+DBpath=$(echo    `grep '^DBpath '   $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBpath //g' | sed 's/ //g' )
+SQLite3=$(echo  `grep '^SQLite3 '   $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^SQLite3 //g' | sed 's/ //g' )
+SCRIPT=$(readlink -f $0)
+SCRIPTPATH=`dirname $SCRIPT`
+echo $SCRIPTPATH $DBpath $SQLite3 
+cd $SCRIPTPATH
+
 echo "DB: "$DBpath$SQLite3
 rm *.fln 2>/dev/null
 rm *.csv 2>/dev/null
