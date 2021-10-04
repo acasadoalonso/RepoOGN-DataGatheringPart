@@ -47,15 +47,16 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
             if key != None and getognchk(key[3:9]):
                 gid = getognreg(key[3:9])   # report the registration
 
-        if key in fadsb:
+        if key in fadsb:		# data from the ADSB registration
             gid = fadsb[key]
-        if fmaxs[key] > 0:
+        if fmaxs[key] > 0:		# if max speed
             # report FLARM ID, station used, registration and record counter
             print(key, '=>', fsta[key], gid, fid[key], "Max alt:", fmaxa[key], "Max speed:", fmaxs[key])
         else:
             print(key, '=>', fsta[key], gid, fid[key], "Max alt:", fmaxa[key])
 
-            # report now the maximun altitude for the day
+    # report now the maximun altitude for the day
+
     if getognchk(tmid[3:9]):            # if it is a known glider ???
         gid = getognreg(tmid[3:9])      # report the registration
     else:
@@ -67,7 +68,7 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
     print("Stations:", stations)
     print("Sources:", sources)
     print("Aircraft types:", acfttype)
-    print ("Paths:", paths)
+    print("Paths:", paths)
     local_time = datetime.now()
     print("Time now:", local_time, "Local time.")
     try:
@@ -95,7 +96,7 @@ def osremove (pidfile):
         print("No PID file")
     return
 #----------------------ogn_main.py start-----------------------
-pgmver = "V2.2"
+pgmver = "V2.3"
 fid = {'NONE  ': 0}                     # FLARM ID list
 fsta = {'NONE  ': 'NONE  '}             # STATION ID list
 fmaxa = {'NONE  ': 0}                   # maximun altitude
@@ -139,7 +140,7 @@ else:
 
 if os.path.exists(config.PIDfile):
     raise RuntimeError("SAR already running !!!")
-    sleep(30)
+    sleep(60)
     exit(-1)
 #
 APP = "SAR"                             # the application name
@@ -239,8 +240,8 @@ try:
         if s.alt < twilight:
             print("At Sunset now ... Time is:", date, "UTC ...  Next sunset is: ", next_sunset,  " UTC")
             shutdown(sock, datafile, tmaxa, tmaxt, tmid)
-            print("At Sunset ... Exit\n===============================================================")
-            sleep(30)				# give a chance to enter intor the container
+            print("At Sunset ... Exit\n===============================================================\n")
+            sleep(60)				# give a chance to enter into the container
             exit(0)
 
         if prt:
@@ -250,7 +251,7 @@ try:
             # Read packet string from socket
             packet_str = sock_file.readline()
             if len(packet_str) > 0 and packet_str[0] != "#":
-                if datafile.closed == False:
+                if datafile.closed == False:	# if it is OPEN ?
                    datafile.write(packet_str)
 
         except socket.error:
@@ -270,8 +271,10 @@ try:
                 continue
         if packet_str[0] == "#":            # the time alive from server 
             continue
-#   ready to handle a record
 
+#   ready to handle a record
+#       -------------------------------------------------------------------------------------------------------------------
+#
         ix = packet_str.find('>')           # find the station
         cc = packet_str[0:ix]               # extract the station
         cc = cc.upper()                     # convert it to upper case
