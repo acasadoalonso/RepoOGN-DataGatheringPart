@@ -37,7 +37,7 @@ else
 fi
 docker exec -it sarogn python3 /var/www/main/SARcalsunrisesunset.py			>>SARproc.docker.log
 docker ps -a										>>SARproc.docker.log
-/bin/echo '/bin/bash ~/src/SARsrc/dockerfiles/SARidaily.docker.sh '$city | at -M $(calcelestial -n -p sun -m set -q $city ) - 15 minutes  >>SARproc.docker.log 2>&1
+/bin/echo '/bin/bash ~/src/SARsrc/dockerfiles/SARidaily.docker.sh '$city | at -M $(/usr/local/bin/calcelestial -n -p sun -m set -q $city ) - 25 minutes  >>SARproc.docker.log 2>&1
 echo "Container scheduled ... at: $(date) "						>>SARproc.docker.log
 echo " "										>>SARproc.docker.log
 echo "=============================================================================== "	>>SARproc.docker.log

@@ -18,6 +18,11 @@
       apt: name=mariadb-client state=present
     - name: Autoremove
       apt: autoremove=yes
+    - name: Copy password file
+      copy:
+         src: "../.DBpasswd"
+         dest: /tmp
+
 
   #roles:
   #  - role: acasadoalonso.docker

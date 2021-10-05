@@ -20,12 +20,15 @@ echo "=========================================="	>>SARproc.docker.log
 echo "                   " 				>>SARproc.docker.log
 date			 				>>SARproc.docker.log
 echo "                   " 				>>SARproc.docker.log
-docker start sarogn 	 				>>SARproc.docker.log
+#docker start sarogn 	 				>>SARproc.docker.log
+docker ps -a	 	 				>>SARproc.docker.log
 docker exec -it sarogn /bin/bash /var/www/SARpogn.docker.sh 				>>SARproc.docker.log
 sleep 60
 echo "SARpon done ...                   "		>>SARproc.docker.log
 date			 				>>SARproc.docker.log
 docker cp       sarogn:/nfs/OGN/DIRdata/log/SARproc$dt.log SARproc$dt.docker.log 	>>SARproc.docker.log
+docker exec -it sarogn /bin/bash  ls			>>SARproc.docker.log
+ls -la							>>SARproc.docker.log
 echo "=== output from SARpogn.sh === " 			>>SARproc.docker.log
 cat SARproc$dt.docker.log 				>>SARproc.docker.log 
 echo "=== end    from SARpogn.sh === " 			>>SARproc.docker.log

@@ -4,11 +4,11 @@ echo "===================================" 			#
 echo "Installing the SAR system      ...." 			#
 echo "===================================" 			#
 echo							        #
-if [ $# = 0 ]; then						
-	sql='NO'
-else
-	sql=$1
-fi
+if [ $# = 0 ]; then						#
+	sql='NO'						#
+else								#
+	sql=$1							#
+fi								#
 if [ ! -f /tmp/commoninstall.sh  ]				#
 then								#
      bash commoninstall.sh $sql					#
@@ -47,31 +47,37 @@ sqlite3 SAROGN.db            	     < ogndb/DBschema.sql	#
 echo "Create the SARogn login-path: Type assigned password"	#
 mysql_config_editor set --login-path=SARogn --user=ogn --password 
 mysql_config_editor print --all					#
-echo "CREATE DATABASE OGNDB" | mysql -u root -pogn		#
+if [ ! -f .DBpasswd    ]					#
+then								#
+   echo "Type DB password ..."					#
+   read DBpasswd						#
+   echo $DBpasswd > .DBpasswd					#
+fi								#
+echo "CREATE DATABASE OGNDB" | mysql -u root -p$(cat .DBpasswd)	#
 if [ $sql = 'MySQL' ]						#
 then								#
    mysql --login-path=SARogn --database OGNDB < ogndb/DBschema.sql #
 else								#
-   mysql -u ogn -pogn --database OGNDB < ogndb/DBschema.sql	#
+   mysql -u ogn -p$(cat .DBpasswd) --database OGNDB < ogndb/DBschema.sql	#
 fi								#
 echo								#
-if [ ! -f /tmp/GLIDERS.sql  ]				#
+if [ ! -f /tmp/GLIDERS.sql  ]					#
 then								#
-   cd /tmp								#
-   wget acasado.es:60080/files/GLIDERS.sql				#
-   mysql -u ogn -pogn  OGNDB </tmp/GLIDERS.sql			#
+   cd /tmp							#
+   wget acasado.es:60080/files/GLIDERS.sql			#
+   mysql -u ogn -$(cat .DBpasswd)  OGNDB </tmp/GLIDERS.sql	#
 fi								#
 cd /var/www/html/main						#
-if [ $sql = 'docker' ]			
-then			
+if [ $sql = 'docker' ]						#
+then								#
    echo "Create DB in docker ogn ... Host: MARIADB"		#
    echo "========================================================" #
-   echo "CREATE DATABASE if not exists OGNDB" | sudo mysql -u ogn -pogn -h MARIADB
-   echo "SET GLOBAL log_bin_trust_function_creators = 1; " | sudo mysql -u ogn -pogn -h MARIADB
-   sudo mysql -u ogn -pogn -h MARIADB --database OGNDB <ogndb/DBschema.sql 
-   sudo mysql -u ogn -pogn -h MARIADB --database OGNDB </tmp/GLIDERS.sql
-fi
-sudo rm /tmp/GLIDERS.sql						#
+   echo "CREATE DATABASE if not exists OGNDB" | sudo mysql -u ogn -$(cat .DBpasswd) -h MARIADB
+   echo "SET GLOBAL log_bin_trust_function_creators = 1; " | sudo mysql -u ogn -p$(cat .DBpasswd) -h MARIADB
+   sudo mysql -u ogn -p$(cat .DBpasswd) -h MARIADB --database OGNDB <ogndb/DBschema.sql 
+   sudo mysql -u ogn -p$(cat .DBpasswd) -h MARIADB --database OGNDB </tmp/GLIDERS.sql
+fi								#
+sudo rm /tmp/GLIDERS.sql					#
 echo " "							#
 echo								#
 echo "================================================" 	#
@@ -157,10 +163,10 @@ echo								#
 bash ~/src/SARsrc/sh/SARfcst.sh					#
 /bin/echo '/bin/sh ~/src/SARsrc/sh/SARpogn.sh' | at -M $(calcelestial -p sun -m set -q Madrid -H civil) + 15 minutes #
 cd								#
-if [ -f /nfs/hosts ]
-then
+if [ -f /nfs/hosts ]						#
+then								#
       sudo cat /nfs/hosts >> /etc/hosts				#
-fi
+fi								#
 bash ~/src/SARsrc/sh/SARboot*					#
 pgrep -a python3						#
 echo								#
@@ -170,14 +176,14 @@ echo "Install goaccess"						#
 echo "================================================" 	#
 echo								#
 echo								#
-if [ ! -f /usr/bin/goaccess ]
-then
-        if [ ! -f /etc/apt/sources.list.d/goaccess.list ]
-        then
+if [ ! -f /usr/bin/goaccess ]					#
+then								#
+        if [ ! -f /etc/apt/sources.list.d/goaccess.list ]	#
+        then							#
 	   echo "deb http://deb.goaccess.io/ $(lsb_release -cs) main" | sudo tee -a /etc/apt/sources.list.d/goaccess.list #
 	   wget -O - https://deb.goaccess.io/gnugpg.key | sudo apt-key add - #
 	   sudo apt-get update					#
-        fi
+        fi							#
 	sudo apt-get install -y goaccess			#
 fi								#
 echo								#
