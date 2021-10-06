@@ -29,7 +29,7 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
     sock.shutdown(0)                    # shutdown the connection
     sock.close()                        # close the connection file
     datafile.close()                    # close the data file
-    if (os.stat(OGN_DATA).st_size == 0):
+    if os.path.exists(OGN_DATA) and os.stat(OGN_DATA).st_size == 0 :
         os.system("rm "+OGN_DATA)
     # report number of records read and IDs discovered
     print('Records read:', cin, ' Ids found: ', cout)
@@ -241,7 +241,7 @@ try:
             print("At Sunset now ... Time is:", date, "UTC ...  Next sunset is: ", next_sunset,  " UTC")
             shutdown(sock, datafile, tmaxa, tmaxt, tmid)
             print("At Sunset ... Exit\n===============================================================\n")
-            sleep(60)				# give a chance to enter into the container
+            sleep(300)				# give a chance 5 mins to enter into the container
             exit(0)
 
         if prt:
