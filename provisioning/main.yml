@@ -20,7 +20,7 @@
       apt: autoremove=yes
     - name: Copy password file
       copy:
-         src: "../.DBpasswd"
+         src: "./.DBpasswd"
          dest: /tmp
 
 
