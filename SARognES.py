@@ -138,7 +138,7 @@ if prtreq and prtreq[0] == 'prt':
 else:
     prt = False
 
-if os.path.exists(config.PIDfile):
+if user != 'docker' and os.path.exists(config.PIDfile):
     raise RuntimeError("SAR already running !!!")
     sleep(60)
     exit(-1)
