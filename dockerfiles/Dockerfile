@@ -1,7 +1,9 @@
 FROM debian
 ENV DEBIAN_FRONTEND=noninteractive 
-RUN apt-get update && apt-get -y upgrade 
-RUN apt-get install -y apt-utils software-properties-common python3-software-properties build-essential 			
+RUN apt-get update 
+RUN apt-get install -y apt-utils
+RUN apt-get -y upgrade 
+RUN apt-get install -y software-properties-common python3-software-properties build-essential locales			
 # Set the locale
 ENV LANG en_US.UTF-8  
 ENV LANGUAGE en_US:en  
@@ -28,7 +30,7 @@ RUN set -x \
     && pip3 install tqdm psutil rsa python-dateutil  				
 
 ENV TZ=Europe/Madrid
-ENV USER=sarogn
+ENV USER=docker
 RUN dpkg-reconfigure tzdata				
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone	
 RUN apt-get -y dist-upgrade					
