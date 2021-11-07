@@ -15,6 +15,6 @@ bash mariadbnet.sh
 bash mariadbpma.sh
 bash mariadb.sh
 bash mariadb.start
-bash create.SWIFACE.db.sh
+bash create.SAROGN.db.sh
 bash sarogn.standalone.sh
 bash SSH.start.swiface.sh
