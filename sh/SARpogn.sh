@@ -10,16 +10,16 @@ then
      export CONFIGDIR=/etc/local/
 fi
 DBpath=$(echo    `grep '^DBpath '   $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBpath //g' | sed 's/ //g' )
-DBuser=$(echo    `grep '^DBpath '   $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBuser //g' | sed 's/ //g' )
-DBpasswd=$(echo    `grep '^DBpath ' $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBpasswd //g' | sed 's/ //g' )
-server=$(echo    `grep '^DBpath '   $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBhost //g' | sed 's/ //g' )
+DBuser=$(echo    `grep '^DBuser '   $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBuser //g' | sed 's/ //g' )
+DBpasswd=$(echo  `grep '^DBpasswd ' $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBpasswd //g' | sed 's/ //g' )
+server=$(echo    `grep '^DBhost '   $CONFIGDIR/SARconfig.ini` | sed 's/=//g' | sed 's/^DBhost //g' | sed 's/ //g' )
 cd $DBpath
 day=`date "+%a"`
 DMY=`date "+%x"`
 now=`date "+%R"`
 taken=$day"_"$DMY"_"$now
 dt=$(date +%y%m%d)
-echo "Server: "$(hostname)     					>>SARproc$dt.log
+echo "Server: "$(hostname)" DBhost: "$server			>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
@@ -46,7 +46,7 @@ echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 sleep 180
 /bin/echo '/bin/bash ~/src/SARsrc/sh/SARpogn.sh '$city | at -M $(calcelestial -n -p sun -m set -q $city -H civil) + 15 minutes
-mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB OGNDATA   >$DBpath/files/OGNDATA.sql  2>/dev/null
+mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB OGNDATA   >$DBpath/files/OGNDATA.sql  2>>SARproc$dt.log 
 cat SARproc$(date +%y%m%d).log | /usr/bin/mutt -a "SARproc"$dt".log" -s $(hostname)" OGN daily report "$taken -- $(cat ~/src/SARsrc/sh/mailnames.txt)
 mv DATA*  data
 rm SAR.alive

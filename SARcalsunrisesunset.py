@@ -2,7 +2,7 @@
 import sys
 import socket
 sys.path.insert(0, '/nfs/OGN/src/funcs')
-from parserfuncs import *
+from parserfuncs import SRSSgetjsondata
 import config
 hostname = socket.gethostname()
 
