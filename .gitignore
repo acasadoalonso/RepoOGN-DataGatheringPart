@@ -28,3 +28,5 @@ flarmdb/*.fln
 flarmdb/*.csv
 config/
 .vagrant/
+.DBpasswd
+dockerfiles/.DBpasswd

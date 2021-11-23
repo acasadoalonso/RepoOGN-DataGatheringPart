@@ -4,6 +4,8 @@ if [ $# = 0 ]; then
 else
 	sql=$1
 fi
+SCRIPT=$(readlink -f $0)
+SCRIPTPATH=`dirname $SCRIPT`
 echo								#
 echo " "							#
 echo " "							#
@@ -41,6 +43,19 @@ echo "Installing the packages required . (LAMP stack)..."	#
 echo "=================================================="	#
 echo " "							#
 echo								#
+
+if [ ! -d /var/www/html ]						#
+then								#
+    sudo mkdir /var/www/html/					#
+    sudo chmod 777 /var/www/html/				#
+    sudo chown www-data:root /var/www/html/			#
+fi								#
+if [ ! -d /var/www/html/main ]					#
+then								#
+    sudo mkdir /var/www/html/main				#
+    sudo chmod 777 /var/www/html/main				#
+    sudo chown www-data:root /var/www/html/main			#
+fi								#
 cd /var/www/html/main						#
 sudo apt install -y mariadb-client				#
 sudo apt install -y libmariadb-dev				#
@@ -129,8 +144,10 @@ sudo -H python3 -m pip install flake8               		#
 if [ $sql = 'MySQL' ]						#	
 then								#
 	sudo -H pip3 uninstall mysqlclient			#
+        sudo apt-get install -y libmysqlclient-dev		#
+else								#
+        sudo apt-get libmariadb-dev				#
 fi								#
-sudo apt-get install -y libmysqlclient-dev 			#
 sudo -H pip3 install --no-binary mysqlclient mysqlclient 	#
 cd /var/www/html/						#
 if [ ! -d /etc/local ]						#
@@ -169,28 +186,54 @@ then								#
    echo "Install docker  ...." 					#
    echo "=================================================="	#
    echo " "							#
-   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-   sudo apt-key fingerprint 0EBFCD88
-   sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-   sudo apt update						#
-   sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-   sudo usermod -aG docker $USER				#
-   cp doc/.my.cnf ~/						#
-   sudo bash dockerfiles/mariadbnet.sh				#
-   sudo bash dockerfiles/mariadb.sh				#
-   sudo bash dockerfiles/mariadbpma.sh				#
+   if [ ! -f /usr/bin/docker ]					#
+   then								#
+      sudo curl -sSL https://get.docker.com | sh		#
+      sudo usermod -aG docker $USER				#
+      sudo apt update						#
+   fi								#
+   cd $SCRIPTPATH/../SARsrc/dockerfiles				#
+   echo "Current directory: "$(pwd)				#
+   cp ../doc/.my.cnf ~/						#
+   arch=$(uname -m)						#
+   if [ $arch != 'x84-64' ]					#
+   then								#
+      cd Mariadb.debian						#
+      echo "Create the container for the non-AMD64 architecture" #
+      echo "===================================================" #
+      #bash mariadb.patch					#
+      make							#
+      echo "Create mariadb container"				#
+      echo "========================"				#
+      bash mariadb.sh						#
+      echo "Create phpmyadmin container"			#
+      echo "==========================="			#
+      bash mariadbpma.pull					#
+      bash mariadbpma.sh					#
+      cd ..							#
+   else								#
+      sudo bash mariadbnet.sh					#
+      sudo bash mariadb.sh					#
+      sudo bash mariadbpma.sh					#
+   fi								#
+   bash install.portainer					#
    if [ ! -f .DBpasswd    ]					#
    then								#
       echo "Type DB password ..."				#
       read DBpasswd						#
       echo $DBpasswd > .DBpasswd				#
    fi								#
+   cd $SCRIPTPATH/../SARsrc					#
+   echo "Current directory: "$(pwd)				#
+   ping MARIADB -c 5						#
+   cat .DBpasswd						#
+   docker exec mariadb mariadb -e "create user if not exists root@'%' identified by '$(cat .DBpasswd)';"
+   docker exec mariadb mariadb -e "grant all privileges on *.* to root@'%' with GRANT option;"
    sudo mysql -u root -p$(cat .DBpasswd) -h MARIADB <doc/adduser.sql	
    echo "SET GLOBAL log_bin_trust_function_creators = 1; " | sudo mysql -u root -p$(cat .DBpasswd) -h MARIADB
+   echo "Secure the installation now ... answer the questions"  #
    sudo mysql_secure_installation				#
+   cd -								#
 fi								#
 cd								#
 sudo apt-get install percona-toolkit				#
