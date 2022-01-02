@@ -1,8 +1,7 @@
 #!/bin/bash
-
+echo "Backup SAROGN files ..."
 if [ ! -d /bkups/OGN ]
 then
-	#sudo mount -t nfs casadonfs:/nfs/NFS/Backups /bkups
 	sudo mount -t nfs casadonewnfs:/nfs/BKUP /bkups
 fi
 if [  -d /bkups/OGN ]
