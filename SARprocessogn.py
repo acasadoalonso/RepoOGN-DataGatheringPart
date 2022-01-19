@@ -294,7 +294,7 @@ while True:                                 # until end of file
                           station+'.'+idname+'.IGC', 'w')
             fd.write('AGNE001GLIDER\n')     # write the IGC header
             fd.write('HFDTE'+dte+'\n')      # write the date on the header
-            fd.write('AHFDTM100DATUM:WGS-1984\n')     # write the IGC header - the datum 
+            fd.write('HFDTM100GPSDATUM:WGS-1984 \n')     # write the IGC header - the datum 
 	    #HFGIDGLIDERID:D2520
             if getognchk(ident[3:9]):       # write the registration ID
                 fd.write('HFGIDGLIDERID:'+getognreg(ident[3:9])+'\n')
