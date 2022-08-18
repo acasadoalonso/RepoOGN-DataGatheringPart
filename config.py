@@ -70,12 +70,12 @@ except:
 try:
 	DDBurl1     = cfg.get('server', 'DDBurl1').strip("'")
 except:
-	DDBurl1     = 'http://ddb.acasado.name:60082/download/?j=2'
+	DDBurl1     = 'http://DDB.glidernet.org/download/?j=2'
 
 try:
 	DDBurl2     = cfg.get('server', 'DDBurl2').strip("'")
 except:
-	DDBurl2     = 'http://DDB.glidernet.org/download/?j=2'
+	DDBurl2     = 'http://ddb.acasado.name:60082/download/?j=2'
 
 if     (MySQLtext == 'True'):
         MySQL       = True
