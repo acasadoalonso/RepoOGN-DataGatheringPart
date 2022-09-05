@@ -154,7 +154,11 @@ atexit.register(lambda: osremove(config.PIDfile))
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print("Socket created")
 # sock.connect(('aprs.glidernet.org',14580))
-sock.connect((config.APRS_SERVER_HOST, config.APRS_SERVER_PORT))
+server=config.APRS_SERVER_HOST
+if server == ' ':
+   server=findfastestaprs()
+
+sock.connect((server, config.APRS_SERVER_PORT))
 print("Socket sock connected")
 
 # logon to OGN APRS network
@@ -240,7 +244,7 @@ try:
         if s.alt < twilight:
             print("At Sunset now ... Time is:", date, "UTC ...  Next sunset is: ", next_sunset,  " UTC")
             shutdown(sock, datafile, tmaxa, tmaxt, tmid)
-            print("At Sunset ... Exit\n===============================================================\n")
+            print("At Sunset ... wait 5 mins and Exit\n===============================================================\n")
             sleep(300)				# give a chance 5 mins to enter into the container
             exit(0)
 
