@@ -98,7 +98,7 @@ sudo apt-get install -y apache2 php 				#
 sudo apt-get install -y php-sqlite3 php-cli 			#
 sudo apt-get install -y php-mysql 				#
 sudo apt-get install -y php-mbstring php-json			#
-sudo apt-get install -y php7.4	php7.4-mysql			#
+sudo apt-get install -y php8.1	php8.1-mysql			#
 sudo a2enmod rewrite						#
 sudo phpenmod mbstring						#
 sudo a2enmod headers						#
