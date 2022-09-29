@@ -158,7 +158,6 @@ sudo -H python3 -m pip install docker               		#
 sudo -H python3 -m pip install yamllint               		#
 sudo -H python3 -m pip install setuptools 			#
 sudo -H python3 -m pip install flake8               		#
-sudo -H python3 -m pip install httpx               		#
 if [ $sql = 'MySQL' ]						#	
 then								#
 	sudo -H pip3 uninstall mysqlclient			#
@@ -272,4 +271,5 @@ echo " End of common components  ...." 				#
 echo "=================================================="	#
 echo " "							#
 echo " "							#
-echo								#
+echo	
+
