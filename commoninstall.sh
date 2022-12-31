@@ -146,6 +146,7 @@ sudo -H python3 -m pip install pycountry uritemplate requests	#
 sudo -H python3 -m pip install beeprint ogn.client		#
 sudo -H python3 -m pip install tqdm psutil python-dateutil	#
 sudo -H python3 -m pip install ping3               		#
+sudo -H python3 -m pip install pipreqs               		#
 sudo -H python3 -m pip install ttn               		#
 sudo -H python3 -m pip install paho-mqtt			#
 sudo -H python3 -m pip install pyserial 			#
@@ -159,6 +160,8 @@ sudo -H python3 -m pip install yamllint               		#
 sudo -H python3 -m pip install setuptools 			#
 sudo -H python3 -m pip install flake8               		#
 sudo -H python3 -m pip install httpx               		#
+sudo -H python3 -m pip install mysqlclient			#
+sudo -H python3 -m pip install timezonefinder zoneinfo		#
 if [ $sql = 'MySQL' ]						#	
 then								#
 	sudo -H pip3 uninstall mysqlclient			#

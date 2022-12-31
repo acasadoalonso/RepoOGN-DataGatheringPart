@@ -28,7 +28,7 @@ geolocator = Nominatim(user_agent="Repoogn", timeout=5)  # create the instance
 #
 # ---------- main code ---------------
 #
-pgmver="V2.4"
+pgmver="V2.5"
 fid = {'NONE  ': 0}                         # FLARM ID list
 fsta = {'NONE  ': 'NONE  '}                 # STATION ID list
 ffd = {'NONE  ': None}                      # file descriptor list
@@ -256,7 +256,7 @@ while True:                                 # until end of file
         continue                            # go for the next record
     if cc in blacklist:
         continue
-    idname = data[0:9]                      # exclude the FLR part
+    idname = data[0:9]                      # include the FLR/ICA part
     if idname[0:3] == 'RND':
         continue
     station = msg['station']                # get the station ID
@@ -268,7 +268,7 @@ while True:                                 # until end of file
         fsour[source] += 1		    # increase the counter
     if station == "FLYMASTER":
         continue
-     
+    idname=idname.replace(' ','-')	    # no blanks on the registration 
     if source == 'ADSB':
        if 'reg' in msg:
            fadsb[ident] = msg['reg']
@@ -288,7 +288,7 @@ while True:                                 # until end of file
                                             # prepare the IGC header
             if getognchk(ident[3:9]):       # if it is a known glider ???
                 fd = open(datapath+tmp+'FD'+dte+'.'+station+'.' +
-                          getognreg(ident[3:9]).strip()+'.'+idname+'.IGC', 'w')
+                          getognreg(ident[3:9]).strip().replace(' ','-')+'.'+idname+'.IGC', 'w')
             else:
                 fd = open(datapath+tmp+'FD'+dte+'.' +
                           station+'.'+idname+'.IGC', 'w')
