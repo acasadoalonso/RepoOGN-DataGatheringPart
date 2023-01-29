@@ -58,21 +58,23 @@ echo "Copy from sqlite3 to MySQL OGNDB: "$server
 sqlite3 $DBpath$SQLite3 ".dump GLIDERS" | python3 ~/src/SARsrc/sqlite3-to-mysql.py | mysql -u $DBuser -p$DBpasswd  -h $server OGNDB	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql -u $DBuser -p$DBpasswd -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL APRSLOG: "$server
-echo "delete from GLIDERS;"           |                mysql -u $DBuser -p$DBpasswd -h $server APRSLOG 		2>/dev/null
-#sqlite3  $DBpath$SQLite3 ".dump GLIDERS" | python3 ~/src/SARsrc/sqlite3-to-mysql.py | mysql -u $DBuser -p$DBpasswd APRSLOG	2>/dev/null
-mysql -u $DBuser -p$DBpasswd -h $server APRSLOG < ~/src/SARsrc/sh/copyGLIDERS.sql 					2>/dev/null
+echo "delete from GLIDERS;"          |                mysql -u $DBuser -p$DBpasswd -h $server APRSLOG 		2>/dev/null
+mysql -u $DBuser -p$DBpasswd -h $server APRSLOG < ~/src/SARsrc/sh/copyGLIDERS.sql 				2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql -u $DBuser -p$DBpasswd -h $server APRSLOG 		2>/dev/null
+# make a local copy on files
 mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB GLIDERS                                       >/var/www/html/files/GLIDERS.sql  2>/dev/null
+#
 echo "Copy from GLIDERS.sql file to MySQL SWIFACE: "$server2 
 echo "drop table GLIDERS;"           |                mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 		2>/dev/null
-mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 	</var/www/html/files/GLIDERS.sql                        2>/dev/null
+mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 	                                                         </var/www/html/files/GLIDERS.sql  2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 		2>/dev/null
-if [[ $(hostname) == 'CasadoUbuntu' ]]
+if [ $(hostname) == 'CasadoUbuntu' ]
 then
-	echo "Update MariaDB"
+	echo "Update MariaDB on: "$(hostname)
 	mysql --defaults-extra-file=~/.mariadb APRSLOG                                                                  </var/www/html/files/GLIDERS.sql  
 	mysql --defaults-extra-file=~/.mariadb OGNDB                                                                    </var/www/html/files/GLIDERS.sql  
 	mysql --defaults-extra-file=~/.mariadb SWIFACE                                                                  </var/www/html/files/GLIDERS.sql  
+	ls -la                                                                                                           /var/www/html/files/GLIDERS.sql  
 fi
 echo "============================================================================================================================================="
 cd 

@@ -245,6 +245,8 @@ try:
             print("At Sunset now ... Time is:", date, "UTC ...  Next sunset is: ", next_sunset,  " UTC")
             shutdown(sock, datafile, tmaxa, tmaxt, tmid)
             print("At Sunset ... wait 5 mins and Exit\n===============================================================\n")
+            sys.stdout.flush()
+            sys.stderr.flush()
             sleep(300)				# give a chance 5 mins to enter into the container
             exit(0)
 
