@@ -47,6 +47,8 @@ ksta = {
            "SMuerdo" : "Sierra de Muerdo, Soria ",
            "PCARRASCO" : "Puerto de la Carrascosa, Soria ",
            "PCarrasco" : "Puerto de la Carrascosa, Soria ",
+           "SpainSun" : "Station with Solar Panels, Soria ",
+           "SPAINSUN" : "Station with Solar Panels, Soria ",
            "SSalvador" : "San Salvador, el Cuculo, Huesca ",
            "SSALVADOR" : "San Salvador, el Cuculo, Huesca ",
            "RACE"      : "Race in Cuatro Vuentos, Madrid ",

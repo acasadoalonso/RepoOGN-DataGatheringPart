@@ -29,6 +29,7 @@ aprssources = {			# sources based on the APRS TOCALL
     "OGNHEL": "HELI",		# helium LoRaWan
     "OGOBS":  "OBS",		# OBS LoRaWan
     "OGADSB": "ADSB",		# ADSB
+    "OGADSL": "ADSL",		# ADS-L
     "OGNFNT": "FANE",		# FANET
     "OGFNT":  "FANE",		# FANET
     "OGNPAW": "PAW",		# PilotAware
@@ -48,6 +49,7 @@ aprssources = {			# sources based on the APRS TOCALL
     "OGNMAV": "NMAV",		# MAV link
     "OGNEMO": "NEMO",		# Canadian NEMO
     "OGNFNO": "NEURONE",	# Neurone
+    "OGNSXR": "OGNB",	   # OGNbase
     "OGNDELAY": "DLYM"		# Delayed fixes (IGC mandated)
 }
 # --------------------------------------------------------------------------

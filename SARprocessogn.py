@@ -85,6 +85,7 @@ cin = 0                                     # input record counter
 cout = 0                                    # output file counter
 date = datetime.now()                       # get the date
 dte = date.strftime("%y%m%d")               # today's date
+dteGFAC = date.strftime("%d%m%y")           # today's date GFAC format
 fname = 'DATA'+dte+'.log'                   # file name from logging
 paths=[]				    # paths used
 hostname = socket.gethostname()
@@ -293,7 +294,7 @@ while True:                                 # until end of file
                 fd = open(datapath+tmp+'FD'+dte+'.' +
                           station+'.'+idname+'.IGC', 'w')
             fd.write('AGNE001GLIDER\n')     # write the IGC header
-            fd.write('HFDTE'+dte+'\n')      # write the date on the header
+            fd.write('HFDTE'+dteGFAC+'\n')  # write the date on the header
             fd.write('HFDTM100GPSDATUM:WGS-1984 \n')     # write the IGC header - the datum 
 	    #HFGIDGLIDERID:D2520
             if getognchk(ident[3:9]):       # write the registration ID
