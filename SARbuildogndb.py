@@ -182,6 +182,7 @@ while True:                                 # until end of file
                 else:
                     addcmd = "insert into STATIONS values (?,?,?,?)"
                     curs.execute(addcmd, (key, dte, fsmax[key], fsalt[key]))
+
         #				    # check the RECEIVERS table
             if (MySQL):
                 selcmd = "select descri from RECEIVERS where idrec='" + \
@@ -189,9 +190,9 @@ while True:                                 # until end of file
                 curs.execute(selcmd)
             else:
                                             # SQL command to execute: SELECT
-                selcmd = "select descri from RECEIVERS where idrec=?"
+                selcmd = "select descri from RECEIVERS where idrec=?" # sqlite3
                 curs.execute(selcmd, (key,))
-            row = curs.fetchone()
+            row = curs.fetchone()	    # get the description 
             if  row == None:                # if receiver is NOT on the DB ???
                 gid = 'Noreg'               # for unknown receiver
                 if config.hostname == "CHILEOGN" or config.hostname == "OGNCHILE" or spanishsta(key) or frenchsta(key):
@@ -223,7 +224,7 @@ while True:                                 # until end of file
                         curs.execute(inscmd, (key, gid, lati, longi, alti))
 
             elif (row[0] == "NOSTA" or row[0] == "Noreg") and key in ksta.ksta:   # update the data of the receiver station
-                gid = ksta.ksta[key]  	    # report the station name
+                gid   = ksta.ksta[key] 	    # report the station name
                 lati  = fslla[key]          # latitude
                 longi = fsllo[key]          # longitude
                 alti  = fslal[key]          # altitude
@@ -242,12 +243,12 @@ while True:                                 # until end of file
                         except IndexError:
                             print(">>>MySQL Error: %s" % str(e))
                         print(">>>MySQL error:", updcmd)
-                else:
+                else:				# sqlite3
                     # SQL command to execute: UPDATE
                     updcmd = "update RECEIVERS SET idrec=?, descri=?, lati=?, longi=?, alti=? where idrec=?"
                     curs.execute(updcmd, (key, gid, lati, longi, alti, key))
 
-                print ("Update RECEIVER desciption of: ", key, gid, lati, longi, alti) 
+                print ("Update RECEIVER description of: ", key, gid, lati, longi, alti) 
         #
         conn.commit()
         # commit the changes

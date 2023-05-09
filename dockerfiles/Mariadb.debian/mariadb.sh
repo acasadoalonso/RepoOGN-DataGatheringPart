@@ -16,6 +16,6 @@ fi
 SCRIPT=$(readlink -f $0)
 SCRIPTPATH=`dirname $SCRIPT`
 
-docker run --net mynetsql --ip 172.18.0.2 --name mariadb --restart unless-stopped -e MYSQL_ROOT_PASSWORD=$DBpasswd -d mariadb:latest 
-
+#docker run --net mynetsql --ip 172.18.0.2 --name mariadb --restart unless-stopped -e MYSQL_ROOT_PASSWORD=$DBpasswd -d mariadb:latest 
+docker run --net mynetsql --ip 172.18.0.2 --name mariadb --restart unless-stopped -e MYSQL_ROOT_PASSWORD=$DBpasswd -d linuxserver/mariadb:arm32v7-latest
 
