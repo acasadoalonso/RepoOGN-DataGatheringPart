@@ -181,12 +181,14 @@ while True:                                 # until end of file
 
         k = list(fsloc.keys())              # list the receiving stations
         k.sort()                            # sort the list
+        print ("Receivers status and range:\n")
         for key in k:                       # report data distances
             if fsmax[key] > 0:              # only if we have measured distances
                 tfixs += fsfix[key]         # total number of fixes
                 if prt:
                                             # distance
                     print(key, '==>', fsmax[key], ' Kms. and number of fixes: ', fsfix[key])
+        print ("===========================:\n")
         if prt:
            print("Paths:", paths)
         # work done, finish the reporting now ...
@@ -382,7 +384,7 @@ addr = ' '
 if prt:
     print("Sources:", fsour)
     print("Aircraft types:", acfttype)
-    print("Maximun altitude for the day  :", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta, "At: ", mlati, mlong, addr)
+    print("Maximum altitude for the day  :", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta, "At: ", mlati, mlong, addr)
     print("Total number of fixes today   :", tfixs)
     print('Bye ... Time now and Time used:', datef, datef - \
         date)                               # report the processing time
