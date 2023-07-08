@@ -62,6 +62,7 @@ ksta = {
            "MEDINACEL": "Medinaceli , Soria ",
            "SMinana" :  "Sierra de Minana , Soria ",
            "SMINANA" :  "Sierra de Minana , Soria ",
+           "AVX909"  :  "Garray experimental , Soria ",
            "SSalvador" : "San Salvador, el Cuculo, Huesca ",
            "SSALVADOR" : "San Salvador, el Cuculo, Huesca ",
            "RICONCIEL" : "Cerler Sky Station, Huesca ",

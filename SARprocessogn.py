@@ -155,7 +155,7 @@ while True:                                 # until end of file
                 # report FLARM ID, station used,  record counter, registration, take off time and landing time
             if ffd[key] != None:
                 ffd[key].close()            # and close all the file
-
+        print ("\n======================================\n")
         k = list(ftkok.keys())              # list the takes off times
         k.sort()                            # sort the list
         for to in k:                        # report by take off time
