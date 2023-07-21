@@ -24,6 +24,7 @@ ksta = {
  	   "LETC"   : "Matilla de los Caños, Valladolid ",
  	   "LEGA"   : "Armilla AB, Granada ",
  	   "LERE"   : "Requena, Valencia",
+ 	   "LETL"   : "Teruel, Teruel",
            "PWLERM" : "Robledillo de Mohernando",
            "ALCAZAREN" : "Alcazaren, Valladolid ",
            "ANDORRA": "Andorra ",
