@@ -50,6 +50,7 @@ aprssources = {			# sources based on the APRS TOCALL
     "OGNEMO": "NEMO",		# Canadian NEMO
     "OGNFNO": "NEURONE",	# Neurone
     "OGNSXR": "OGNB",	   	# OGNbase
+    "OGAIRM": "AIRM",	   	# Airmate
     "OGNDLY": "DLYM"		# Delayed fixes (IGC mandated)
 }
 # --------------------------------------------------------------------------
