@@ -36,4 +36,8 @@ cd ../
 pwd
 bash fd/compfull.sh 
 sudo chown $USER:www-data -R fd
+cd  data
+mv DATA*$(date +%y)*.log Y$(date +%y) 
+bash ./compress.sh   Y$(date +%y) 
+cd ../
 cd

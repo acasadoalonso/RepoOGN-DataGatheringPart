@@ -379,8 +379,15 @@ while True:                                 # until end of file
                 if altim > fsalt[station]:  	# if higher altitude
                     fsalt[station] = altim  # save the new altitude
             if source != 'OGN':
-                distance = geodesic((latitude, longitude), (config.location_latitude,
-                                     config.location_longitude)).km    # distance to the station
+                if getinfoairport (config.location_name) != None:
+                  location_latitude = getinfoairport (config.location_name)['lat']
+                  location_longitude = getinfoairport (config.location_name)['lon']
+                else:
+                  location_latitude=config.location_latitude
+                  location_longitude=config.location_longitude
+
+                distance = geodesic((latitude, longitude), (location_latitude,
+                                                            location_longitude)).km    # distance to the station
                 dist = distance
 
             if altim != None and altim > tmaxa:

@@ -280,8 +280,12 @@ else:
     conn1 = MySQLdb.connect(host=DBhost, user=DBuser,
                             passwd=DBpasswd, db=DBname)
     # connect with the ogntrkstatus databasea
-    conn2 = MySQLdb.connect(host=DBhost, user=DBuser,
+    try:
+       conn2 = MySQLdb.connect(host=DBhost, user=DBuser,
                             passwd=DBpasswd, db='APRSLOG')
+    except:
+       print ("Error on DB APRSLOG ....")
+       exit()
 
 curs1 = conn1.cursor()                 	    # set the cursor
 curs2 = conn1.cursor()                	    # set the cursora

@@ -43,7 +43,7 @@ python3 ~/src/SARsrc/SARbuildogndb.py MYSQL DATA$dt.log  	>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
-python3 ~/src/SARsrc/SARanalysisrelay.py -n DATA$dt.log -i 5	>>SARproc$dt.log
+python3 ~/src/SARsrc/SARanalysisrelay.py -n DATA$dt.log -i 5 -sa YES	>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
