@@ -14,7 +14,6 @@ import socket
 import airportsdata
 from datetime import datetime
 from ogn.parser import parse
-import ksta			# list of know stations
 
 # --------------------------------------------------------------------------
 aprssources = {			# sources based on the APRS TOCALL
@@ -30,6 +29,7 @@ aprssources = {			# sources based on the APRS TOCALL
     "OGNHEL": "HELI",		# helium LoRaWan
     "OGOBS":  "OBS",		# OBS LoRaWan
     "OGADSB": "ADSB",		# ADSB
+    "ONADSB": "ADSB",		# ADSB
     "OGADSL": "ADSL",		# ADS-L
     "OGNFNT": "FANE",		# FANET
     "OGFNT":  "FANE",		# FANET
@@ -304,6 +304,8 @@ def gdatar(data, typer):               	# get data on the  right
 
 
 def spanishsta(station):                # return true if is an Spanish station
+    
+    import ksta				# list of know stations
     if (station) is None:
         return False
     if station[0:2] == 'LE' or station[0:2] == "LP" or	\

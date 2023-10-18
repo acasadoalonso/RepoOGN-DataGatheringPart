@@ -18,6 +18,7 @@ else:
 print("Meteo in ... ", sta)
 
 url = ('https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=%s&hoursBeforeNow=25' % sta)
+url = ('https://aviationweather.gov/cgi-bin/data/dataserver.php?requestType=retrieve&dataSource=metars&stationString=%s&format=xml&hoursBeforeNow=1' % sta)
 f = urlopen(url)
 doc = parse(f)
 

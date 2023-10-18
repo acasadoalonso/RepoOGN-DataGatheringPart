@@ -23,6 +23,7 @@ crecmd = "create unique index IF NOT EXISTS METEOIDX on METEO ( date , time, met
 curs.execute(crecmd)
 
 url = ('https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&stationString=LEMD&hoursBeforeNow=1')
+url = ('https://aviationweather.gov/cgi-bin/data/dataserver.php?requestType=retrieve&dataSource=metars&stationString=LEMD&format=xml&hoursBeforeNow=1')
 f = urlopen(url)
 root = parse(f)
 

@@ -21,11 +21,12 @@ else:
 hostname = socket.gethostname()
 print("Meteo in ... ", sta, hostname)
 
-
+numr=0
 url = ('https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=tafs&requestType=retrieve&format=xml&stationString=%s&hoursBeforeNow=1' % sta)
+url = ('https://aviationweather.gov/cgi-bin/data/dataserver.php?requestType=retrieve&dataSource=tafs&stationString=%s&hoursBeforeNow=1&format=xml' % sta)
 f = urllib.request.urlopen(url)
 xml_string = f.read()
-#print xml_string
+#print ("XML:", xml_string)
 root = ET.fromstring(xml_string)
 # for child in root:
 #    print child.tag, child.attrib

@@ -158,7 +158,7 @@ sudo -H python3 -m pip install molecule               		#
 sudo -H python3 -m pip install docker               		#
 sudo -H python3 -m pip install yamllint               		#
 sudo -H python3 -m pip install setuptools 			#
-sudo -H python3 -m pip install flake8               		#
+sudo -H python3 -m pip install flake8 icecream         		#
 sudo -H python3 -m pip install httpx               		#
 sudo -H python3 -m pip install mysqlclient			#
 sudo -H python3 -m pip install timezonefinder zoneinfo		#

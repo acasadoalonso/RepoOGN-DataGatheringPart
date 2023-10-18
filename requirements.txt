@@ -1,4 +1,4 @@
-airportsdata == 20230717
+airportsdata == 20230906
 geopy == 2.2.0
 ogn_client == 1.2.1
 ping3 == 4.0.3
@@ -8,4 +8,4 @@ requests == 2.25.1
 tqdm == 4.64.1
 pyephem == 9.99
 googlemaps == 4.10.0
-gpiozero == 1.6.2
+gpiozero == 2.0
