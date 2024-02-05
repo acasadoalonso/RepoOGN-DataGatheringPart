@@ -6,6 +6,12 @@ ls -la
 if [ $# -eq  0 ]; then
 	server='localhost'
 	server2='localhost'
+	mysql -h localhost >/dev/null 2>/dev/null
+	if [ $? != 0 ]
+	then
+		server='MARIADB'
+		server2='MARIADB'
+	fi
 else
 	server=$1
 	server2='localhost'
@@ -14,6 +20,7 @@ if [ $#  -gt  1 ]; then
 	server2=$2
 fi
 
+echo "MYSQL Servers: "$server" and "$server2
 if [ -z $CONFIGDIR ]
 then 
      export CONFIGDIR=/etc/local/
@@ -49,12 +56,11 @@ pwd
 echo
 echo "Build the MySQL databases on the servers:"
 echo
-echo "Server:  "$server
-echo "Server2: "$server2
 echo "Registered gliders from sqlite3: "
 echo "select count(*) from GLIDERS;" |                sqlite3 -echo $DBpath$SQLite3
 echo "drop table GLIDERS;"           |                mysql -u $DBuser -p$DBpasswd -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL OGNDB: "$server
+#echo $DBpath$SQLite3 ".dump GLIDERS" 
 sqlite3 $DBpath$SQLite3 ".dump GLIDERS" | python3 ~/src/SARsrc/sqlite3-to-mysql.py | mysql -u $DBuser -p$DBpasswd  -h $server OGNDB	2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql -u $DBuser -p$DBpasswd -h $server OGNDB 		2>/dev/null
 echo "Copy from sqlite3 to MySQL APRSLOG: "$server
@@ -68,13 +74,18 @@ echo "Copy from GLIDERS.sql file to MySQL SWIFACE: "$server2
 echo "drop table GLIDERS;"           |                mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 		2>/dev/null
 mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 	                                                         </var/www/html/files/GLIDERS.sql  2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 		2>/dev/null
-if [ $(hostname) == 'CasadoUbuntu' ]
+if [[ $(hostname) == 'SAROGN' ]]
+then
+	echo "Update file on NFS by: "$(hostname)
+        mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB GLIDERS                                      >/nfs/tmp/OGNDB.GLIDERS.sql  2>/dev/null
+fi
+if [[ $(hostname) == 'CasadoUbuntu' ]]
 then
 	echo "Update MariaDB on: "$(hostname)
-	mysql --defaults-extra-file=~/.mariadb APRSLOG                                                                  </var/www/html/files/GLIDERS.sql  
-	mysql --defaults-extra-file=~/.mariadb OGNDB                                                                    </var/www/html/files/GLIDERS.sql  
-	mysql --defaults-extra-file=~/.mariadb SWIFACE                                                                  </var/www/html/files/GLIDERS.sql  
-	ls -la                                                                                                           /var/www/html/files/GLIDERS.sql  
+	mysql --defaults-extra-file=~/.mariadb APRSLOG                                                                  </nfs/tmp/OGNDB.GLIDERS.sql  
+	mysql --defaults-extra-file=~/.mariadb OGNDB                                                                    </nfs/tmp/OGNDB.GLIDERS.sql  
+	mysql --defaults-extra-file=~/.mariadb SWIFACE                                                                  </nfs/tmp/OGNDB.GLIDERS.sql  
+	ls -la                                                                                                           /nfs/tmp/OGNDB.GLIDERS.sql  
 fi
 echo "============================================================================================================================================="
 cd 

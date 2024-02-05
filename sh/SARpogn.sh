@@ -50,12 +50,12 @@ echo "============="        					>>SARproc$dt.log
 sleep 180
 /bin/echo '/bin/bash ~/src/SARsrc/sh/SARpogn.sh '$city | at -M $(calcelestial -n -p sun -m set -q $city -H civil) + 15 minutes
 # keep a copy for further sync with other servers
-mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB OGNDATA   >$DBpath/files/OGNDATA.sql  2>>SARproc$dt.log 
+mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB OGNDATA   >/nfs/tmp/OGNDB.OGNDATA.sql  2>>SARproc$dt.log 
 # send a mail
 cat SARproc$(date +%y%m%d).log | /usr/bin/mutt -a "SARproc"$dt".log" -s $(hostname)" OGN daily report "$taken -- $(cat ~/src/SARsrc/sh/mailnames.txt)
 mv DATA*  data
-rm SAR.alive
-rm SAR.sunset
+rm -f  SAR.alive
+rm -f  SAR.sunset
 # fddir : directory where to staore the IGC files
 fddir='fd/Y'$(date +%y)'/M'$(date +%m)
 echo "Moving IGC files to: "$fddir    				>>SARproc$dt.log
@@ -74,5 +74,5 @@ mv SARproc*.log log
 /bin/echo '/bin/bash ~/src/SARsrc/sh/SARflight_logger.sh '$city | at -M $(calcelestial -n -p sun -m rise -q $city) + 60 minutes
 rm -f tmp/*.IGC
 atq 
-rm ~/sent
+rm -f ~/sent
 

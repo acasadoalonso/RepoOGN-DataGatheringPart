@@ -54,5 +54,8 @@ while i >= 0:
         if cltype != None:
             cloud += '/'+str(cltype)
     print(station, ("%-75s" % rawtext), obstime, cloud, 'Temp:', temp, 'DewP:', dewp, 'Wind Dir.', winddir, 'Wind Speed:', windspeed, 'Wind Gust:', windgust, 'Visibility:', visibility, 'QHN:', qnh, fc, wx)
-
 f.close()
+if www:
+	url='https://aviationweather.gov/api/data/metar?ids=%s&taf=true&hours=1' % sta
+	f = urlopen(url)
+	print (f.read().decode().rstrip())

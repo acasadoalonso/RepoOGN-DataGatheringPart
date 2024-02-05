@@ -2,9 +2,9 @@
 #
 # install SWS interface on a docker container
 #
-bash install.docker
-bash install.portainer
-make
+#bash install.docker
+#bash install.portainer
+#make
 if [ ! -f .DBpasswd    ]					#
 then								#
    echo "Type DB password ..."					#
