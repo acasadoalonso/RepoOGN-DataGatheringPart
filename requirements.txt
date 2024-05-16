@@ -8,4 +8,4 @@ requests == 2.25.1
 tqdm == 4.64.1
 pyephem == 9.99
 googlemaps == 4.10.0
-gpiozero == 2.0
+gpiozero == 2.0.1

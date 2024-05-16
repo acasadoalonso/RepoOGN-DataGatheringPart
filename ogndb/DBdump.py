@@ -102,7 +102,7 @@ inittime = datetime.datetime.now()
 # Dump the OGN database
 #
 
-print("Dump OGN database V3.0")
+print("Dump OGN database V3.1")
 print("======================")
 dtareq = sys.argv[1:]
 
@@ -340,7 +340,7 @@ logging.info('%30s Reports: ', datetime.datetime.now())
 # reports
 #
 
-print('Input records: ', cin)
+print('Input records: ', cin, "\n")
 print("ID   REG    => Base       Record counter    average distance Max Distance")
 print("=========================================================================")
 # list the IDs for debugging purposes
@@ -361,6 +361,7 @@ for key in k:                               # report data
         curs.execute( "select registration from GLIDERS where idglider = ?", [gkey])
 
     reg = curs.fetchone()
+    
     if reg == None:
        regadsb=getadsbreg(gkey)
        if regadsb != False:
@@ -370,6 +371,8 @@ for key in k:                               # report data
        #print ("GGGG", gkey, getsizeadsbcache(), reg, config.ADSBreg)
     else:
        reg = reg[0]
+    if key[0:3] == 'RND':
+       continue
     try:
 
         mlati = fmaxlati[key]

@@ -24,7 +24,7 @@ from datetime import datetime
 # ---------- main code ---------------
 #
 
-pgmver = 'V2.2'
+pgmver = 'V2.4'
 fid   = {'NONE  ': 0}                       # FLARM ID list
 fsta  = {'NONE  ': 'NONE  '}                # STATION ID list
 ftkot = {'NONE  ': 0}                       # take off time
@@ -275,6 +275,8 @@ while True:                                 # until end of file
             continue
 #           ---------------------------------------------------------
         ident = msg['id']          	    # id
+        if (ident[0:3] == 'RND'):	    # check if random ??
+           continue
         
         type = msg['aprstype']		    # message type
         longitude = msg['longitude']
@@ -290,6 +292,8 @@ while True:                                 # until end of file
             paths.append(path)
         otime = msg['otime']
         source = msg['source']              # source of the data OGN/SPOT/SPIDER/...
+        if source == 'ADSB' and not MySQL:
+           continue
         station = msg['station'].upper()    # in uppercase
         if len(source) > 4:
             source = source[0:3]
@@ -378,17 +382,19 @@ while True:                                 # until end of file
                     fsmax[station] = distance  # save the new distance
                 if altim > fsalt[station]:  	# if higher altitude
                     fsalt[station] = altim  # save the new altitude
+            if source == 'ADSB' and not MYSQL:
+               continue
             if source != 'OGN':
                 if getinfoairport (config.location_name) != None:
-                  location_latitude = getinfoairport (config.location_name)['lat']
+                  location_latitude  = getinfoairport (config.location_name)['lat']
                   location_longitude = getinfoairport (config.location_name)['lon']
                 else:
-                  location_latitude=config.location_latitude
+                  location_latitude =config.location_latitude
                   location_longitude=config.location_longitude
 
                 distance = geodesic((latitude, longitude), (location_latitude,
                                                             location_longitude)).km    # distance to the station
-                dist = distance
+                dist = distance	    	    # distance to the station
 
             if altim != None and altim > tmaxa:
                 tmaxa = altim               # maximum altitude for the day

@@ -28,7 +28,7 @@ geolocator = Nominatim(user_agent="Repoogn", timeout=5)  # create the instance
 #
 # ---------- main code ---------------
 #
-pgmver="V2.5"
+pgmver="V2.6"
 fid = {'NONE  ': 0}                         # FLARM ID list
 fsta = {'NONE  ': 'NONE  '}                 # STATION ID list
 ffd = {'NONE  ': None}                      # file descriptor list
@@ -72,6 +72,7 @@ if prt:
     print("Start process OGN records "+pgmver)
     print("===============================")
     print("User:", user)
+
 dtereq = sys.argv[1:]
 if dtereq and dtereq[0] == 'date':
     dter = True                             # request the date
