@@ -28,7 +28,8 @@ geolocator = Nominatim(user_agent="Repoogn", timeout=5)  # create the instance
 #
 # ---------- main code ---------------
 #
-pgmver="V2.6"
+pgmver="V2.7"
+AVX=False				    # process the AVX ADS-B data
 fid = {'NONE  ': 0}                         # FLARM ID list
 fsta = {'NONE  ': 'NONE  '}                 # STATION ID list
 ffd = {'NONE  ': None}                      # file descriptor list
@@ -280,7 +281,7 @@ while True:                                 # until end of file
            fadsbfn[ident] = msg['fn']
 
     # or frenchsta(station):  # only Chilean or Spanish or frenchstations
-    if ((hostname == "CHILEOGN" or hostname == "OGNCHILE") and source == "OGN") or source == "SPOT" or source == "NAVI" or source == "SKYS" or spanishsta(station):
+    if ((hostname == "CHILEOGN" or hostname == "OGNCHILE") and source == "OGN") or source == "SPOT" or source == "NAVI" or source == "SKYS" or spanishsta(station) or (source == 'ADSB' and AVX) :
         if not ident in fid:                # if we did not see the FLARM ID
             fid[ident] = 0                  # init the counter
             fsta[ident] = station           # init the station receiver
