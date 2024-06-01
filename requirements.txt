@@ -4,7 +4,7 @@ ogn_client == 1.2.1
 ping3 == 4.0.3
 psutil == 5.9.0
 pytz == 2022.1
-requests == 2.25.1
+requests == 2.32.2
 tqdm == 4.64.1
 pyephem == 9.99
 googlemaps == 4.10.0
