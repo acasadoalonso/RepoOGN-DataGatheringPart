@@ -20,7 +20,7 @@ from ognddbfuncs import *               # import the OGN DDB functions
 from datetime import datetime
 sys.path.insert(0, '/nfs/OGN/src/funcs')
 from parserfuncs import *               # the ogn/ham parser functions
-from adsbfuncs   import getadsbreg
+from adsbregfuncs   import getadsbreg
 from time import sleep                  # the sleep
 
 
@@ -125,6 +125,10 @@ else:
     print("Start ognES SPAIN ", pgmver)
 print("========================")
 print("Program Version:", time.ctime(os.path.getmtime(__file__)))
+import git
+repo = git.Repo(__file__, search_parent_directories=True)
+sha = repo.head.object.hexsha
+print ("Git commit:", sha)
 #print os.environment
 if 'USER' in os.environ:
     user = os.environ['USER']
@@ -364,7 +368,8 @@ try:
                 print('Packet returned is: ', packet_str)
                 print('Message: ', msg)
                 print('OTime:', otime, "Source:", source, "\n-------------------------------------------------------\n")
-            if not ident in fid:                    # if we did not see the FLARM ID yet
+            if not ident in fid and ident[0:3] != 'RND':
+                                                    # if we did not see the FLARM ID yet
                 fid[ident] = 0                      # init the counter
                 fsta[ident] = station               # init the station receiver
                 fmaxa[ident] = altitude             # maximun altitude
@@ -373,16 +378,18 @@ try:
 
             cin += 1                                # increase total input records
                                                     # increase the number of records read
-            fid[ident] += 1
-            if altitude >= fmaxa[ident]:            # check for max altitude of the day
-                fmaxa[ident] = altitude
-                if altitude > tmaxa and (not spanishsta(ident) and not frenchsta(ident)):
-                    tmaxa = altitude                # maximum altitude for the day
-                    tmaxt = date                    # date and time
-                    tmid = ident                    # who did it
-                    tmsta = station                 # station capturing the max altitude
-            if speed >= fmaxs[ident]:               # check for max speed of the day
-                fmaxs[ident] = speed
+
+            if ident[0:3] != 'RND':                 # ignore random                          
+               fid[ident] += 1
+               if altitude >= fmaxa[ident]:         # check for max altitude of the day
+                   fmaxa[ident] = altitude
+                   if altitude > tmaxa and (not spanishsta(ident) and not frenchsta(ident)):
+                       tmaxa = altitude             # maximum altitude for the day
+                       tmaxt = date                 # date and time
+                       tmid = ident                 # who did it
+                       tmsta = station              # station capturing the max altitude
+               if speed >= fmaxs[ident]:            # check for max speed of the day
+                   fmaxs[ident] = speed
 
             if source == 'ADSB':
                 if 'reg' in msg:

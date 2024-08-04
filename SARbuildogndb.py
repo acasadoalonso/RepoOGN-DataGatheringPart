@@ -44,9 +44,14 @@ relaycntr = 0				    # counter of std relay packages
 relayglider = {}			    # list of relay glider and tracker
 tmsta = ''
 CCerrors=[]
+checkdist=[]
 print("Start build OGN database "+pgmver)
 print("==============================")
 prt = False
+import git
+repo = git.Repo(__file__, search_parent_directories=True)
+sha = repo.head.object.hexsha
+print (sha)
 import config                               # import the main settings
 DBname = config.DBname
 DBhost = config.DBhost
@@ -291,6 +296,11 @@ while True:                                 # until end of file
         if path not in paths:
             paths.append(path)
         otime = msg['otime']
+        if 'roclimb' in msg:
+           roclimb = msg['roclimb']
+           if abs(roclimb) == 9999:
+               continue
+
         source = msg['source']              # source of the data OGN/SPOT/SPIDER/...
         if source == 'ADSB' and not MySQL:
            continue
@@ -358,10 +368,12 @@ while True:                                 # until end of file
                 uniqueid = uniqueid[0:10]   # in this database only 10 chars
             extpos = msg['extpos']
             roclimb = msg['roclimb']
-            rot = msg['rot']
+            if abs(roclimb) == 9999:	    # check rate of clim ???
+               continue			    # ignore if so
+            rot =         msg['rot']
             sensitivity = msg['sensitivity']
-            gps = msg['gps']
-            hora = msg['time']
+            gps =         msg['gps']
+            hora =        msg['time']	    # time from the radio packet
             dist = -1			    # if we can not get the distance
             altim = altitude                # the altitude in meters
 
@@ -376,15 +388,19 @@ while True:                                 # until end of file
                                             # distance to the station
                 distance = geodesic((latitude, longitude), fsloc[station]).km
                 dist = distance
-                if distance > 250.0:
-                    print(">>Distcheck: ", distance, "Nrec:", nrec,  longitude, latitude, data)
-                elif distance > fsmax[station]:  # if higher distance
-                    fsmax[station] = distance  # save the new distance
-                if altim > fsalt[station]:  	# if higher altitude
+                if distance > 300.0:
+                    if not ident in checkdist: 
+                       print(">>>Distcheck: ", ident, distance, data, cin, roclimb," :<<<\n")
+                       checkdist.append(ident)
+                elif distance > fsmax[station] and abs(roclimb) < 3000: # if higher distance
+                    fsmax[station] = distance   # save the new distance
+
+                if altim > fsalt[station]:  # if higher altitude
                     fsalt[station] = altim  # save the new altitude
+
             if source == 'ADSB' and not MYSQL:
                continue
-            if source != 'OGN':
+            if source != 'OGN':		    # assume the base
                 if getinfoairport (config.location_name) != None:
                   location_latitude  = getinfoairport (config.location_name)['lat']
                   location_longitude = getinfoairport (config.location_name)['lon']
@@ -401,8 +417,9 @@ while True:                                 # until end of file
                 tmaxt = hora                # and time
                 tmid = ident                # who did it
                 tmsta = station             # station capturing the max altitude
+
             if uniqueid[0:2] != "id":	    # check for a valid uniqueid
-                continue
+                continuea		    # ignore if so
 #           ---------------------------------------------------------
                                             # write the DB record eithher on MySQL or SQLITE3
             if (MySQL):

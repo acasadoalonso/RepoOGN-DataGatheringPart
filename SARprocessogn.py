@@ -28,8 +28,9 @@ geolocator = Nominatim(user_agent="Repoogn", timeout=5)  # create the instance
 #
 # ---------- main code ---------------
 #
-pgmver="V2.7"
+pgmver="V2.8"
 AVX=False				    # process the AVX ADS-B data
+ENA=False				    # process the ENA ADS-B data
 fid = {'NONE  ': 0}                         # FLARM ID list
 fsta = {'NONE  ': 'NONE  '}                 # STATION ID list
 ffd = {'NONE  ': None}                      # file descriptor list
@@ -55,6 +56,7 @@ www = False
 prt = True
 CCerrors=[]
 acfttype=[]
+checkdist=[]				    # list of devices with extra distance
 
 #print os.environment
 if 'USER' in os.environ:
@@ -73,6 +75,10 @@ if prt:
     print("Start process OGN records "+pgmver)
     print("===============================")
     print("User:", user)
+    import git
+    repo = git.Repo(__file__, search_parent_directories=True)
+    sha = repo.head.object.hexsha
+    print ("Git commit:", sha)
 
 dtereq = sys.argv[1:]
 if dtereq and dtereq[0] == 'date':
@@ -281,7 +287,7 @@ while True:                                 # until end of file
            fadsbfn[ident] = msg['fn']
 
     # or frenchsta(station):  # only Chilean or Spanish or frenchstations
-    if ((hostname == "CHILEOGN" or hostname == "OGNCHILE") and source == "OGN") or source == "SPOT" or source == "NAVI" or source == "SKYS" or spanishsta(station) or (source == 'ADSB' and AVX) :
+    if ((hostname == "CHILEOGN" or hostname == "OGNCHILE") and source == "OGN") or source == "SPOT" or source == "NAVI" or source == "SKYS" or spanishsta(station) or (source == 'ADSB' and (AVX or ENA)) :
         if not ident in fid:                # if we did not see the FLARM ID
             fid[ident] = 0                  # init the counter
             fsta[ident] = station           # init the station receiver
@@ -350,13 +356,15 @@ while True:                                 # until end of file
         if speed < 20 and speed > 5 and ftkot[ident] != 0:
             flndt[ident] = otime            # store the landing time
         station=station.upper()
-        if station in fsloc:                # if we have the station yet
+        if source != 'ADSB' and station in fsloc:   # if we have the station yet
                                             # increase the number of fixes for that station
             fsfix[station] += 1
                                             # distance to the station
             distance = geodesic((latitude, longitude), fsloc[station]).km
             if distance > 300.0:
-                print(">>>Distcheck: ", distance, data, cin)
+                if not ident in checkdist: 
+                   print(">>>Distcheck: ", ident, distance, data, cin, "<<<\n")
+                   checkdist.append(ident)
             elif distance > fsmax[station]: # if higher distance
                 fsmax[station] = distance   # save the new distance
         if altim > tmaxa:

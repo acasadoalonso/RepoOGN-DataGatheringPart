@@ -2,11 +2,11 @@
 import json
 import os
 import io
-from datetime import datetime
-from geopy.distance import geodesic       # use the Vincenty algorithm^M
+from   datetime import datetime
+from   adsbregfuncs import getadsbreg, getsizeadsbcache
+from   geopy.distance import geodesic       # use the Vincenty algorithm^M
 import config
-from parserfuncs import deg2dmslat, deg2dmslon
-
+from   parserfuncs import deg2dmslat, deg2dmslon
 import psutil
 MUT=False
 if config.ADSBOpenSky:
@@ -15,8 +15,14 @@ else:
     OPENSKY=False
 
 #-------------------------------------------------------------------------------------------------------------------#
+def adsbini(prt=False, aprspush=False):
+    if config.ADSBOpenSky:
+       print ("ADSB interface using OPENSKY...")
+    else:
+       print ("ADSB interface using dump1090...")
+    return()
 
-
+#-------------------------------------------------------------------------------------------------------------------#
 def is_raspberrypi():
     if os.name != 'posix':
         return False
@@ -33,32 +39,6 @@ def is_raspberrypi():
         pass
     return False
 #-------------------------------------------------------------------------------------------------------------------#
-
-
-global _adsbregcache_
-_adsbregcache_ = {}
-_adsbreg_ = {}
-
-
-def getadsbreg(icao):			    # get the registration and model from the ICAO ID
-    global _adsbregcache_
-    global _adsbreg_
-    if not config.ADSBreg:		    # check if we want to import the huge file ADSBreg
-        return(False)
-    if len(_adsbreg_) == 0:	    	    # only import the table if need it
-        import ADSBreg			    # this file is huge
-        _adsbreg_ = ADSBreg.ADSBreg	    # update the global pointer
-    if icao in _adsbregcache_:		    # if ID on the table ???
-        return (_adsbregcache_[icao])       # return model and registration
-    else:				    # if not found, look into the whole registration DB
-        if icao in _adsbreg_:
-            _adsbregcache_[icao]=_adsbreg_[icao]  # and update the cache for next time
-            return (_adsbregcache_[icao])     # return model and registration
-    return False			    # return FALSE
-
-
-def getsizeadsbcache():			    # just return the size of the cache
-    return (len(_adsbregcache_))
 
 
 def adsbgetapidata(adsbfile): 	            # get the data from the API server
@@ -167,11 +147,17 @@ def adsbopensky(adsbpos, ttime, prt=True):
     if states == None:
        return(False)
     for s in states.states:		    # scan all the VECTORS
+        #print ("SSSS", s)
+        #prt = True
+        if s.on_ground:
+           continue
 
+        heading = s.true_track
+          
         if prt:
             print("ICAO=%r, CS=%r, COUNTRY=%r, LON=%r, LAT=%r, BARO=%r, GEOALT=%r, VEL=%ri, HEADING=%r, VERT=%r, SQUAWK=%r, SOURCE=%r, TIME=%r" %
                   (s.icao24, s.callsign, s.origin_country, s.longitude, s.latitude, s.baro_altitude,
-                   s.geo_altitude, s.velocity, s.heading, s.vertical_rate,
+                   s.geo_altitude, s.velocity, s.true_track, s.vertical_rate,
                    s.squawk, s.position_source, s.time_position))
 
         aid = "ICA"+s.icao24.upper()	    # aircraft ID
@@ -200,7 +186,7 @@ def adsbopensky(adsbpos, ttime, prt=True):
         distance = geodesic((lat, lon), (vitlat, vitlon)).km  # distance to the station
 
         pos = {"ICAOID": aid, "date": date, "time": tme, "Lat": lat, "Long": lon, "altitude": alt, "UnitID": aid,
-               "dist": distance, "course": s.heading, "speed": s.velocity, "roc": s.vertical_rate, "rot": rot,
+               "dist": distance, "course": s.true_track, "speed": s.velocity, "roc": s.vertical_rate, "rot": rot,
                "GPS": gps, "extpos": extpos, "flight": s.callsign, "squawk": s.squawk}
 
         if prt:
@@ -305,7 +291,8 @@ def adsbaprspush(datafix, conn, prt=False):
             aprsmsg += "reg"+reg+" model"+model+" \n"
         else:
             aprsmsg += " \n"
-        print("APRSMSG: ", aprsmsg)
+        if prt:
+           print("APRSMSG: ", aprsmsg)
         rtn = config.SOCK_FILE.write(aprsmsg)
         config.SOCK_FILE.flush()
         if rtn == 0:

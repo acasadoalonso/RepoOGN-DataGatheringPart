@@ -7,5 +7,6 @@ pytz == 2022.1
 requests == 2.25.1
 tqdm == 4.66.3
 pyephem == 9.99
+GitPython == 3.1.43
 googlemaps == 4.10.0
 gpiozero == 2.0.1

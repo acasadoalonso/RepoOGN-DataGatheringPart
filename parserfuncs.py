@@ -311,12 +311,14 @@ def spanishsta(station):                # return true if is an Spanish station
         return False
     if station[0:2] == 'LE' or station[0:2] == "LP" or	\
             station[0:5] == 'CREAL'     or 	\
+            station[0:5] == 'CReal'     or 	\
             station[0:4] == 'MORA'      or 	\
             station[0:4] == 'LUGO'      or 	\
             station[0:6] == 'MADRID'    or 	\
             station[0:8] == 'LEMDadsb'  or 	\
             station[0:7] == 'TTN2OGN'   or 	\
-            station[0:5] == 'AVILA'     or	\
+            station[0:6] == 'VIADOS'    or	\
+            station[0:6] == 'Viados'    or	\
             station[0:9] == 'ALCAZAREN' or	\
             station[0:7] == 'ANDORRA'   or	\
             station[0:9] == 'STOROE'    or	\
@@ -349,9 +351,11 @@ def spanishsta(station):                # return true if is an Spanish station
             station[0:8] == 'ALJARAFE'  or      \
             station[0:9] == 'Pagalajar' or      \
             station[0:6] == 'Aguila'    or      \
-            station[0:4] == 'Raca'      or      \
+            station[0:6] == 'LaRaca'    or      \
             station[0:6] == 'Fiscal'    or      \
             station[0:4] == 'LUGA'      or      \
+            station[0:5] == 'Avila'     or      \
+            station[0:5] == 'AVILA'     or      \
             station in ksta.ksta and station[0:2] != 'LF' and station != 'Roquefort' :
         return True
     return False
