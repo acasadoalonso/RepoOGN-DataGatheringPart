@@ -126,8 +126,11 @@ else:
 print("========================")
 print("Program Version:", time.ctime(os.path.getmtime(__file__)))
 import git
-repo = git.Repo(__file__, search_parent_directories=True)
-sha = repo.head.object.hexsha
+try:
+   repo = git.Repo(__file__, search_parent_directories=True)
+   sha = repo.head.object.hexsha
+except:
+   sha="no sha"
 print ("Git commit:", sha)
 #print os.environment
 if 'USER' in os.environ:
