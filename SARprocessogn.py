@@ -28,7 +28,7 @@ geolocator = Nominatim(user_agent="Repoogn", timeout=5)  # create the instance
 #
 # ---------- main code ---------------
 #
-pgmver="V2.8"
+pgmver="V2.9"
 AVX=False				    # process the AVX ADS-B data
 ENA=False				    # process the ENA ADS-B data
 fid = {'NONE  ': 0}                         # FLARM ID list
@@ -75,9 +75,12 @@ if prt:
     print("Start process OGN records "+pgmver)
     print("===============================")
     print("User:", user)
-    import git
-    repo = git.Repo(__file__, search_parent_directories=True)
-    sha = repo.head.object.hexsha
+    try:
+       import git
+       repo = git.Repo(__file__, search_parent_directories=True)
+       sha = repo.head.object.hexsha
+    except:
+       sha='No SHA'
     print ("Git commit:", sha)
 
 dtereq = sys.argv[1:]
@@ -287,7 +290,7 @@ while True:                                 # until end of file
            fadsbfn[ident] = msg['fn']
 
     # or frenchsta(station):  # only Chilean or Spanish or frenchstations
-    if ((hostname == "CHILEOGN" or hostname == "OGNCHILE") and source == "OGN") or source == "SPOT" or source == "NAVI" or source == "SKYS" or spanishsta(station) or (source == 'ADSB' and (AVX or ENA)) :
+    if ((hostname == "CHILEOGN" or hostname == "OGNCHILE") and source == "OGN") or source == "SPOT" or source == "NAVI" or source == "SKYS" or spanishsta(station) or (source == 'ADSB' and (AVX or ENA or ident [3:5] == '34')) :
         if not ident in fid:                # if we did not see the FLARM ID
             fid[ident] = 0                  # init the counter
             fsta[ident] = station           # init the station receiver

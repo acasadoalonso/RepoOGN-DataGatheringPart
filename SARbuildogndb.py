@@ -49,9 +49,12 @@ print("Start build OGN database "+pgmver)
 print("==============================")
 prt = False
 import git
-repo = git.Repo(__file__, search_parent_directories=True)
-sha = repo.head.object.hexsha
-print (sha)
+try:
+   repo = git.Repo(__file__, search_parent_directories=True)
+   sha = repo.head.object.hexsha
+except:
+   sha='NO SHA'
+print ("Git commit info:", sha)
 import config                               # import the main settings
 DBname = config.DBname
 DBhost = config.DBhost
