@@ -60,8 +60,11 @@ for sc in item.findall('sky_condition'):
     if cltype != None:
         cloud += '/'+str(cltype)
 print(rawtext)
-print(dtetext, "UTC Date/Time now is:", datetime.datetime.utcnow(), date, time)
 
+if hasattr(datetime, 'UTC'):
+   print(dtetext, "UTC Date/Time now is:", datetime.datetime.now(datetime.UTC), date, time)
+else:
+   print(dtetext, "UTC Date/Time now is:", datetime.datetime.utcnow(), date, time)
 print(station, cloud, 'Temp:', temp, 'DewP:', dewp, 'Wind Dir.', winddir, 'Wind Speed:', windspeed, 'Wind Gust:', windgust, 'Visibility:', visibility, 'QHN:', qnh, fc, wx)
 
 f.close()

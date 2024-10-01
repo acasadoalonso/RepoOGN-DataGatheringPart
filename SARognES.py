@@ -242,8 +242,8 @@ try:
                     sock_file = sock.makefile(mode='rw')    # re make read/write as we need to send the keep_alive
                     nerrors = 0
 
-        location.date = ephem.Date(datetime.utcnow())
-        date = datetime.utcnow()
+        location.date = ephem.Date(datetime.now(datetime.timezone.utc))
+        date = datetime.now(datetime.timezone.utc)
         s = ephem.Sun()
         s.compute(location)
         # Defn of Twilight is: Sun is 6, 12, 18 degrees below horizon (civil, nautical, astronomical)
