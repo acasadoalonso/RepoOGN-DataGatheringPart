@@ -10,6 +10,7 @@ import time
 import sys
 import socket
 import config
+from dtfuncs import *
 
 sys.path.insert(0, '/nfs/OGN/src/funcs')
 sys.path.insert(0, '/nfs/OGN/src/SARsrc')
@@ -42,7 +43,7 @@ fsfix = {'NONE  ': 0}                       # number of fixes
 fsour = {}				    # sources
 fadsb = {}				    # ADSB sources
 fadsbfn = {}				    # ADSB sources
-ftkok = {datetime.utcnow(): 'NONE  '}       # Take off time
+ftkok = {naive_utcnow(): 'NONE  '}       # Take off time
 tfixs = 0                                   # total number of fixes
 tmaxa = 0                                   # maximun altitude for the day
 tmaxt = 0                                   # time at max altitude

@@ -2,6 +2,7 @@
 
 from urllib.request import urlopen
 import datetime
+from dtfuncs import *
 
 from xml.etree.ElementTree import parse
 extend = False
@@ -64,7 +65,7 @@ print(rawtext)
 if hasattr(datetime, 'UTC'):
    print(dtetext, "UTC Date/Time now is:", datetime.datetime.now(datetime.UTC), date, time)
 else:
-   print(dtetext, "UTC Date/Time now is:", datetime.datetime.utcnow(), date, time)
+   print(dtetext, "UTC Date/Time now is:", naive_utcnow(), date, time)
 print(station, cloud, 'Temp:', temp, 'DewP:', dewp, 'Wind Dir.', winddir, 'Wind Speed:', windspeed, 'Wind Gust:', windgust, 'Visibility:', visibility, 'QHN:', qnh, fc, wx)
 
 f.close()

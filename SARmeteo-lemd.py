@@ -4,6 +4,7 @@ from urllib.request import urlopen
 import datetime
 import ssl
 import socket
+from dtfuncs import *
 ssl.match_hostname = lambda cert, hostname: True
 
 from xml.etree.ElementTree import parse
@@ -67,7 +68,7 @@ print(rawtext)
 if hasattr(datetime, 'UTC'):
    print(dtetext, "UTC Date/Time now is:", datetime.datetime.now(datetime.UTC), date, time)
 else:
-   print(dtetext, "UTC Date/Time now is:", datetime.datetime.utcnow(), date, time)
+   print(dtetext, "UTC Date/Time now is:", naive_utcnow(), date, time)
 print(station, cloud, 'Temp:', temp, 'DewP:', dewp, 'Wind Dir.', winddir, 'Wind Speed:', windspeed, 'Wind Gust:', windgust, 'Visibility:', visibility, 'QHN:', qnh, fc, wx)
 
 f.close()
