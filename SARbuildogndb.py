@@ -19,7 +19,7 @@ from parserfuncs import *                   # the ogn/ham parser functions
 from geopy.distance import geodesic	    # use the Vincenty algorithm
 from geopy.geocoders import GeoNames        # use the Nominatim as the geolocator
 from datetime import datetime
-
+from dtfuncs import *
 #
 # ---------- main code ---------------
 #
@@ -35,7 +35,7 @@ fsllo = {'NONE  ': 0.0}			    # station longitude
 fslal = {'NONE  ': 0.0}			    # station altitude
 fsmax = {'NONE  ': 0.0}                     # maximun coverage
 fsalt = {'NONE  ': 0}                       # maximun altitude
-ftkok = {datetime.now(datetime.timezone.utc): 'NONE  '}  	    # Take off time
+ftkok = {naive_utcnow(): 'NONE  '}  	    # Take off time
 tmaxa = 0                                   # maximun altitude for the day
 tmaxt = 0                                   # time at max altitude
 tmid = 0                                    # glider ID obtaining max altitude
