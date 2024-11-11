@@ -68,7 +68,7 @@ echo "delete from GLIDERS;"          |                mysql -u $DBuser -p$DBpass
 mysql -u $DBuser -p$DBpasswd -h $server APRSLOG < ~/src/SARsrc/sh/copyGLIDERS.sql 				2>/dev/null
 echo "select count(*) from GLIDERS;" |                mysql -u $DBuser -p$DBpasswd -h $server APRSLOG 		2>/dev/null
 # make a local copy on files
-mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB GLIDERS                                       >/var/www/html/files/GLIDERS.sql  2>/dev/null
+mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB GLIDERS | awk 'NR==1 {if (/enable the sandbox mode/) next} {print}'   >/var/www/html/files/GLIDERS.sql  2>/dev/null
 #
 echo "Copy from GLIDERS.sql file to MySQL SWIFACE: "$server2 
 echo "drop table GLIDERS;"           |                mysql -u $DBuser -p$DBpasswd -h $server2 SWIFACE 		2>/dev/null
@@ -77,7 +77,7 @@ echo "select count(*) from GLIDERS;" |                mysql -u $DBuser -p$DBpass
 if [[ $(hostname) == 'SAROGN' ]]
 then
 	echo "Update file on NFS by: "$(hostname)
-        mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB GLIDERS                                      >/nfs/tmp/OGNDB.GLIDERS.sql  2>/dev/null
+        mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB GLIDERS | awk 'NR==1 {if (/enable the sandbox mode/) next} {print}'  >/nfs/tmp/OGNDB.GLIDERS.sql  2>/dev/null
 fi
 if [[ $(hostname) == 'CasadoUbuntu' ]]
 then

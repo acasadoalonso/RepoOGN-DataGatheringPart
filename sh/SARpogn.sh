@@ -50,7 +50,7 @@ echo "============="        					>>SARproc$dt.log
 sleep 180
 /bin/echo '/bin/bash ~/src/SARsrc/sh/SARpogn.sh '$city | at -M $(calcelestial -n -p sun -m set -q $city -H civil) + 15 minutes
 # keep a copy for further sync with other servers
-mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB OGNDATA   >/nfs/tmp/OGNDB.OGNDATA.sql  2>>SARproc$dt.log 
+mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB OGNDATA | awk 'NR==1 {if (/enable the sandbox mode/) next} {print}'  >/nfs/tmp/OGNDB.OGNDATA.sql  2>>SARproc$dt.log 
 # send a mail
 cat SARproc$(date +%y%m%d).log | /usr/bin/mutt -a "SARproc"$dt".log" -s $(hostname)" OGN daily report "$taken -- $(cat ~/src/SARsrc/sh/mailnames.txt)
 mv DATA*  data
