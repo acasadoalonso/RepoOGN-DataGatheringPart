@@ -4,6 +4,7 @@ if [ -z $CONFIGDIR ]
 then 
      export CONFIGDIR=/etc/local/
 fi
+cd $DBpath
 mkdir -p data/Y$(date +%y)
 mkdir -p log/Y$(date +%y)
 mkdir -p fd/Y$(date +%y)

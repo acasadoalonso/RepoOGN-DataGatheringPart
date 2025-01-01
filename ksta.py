@@ -36,6 +36,7 @@ ksta = {
  	   "LEZS"   : "Chozas, Leon",
  	   "LEMR"   : "La Morgali, Asturias",
  	   "LEPN"   : "Valverde de Leganes, Badajoz",
+ 	   "LEVT"   : "Vitoria",
            "PWLERM2" : "Robledillo de Mohernando",
            "ALCAZAREN" : "Alcazaren, Valladolid ",
            "ANDORRA": "Andorra ",
@@ -105,6 +106,9 @@ ksta = {
            "ElYelmo"   : "El Yelmo, Jaen ",
            "Avila"     : "Avila ",
            "Viados"    : "Refugio Viados ",
+           "Montsec"   : "Ager Monstsec, Lerida ",
+           "TordlOrri" : "Torreta del Orri, Lerida ",
+           "BoiTaull"  : "Boi Taull, Lerida ",
 # french airports
            "LFBM"   : "Mont de Marsan",
 	   "LFBA"   : "La Garomme", 
