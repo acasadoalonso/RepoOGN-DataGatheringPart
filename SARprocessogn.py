@@ -29,7 +29,7 @@ geolocator = Nominatim(user_agent="Repoogn", timeout=5)  # create the instance
 #
 # ---------- main code ---------------
 #
-pgmver="V2.9"
+pgmver="V2.10"
 AVX=False				    # process the AVX ADS-B data
 ENA=False				    # process the ENA ADS-B data
 fid = {'NONE  ': 0}                         # FLARM ID list
@@ -224,6 +224,9 @@ while True:                                 # until end of file
     ident = msg['id']          	            # id
                                             # get the information once parsed
     ptype       = msg['aprstype']
+    if not 'longitude' in msg:              # may be an WX record
+        #print ("DDD:", data)
+        continue
     longitude   = msg['longitude']
     latitude    = msg['latitude']
     altitude    = msg['altitude']

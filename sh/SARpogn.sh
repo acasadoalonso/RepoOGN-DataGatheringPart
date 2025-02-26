@@ -31,6 +31,7 @@ then
 	echo $(hostname)" Process running at sunset: "$pnum 	>>SARproc$dt.log
 fi
 # gen the IGC files
+ulimit -n 2048
 python3 ~/src/SARsrc/SARprocessogn.py 				>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log

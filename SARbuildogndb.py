@@ -24,7 +24,7 @@ from dtfuncs import *
 # ---------- main code ---------------
 #
 
-pgmver = 'V2.4'
+pgmver = 'V2.5'
 fid   = {'NONE  ': 0}                       # FLARM ID list
 fsta  = {'NONE  ': 'NONE  '}                # STATION ID list
 ftkot = {'NONE  ': 0}                       # take off time
@@ -287,6 +287,8 @@ while True:                                 # until end of file
            continue
         
         type = msg['aprstype']		    # message type
+        if not 'longitude' in msg:      # WX type ?
+            continue
         longitude = msg['longitude']
         latitude = msg['latitude']
         if latitude == -1 or longitude == -1 or type == 8:  # check for the ogn tracker status report
@@ -301,15 +303,19 @@ while True:                                 # until end of file
         otime = msg['otime']
         if 'roclimb' in msg:
            roclimb = msg['roclimb']
-           if abs(roclimb) == 9999:
+           if isinstance(roclimb, str):
+               roclimb=0
+           elif abs(roclimb) == 9999:
                continue
 
         source = msg['source']              # source of the data OGN/SPOT/SPIDER/...
         if source == 'ADSB' and not MySQL:
            continue
         station = msg['station'].upper()    # in uppercase
+        if station == "SPAINAVX" or station == "SPAINTTT" or station == "GRENOBLE":
+           continue
         if len(source) > 4:
-            source = source[0:3]
+           source = source[0:3]
         # if std records
         if 'relay' in msg:
                 relay = msg['relay']
@@ -391,9 +397,9 @@ while True:                                 # until end of file
                                             # distance to the station
                 distance = geodesic((latitude, longitude), fsloc[station]).km
                 dist = distance
-                if distance > 300.0:
+                if distance > 300.0 and altim < 5486 and station != 'SPAINAVX' and station != 'SPAINTTT' and source != 'ADSB' : # if distance > 300 and below FL180
                     if not ident in checkdist: 
-                       print(">>>Distcheck: ", ident, distance, data, cin, roclimb," :<<<\n")
+                       print(">>>Distcheck: ", ident, distance, altim, station, data, cin, roclimb," :<<<\n")
                        checkdist.append(ident)
                 elif distance > fsmax[station] and abs(roclimb) < 3000: # if higher distance
                     fsmax[station] = distance   # save the new distance
@@ -401,7 +407,7 @@ while True:                                 # until end of file
                 if altim > fsalt[station]:  # if higher altitude
                     fsalt[station] = altim  # save the new altitude
 
-            if source == 'ADSB' and not MYSQL:
+            if source == 'ADSB' and not MySQL:
                continue
             if source != 'OGN':		    # assume the base
                 if getinfoairport (config.location_name) != None:
@@ -422,10 +428,12 @@ while True:                                 # until end of file
                 tmsta = station             # station capturing the max altitude
 
             if uniqueid[0:2] != "id":	    # check for a valid uniqueid
-                continuea		    # ignore if so
+                continue		            # ignore if so
 #           ---------------------------------------------------------
                                             # write the DB record eithher on MySQL or SQLITE3
-            if (MySQL):
+            if (MySQL) :                    # filter for below FL180
+                if altim > 5486 and source == 'ADSB':
+                    continue
                 addcmd = "insert into OGNDATA values ('" + ident + "','" + dte + "','" + hora + "','" + station + "'," + str(latitude) + "," + \
                     str(longitude) + "," + str(altim) + "," + str(speed) + "," + \
                     str(course) + "," + str(roclimb) + "," + \

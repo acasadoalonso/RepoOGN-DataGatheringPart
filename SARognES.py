@@ -306,6 +306,17 @@ try:
 
         if len(packet_str) > 0 and packet_str[0] != "#":
             ptype       = msg['aprstype']
+            if not 'source' in msg:
+                source='OGN'
+            else:
+                source      = msg['source']
+            if len(source) > 4:
+                source = source[0:3]
+            if not source in sources:       # we have it on the list ???
+                                            # add it to the list of sources ...
+               sources.append(source)
+            if not 'longitude' in msg:      # weather record
+               continue
             longitude   = msg['longitude']
             latitude    = msg['latitude']
             altitude    = msg['altitude']
@@ -323,9 +334,6 @@ try:
                 if 'course' in msg :
                     course  = msg['course']
             dst_callsign = msg['id']
-            source      = msg['source']
-            if len(source) > 4:
-                source = source[0:3]
             otime       = msg['otime']
 
             station = msg['station']
@@ -339,9 +347,6 @@ try:
                if not acftt in acfttype:
                   acfttype.append(acftt)
                   
-            if not source in sources:
-                    # add it to the list of sources ...
-               sources.append(source)
             if path == 'aprs_aircraft' or path == 'flarm' or path == 'tracker' or source == 'TTN'  or source == 'ADSB':
                 if not station in stations:
                     # add it to the list of stations ...

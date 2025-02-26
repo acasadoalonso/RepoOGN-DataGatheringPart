@@ -99,8 +99,11 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
         if len(data) > 0 and data[0] != "#":
             msg = parseraprs(data, msg)     # parser the data
             if msg == -1:		    # parser error
-                print("Parser error:", data)
-                continue
+               if cc not in CCerrors:
+                    print("Parser error:", data)
+                    CCerrors.append(cc)
+               continue
+
             path = msg['path']
             source = msg['source']          # source of the data OGN/SPOT/SPIDER/...
             if source == 'TTN':
@@ -114,6 +117,8 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
                 mtype = msg['aprstype']	    # message type
             else:
                 print ("MSG>>>", msg)
+            if 'longitude' not in msg:      # WX ???
+                continue
             longitude = msg['longitude']
             latitude = msg['latitude']
             altitude = msg['altitude']
@@ -227,6 +232,7 @@ nrecs = 0
 nrecords = 0
 relaycnt = 0
 lasttime = ''
+CCerrors=[]
 fid = {}   		                    # FLARM ID list
 fn = sys.argv[1:]                           # take the name of the second arg
 date = datetime.now()                       # get the date
