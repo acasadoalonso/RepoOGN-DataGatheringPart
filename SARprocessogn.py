@@ -73,7 +73,7 @@ else:
     print("===============================")
 
 if prt:
-    print("Start process OGN records "+pgmver)
+    print("\n\nStart process OGN records "+pgmver)
     print("===============================")
     print("User:", user)
     try:
@@ -223,10 +223,17 @@ while True:                                 # until end of file
         continue
     ident = msg['id']          	            # id
                                             # get the information once parsed
+    source      = msg['source']
+    if len(source) > 4:
+        source = source[0:3]
+    if not source in fsour:		    # did we see this source
+        fsour[source] = 1		    # init the counter
+    else:
+        fsour[source] += 1		    # increase the counter
     ptype       = msg['aprstype']
     if not 'longitude' in msg:              # may be an WX record
         #print ("DDD:", data)
-        continue
+        continue			    # nothing to do
     longitude   = msg['longitude']
     latitude    = msg['latitude']
     altitude    = msg['altitude']
@@ -242,9 +249,6 @@ while True:                                 # until end of file
             speed   = msg['speed']
         if 'course' in msg :
             course  = msg['course']
-    source      = msg['source']
-    if len(source) > 4:
-        source = source[0:3]
     otime       = msg['otime']
 
     if 'acfttype' in msg:

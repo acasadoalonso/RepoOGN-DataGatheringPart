@@ -22,6 +22,9 @@ echo "======"$(hostname)"========="    	>>SARfcst$(date  +%y%m%d).log
 sqlite3 SARMETEO.db ".dump METEO" >meteo.dmp
 python3 ~/src/SARsrc/sqlite3-to-mysql.py  <meteo.dmp  >meteo.sql
 sed "s/CREATE TABLE/-- CREATE TABLE/g" meteo.sql | sed "s/CREATE UNIQUE INDEX/-- CREATE INDEX/g" | mysql -u $DBuser -p$DBpasswd -h $server OGNDB  2>/dev/null
+sqlite3 SARMETEO.db ".dump WX" >meteo.dmp
+python3 ~/src/SARsrc/sqlite3-to-mysql.py  <meteo.dmp  >meteo.sql
+sed "s/CREATE TABLE/-- CREATE TABLE/g" meteo.sql | sed "s/CREATE UNIQUE INDEX/-- CREATE INDEX/g" | mysql -u $DBuser -p$DBpasswd -h $server OGNDB  2>/dev/null
 python3 ~/src/SARsrc/ogndb/DBmeteo.py 	>>SARmetar$(date +%y%m%d).log
 mv SARmet* log/
 mv SARfcs* log/

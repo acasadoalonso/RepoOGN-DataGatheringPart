@@ -121,9 +121,9 @@ tmid = 'None     '                      # glider ID obtaining max altitude
 tmsta = '         '                     # station capturing max altitude
 hostname = socket.gethostname()
 if hostname == 'CHILEOGN' or hostname == "OGNCHILE":
-    print("Start ognCL CHILE ", pgmver)
+    print("\n\nStart ognCL CHILE ", pgmver)
 else:
-    print("Start ognES SPAIN ", pgmver)
+    print("\n\nStart ognES SPAIN ", pgmver)
 print("========================")
 print("Program Version:", time.ctime(os.path.getmtime(__file__)))
 import git
@@ -190,6 +190,11 @@ fl_date_time = local_time.strftime("%y%m%d")
 OGN_DATA = "DATA" + fl_date_time+'.log'
 print("OGN data file is: ", OGN_DATA)
 datafile = open(OGN_DATA, 'a')
+try:
+   os.system ("rm -f DATA.active")			# delete the pointe
+   os.system ("ln -s "+OGN_DATA+" DATA.active")		# create a link
+except:
+   print ("Error trying to creating a symlink to the active DATA file\n")
 alive(config.APP, first="yes")					# mar that we are alive
 keepalive_count = 1
 keepalive_time = time.time()

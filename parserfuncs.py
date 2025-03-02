@@ -482,7 +482,7 @@ def parseraprs(packet_str, msg):
            windspeed = gdatall(data, 'kt ')
            temp      = gdatal (data, 'F ')
            humidity  = gdatal (data, '% ')
-           rain      = gdatal (data, 'mm/h ')
+           rain      = gdatal (data, 'mm/h')
            msg['id']       = gid	        	# return the parsed data into the dict
            msg['path']     = path
            msg['relay']    = relay

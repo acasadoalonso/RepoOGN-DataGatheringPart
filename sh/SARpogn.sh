@@ -48,13 +48,17 @@ python3 ~/src/SARsrc/SARanalysisrelay.py -n DATA$dt.log -i 5 -sa YES	>>SARproc$d
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
+python3 ~/src/SARsrc/SARwx.py					>>SARproc$dt.log
+echo "============="        					>>SARproc$dt.log
+echo $(date +%H:%M:%S)      					>>SARproc$dt.log
+echo "============="        					>>SARproc$dt.log
 sleep 180
 /bin/echo '/bin/bash ~/src/SARsrc/sh/SARpogn.sh '$city | at -M $(calcelestial -n -p sun -m set -q $city -H civil) + 15 minutes
 # keep a copy for further sync with other servers
 mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB OGNDATA | awk 'NR==1 {if (/enable the sandbox mode/) next} {print}'  >/nfs/tmp/OGNDB.OGNDATA.sql  2>>SARproc$dt.log 
 # send a mail
 cat SARproc$(date +%y%m%d).log | /usr/bin/mutt -a "SARproc"$dt".log" -s $(hostname)" OGN daily report "$taken -- $(cat ~/src/SARsrc/sh/mailnames.txt)
-mv DATA*  data
+mv DATA*.log  data
 rm -f  SAR.alive
 rm -f  SAR.sunset
 # fddir : directory where to staore the IGC files

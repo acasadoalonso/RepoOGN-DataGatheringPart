@@ -42,10 +42,11 @@ tmid = 0                                    # glider ID obtaining max altitude
 relaycnt = 0				    # counter of relay packages
 relaycntr = 0				    # counter of std relay packages
 relayglider = {}			    # list of relay glider and tracker
+fsour = {}			    	    # list of sources
 tmsta = ''
 CCerrors=[]
 checkdist=[]
-print("Start build OGN database "+pgmver)
+print("\n\nStart build OGN database "+pgmver)
 print("==============================")
 prt = False
 import git
@@ -275,7 +276,9 @@ while True:                                 # until end of file
     data = cc+data[ix:]
     msg = {}
     if len(data) > 0 and data[0] != "#":
+
         msg = parseraprs(data, msg)         # parser the data
+
         if msg == -1:			    # parser error
             if cc not in CCerrors:
                print("Parser error:", data)
@@ -285,9 +288,17 @@ while True:                                 # until end of file
         ident = msg['id']          	    # id
         if (ident[0:3] == 'RND'):	    # check if random ??
            continue
-        
+       
+        source      = msg['source']	    # get the source type:  OGN, ADSB, SPOT, ....
+        if len(source) > 4:
+            source = source[0:3]
+        if not source in fsour:		    # did we see this source
+            fsour[source] = 1		    # init the counter
+        else:
+            fsour[source] += 1		    # increase the counter
+ 
         type = msg['aprstype']		    # message type
-        if not 'longitude' in msg:      # WX type ?
+        if not 'longitude' in msg:          # WX type ?
             continue
         longitude = msg['longitude']
         latitude = msg['latitude']
@@ -308,8 +319,7 @@ while True:                                 # until end of file
            elif abs(roclimb) == 9999:
                continue
 
-        source = msg['source']              # source of the data OGN/SPOT/SPIDER/...
-        if source == 'ADSB' and not MySQL:
+        if source == 'ADSB' :		    # we do not record ADSB on the DDBB .... too much data
            continue
         station = msg['station'].upper()    # in uppercase
         if station == "SPAINAVX" or station == "SPAINTTT" or station == "GRENOBLE":
@@ -472,6 +482,7 @@ print("Number of relay packages:    ", relaycntr, relaycnt)
 if relaycnt > 0:
     print("List of relays:", relayglider)
 print ("\nPaths:", paths)
+print ("\nSources:", fsour)
 print('\nBye ...: Stored', cout, " records of ", nrec, ' read. Time and Time used:', datef, datef - \
     date)                                   # report the processing time
 #           ---------------------------------------------------------

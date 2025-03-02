@@ -223,8 +223,16 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
 #
 
 version='V2.0'
-print("Start RELAY analysis "+version)
+print("\n\nStart RELAY analysis "+version)
 print("===========================")
+import git
+try:
+   repo = git.Repo(__file__, search_parent_directories=True)
+   sha = repo.head.object.hexsha
+except:
+   sha='NO SHA'
+print ("Git commit info:", sha)
+
 maxdist = 0.0
 totdist = 0.0
 ncount = 0
