@@ -58,10 +58,13 @@ sleep 180
 mysqldump -u $DBuser -p$DBpasswd -h $server --add-drop-table OGNDB OGNDATA | awk 'NR==1 {if (/enable the sandbox mode/) next} {print}'  >/nfs/tmp/OGNDB.OGNDATA.sql  2>>SARproc$dt.log 
 # send a mail
 cat SARproc$(date +%y%m%d).log | /usr/bin/mutt -a "SARproc"$dt".log" -s $(hostname)" OGN daily report "$taken -- $(cat ~/src/SARsrc/sh/mailnames.txt)
+# move the working files to their appropiate directories
 mv DATA*.log  data
+rm -f                   DATA.active				
+ln -s  data/DATA$dt.log DATA.active
 rm -f  SAR.alive
 rm -f  SAR.sunset
-# fddir : directory where to staore the IGC files
+# fddir : directory where to store the IGC files
 fddir='fd/Y'$(date +%y)'/M'$(date +%m)
 echo "Moving IGC files to: "$fddir    				>>SARproc$dt.log
 echo "====================="        				>>SARproc$dt.log

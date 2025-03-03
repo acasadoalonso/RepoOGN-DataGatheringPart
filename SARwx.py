@@ -8,7 +8,7 @@
 import os
 import sys
 import argparse
-
+import time
 import sys
 import datetime
 
@@ -26,8 +26,10 @@ hostname = socket.gethostname()
 version='V1.0'
 date = datetime.now()
 print("\n\nWeather gathering from OGN:  "+version)
-print(" Time:",date )
-print("===========================")
+print("Time:",date )
+#					  report the program version based on file date
+print("Program Version:", time.ctime(os.path.getmtime(__file__)))
+print("============================================")
 import git
 prt = False
 try:
