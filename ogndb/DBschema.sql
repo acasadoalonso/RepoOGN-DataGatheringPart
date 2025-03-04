@@ -8,3 +8,5 @@ CREATE UNIQUE INDEX METEOIDX on METEO ( date , time, metstation);
 CREATE UNIQUE INDEX RECEIVERSIDX on RECEIVERS (idrec);
 CREATE VIEW STASTA  as select idsta, (select descri from RECEIVERS where idrec=idsta), date, mdist, malt from STATIONS;
 CREATE VIEW OGNDATAREG as select *, (select registration from GLIDERS where idglider = idflarm), (select descri from RECEIVERS where station = idrec)  from OGNDATA;
+CREATE TABLE WX (date char(6), time char (6), metstation char(9), rowdata TEXT NULL DEFAULT NULL, wind char(12), temp REAL, humidity REAL, rain char(12));
+CREATE UNIQUE INDEX WXIDX on METEO ( date , time, metstation);
