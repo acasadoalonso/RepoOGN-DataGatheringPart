@@ -64,6 +64,7 @@ curs.execute(crecmd)
 crecmd = "create unique index IF NOT EXISTS WXIDX on METEO ( date , time, metstation)"
 curs.execute(crecmd)
 print ("Table created or connected")
+curs.execute("delete from WX;")			# delete all the records ... we plan to add all new
 records=0
 
 ################
@@ -109,7 +110,8 @@ for line in reversed(list(open(filename))):
        print(er.sqlite_errorcode)  # Prints 275
        print(er.sqlite_errorname)
 curs.execute ("select count(*) from WX;")
-print ("Total recordds added: ", records, "from:", hostname)
+print  ("WX OGNDATA records:     ", curs.fetchone()[0])
+print  ("Total recordds added: ", records, "from:", hostname)
 conn.commit()
 conn.close()
 
