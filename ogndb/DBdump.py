@@ -236,15 +236,16 @@ while True:
                 regi = ''
             if lnames and mlati != 0.0 and mlong != 0.0:
                 loc = geolocator.reverse([mlati, mlong])
-                addr = loc.address
+                if loc != None:
+                   addr = loc.address
                 # print addr
-                if addr != None:
-                    addr = fixcoding(addr).encode('utf8')
-                    addr = str(addr)
-                    msg = ("Date: %6s Max Alt: %05d m. MSL at %s UTC by: %6s %14s Under: %9s At: %s" % (
-                    pdte, tmaxa, tmaxt, tmid, regi, tmsta, addr))
-                else:
-                    msg = "Not a valid GeoLocation address ..."
+                   if addr != None:
+                       addr = fixcoding(addr).encode('utf8')
+                       addr = str(addr)
+                       msg = ("Date: %6s Max Alt: %05d m. MSL at %s UTC by: %6s %14s Under: %9s At: %s" % (
+                       pdte, tmaxa, tmaxt, tmid, regi, tmsta, addr))
+                   else:
+                       msg = "Not a valid GeoLocation address ..."
             else:
                 msg = ("Date: %6s Max Alt: %05d m. MSL at %2s:%2s:%2sZ by: %6s %14s Under: %9s " % (
                     pdte, tmaxa, tmaxt[0:2], tmaxt[2:4], tmaxt[4:6], tmid, regi, tmsta))
@@ -383,10 +384,11 @@ for key in k:                               # report data
         continue
     if lnames and mlati != 0.0 and mlong != 0.0:
         loc = geolocator.reverse([mlati, mlong])
-        addr = loc.address
-        if addr != None:
-            addr = fixcoding(addr).encode('utf8')
-            addr = str(addr)
+        if loc != None:
+           addr = loc.address
+           if addr != None:
+               addr = fixcoding(addr).encode('utf8')
+               addr = str(addr)
     else:
         addr = ''
     try:
@@ -412,12 +414,13 @@ for key in k:                               # report data distances
             mlati = fsabsmax[key]['lati']
             mlong = fsabsmax[key]['longi']
             loc = geolocator.reverse([mlati, mlong])
-            addr = loc.address
-            if addr != None:
-                addr = fixcoding(addr).encode('utf8')
-                addr = str(addr)
-                #print addr
-                msg = "%9s ==> %7.2f Kms. achieved and %8d packets received. Max. Alt.: %5.2f  on: %6s at: %50s " % (
+            if loc != None:
+               addr = loc.address
+               if addr != None:
+                   addr = fixcoding(addr).encode('utf8')
+                   addr = str(addr)
+                   #print addr
+                   msg = "%9s ==> %7.2f Kms. achieved and %8d packets received. Max. Alt.: %5.2f  on: %6s at: %50s " % (
                     key,  fsmax[key],  fsloc[key], fsabsmax[key]['alti'], fsabsmax[key]['date'], addr)
         else:
             msg = "%9s ==> %7.2f Kms. achieved and %8d packets received. %5.2f %5.2f %5.2f " % (
