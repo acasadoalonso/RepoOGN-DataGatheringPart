@@ -16,6 +16,7 @@ import atexit
 import os
 import socket
 import ksta                             # import the list on known OGN stations
+from ksta import spanishsta, frenchsta
 from ognddbfuncs import *               # import the OGN DDB functions
 from datetime import datetime
 sys.path.insert(0, '/nfs/OGN/src/funcs')

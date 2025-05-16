@@ -23,6 +23,7 @@ from parserfuncs import *                   # the ogn/ham parser functions
 from geopy.distance import geodesic	    # use the Vincenty algorithm
 from geopy.geocoders import GeoNames        # use the Nominatim as the geolocator
 from geopy.geocoders import Nominatim
+from ksta import spanishsta, frenchsta
 
 geolocator = Nominatim(user_agent="Repoogn", timeout=5)  # create the instance
 
@@ -32,6 +33,7 @@ geolocator = Nominatim(user_agent="Repoogn", timeout=5)  # create the instance
 pgmver="V2.10"
 AVX=False				    # process the AVX ADS-B data
 ENA=False				    # process the ENA ADS-B data
+ADSB=True
 fid = {'NONE  ': 0}                         # FLARM ID list
 fsta = {'NONE  ': 'NONE  '}                 # STATION ID list
 ffd = {'NONE  ': None}                      # file descriptor list
@@ -50,6 +52,7 @@ tmaxt = 0                                   # time at max altitude
 tmid = 0                                    # glider ID obtaining max altitude
 tmsta = ''
 tmp = ''
+nopenf=0
 mlong = 0.0                                 # longitude on the max altiutde point
 mlati = 0.0                                 # latitude of idem
 blacklist = ['FLR5B8041']                   # blacklist
@@ -90,9 +93,14 @@ if dtereq and dtereq[0] == 'date':
 else:
     dter = False                            # do not request the date
 if dtereq and dtereq[0] == 'name':
-    name = True                             # request the date
+    name = True                             # request the name
 else:
     name = False                            # do not request the date
+if dtereq and dtereq[0] == 'ADSB':
+    ADSB = False                            # skip ADSB
+    name = True                             # request the name
+else:
+    ADSB = True                             # do not skip ADSB
 cin = 0                                     # input record counter
 cout = 0                                    # output file counter
 date = datetime.now()                       # get the date
@@ -101,7 +109,7 @@ dteGFAC = date.strftime("%d%m%y")           # today's date GFAC format
 fname = 'DATA'+dte+'.log'                   # file name from logging
 paths=[]				    # paths used
 hostname = socket.gethostname()
-
+print ("ADSB", ADSB, "NAME", name)
 # fname='DATA170515.log'                    # example of file name
 fn = ''
 if not dter:                                # check if we need to request date
@@ -129,8 +137,8 @@ geolocator = GeoNames(username='acasado')
                                             # open the file with the logged data
 datafilei = open(datapath+fname, 'r')
 
-
-while True:                                 # until end of file
+try:
+   while True:                                 # until end of file
     data = datafilei.readline()             # read one line
     if not data:                            # end of file ???
                                             # report the findings and close the files
@@ -314,6 +322,8 @@ while True:                                 # until end of file
             else:
                 fd = open(datapath+tmp+'FD'+dte+'.' +
                           station+'.'+idname+'.IGC', 'w')
+            nopenf +=1 
+
             fd.write('AGNE001GLIDER\n')     # write the IGC header
             fd.write('HFDTE'+dteGFAC+'\n')  # write the date on the header
             fd.write('HFDTM100GPSDATUM:WGS-1984 \n')     # write the IGC header - the datum 
@@ -387,6 +397,9 @@ while True:                                 # until end of file
             mlati = latitude                # latitude
         cin += 1                            # one more record read
 
+except:
+
+    print("ERROR: Number of open files", nopenf)
 
 # -----------------  final process ----------------------
 datafilei.close()                           # close the input file
@@ -407,5 +420,6 @@ if prt:
     print("Aircraft types:", acfttype)
     print("Maximum altitude for the day  :", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta, "At: ", mlati, mlong, addr)
     print("Total number of fixes today   :", tfixs)
+    print("Number of open files", nopenf)
     print('\nBye ... Time now and Time used:', datef, datef - \
         date)                               # report the processing time
