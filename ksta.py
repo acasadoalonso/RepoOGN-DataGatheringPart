@@ -148,6 +148,8 @@ ksta = {
 "Tenerife"  : "Tenerife, Canary Islands ",
 "Algodonal" : "Algodonales, Cadiz ",
 "ALGODONAL" : "Algodonales, Cadiz ",
+"VILADAMAT" : "Viladamat, Girona ",
+"Viladamat" : "Viladamat, Girona ",
 "SSCC-RDAR" : "Estacion radar Paracuellos, Madrid ",
 "SPAINAVX"  : "Estacion ficticia gateway AVX ",
 "SPAINTTT"  : "Estacion ficticia gateway Enaire ",
@@ -300,6 +302,8 @@ def spanishsta(station):                # return true if is an Spanish station
             station[0:9] == 'TORDLORRI' or      \
             station[0:8] == 'Baqueira'  or      \
             station[0:8] == 'BAQUEIRA'  or      \
+            station[0:9] == 'VILADAMAT' or      \
+            station[0:9] == 'Viladamat' or      \
             station in ksta.ksta and station[0:2] != 'LF' and station != 'Roquefort' :
         return True
     return False

@@ -30,7 +30,7 @@ geolocator = Nominatim(user_agent="Repoogn", timeout=5)  # create the instance
 #
 # ---------- main code ---------------
 #
-pgmver="V2.10"
+pgmver="V2.11"
 AVX=False				    # process the AVX ADS-B data
 ENA=False				    # process the ENA ADS-B data
 ADSB=True
@@ -94,6 +94,7 @@ else:
     dter = False                            # do not request the date
 if dtereq and dtereq[0] == 'name':
     name = True                             # request the name
+    ADSB = True                             # do not skip ADSB
 else:
     name = False                            # do not request the date
 if dtereq and dtereq[0] == 'ADSB':
@@ -208,7 +209,7 @@ try:
                 if prt:
                                             # distance
                     print(key, '==>', fsmax[key], ' Kms. and number of fixes: ', fsfix[key])
-        print ("===========================:\n")
+        print ("\nNumber of stations: ", len(k), " ===========================:\n")
         if prt:
            print("\nPaths:", paths)
         # work done, finish the reporting now ...
@@ -399,7 +400,8 @@ try:
 
 except:
 
-    print("ERROR: Number of open files", nopenf)
+    print("\n\nERROR: Number of open files", nopenf)
+    print(    "================================\n\n")
 
 # -----------------  final process ----------------------
 datafilei.close()                           # close the input file
@@ -419,7 +421,7 @@ if prt:
     print("Sources:", fsour)
     print("Aircraft types:", acfttype)
     print("Maximum altitude for the day  :", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta, "At: ", mlati, mlong, addr)
-    print("Total number of fixes today   :", tfixs)
-    print("Number of open files", nopenf)
+    print("Total number of fixes today by the known stations  :", tfixs)
+    print("Number of open files:", nopenf)
     print('\nBye ... Time now and Time used:', datef, datef - \
         date)                               # report the processing time

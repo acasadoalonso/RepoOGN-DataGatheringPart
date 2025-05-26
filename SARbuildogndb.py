@@ -13,20 +13,21 @@ sys.path.insert(0, '/nfs/OGN/src/funcs')
 import ksta                                 # import the list on known stations
 from ksta import spanishsta, frenchsta
 
-from ognddbfuncs import *		            # 
+from ognddbfuncs import *		    # 
 import datetime
 import sqlite3                              # the SQL data base routines
 import MySQLdb                              # the SQL data base routines
 from parserfuncs import *                   # the ogn/ham parser functions
-from geopy.distance import geodesic	        # use the Vincenty algorithm
+from geopy.distance import geodesic	    # use the Vincenty algorithm
 from geopy.geocoders import GeoNames        # use the Nominatim as the geolocator
 from datetime import datetime
 from dtfuncs import *
+activestations="SELECT * , DATEDIFF(now(),lastseen) FROM `RECEIVERS` WHERE DATEDIFF(now(),lastseen) > 5;" 
 #
 # ---------- main code ---------------
 #
 
-pgmver = 'V2.5'
+pgmver = 'V2.7'				    # may 2025
 fid   = {'NONE  ': 0}                       # FLARM ID list
 fsta  = {'NONE  ': 'NONE  '}                # STATION ID list
 ftkot = {'NONE  ': 0}                       # take off time
@@ -48,6 +49,7 @@ fsour = {}			    	    # list of sources
 tmsta = ''
 CCerrors=[]
 checkdist=[]
+nstations=0				    # number of stations seen
 print("\n\nStart build OGN database "+pgmver)
 print("==============================")
 prt = False
@@ -92,6 +94,7 @@ cout = 0                                    # output record counter
 cfile = 0                                   # output file counter
 date = datetime.now()                	    # get the date
 dte = date.strftime("%y%m%d")               # today's date
+lastseen = date.strftime("%Y-%m-%d")       # today's date
 fname = 'DATA'+dte+'.log'                   # file name from logging
 
 # fname='DATA150722.log'                    # example of file name
@@ -113,7 +116,7 @@ else:
     fname = 'DATA'+dte+'.log'
 
                                             # display file name and time
-print('File name:', fname, "dte", dte, 'Process date/time:', date.strftime(
+print('File name:', fname, "dte", dte, lastseen, 'Process date/time:', date.strftime(
     " %y-%m-%d %H:%M:%S"))
 
 #geolocator = GeoNames(country_bias='Spain', username='acasado')
@@ -203,7 +206,7 @@ while True:                                 # until end of file
                                             # SQL command to execute: SELECT
                 selcmd = "select descri from RECEIVERS where idrec=?" # sqlite3
                 curs.execute(selcmd, (key,))
-            row = curs.fetchone()	    # get the description 
+            row = curs.fetchone()	        # get the description 
             if  row == None:                # if receiver is NOT on the DB ???
                 gid = 'Noreg'               # for unknown receiver
                 if config.hostname == "CHILEOGN" or config.hostname == "OGNCHILE" or spanishsta(key) or frenchsta(key):
@@ -217,11 +220,11 @@ while True:                                 # until end of file
 
                 if key != "None" and key != None:
                     if prt:
-                        print(key, ': Adding ==>', gid, lati, longi, alti)
+                        print(key, ': Adding ==>', gid, lati, longi, alti, lastseen)
                     if (MySQL):
                         if len(gid) > 30:
                             gid = gid[0:30]
-                        inscmd = "insert into RECEIVERS values ('" + key + "','" + gid + "'," + str(lati) + "," + str(longi) + "," + str(alti) + ")"
+                        inscmd = "insert into RECEIVERS values ('" + key + "','" + gid + "'," + str(lati) + "," + str(longi) + "," + str(alti) + ",'" + lastseen + "')"
                         try:
                             curs.execute(inscmd)
                         except MySQLdb.Error as e:
@@ -231,10 +234,10 @@ while True:                                 # until end of file
                                 print(">>>MySQL Error: %s" % str(e))
                             print(">>>MySQL error:", inscmd)
                     else:
-                        inscmd = "insert into RECEIVERS values (?, ?, ?, ?, ?)"
-                        curs.execute(inscmd, (key, gid, lati, longi, alti))
+                        inscmd = "insert into RECEIVERS values (?, ?, ?, ?, ?, ?)"
+                        curs.execute(inscmd, (key, gid, lati, longi, alti,lastseen))
 
-            elif (row[0] == "NOSTA" or row[0] == "Noreg") and key in ksta.ksta:   # update the data of the receiver station
+            elif key in ksta.ksta:   	    # update the data of the receiver station
                 gid   = ksta.ksta[key] 	    # report the station name
                 lati  = fslla[key]          # latitude
                 longi = fsllo[key]          # longitude
@@ -244,7 +247,7 @@ while True:                                 # until end of file
                 else:
                         descri = gid
                 if (MySQL):
-                    updcmd = "update RECEIVERS SET idrec='%s', descri='%s', lati=%f, longi=%f, alti=%f where idrec='%s' " % (key, descri, lati, longi, alti, key)  # SQL command to execute: UPDATE
+                    updcmd = "update RECEIVERS SET idrec='%s', descri='%s', lati=%f, longi=%f, alti=%f, lastseen='%s' where idrec='%s' " % (key, descri, lati, longi, alti, lastseen, key)  # SQL command to execute: UPDATE
                     try:
                         curs.execute(updcmd)
                     except MySQLdb.Error as e:
@@ -256,11 +259,18 @@ while True:                                 # until end of file
                         print(">>>MySQL error:", updcmd)
                 else:				# sqlite3
                     # SQL command to execute: UPDATE
-                    updcmd = "update RECEIVERS SET idrec=?, descri=?, lati=?, longi=?, alti=? where idrec=?"
-                    curs.execute(updcmd, (key, gid, lati, longi, alti, key))
+                    updcmd = "update RECEIVERS SET idrec=?, descri=?, lati=?, longi=?, alti=?, lastseen=? where idrec=?"
+                    curs.execute(updcmd, (key, gid, lati, longi, alti, lastseen, key))
 
-                print ("Update RECEIVER description of: ", key, gid, lati, longi, alti) 
+                print ("Update RECEIVER : ", key, gid, lati, longi, alti, lastseen) 
+                nstations += 1 
         #
+        if (MySQL):
+           countactives="SELECT count(*) FROM `RECEIVERS` WHERE DATEDIFF(now(),lastseen) <= 5;"
+           curs.execute(countactives)
+           row = curs.fetchone()	        # get the count of active stations
+           print ("\n\nActive stations : ", row[0], " as of: ", lastseen, "Today seen: ", nstations, "\n\n")
+
         conn.commit()
         # commit the changes
         break                               	# work done
