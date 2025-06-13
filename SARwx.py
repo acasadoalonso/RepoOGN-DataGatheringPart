@@ -30,6 +30,8 @@ print("Time:",date )
 #					  report the program version based on file date
 print("Program Version:", time.ctime(os.path.getmtime(__file__)))
 print("============================================")
+import platform
+print("Python version:", platform.python_version())
 import git
 prt = False
 try:

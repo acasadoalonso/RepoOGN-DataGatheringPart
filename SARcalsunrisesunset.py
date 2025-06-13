@@ -5,7 +5,8 @@ sys.path.insert(0, '/nfs/OGN/src/funcs')
 from parserfuncs import SRSSgetjsondata, getinfoairport
 import config
 hostname = socket.gethostname()
-
+import platform
+print("Python version:", platform.python_version())
 #
 #	get the sunrise/sunset data
 #

@@ -30,7 +30,7 @@ geolocator = Nominatim(user_agent="Repoogn", timeout=5)  # create the instance
 #
 # ---------- main code ---------------
 #
-pgmver="V2.11"
+pgmver="V2.12"
 AVX=False				    # process the AVX ADS-B data
 ENA=False				    # process the ENA ADS-B data
 ADSB=True
@@ -79,6 +79,8 @@ if prt:
     print("\n\nStart process OGN records "+pgmver)
     print("===============================")
     print("User:", user)
+    import platform
+    print("Python version:", platform.python_version())
     try:
        import git
        repo = git.Repo(__file__, search_parent_directories=True)

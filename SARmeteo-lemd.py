@@ -13,6 +13,8 @@ import sqlite3
 datapath = "/nfs/OGN/DIRdata/"
 hostname = socket.gethostname()
 print("Meteo in Madrid... ", hostname)
+import platform
+print("Python version:", platform.python_version())
 sta = "LEMD"
 
 conn = sqlite3.connect(datapath+'SARMETEO.db')

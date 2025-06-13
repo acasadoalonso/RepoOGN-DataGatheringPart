@@ -222,9 +222,11 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
 # ----------------------------------------------------------------------------
 #
 
-version='V2.0'
+version='V2.1'
 print("\n\nStart RELAY analysis "+version)
 print("===========================")
+import platform
+print("Python version:", platform.python_version())
 import git
 try:
    repo = git.Repo(__file__, search_parent_directories=True)

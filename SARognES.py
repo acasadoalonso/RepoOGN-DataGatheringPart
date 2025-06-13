@@ -98,7 +98,7 @@ def osremove (pidfile):
         print("No PID file")
     return
 #----------------------ogn_main.py start-----------------------
-pgmver = "V2.3"
+pgmver = "V2.4"
 fid = {'NONE  ': 0}                     # FLARM ID list
 fsta = {'NONE  ': 'NONE  '}             # STATION ID list
 fmaxa = {'NONE  ': 0}                   # maximun altitude
@@ -127,6 +127,8 @@ else:
     print("\n\nStart ognES SPAIN ", pgmver)
 print("========================")
 print("Program Version:", time.ctime(os.path.getmtime(__file__)))
+import platform
+print("Python version:", platform.python_version())
 import git
 try:
    repo = git.Repo(__file__, search_parent_directories=True)

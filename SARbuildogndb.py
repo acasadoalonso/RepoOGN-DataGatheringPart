@@ -27,7 +27,7 @@ activestations="SELECT * , DATEDIFF(now(),lastseen) FROM `RECEIVERS` WHERE DATED
 # ---------- main code ---------------
 #
 
-pgmver = 'V2.7'				    # may 2025
+pgmver = 'V2.8'				    # may 2025
 fid   = {'NONE  ': 0}                       # FLARM ID list
 fsta  = {'NONE  ': 'NONE  '}                # STATION ID list
 ftkot = {'NONE  ': 0}                       # take off time
@@ -52,6 +52,8 @@ checkdist=[]
 nstations=0				    # number of stations seen
 print("\n\nStart build OGN database "+pgmver)
 print("==============================")
+import platform
+print("Python version:", platform.python_version())
 prt = False
 import git
 try:
