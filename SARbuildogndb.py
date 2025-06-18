@@ -272,6 +272,8 @@ while True:                                 # until end of file
            curs.execute(countactives)
            row = curs.fetchone()	        # get the count of active stations
            print ("\n\nActive stations : ", row[0], " as of: ", lastseen, "Today seen: ", nstations, "\n\n")
+        else:
+           print ("\n\nActive stations : Today seen: ", nstations, "\n\n")
 
         conn.commit()
         # commit the changes

@@ -78,9 +78,16 @@ echo "Server: "$(hostname)     					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
 echo $(date +%H:%M:%S)      					>>SARproc$dt.log
 echo "============="        					>>SARproc$dt.log
+if [ ! -s ognddbdata.json ] ; then              # if size zero delete it
+   rm ognddbdata.json
+fi
+if [ ! -f ognddbdata.json ] ; then              # if no file get it
+   wget -O ognddbdata.json ddb.glidernet.org/download/?j=1      >>SARproc$dt.log
+fi
 mv SARproc*.log log
 /bin/echo '/bin/bash ~/src/SARsrc/sh/SARflight_logger.sh '$city | at -M $(calcelestial -n -p sun -m rise -q $city) + 60 minutes
 rm -f tmp/*.IGC
 atq 
 rm -f ~/sent
+
 

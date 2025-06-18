@@ -112,8 +112,8 @@ for line in reversed(list(open(filename))):
        print(er.sqlite_errorcode)  # Prints 275
        print(er.sqlite_errorname)
 curs.execute ("select count(*) from WX;")
-print  ("WX OGNDATA records:     ", curs.fetchone()[0])
-print  ("Total recordds added: ", records, "from:", hostname)
+print  ("\n\nWX OGNDATA records:     ", curs.fetchone()[0])
+print  ("Total recordds added: ", records, "from:", hostname,"\n\n")
 conn.commit()
 conn.close()
 
