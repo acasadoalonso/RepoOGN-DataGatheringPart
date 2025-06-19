@@ -45,7 +45,7 @@ fsfix = {'NONE  ': 0}                       # number of fixes
 fsour = {}				    # sources
 fadsb = {}				    # ADSB sources
 fadsbfn = {}				    # ADSB sources
-ftkok = {naive_utcnow(): 'NONE  '}       # Take off time
+ftkok = {}       			    # Take off time
 tfixs = 0                                   # total number of fixes
 tmaxa = 0                                   # maximun altitude for the day
 tmaxt = 0                                   # time at max altitude
@@ -400,10 +400,10 @@ try:
             mlati = latitude                # latitude
         cin += 1                            # one more record read
 
-except:
+except Exception as e:
 
-    print("\n\nERROR: Number of open files", nopenf)
-    print(    "================================\n\n")
+    print(e,"\n\nERROR: Number of open files", nopenf)
+    print(      "================================\n\n")
 
 # -----------------  final process ----------------------
 datafilei.close()                           # close the input file
