@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sqlite3
 import sys
+import os
 import time
 import config
 prtreq =  sys.argv[1:]

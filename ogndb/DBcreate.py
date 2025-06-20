@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 #
 import sqlite3
+import os
 def opendb (schema_file, cursor,sqlite3db):
     # Open a connection to the database
     # Build the database from the supplied schema
