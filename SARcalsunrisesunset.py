@@ -1,12 +1,13 @@
 #!/usr/bin/python3
 import sys
+import time
 import socket
+import os
 sys.path.insert(0, '/nfs/OGN/src/funcs')
-from parserfuncs import SRSSgetjsondata, getinfoairport
 pgmver="1.1"
 print("\n\nStart calSunriseSunset ", pgmver)
 print("===========================")
-import config
+from parserfuncs import SRSSgetjsondata, getinfoairport
 hostname = socket.gethostname()
 import platform
 print("Python version:", platform.python_version())
@@ -16,19 +17,21 @@ try:
    sha = repo.head.object.hexsha
 except:
    sha="no sha"
+print("Program Version:", time.ctime(os.path.getmtime(__file__)))
 print ("Git commit:", sha, "\n\n")
+import config
 
 #
 #	get the sunrise/sunset data
 #
 
 if getinfoairport (config.location_name) != None:
-   print(getinfoairport (config.location_name))
+   print("From getinfoairport:\n", getinfoairport (config.location_name))
    location_latitude =  str(getinfoairport (config.location_name)['lat'])
    location_longitude = str(getinfoairport (config.location_name)['lon'])
    
 else:
-   
+   print("From config file:\n")  
    location_latitude=config.location_latitude
    location_longitude=config.location_longitude
 print("\nLocation coordinates:", location_latitude, location_longitude, "at: ", config.location_name)
