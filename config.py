@@ -10,11 +10,16 @@
 APP = "SAR"
 import socket
 import os
+import sys
 from configparser import ConfigParser
+
 configdir = os.getenv('CONFIGDIR')
 if configdir == None:
     configdir = '/etc/local/'
 configfile = configdir+'SARconfig.ini'
+if 'USER' in os.environ :
+    sys.stdout.flush()
+    print ("\n\nSet the configuration from:", configfile)
 hostname = socket.gethostname()
 processid = str(os.getpid())
 if os.path.isfile(configfile):
@@ -121,4 +126,5 @@ if 'USER' in os.environ and prt:
     print("Config DDB    values:  ",        "Server=", DDBhost, DDBport, DDBurl1, DDBurl2)
     print("Config APRS   values:  ",        APRS_SERVER_HOST, APRS_SERVER_PORT, APRS_USER, APRS_PASSCODE, APRS_FILTER_DETAILS)
     print("Config location values:",	    location_name, FLOGGER_LATITUDE, FLOGGER_LONGITUDE)
+    print("===========================================================================================\n\n")
 # --------------------------------------#

@@ -31,7 +31,7 @@ else:
    
    location_latitude=config.location_latitude
    location_longitude=config.location_longitude
-print("Location coordinates:", location_latitude, location_longitude, "at: ", config.location_name)
+print("\nLocation coordinates:", location_latitude, location_longitude, "at: ", config.location_name)
 print("===================================")
 lat=location_latitude
 lon=location_longitude

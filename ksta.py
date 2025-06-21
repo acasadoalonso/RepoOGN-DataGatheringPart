@@ -145,7 +145,6 @@ ksta = {
 "LAROUCO"   : "Larouco, Orense ",
 "PozueloA"  : "Pozuelo de Alarcon, Madrid ",
 "POZUELOA"  : "Pozuelo de Alarcon, Madrid ",
-"Tenerife"  : "Tenerife, Canary Islands ",
 "Algodonal" : "Algodonales, Cadiz ",
 "ALGODONAL" : "Algodonales, Cadiz ",
 "VILADAMAT" : "Viladamat, Girona ",

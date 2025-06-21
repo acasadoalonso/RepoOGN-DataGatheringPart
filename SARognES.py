@@ -16,12 +16,8 @@ import atexit
 import os
 import socket
 import ksta                             # import the list on known OGN stations
-from ksta import spanishsta, frenchsta
-from ognddbfuncs import *               # import the OGN DDB functions
-from datetime import datetime
 sys.path.insert(0, '/nfs/OGN/src/funcs')
-from parserfuncs import *               # the ogn/ham parser functions
-from adsbregfuncs   import getadsbreg
+from datetime import datetime
 from time import sleep                  # the sleep
 from dtfuncs import *
 
@@ -142,7 +138,13 @@ if 'USER' in os.environ:
 else:
     user = "www-data"                       # assume www
 
-import config
+sys.stdout.flush()
+import config                               # get the configuration data
+from ognddbfuncs import *                   # import the OGN DDB functions
+from ksta import spanishsta, frenchsta      # get the list of spanish stations
+from parserfuncs import *                   # the ogn/ham parser functions
+from adsbregfuncs   import getadsbreg       # get the ADSB funcs
+sys.stdout.flush()
 prtreq = sys.argv[1:]
 if prtreq and prtreq[0] == 'prt':
     prt = True
