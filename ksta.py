@@ -44,6 +44,8 @@ ksta = {
 "LECN"   : "Castellon de la Plana",
 "LERS"   : "Reus, Tarragona",
 "LETY"   : "Tinajeros, Albacete",
+"LESA"   : "Matacan, Salamanca",
+"GCLB"   : "El Berriel, Gran Canaria",
 #
 # spanish sites
 #
@@ -153,10 +155,14 @@ ksta = {
 "TENERIFEN" : "Tenerife Norte, Canarias ",
 "TenerifeS" : "Tenerife Sur, Canarias ",
 "TENERIFES" : "Tenerife Sur, Canarias ",
+"CabezaBel" : "Cabezabellosa, Caceres ",
+"CABEZABEL" : "Cabezabellosa, Caceres ",
+"Pedrahita" : "Piedrahita, Avila ",
+"PEDRAHITA" : "Piedrahita, Avila ",
 "SSCC-RDAR" : "Estacion radar Paracuellos, Madrid ",
-"SPAINAVX"  : "Estacion ficticia gateway AVX ",
-"SPAINTTT"  : "Estacion ficticia gateway Enaire ",
-"SPAINENA"  : "Estacion ficticia gateway Enaire ",
+"SpainAVX"  : "Estacion ficticia gateway AVX ",
+"SpainTTT"  : "Estacion ficticia gateway Enaire ",
+"SpainENA"  : "Estacion ficticia gateway Enaire ",
 
 # french airports
 "LFBM"   : "Mont de Marsan",

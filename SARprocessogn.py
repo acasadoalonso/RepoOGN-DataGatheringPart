@@ -152,6 +152,7 @@ try:
         k = list(fid.keys())
         k.sort()                            # sort the list
 
+        Nflights=0
         for key in k:                       # report data by flarm id
             if getognchk(key[3:9]):         # if it is a known glider ???
                 r = getognreg(key[3:9])     # get the registration
@@ -178,7 +179,10 @@ try:
                 # report FLARM ID, station used,  record counter, registration, take off time and landing time
             if ffd[key] != None:
                 ffd[key].close()            # and close all the file
+            Nflights += 1
+        print ("\nNumber of fligths:", Nflights)
         print ("\n======================================\n")
+        Nflights=0
         k = list(ftkok.keys())              # list the takes off times
         k.sort()                            # sort the list
         for to in k:                        # report by take off time
@@ -201,7 +205,10 @@ try:
                 ltime = ' '
             if prt:
                 print(to, ':::>', key, fsta[key], r, ftkot[key], ltime, ttime)
+            Nflights += 1
 
+        print ("\nNumber of registered flights", Nflights)
+        print ("\n======================================\n")
         k = list(fsloc.keys())              # list the receiving stations
         k.sort()                            # sort the list
         print ("\n\nReceivers status and range:\n")
@@ -309,7 +316,7 @@ try:
            fadsbfn[ident] = msg['fn']
 
     # or frenchsta(station):  # only Chilean or Spanish or frenchstations
-    if ((hostname == "CHILEOGN" or hostname == "OGNCHILE") and source == "OGN") or source == "SPOT" or source == "NAVI" or source == "SKYS" or spanishsta(station) or (source == 'ADSB' and (AVX or ENA or ident [3:5] == '34')) :
+    if ((hostname == "CHILEOGN" or hostname == "OGNCHILE") and source == "OGN") or source == "SPOT" or source == "NAVI" or source == "SKYS" or spanishsta(station) or (source == 'ADSB' and (AVX or ENA or ident [3:5] == '34')) or station == 'SpainTTT' or station == 'SpainAVX'  :
         if not ident in fid:                # if we did not see the FLARM ID
             fid[ident] = 0                  # init the counter
             fsta[ident] = station           # init the station receiver

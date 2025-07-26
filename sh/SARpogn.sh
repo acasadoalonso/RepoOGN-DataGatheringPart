@@ -84,6 +84,13 @@ fi
 if [ ! -f ognddbdata.json ] ; then              # if no file get it
    wget -O ognddbdata.json ddb.glidernet.org/download/?j=1      >>SARproc$dt.log
 fi
+if [ -z $(find ognddbdata.json -mtime +7 -print ) ]
+then
+ echo "OGNDDB is new"
+else
+ wget -O ognddbdata.json ddb.glidernet.org/download/?j=1      	>>SARproc$dt.log
+ echo "OGNDDB refreshed"
+fi
 mv SARproc*.log log
 /bin/echo '/bin/bash ~/src/SARsrc/sh/SARflight_logger.sh '$city | at -M $(calcelestial -n -p sun -m rise -q $city) + 60 minutes
 rm -f tmp/*.IGC
