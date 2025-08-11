@@ -447,7 +447,7 @@ while True:                                 # until end of file
                                                             location_longitude)).km    # distance to the station
                 dist = distance	    	    # distance to the station
 
-            if altim != None and altim > tmaxa:
+            if altim != None and altim > tmaxa and source == 'OGN':
                 tmaxa = altim               # maximum altitude for the day
                 tmaxt = hora                # and time
                 tmid = ident                # who did it

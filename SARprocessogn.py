@@ -398,7 +398,7 @@ try:
                    checkdist.append(ident)
             elif distance > fsmax[station]: # if higher distance
                 fsmax[station] = distance   # save the new distance
-        if altim > tmaxa:
+        if altim > tmaxa and source == 'OGN':
             tmaxa = altim                   # maximum altitude for the day
             tmaxt = hora                    # and time
             tmid = ident                    # who did it

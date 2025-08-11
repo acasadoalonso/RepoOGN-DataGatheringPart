@@ -22,7 +22,7 @@ from time import sleep                  # the sleep
 from dtfuncs import *
 
 
-def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
+def shutdown(sock, datafile, tmaxa, tmaxt, tmid, SpainAVX=0, SpainTTT=0):
                                         # shutdown before exit
     sock.shutdown(0)                    # shutdown the connection
     sock.close()                        # close the connection file
@@ -64,6 +64,7 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
     if relaycnt > 0:
         print("Relays:", relayglider)
     print("Stations:", stations)
+    print("Special stations: AVX", SpainAVX, "TTT", SpainTTT)
     print("Sources:", sources)
     print("Aircraft types:", acfttype)
     print("Paths:", paths)
@@ -80,7 +81,7 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid):
 
 def signal_term_handler(signal, frame):	# signal handler for SIGTERM
     print('got SIGTERM/SIGHUP ... shutdown orderly Time: ', signal, datetime.now())
-    shutdown(sock, datafile, tmaxa, tmaxt, tmid)  # shutdown orderly
+    shutdown(sock, datafile, tmaxa, tmaxt, tmid, SpainAVX, SpainTTT)  # shutdown orderly
     sys.exit(0)
 
 
@@ -111,11 +112,13 @@ err = 0				        # init the error counter
 relaycnt = 0				# counter of relay packets
 relaycntr = 0				# counter of relay packets
 relayglider = {}			# list of relaying gliders
-maxerr = 50				# max number of input error before gaive up
-tmaxa = 0                               # maximun altitude for the day
-tmaxt = 0                               # time at max altitude
-tmid = 'None     '                      # glider ID obtaining max altitude
-tmsta = '         '                     # station capturing max altitude
+maxerr = 50				    # max number of input error before gaive up
+tmaxa = 0                   # maximun altitude for the day
+tmaxt = 0                   # time at max altitude
+tmid = 'None     '          # glider ID obtaining max altitude
+tmsta = '         '         # station capturing max altitude
+SpainAVX=0
+SpainTTT=0				    # counter for the special stations
 hostname = socket.gethostname()
 if hostname == 'CHILEOGN' or hostname == "OGNCHILE":
     print("\n\nStart ognCL CHILE ", pgmver)
@@ -261,7 +264,7 @@ try:
         twilight = -6 * ephem.degree
         if s.alt < twilight:
             print("At Sunset now ... Time is:", date, "UTC ...  Next sunset is: ", next_sunset,  " UTC")
-            shutdown(sock, datafile, tmaxa, tmaxt, tmid)
+            shutdown(sock, datafile, tmaxa, tmaxt, tmid, SpainAVX, SpainTTT)
             print("At Sunset ... wait 5 mins and Exit\n===============================================================\n")
             sys.stdout.flush()
             sys.stderr.flush()
@@ -336,6 +339,11 @@ try:
             if path not in paths:
                 paths.append(path)
             ident       = msg['id']
+            station = msg['station']
+            if station == 'SpainAVX':
+               SpainAVX += 1
+            elif station == 'SpainTTT':
+               SpainTTT +=1
             speed=0.0
             course=0
             if path == 'aprs_aircraft' or path == 'flarm' or path == 'tracker':
@@ -346,7 +354,6 @@ try:
             dst_callsign = msg['id']
             otime       = msg['otime']
 
-            station = msg['station']
             if 'relay' in msg:
                 relay = msg['relay']
             else:
@@ -402,12 +409,12 @@ try:
                fid[ident] += 1
                if altitude >= fmaxa[ident]:         # check for max altitude of the day
                    fmaxa[ident] = altitude
-                   if altitude > tmaxa and (not spanishsta(ident) and not frenchsta(ident)):
+                   if altitude > tmaxa and source == 'OGN' :
                        tmaxa = altitude             # maximum altitude for the day
                        tmaxt = date                 # date and time
                        tmid = ident                 # who did it
                        tmsta = station              # station capturing the max altitude
-               if speed >= fmaxs[ident]:            # check for max speed of the day
+               if speed >= fmaxs[ident] and source == 'OGN':            # check for max speed of the day
                    fmaxs[ident] = speed
 
             if source == 'ADSB':
@@ -417,19 +424,19 @@ try:
 
 except KeyboardInterrupt:			  # SIGINT
     print("Keyboard input received, shutdown ...")
-    shutdown(sock, datafile, tmaxa, tmaxt, tmid)  # shutdown orderly
+    shutdown(sock, datafile, tmaxa, tmaxt, tmid, SpainAVX, SpainTTT)  # shutdown orderly
     exit(1)
 #
 except TypeError as e:
     print("TypeError: ...",e)
     ## print the record for debugging purposes
     print(">>>>>>>> Packet: ", packet_str)
-    shutdown(sock, datafile, tmaxa, tmaxt, tmid)  # shutdown orderly
+    shutdown(sock, datafile, tmaxa, tmaxt, tmid, SpainAVX, SpainTTT)  # shutdown orderly
     exit(1)
 
 
 # report number of records read and files generated
 print('Counters:', cin, cout)
-shutdown(sock, datafile, tmaxa, tmaxt, tmid)
+shutdown(sock, datafile, tmaxa, tmaxt, tmid, SpainAVX, SpainTTT)
 print("Exit now ...", err)
 exit(1)
