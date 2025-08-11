@@ -59,17 +59,21 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid, SpainAVX=0, SpainTTT=0):
         gid = getognreg(tmid[3:9])      # report the registration
     else:
         gid = tmid                      # use the ID instead
-    print("Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'by:', gid, 'Station:', tmsta)
-    print("Number of RELAY packets:", relaycnt, relaycntr)
+    print("\n\nMaximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'by:', gid, 'Station:', tmsta)
+    print("\nNumber of RELAY packets:", relaycnt, relaycntr)
     if relaycnt > 0:
-        print("Relays:", relayglider)
-    print("Stations:", stations)
-    print("Special stations: AVX", SpainAVX, "TTT", SpainTTT)
-    print("Sources:", sources)
-    print("Aircraft types:", acfttype)
-    print("Paths:", paths)
+        print("\nRelays:", relayglider)
+    s=stations.sort()
+    print("\nStations:", stations)
+    print("\nSpecial stations: AVX", SpainAVX, "TTT", SpainTTT)
+    sources.sort()
+    print("\nSources:", sources)
+    acfttype.sort()
+    print("\nAircraft types:", acfttype)
+    paths.sort()
+    print("\nPaths:", paths)
     local_time = datetime.now()
-    print("Time now:", local_time, "Local time.")
+    print("\nTime now:", local_time, "Local time.")
     try:
         os.remove(config.APP+".alive")
     except:
@@ -409,7 +413,7 @@ try:
                fid[ident] += 1
                if altitude >= fmaxa[ident]:         # check for max altitude of the day
                    fmaxa[ident] = altitude
-                   if altitude > tmaxa and source == 'OGN' :
+                   if altitude > tmaxa and source == 'OGN' and (not spanishsta(ident) and not frenchsta(ident)): # exclude the stations itsellf
                        tmaxa = altitude             # maximum altitude for the day
                        tmaxt = date                 # date and time
                        tmid = ident                 # who did it
