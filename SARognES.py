@@ -63,17 +63,17 @@ def shutdown(sock, datafile, tmaxa, tmaxt, tmid, SpainAVX=0, SpainTTT=0):
     print("\nNumber of RELAY packets:", relaycnt, relaycntr)
     if relaycnt > 0:
         print("\nRelays:", relayglider)
-    s=stations.sort()
-    print("\nStations:", stations)
+    stations.sort()
+    print("\nStations:", len(stations), stations)
     print("\nSpecial stations: AVX", SpainAVX, "TTT", SpainTTT)
     sources.sort()
-    print("\nSources:", sources)
+    print("\nSources:", len(sources), sources)
     acfttype.sort()
-    print("\nAircraft types:", acfttype)
+    print("\nAircraft types:", len(acfttype), acfttype)
     paths.sort()
-    print("\nPaths:", paths)
+    print("\nPaths:", len(paths), paths)
     local_time = datetime.now()
-    print("\nTime now:", local_time, "Local time.")
+    print("\nTime now:", local_time, "Local time.\n")
     try:
         os.remove(config.APP+".alive")
     except:
@@ -413,7 +413,7 @@ try:
                fid[ident] += 1
                if altitude >= fmaxa[ident]:         # check for max altitude of the day
                    fmaxa[ident] = altitude
-                   if altitude > tmaxa and source == 'OGN' and (not spanishsta(ident) and not frenchsta(ident)): # exclude the stations itsellf
+                   if altitude > tmaxa and source == 'OGN' and (not spanishsta(ident) and not frenchsta(ident)) and not ident == station: # exclude the stations itsellf
                        tmaxa = altitude             # maximum altitude for the day
                        tmaxt = date                 # date and time
                        tmid = ident                 # who did it

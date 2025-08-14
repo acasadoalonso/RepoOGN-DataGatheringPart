@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 #
-# gather the WX record from the APRS file and decode it
+# gather the WX record from the APRS file, decode it and add it to the SARMETEO database
 #
 
-# example:   grep OGNDVS /nfs/OGN/DIRdata/DATA* | grep LEZS | tail -n 20 | python ~/src/APRSsrc/wx.py
+# example:   python SARwx.py 
 #import cgi
 import os
 import sys
@@ -40,9 +40,9 @@ try:
 except:
    sha='NO SHA'
 print ("Git commit info:", sha)
-parser = argparse.ArgumentParser(description="OGN Tracker relay analysis")
+parser = argparse.ArgumentParser(description="OGN Add APRS meteo to the DB")
 parser.add_argument("-n",  '--name',       required=False,
-                    dest='filename', action='store', default='ALL')
+                    dest='filename', action='store', default='/nfs/OGN/DIRdata/DATA.active')
 parser.add_argument('-p',  '--print',     required=False,
                     dest='print',   action='store')
 args = parser.parse_args()
@@ -53,7 +53,7 @@ if prtt != None:
 else:
    prt = False
 
-print ("Args: FN:", fname, "PRT:", prt, prtt)
+print ("Args: FileName:", fname, "PRT:", prt, prtt)
 
 msg={}
 
@@ -72,7 +72,8 @@ records=0
 ################
 date = datetime.now()
 dte = date.strftime("%y%m%d")       # today's date
-filename="/nfs/OGN/DIRdata/DATA.active"
+#filename="/nfs/OGN/DIRdata/DATA.active"
+filename=fname
 #
 for line in reversed(list(open(filename))):
     rawtext=line
@@ -112,8 +113,8 @@ for line in reversed(list(open(filename))):
        print(er.sqlite_errorcode)  # Prints 275
        print(er.sqlite_errorname)
 curs.execute ("select count(*) from WX;")
-print  ("\n\nWX OGNDATA records:     ", curs.fetchone()[0])
-print  ("Total recordds added: ", records, "from:", hostname,"\n\n")
+print  ("\n\nWX OGNDATA records now:     ", curs.fetchone()[0])
+print  ("\nTotal recordds added: ", records, "from host:", hostname,"\n\n")
 conn.commit()
 conn.close()
 

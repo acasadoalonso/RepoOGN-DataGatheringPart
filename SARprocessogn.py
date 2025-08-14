@@ -18,7 +18,7 @@ datapath = config.DBpath
 #print ("Path:", sys.path)
 import os
 from ognddbfuncs import *                   # import the list on known gliders
-from datetime import *                      # the ogn/ham parser functions
+from datetime import datetime                      # the ogn/ham parser functions
 from parserfuncs import *                   # the ogn/ham parser functions
 from geopy.distance import geodesic	    # use the Vincenty algorithm
 from geopy.geocoders import GeoNames        # use the Nominatim as the geolocator
@@ -81,6 +81,7 @@ if prt:
     print("User:", user)
     import platform
     print("Python version:", platform.python_version())
+    print("Program Version:", time.ctime(os.path.getmtime(__file__)))
     try:
        import git
        repo = git.Repo(__file__, search_parent_directories=True)
@@ -220,7 +221,7 @@ try:
                     print(key, '==>', fsmax[key], ' Kms. and number of fixes: ', fsfix[key])
         print ("\nNumber of stations: ", len(k), " ===========================:\n")
         if prt:
-           print("\nPaths:", paths)
+           print("\nPaths:", len(paths), paths)
         # work done, finish the reporting now ...
         break
 #--------------------------------------------------------------------------------------------------
@@ -427,10 +428,9 @@ else:
 # addr=str(addr)                            # convert to str just in case, in order to avoid problems when is redirected to a file.
 addr = ' '
 if prt:
-    print("Sources:", fsour)
-    print("Aircraft types:", acfttype)
-    print("Maximum altitude for the day  :", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta, "At: ", mlati, mlong, addr)
-    print("Total number of fixes today by the known stations  :", tfixs)
-    print("Number of open files:", nopenf)
-    print('\nBye ... Time now and Time used:', datef, datef - \
-        date)                               # report the processing time
+    print("\nSources:", len(fsour), fsour)
+    print("\nAircraft types:",len(acfttype),  acfttype)
+    print("\nMaximum altitude for the day  :", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta, "At: ", mlati, mlong, addr)
+    print("\nTotal number of fixes today by the known stations  :", tfixs)
+    print("\nNumber of open files:", nopenf)
+    print('\nBye ... Time now and Time used:', datef, datef - date)     # report the processing time

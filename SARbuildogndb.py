@@ -14,7 +14,7 @@ import ksta                                 # import the list on known stations
 from ksta import spanishsta, frenchsta
 
 from ognddbfuncs import *		    # 
-import datetime
+from datetime import datetime
 import sqlite3                              # the SQL data base routines
 import MySQLdb                              # the SQL data base routines
 from parserfuncs import *                   # the ogn/ham parser functions
@@ -27,7 +27,7 @@ activestations="SELECT * , DATEDIFF(now(),lastseen) FROM `RECEIVERS` WHERE DATED
 # ---------- main code ---------------
 #
 
-pgmver = 'V2.8'				    # may 2025
+pgmver = 'V2.9'				    # may 2025
 fid   = {'NONE  ': 0}                       # FLARM ID list
 fsta  = {'NONE  ': 'NONE  '}                # STATION ID list
 ftkot = {'NONE  ': 0}                       # take off time
@@ -46,6 +46,7 @@ relaycnt = 0				    # counter of relay packages
 relaycntr = 0				    # counter of std relay packages
 relayglider = {}			    # list of relay glider and tracker
 fsour = {}			    	    # list of sources
+paths = []
 tmsta = ''
 CCerrors=[]
 checkdist=[]
@@ -62,6 +63,7 @@ try:
 except:
    sha='NO SHA'
 print ("Git commit info:", sha)
+print("Program Version:", time.ctime(os.path.getmtime(__file__)))
 import config                               # import the main settings
 DBname = config.DBname
 DBhost = config.DBhost
@@ -135,7 +137,6 @@ else:
 curs = conn.cursor()                        # set the cursor
 
 nrec = 0
-paths=[]
 
 while True:                                 # until end of file
     data = datafilei.readline()             # read one line
@@ -497,8 +498,10 @@ print("Maximun altitude for the day:", tmaxa, ' meters MSL at:', tmaxt, 'Z by:',
 print("Number of relay packages:    ", relaycntr, relaycnt)
 if relaycnt > 0:
     print("List of relays:", relayglider)
-print ("\nPaths:", paths)
-print ("\nSources:", fsour)
+paths.sort()
+print ("\nPaths:", len(paths),paths)
+sorted_s = sorted(fsour.items(), key=lambda kv: kv[0])
+print ("\nSources:", len(fsour),  sorted_s)
 print('\nBye ...: Stored', cout, " records of ", nrec, ' read. Time and Time used:', datef, datef - \
     date)                                   # report the processing time
 #           ---------------------------------------------------------
