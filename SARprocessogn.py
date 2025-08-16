@@ -30,7 +30,7 @@ geolocator = Nominatim(user_agent="Repoogn", timeout=5)  # create the instance
 #
 # ---------- main code ---------------
 #
-pgmver="V2.12"
+pgmver="V2.13"
 AVX=False				    # process the AVX ADS-B data
 ENA=False				    # process the ENA ADS-B data
 ADSB=True
@@ -220,8 +220,6 @@ try:
                                             # distance
                     print(key, '==>', fsmax[key], ' Kms. and number of fixes: ', fsfix[key])
         print ("\nNumber of stations: ", len(k), " ===========================:\n")
-        if prt:
-           print("\nPaths:", len(paths), paths)
         # work done, finish the reporting now ...
         break
 #--------------------------------------------------------------------------------------------------
@@ -428,7 +426,11 @@ else:
 # addr=str(addr)                            # convert to str just in case, in order to avoid problems when is redirected to a file.
 addr = ' '
 if prt:
-    print("\nSources:", len(fsour), fsour)
+    paths.sort()
+    print("\nPaths:", len(paths), paths)
+    sorted_s = sorted(fsour.items(), key=lambda kv: kv[0])
+    print("\nSources:", len(fsour), sorted_s)
+    acfttype.sort()
     print("\nAircraft types:",len(acfttype),  acfttype)
     print("\nMaximum altitude for the day  :", tmaxa, ' meters MSL at:', tmaxt, 'Z by:', gid, 'Station:', tmsta, "At: ", mlati, mlong, addr)
     print("\nTotal number of fixes today by the known stations  :", tfixs)
