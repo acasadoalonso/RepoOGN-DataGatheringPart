@@ -4,7 +4,6 @@
 #
 
 # example:   python SARwx.py 
-#import cgi
 import os
 import sys
 import argparse
@@ -23,7 +22,7 @@ ssl.match_hostname = lambda cert, hostname: True
 import sqlite3
 datapath = "/nfs/OGN/DIRdata/"
 hostname = socket.gethostname()
-version='V1.0'
+version='V1.1'
 date = datetime.now()
 print("\n\nWeather gathering from OGN:  "+version)
 print("Time:",date )
@@ -40,6 +39,7 @@ try:
 except:
    sha='NO SHA'
 print ("Git commit info:", sha)
+print("============================================")
 parser = argparse.ArgumentParser(description="OGN Add APRS meteo to the DB")
 parser.add_argument("-n",  '--name',       required=False,
                     dest='filename', action='store', default='/nfs/OGN/DIRdata/DATA.active')
@@ -66,7 +66,7 @@ curs.execute(crecmd)
 crecmd = "create unique index IF NOT EXISTS WXIDX on METEO ( date , time, metstation)"
 curs.execute(crecmd)
 print ("Table created or connected")
-curs.execute("delete from WX;")			# delete all the records ... we plan to add all new
+curs.execute("delete from WX;")			# delete all the records from WX table ... we plan to add all new
 records=0
 
 ################
@@ -74,29 +74,32 @@ date = datetime.now()
 dte = date.strftime("%y%m%d")       # today's date
 #filename="/nfs/OGN/DIRdata/DATA.active"
 filename=fname
+nrecords=0
 #
-for line in reversed(list(open(filename))):
-    rawtext=line
-    parseraprs(line, msg)
-    if msg['source'] != 'WTX':
+for line in reversed(list(open(filename))):	# read the whole file DATA*.active
+    nrecords +=1				# record counter
+    rawtext=line				# the raw text
+    parseraprs(line, msg)			# parse the line using the python parser
+    if msg['source'] != 'WTX':			# if not weather ignore it
        continue
     #print ("LLL", rawtext)
-    metstation = msg['station']
-    otime=msg['otime']
-    date = otime.strftime("%y%m%d")
-    tme = otime.strftime("%H%M%S")
-    windspeed=msg['windspeed']
+    metstation    = msg['station']
+    otime         = msg['otime']
+    date          = otime.strftime("%y%m%d")
+    tme           = otime.strftime("%H%M%S")
+    windspeed     = msg['windspeed']
+    tempf         = msg['temp']
+    humidity      = msg['humidity']
+    rain          = msg['rain']
+						# validate the values
+    if tempf != ' ' and tempf != 0:
+       tempc = round((float(tempf)-32)*5/9, 2)	# convert a Celsius
+    else:
+       tempc=0.0
     if windspeed == ' ':
        #print ("WWW", rawtext)
        windspeed ='0/0/0'
-    tempf=msg['temp']
-    humidity=msg['humidity']
-    rain=msg['rain']
-    if tempf != ' ' and tempf != 0:
-       tempc = round((float(tempf)-32)*5/9, 2)
-    else:
-       tempc=0.0
-    message=""
+    message=""					# built the message
     if tempc != 0.0:
        message += " Temp: %.2fºC"%tempc
     if humidity != ' ':
@@ -105,16 +108,17 @@ for line in reversed(list(open(filename))):
        message +=  " Rain: "+msg['rain']+" Hourly "
     if prt:
        print ("Station:", msg['station'], "Time (UTC):",date, tme , "Wind (dir/spd/burst):", msg['windspeed'], message)
-    try:
+    try:					# add it now to the METEO.db
        addcmd = "insert into WX values (?,?,?,?,?,?,?,?)"
        curs.execute(addcmd, (date, tme, metstation, rawtext, windspeed, tempc, humidity, rain))
        records += 1
     except sqlite3.Error as er:
-       print(er.sqlite_errorcode)  # Prints 275
+       print(er.sqlite_errorcode)  		# Prints 275
        print(er.sqlite_errorname)
-curs.execute ("select count(*) from WX;")
+
+curs.execute ("select count(*) from WX;")	# double check the number of records
 print  ("\n\nWX OGNDATA records now:     ", curs.fetchone()[0])
-print  ("\nTotal recordds added: ", records, "from host:", hostname,"\n\n")
+print  ("\nTotal recordds added: ", records, "from ", nrecords, records/nrecords*100, "% total from host:", hostname,"\n\n")
 conn.commit()
 conn.close()
 
