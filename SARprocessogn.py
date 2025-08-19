@@ -238,6 +238,11 @@ try:
              print("Parser error:", data)
              CCerrors.append(cc)
         continue
+    if msg == -2:			    # parser error
+        if cc not in CCerrors:
+             print("Parser time error:", data)
+             CCerrors.append(cc)
+        continue
     ident = msg['id']          	            # id
                                             # get the information once parsed
     source      = msg['source']

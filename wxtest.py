@@ -2,7 +2,7 @@
 # gather the WX record from the APRS file and decode it
 #
 
-# example:   grep OGNDVS /nfs/OGN/DIRdata/DATA* | grep LEZS | tail -n 20 | python ~/src/APRSsrc/wx.py
+# example:   grep OGNDVS /nfs/OGN/DIRdata/DATA* | grep LEZS | tail -n 20 | python ~/src/SARsrc/wxtest.py
 
 
 
@@ -13,6 +13,9 @@ msg={}
 for line in fileinput.input():
     #print ("LLL:", line)
     parseraprs(line, msg)
+    if msg['source'] != 'WTX':			# if not weather ignore it
+       continue
+
     #print ("MMM", msg)
     tempf=msg['temp']
     humidity=msg['humidity']

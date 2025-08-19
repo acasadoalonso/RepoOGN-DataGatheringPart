@@ -320,6 +320,11 @@ try:
                print("Parser error:", data)
                CCerrors.append(cc)
             continue
+        if msg == -2:			    # parser error
+            if cc not in CCerrors:
+                 print("Parser time error:", data)
+                 CCerrors.append(cc)
+            continue
 
         if len(packet_str) > 0 and packet_str[0] != "#":
             ptype       = msg['aprstype']

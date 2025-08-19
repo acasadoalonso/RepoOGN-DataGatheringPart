@@ -301,6 +301,11 @@ while True:                                 # until end of file
                print("Parser error:", data)
                CCerrors.append(cc)
             continue
+        if msg == -2:			    # parser error
+            if cc not in CCerrors:
+                 print("Parser time error:", data)
+                 CCerrors.append(cc)
+            continue
 #           ---------------------------------------------------------
         ident = msg['id']          	    # id
         if (ident[0:3] == 'RND'):	    # check if random ??

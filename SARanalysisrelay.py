@@ -103,6 +103,11 @@ def sa_builddb(fname, schema_file="STD"):   # build a in memory database with al
                     print("Parser error:", data)
                     CCerrors.append(cc)
                continue
+            if msg == -2:			    # parser error
+               if cc not in CCerrors:
+                     print("Parser time error:", data)
+                     CCerrors.append(cc)
+               continue
 
             path = msg['path']
             source = msg['source']          # source of the data OGN/SPOT/SPIDER/...
