@@ -99,7 +99,7 @@ def osremove (pidfile):
         print("No PID file")
     return
 #----------------------ogn_main.py start-----------------------
-pgmver = "V2.4"
+pgmver = "V2.5"				# May 2026
 fid = {'NONE  ': 0}                     # FLARM ID list
 fsta = {'NONE  ': 'NONE  '}             # STATION ID list
 fmaxa = {'NONE  ': 0}                   # maximun altitude
@@ -178,7 +178,15 @@ server=config.APRS_SERVER_HOST
 if server == ' ':
    server=findfastestaprs()
 
-sock.connect((server, config.APRS_SERVER_PORT))
+try:
+   sock.connect((server, config.APRS_SERVER_PORT))
+except:
+   try:
+      sock.connect(("aprs.glidernet.org", config.APRS_SERVER_PORT))   # try a second time
+   except:
+      print ("error connecting to APRS\n\n")
+      exit(-1)
+
 print("Socket sock connected")
 
 # logon to OGN APRS network
